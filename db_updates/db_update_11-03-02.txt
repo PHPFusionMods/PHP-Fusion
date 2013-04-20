@@ -1,0 +1,16 @@
+<?php
+$result = dbquery("ALTER TABLE ".DB_BLACKLIST." CHANGE blacklist_ip blacklist_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_CAPTCHA." CHANGE captcha_ip captcha_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_COMMENTS." CHANGE comment_ip comment_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_ERRORS." CHANGE error_user_ip error_user_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_FLOOD_CONTROL." CHANGE flood_ip flood_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_FORUM_POLL_VOTERS." CHANGE forum_vote_user_ip forum_vote_user_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_RATINGS." CHANGE rating_ip rating_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_ONLINE." CHANGE online_ip online_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_POSTS." CHANGE post_ip post_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_SESSIONS." CHANGE session_ip session_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_SHOUTBOX." CHANGE shout_ip shout_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_SUSPENDS." CHANGE suspend_ip suspend_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_SUSPENDS." CHANGE reinstate_ip reinstate_ip VARCHAR(45) NOT NULL default ''");
+$result = dbquery("ALTER TABLE ".DB_USERS." CHANGE user_ip user_ip VARCHAR(45) NOT NULL default ''");
+?>

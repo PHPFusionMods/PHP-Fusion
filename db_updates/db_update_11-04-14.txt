@@ -1,0 +1,3 @@
+<?php
+$result = dbquery("UPDATE ".DB_ADMIN." SET admin_page='3' WHERE admin_rights='ERRO' AND admin_link='errors.php'");
+?>

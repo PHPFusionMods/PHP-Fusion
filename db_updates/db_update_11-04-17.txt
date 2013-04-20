@@ -1,0 +1,5 @@
+<?php
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_screenshot', '1')");
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_thumb_max_w', '100')");
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_thumb_max_h', '100')");
+?>

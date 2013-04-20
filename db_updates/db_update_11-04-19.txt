@@ -1,0 +1,4 @@
+<?php
+$result = dbquery("DELETE FROM ".DB_SETTINGS." WHERE settings_name='news_style'");
+$result = dbquery("INSERT INTO ".DB_SETTINGS." (settings_name, settings_value) VALUES ('forum_editpost_to_lastpost', '1')");
+?>

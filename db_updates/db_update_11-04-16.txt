@@ -1,0 +1,3 @@
+<?php
+$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('recaptcha_theme', 'red')");
+?>

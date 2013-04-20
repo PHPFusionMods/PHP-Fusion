@@ -1,0 +1,5 @@
+<?php
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_screen_max_b', '150000')");
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_screen_max_w', '1024')");
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_screen_max_h', '768')");
+?>

@@ -1,0 +1,3 @@
+<?php
+$result = dbquery("DELETE FROM ".DB_SETTINGS." WHERE settings_name='news_style'");
+?>

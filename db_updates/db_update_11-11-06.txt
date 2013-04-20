@@ -1,0 +1,3 @@
+<?php
+$result = dbquery("INSERT INTO ".DB_SETTINGS." (settings_name, settings_value) VALUES ('multiple_logins', '0')");
+?>

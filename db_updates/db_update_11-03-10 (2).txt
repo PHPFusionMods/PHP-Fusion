@@ -1,0 +1,16 @@
+<?php
+$result = dbquery("ALTER TABLE ".DB_BLACKLIST." ADD blacklist_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER blacklist_ip, ADD KEY (blacklist_ip_type)");
+$result = dbquery("ALTER TABLE ".DB_CAPTCHA." ADD captcha_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER captcha_ip");
+$result = dbquery("ALTER TABLE ".DB_COMMENTS." ADD comment_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER comment_ip");
+$result = dbquery("ALTER TABLE ".DB_ERRORS." ADD error_user_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER error_user_ip");
+$result = dbquery("ALTER TABLE ".DB_FLOOD_CONTROL." ADD flood_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER flood_ip");
+$result = dbquery("ALTER TABLE ".DB_FORUM_POLL_VOTERS." ADD forum_vote_user_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER forum_vote_user_ip");
+$result = dbquery("ALTER TABLE ".DB_RATINGS." ADD rating_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER rating_ip");
+$result = dbquery("ALTER TABLE ".DB_ONLINE." ADD online_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER online_ip");
+$result = dbquery("ALTER TABLE ".DB_POSTS." ADD post_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER post_ip");
+$result = dbquery("ALTER TABLE ".DB_SESSIONS." ADD session_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER session_ip");
+$result = dbquery("ALTER TABLE ".DB_SHOUTBOX." ADD shout_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER shout_ip");
+$result = dbquery("ALTER TABLE ".DB_SUSPENDS." ADD suspend_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER suspend_ip");
+$result = dbquery("ALTER TABLE ".DB_SUSPENDS." ADD reinstate_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER reinstate_ip");
+$result = dbquery("ALTER TABLE ".DB_USERS." ADD user_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4' AFTER user_ip");
+?>
