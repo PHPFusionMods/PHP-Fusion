@@ -57,22 +57,21 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat
 		} else {
 			$cat_sorting = "download_title ASC";
 		}
-
-		if ($cat_name) {
-			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
-				$result = dbquery("UPDATE ".DB_DOWNLOAD_CATS." SET download_cat_name='$cat_name', download_cat_description='$cat_description', download_cat_sorting='$cat_sorting', download_cat_access='$cat_access' WHERE download_cat_id='".$_GET['cat_id']."'");
-				redirect(FUSION_SELF.$aidlink."&status=su");
-			} else {
-				$checkCat = dbcount("(download_cat_id)", DB_DOWNLOAD_CATS, "download_cat_name='".$cat_name."'");
-				if ($checkCat == 0) {
+		$checkCat = dbcount("(download_cat_id)", DB_DOWNLOAD_CATS, "download_cat_name='".$cat_name."'");
+		if ($checkCat == 0) {
+			if ($cat_name) {
+				if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
+					$result = dbquery("UPDATE ".DB_DOWNLOAD_CATS." SET download_cat_name='$cat_name', download_cat_description='$cat_description', download_cat_sorting='$cat_sorting', download_cat_access='$cat_access' WHERE download_cat_id='".$_GET['cat_id']."'");
+					redirect(FUSION_SELF.$aidlink."&status=su");
+				} else {
 					$result = dbquery("INSERT INTO ".DB_DOWNLOAD_CATS." (download_cat_name, download_cat_description, download_cat_sorting, download_cat_access) VALUES('$cat_name', '$cat_description', '$cat_sorting', '$cat_access')");
 					redirect(FUSION_SELF.$aidlink."&status=sn");
-				} else {
-					$error = 2;
 				}
+			} else {
+				$error = 1;
 			}
 		} else {
-			$error = 1;
+			$error = 2;
 		}
 	}
 	if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
@@ -83,9 +82,8 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat
 			$cat_description = $data['download_cat_description'];
 			$cat_sorting = explode(" ", $data['download_cat_sorting']);
 			if ($cat_sorting[0] == "download_id") { $cat_sort_by = "1"; }
-			elseif ($cat_sorting[0] == "download_title") { $cat_sort_by = "2"; }
-			elseif ($cat_sorting[0] == "download_datestamp") { $cat_sort_by = "3"; }
-			else { $cat_sort_by = ""; }
+			if ($cat_sorting[0] == "download_title") { $cat_sort_by = "2"; }
+			if ($cat_sorting[0] == "download_datestamp") { $cat_sort_by = "3"; }
 			$cat_sort_order = $cat_sorting[1];
 			$cat_access = $data['download_cat_access'];
 			$formaction = FUSION_SELF.$aidlink."&amp;action=edit&amp;cat_id=".$data['download_cat_id'];
@@ -96,7 +94,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat
 	} else {
 		$cat_name = "";
 		$cat_description = "";
-		$cat_sort_by = "";
+		$cat_sort_by = "download_title";
 		$cat_sort_order = "ASC";
 		$cat_access = "";
 		$formaction = FUSION_SELF.$aidlink;

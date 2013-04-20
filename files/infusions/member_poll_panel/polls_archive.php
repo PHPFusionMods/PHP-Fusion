@@ -51,7 +51,7 @@ if (isset($_POST['view']) && (isset($_POST['viewpoll_id']) && isnum($_POST['view
 			$viewnum_votes = dbcount("(vote_opt)", DB_POLL_VOTES, "vote_opt='$i' AND poll_id='".$data['poll_id']."'");
 			$viewopt_votes = ($viewpoll_votes ? number_format(100 / $viewpoll_votes * $viewnum_votes) : 0);
 			$poll_archive .= $viewpoll_option[$i]."<br />\n";
-			$poll_archive .= "<img src='".get_image("pollbar")."' alt='".$viewpoll_option[$i]."' height='12' width='".$viewopt_votes."%' class='poll' /><br />\n";
+			$poll_archive .= "<img src='".THEME."images/pollbar.gif' alt='".$viewpoll_option[$i]."' height='12' width='".$viewopt_votes."%' class='poll' /><br />\n";
 			$poll_archive .= $viewopt_votes."% [".$viewnum_votes." ".($viewnum_votes == 1 ? $locale['global_133'] : $locale['global_134'])."]<br />\n";
 			if (iADMIN) {
 				$result = dbquery(

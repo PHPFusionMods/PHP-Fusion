@@ -9,6 +9,8 @@ Web: http://www.php-fusion.co.uk
 // Locale Settings
 setlocale(LC_TIME, "en","GB"); // Linux Server (Windows may differ)
 $locale['charset'] = "iso-8859-1";
+$locale['mysql_charset'] = "latin1";
+$locale['mysql_collate'] = "latin1_swedish_ci";
 $locale['xml_lang'] = "en";
 $locale['tinymce'] = "en";
 $locale['phpmailer'] = "en";
@@ -231,5 +233,4 @@ $locale['global_500'] = "You are being redirected to %s, please wait. If you're 
 
 // Captcha Locales
 $locale['global_600'] = "Validation Code";
-$locale['recaptcha'] = "en";
 ?>

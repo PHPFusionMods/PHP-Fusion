@@ -1,0 +1,4 @@
+<?php
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('comments_per_page', '10')");
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('comments_sorting', 'ASC')");
+?>

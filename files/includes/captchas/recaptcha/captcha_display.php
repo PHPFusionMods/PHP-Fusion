@@ -19,24 +19,6 @@ if (!defined("IN_FUSION")) { die("Access Denied"); }
 
 require_once "recaptchalib.php";
 
-$lang = array("en", "nl", "fr", "de", "pt", "ru", "es", "tr");
-$recaptchaLocale = "";
-if (!isset($locale['recaptcha']) || !in_array($locale['recaptcha'], $lang)) {
-	if (isset($locale['recaptcha'])&& isset($locale['recaptcha_l10n'])) {
-		$recaptchaLocale = "\n\t"."custom_translations : {".$locale['recaptcha_l10n']."}, ";
-	} elseif (!isset($locale['recaptcha'])) {
-		$locale['recaptcha'] = "en";
-	}
-}
-
-add_to_head("<script type=\"text/javascript\">
-/*<![CDATA[*/
-var RecaptchaOptions = { ".$recaptchaLocale."
-   lang : '".$locale['recaptcha']."',
-   theme : '".$settings['recaptcha_theme']."',
-};
-/*]]>*/
-</script>");
 
 // Hid extra input
 $_CAPTCHA_HIDE_INPUT = true;

@@ -88,8 +88,8 @@ if (isset($_POST['cancel'])) {
 	}
 // Add new User
 } elseif (isset($_GET['step']) && $_GET['step'] == "add") {
-	require_once CLASSES."UserFields.class.php";
-	require_once CLASSES."UserFieldsInput.class.php";
+	require_once INCLUDES."UserFields.class.php";
+	require_once INCLUDES."UserFieldsInput.class.php";
 
 	$errors = array();
 	if (isset($_POST['add_user'])) {
@@ -123,7 +123,7 @@ if (isset($_POST['cancel'])) {
 
 // View User Profile
 } elseif (isset($_GET['step']) && $_GET['step'] == "view" && $user_id) {
-	require_once CLASSES."UserFields.class.php";
+	require_once INCLUDES."UserFields.class.php";
 
 	$result = dbquery(
 		"SELECT u.*, s.suspend_reason
@@ -144,8 +144,8 @@ if (isset($_POST['cancel'])) {
 
 // Edit User Profile
 } elseif (isset($_GET['step']) && $_GET['step'] == "edit" && $user_id) {
-	require_once CLASSES."UserFields.class.php";
-	require_once CLASSES."UserFieldsInput.class.php";
+	require_once INCLUDES."UserFields.class.php";
+	require_once INCLUDES."UserFieldsInput.class.php";
 
 	$user_data = dbarray(dbquery("SELECT * FROM ".DB_USERS." WHERE user_id='".$user_id."'"));
 	if (!$user_data || $user_data['user_level'] == 103) { redirect(FUSION_SELF.$aidlink); }

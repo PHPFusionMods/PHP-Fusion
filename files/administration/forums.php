@@ -152,7 +152,7 @@ if (isset($_POST['save_cat'])) {
 } else {
 	if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['forum_id']) && isnum($_GET['forum_id']))) {
 		if (isset($_GET['t']) && $_GET['t'] == "cat") {
-			$result = dbquery("SELECT forum_id, forum_name FROM ".DB_FORUMS." WHERE forum_id='".$_GET['forum_id']."' LIMIT 1");
+			$result = dbquery("SELECT forum_id, forum_name FROM ".DB_FORUMS." WHERE forum_id='".$_GET['forum_id']."'");
 			if (dbrows($result)) {
 				$data = dbarray($result);
 				$cat_name = $data['forum_name'];
@@ -164,15 +164,7 @@ if (isset($_POST['save_cat'])) {
 				redirect(FUSION_SELF.$aidlink);
 			}
 		} elseif (isset($_GET['t']) && $_GET['t'] == "forum") {
-			$result = dbquery(
-				"SELECT
-					forum_name, forum_description, forum_cat, forum_moderators,
-					forum_access, forum_post, forum_reply, forum_attach, forum_attach_download, forum_poll,
-					forum_vote, forum_merge
-				FROM ".DB_FORUMS."
-				WHERE forum_id='".$_GET['forum_id']."'
-				LIMIT 1"
-			);
+			$result = dbquery("SELECT forum_name, forum_description, forum_cat, forum_moderators, forum_access, forum_post, forum_reply, forum_attach, forum_attach_download, forum_poll, forum_vote, forum_merge FROM ".DB_FORUMS." WHERE forum_id='".$_GET['forum_id']."'");
 			if (dbrows($result)) {
 				$data = dbarray($result);
 				$forum_name = $data['forum_name'];

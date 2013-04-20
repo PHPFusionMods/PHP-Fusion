@@ -105,7 +105,7 @@ if (isset($_GET['edit']) && isnum($_GET['edit']) && $_GET['edit'] != 1) {
 		opentable($locale['440']." [".$data['user_name']."]");
 		$columns = 2; $counter = 0; $page = 1;
 		$admin_page = array($locale['441'], $locale['442'], $locale['443'], $locale['449'], $locale['444']);
-		$risky_rights = array("CP", "AD", "SB", "DB", "IP", "P", "S11", "S3", "ERRO");
+		$risky_rights = array("CP", "AD", "SB", "DB", "IP", "P", "S11", "S3");
 		echo "<form name='rightsform' method='post' action='".FUSION_SELF.$aidlink."&amp;user_id=".$_GET['edit']."'>\n";
 		echo "<table cellpadding='0' cellspacing='1' width='450' class='tbl-border center'>\n";
 		echo "<tr>\n<td colspan='2' class='tbl2'><strong>".$admin_page['0']."</strong></td>\n</tr>\n<tr>\n";

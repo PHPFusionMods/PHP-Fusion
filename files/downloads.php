@@ -101,7 +101,7 @@ if (!isset($_GET['download_id']) || !isnum($_GET['download_id'])) {
 	$cats_list = ""; $filter = ""; $order_by = ""; $sort = "";
 	if (dbrows($cat_list_result)) {
 		while ($cat_list_data = dbarray($cat_list_result)) {
-			$sel = (isset($_GET['cat_id']) && $_GET['cat_id'] == $cat_list_data['download_cat_id'] ? " selected='selected'" : "");
+			$sel = (isset($_GET['cat_id']) && $_GET['cat_id'] == $cat_list_data['download_cat_id'] ? " selected" : "");
 			$cats_list .= "<option value='".$cat_list_data['download_cat_id']."'".$sel.">".$cat_list_data['download_cat_name']."</option>";
 		}
 
@@ -136,15 +136,15 @@ if (!isset($_GET['download_id']) || !isnum($_GET['download_id'])) {
 			echo "<td class='tbl1' style='width:40%; text-align:left;'></td>\n";
 			echo "<td class='tbl1' style='width:60%; text-align:right;'>";
 			echo $locale['463']." <select name='orderby' class='textbox' onchange='this.form.submit();'>\n";
-			echo "<option value='download_id'".($order_by == "download_id" ? " selected='selected'" : "").">".$locale['452']."</option>\n";
-			echo "<option value='download_title'".($order_by == "download_title" ? " selected='selected'" : "").">".$locale['453']."</option>\n";
-			echo "<option value='download_user'".($order_by == "download_user" ? " selected='selected'" : "").">".$locale['454']."</option>\n";
-			echo "<option value='download_count'".($order_by == "download_count" ? " selected='selected'" : "").">".$locale['455']."</option>\n";
-			echo "<option value='download_datestamp'".($order_by == "download_datestamp" ? " selected='selected'" : "").">".$locale['456']."</option>\n";
+			echo "<option value='download_id'".($order_by == "download_id" ? " selected" : "").">".$locale['452']."</option>\n";
+			echo "<option value='download_title'".($order_by == "download_title" ? " selected" : "").">".$locale['453']."</option>\n";
+			echo "<option value='download_user'".($order_by == "download_user" ? " selected" : "").">".$locale['454']."</option>\n";
+			echo "<option value='download_count'".($order_by == "download_count" ? " selected" : "").">".$locale['455']."</option>\n";
+			echo "<option value='download_datestamp'".($order_by == "download_datestamp" ? " selected" : "").">".$locale['456']."</option>\n";
 			echo "</select>\n";
 			echo "<select name='sort' class='textbox' onchange='this.form.submit();'>\n";
-			echo "<option value='ASC'".($sort == "ASC" ? " selected='selected'" : "").">".$locale['457']."</option>\n";
-			echo "<option value='DESC'".($sort == "DESC" ? " selected='selected'" : "").">".$locale['458']."</option>\n";
+			echo "<option value='ASC'".($sort == "ASC" ? " selected" : "").">".$locale['457']."</option>\n";
+			echo "<option value='DESC'".($sort == "DESC" ? " selected" : "").">".$locale['458']."</option>\n";
 			echo "</select>";
 			echo "</td>\n";
 			echo "</tr>\n";
@@ -238,9 +238,7 @@ if (!isset($_GET['download_id']) || !isnum($_GET['download_id'])) {
 						echo "</tr>\n";
 						echo "<tr>\n";
 						echo "<td colspan='8' class='tbl1 small'>\n";
-						if ($settings['download_screenshot']) {
-							echo "<img src='".$img_thumb."' style='float: left;margin:3px;' alt='".$data['download_title']."' />\n";
-						}
+						echo "<img src='".$img_thumb."' style='float: left;margin:3px;' />\n";
 						if ($data['download_description_short']) {
 							echo nl2br(stripslashes($data['download_description_short']));
 						}
@@ -303,28 +301,28 @@ if (isset($_GET['download_id']) && isnum($_GET['download_id'])) {
 				$urlprefix = "";
 			}
 			echo "<tr><td class='tbl2' style='text-align:center;'>";
-			echo "<img src='".get_image("homepage")."' alt='".$locale['418']."' /><br />";
+			echo "<img src='".get_image("homepage")."' /><br />";
 			echo "<a href='".$urlprefix.$data['download_homepage']."' title='".$urlprefix.$data['download_homepage']."' target='_blank'>".$locale['418']."</a>";
 			echo "</td>\n</tr>\n";
 		}
 
-		if ($settings['download_screenshot'] && $data['download_image'] != "") {
+		if ($data['download_image'] != "") {
 			echo "<tr>\n";
-			echo "<td class='tbl2' style='text-align:center;'><img src='".get_image("screenshot")."' alt='".$locale['419']."' /><br />\n";
+			echo "<td class='tbl2' style='text-align:center;'><img src='".get_image("screenshot")."' /><br />\n";
 			echo "<a class='tozoom' href='".DOWNLOADS."images/".$data['download_image']."'>".$locale['419']."</a>\n";
 			echo "</td>\n</tr>\n";
 		}
 		echo "<tr>\n";
-		echo "<td class='tbl2' style='text-align:center;'><img src='".get_image("calendar")."' alt='".$locale['427']."' />\n";
+		echo "<td class='tbl2' style='text-align:center;'><img src='".get_image("calendar")."' />\n";
 		echo "<br />".profile_link($data['user_id'], $data['user_name'], $data['user_status'])."\n";
 		echo "<br />".showdate("longdate", $data['download_datestamp'])."\n";
 		echo "</td>\n</tr>\n";
 		echo "<tr>\n";
 		echo "<td class='tbl2' style='text-align:center;'>\n";
-		echo "<img src='".get_image("downloads")."' alt='".$locale['424']."' /><br />".$locale['415']." ".$data['download_count']."\n";
+		echo "<img src='".get_image("downloads")."' /><br />".$locale['415']." ".$data['download_count']."\n";
 		echo "</td>\n</tr>\n";
 		if ($data['download_version'] != "" || $data['download_license'] != "" || $data['download_os'] != "" || $data['download_copyright'] != "") {
-			echo "<tr>\n<td class='tbl2' style='text-align:center;'><img src='".get_image("info")."' alt='".$locale['428']."' /><br />\n";
+			echo "<tr>\n<td class='tbl2' style='text-align:center;'><img src='".get_image("info")."' /><br />\n";
 		}
 		if ($data['download_version'] != "") {
 			echo $locale['413']." ".$data['download_version']."<br />\n";

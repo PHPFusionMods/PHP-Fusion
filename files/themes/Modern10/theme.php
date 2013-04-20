@@ -65,7 +65,7 @@ function render_page($license = false) {
 	echo "</div>\n";
 	echo "<div class='clear'></div>\n";
 	
-	// Content
+	// Conetnt
 	echo "<div id='conent'>\n";
 	if (LEFT) { echo "<div id='side-left'>".LEFT."</div>\n"; }
 	if (RIGHT) { echo "<div id='side-right'>".RIGHT."</div>\n"; }
@@ -93,14 +93,20 @@ function render_page($license = false) {
 function render_news($subject, $news, $info) {
 	global $_GET; $image = "";
 	
-	$image = $info['cat_image'];
+	if (strpos($news, "class='news-category' /></a>") !== false) {
+		$news = explode("class='news-category' /></a>", $news);
+		$image = $news[0]."class='news-category' /></a>";
+		$news = $news[1];
+	}
+	
+	$news = str_replace($image, "", $news);
 	
 	echo "<a name='news_".$info['news_id']."' id='news_".$info['news_id']."'></a>\n";
 	
 	echo "<div class='news-item floatfix'>\n";
 	
-	echo "<div class='content'>\n";
-		echo "<div class='image'>".$image."</div>\n";
+	echo "<div class='image'>".$image."</div>\n";
+	echo "<div class='content' style='marging-right:230px;'>\n";
 		echo "<div class='info'>\n";
 			echo "<span class='title'><a href='".BASEDIR."news.php?readmore=".$info['news_id']."'>".$info['news_subject']."</a></span>\n";
 			echo "<span class='poster'>".newsposter($info, "")."</span>\n";

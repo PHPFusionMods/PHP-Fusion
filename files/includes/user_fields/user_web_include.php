@@ -50,9 +50,9 @@ if ($profile_method == "input") {
 	// Get input data
 	if (isset($_POST['user_web']) && ($_POST['user_web'] != "" || $this->_isNotRequired("user_web"))) {
 		// Set update or insert user data
-		$this->_setDBValue("user_web", stripinput($_POST['user_web']));
+		$this->_setDBValue("user_web", $_POST['user_web']);
 	} else {
-		$this->_setError("user_web", $locale['uf_web_error'], true);
+		$this->_setError("user_web", $locale['uf_web_error'], true);	
 	}
 }
 ?>

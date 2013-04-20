@@ -20,7 +20,7 @@ require_once "../maincore.php";
 if (!checkrights("SM") || !defined("iAUTH") || $_GET['aid'] != iAUTH) { redirect("../index.php"); }
 
 require_once THEMES."templates/admin_header.php";
-require_once CLASSES."PasswordAuth.class.php";
+require_once INCLUDES."PasswordAuth.class.php";
 include LOCALE.LOCALESET."admin/admin_reset.php";
 
 if (isset($_GET['status']) && !isset($message)) {

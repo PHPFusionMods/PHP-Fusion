@@ -1,0 +1,6 @@
+<?php
+$result = dbquery("SELECT panel_filename FROM ".DB_PANELS." WHERE panel_filename='navigation_panel'");
+if($result) {
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_filename='css_navigation_panel' WHERE panel_filename='navigation_panel'");
+}
+?>

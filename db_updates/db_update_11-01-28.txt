@@ -1,0 +1,9 @@
+<?php
+$result = dbquery("INSERT INTO ".DB_ADMIN." (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('ROB', 'robots.gif', 'robots.txt', 'robots.php', '3')");
+if ($result) {
+	$result = dbquery("SELECT user_id, user_rights FROM ".DB_USERS." WHERE user_level='103'");
+	while ($data = dbarray($result)) {
+		$result2 = dbquery("UPDATE ".DB_USERS." SET user_rights='".$data['user_rights'].".ROB' WHERE user_id='".$data['user_id']."'");
+	}
+}
+?>

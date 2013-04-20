@@ -1,0 +1,3 @@
+<?php
+$result = dbquery("ALTER TABLE ".DB_FORUM_ATTACHMENTS." ADD attach_count INT(10) UNSIGNED NOT NULL DEFAULT '0' AFTER attach_size");
+?>

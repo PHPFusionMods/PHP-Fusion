@@ -17,8 +17,8 @@
 +--------------------------------------------------------*/
 require_once "maincore.php";
 require_once THEMES."templates/header.php";
-require_once CLASSES."UserFields.class.php";
-require_once CLASSES."UserFieldsInput.class.php";
+require_once INCLUDES."UserFields.class.php";
+require_once INCLUDES."UserFieldsInput.class.php";
 include LOCALE.LOCALESET."user_fields.php";
 
 if (!iMEMBER) { redirect("index.php"); }

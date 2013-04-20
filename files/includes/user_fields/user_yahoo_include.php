@@ -44,9 +44,9 @@ if ($profile_method == "input") {
 	// Get input data
 	if (isset($_POST['user_yahoo']) && ($_POST['user_yahoo'] != "" || $this->_isNotRequired("user_yahoo"))) {
 		// Set update or insert user data
-		$this->_setDBValue("user_yahoo", stripinput($_POST['user_yahoo']));
+		$this->_setDBValue("user_yahoo", $_POST['user_yahoo']);
 	} else {
-		$this->_setError("user_yahoo", $locale['uf_yahoo_error'], true);
+		$this->_setError("user_yahoo", $locale['uf_yahoo_error'], true);	
 	}
 }
 ?>

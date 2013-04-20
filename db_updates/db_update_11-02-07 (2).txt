@@ -1,0 +1,3 @@
+<?php
+$result = dbquery("ALTER TABLE ".DB_POSTS." ADD post_editreason TEXT NOT NULL AFTER post_edittime");
+?>

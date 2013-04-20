@@ -1,0 +1,4 @@
+<?php
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('recaptcha_public', '')");
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('recaptcha_private', '')");
+?>

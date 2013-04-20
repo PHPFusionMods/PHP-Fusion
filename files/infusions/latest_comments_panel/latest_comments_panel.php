@@ -31,7 +31,7 @@ if (dbrows($result)) {
 	$output = "";
 	$i = 0;
 	while($data = dbarray($result)) {
-		if ($i == $displayComments) { break; }
+		if ($i == $displayComments) { exit; }
 		switch ($data['comment_type']) {
 			case "N":
 				$access = dbcount(	"(news_id)", DB_NEWS,

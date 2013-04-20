@@ -69,8 +69,6 @@ if (isset($_POST['savesettings'])) {
 		if (!$result) { $error = 1; }
 		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".stripinput($_POST['recaptcha_private'])."' WHERE settings_name='recaptcha_private'");
 		if (!$result) { $error = 1; }
-		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".stripinput($_POST['recaptcha_theme'])."' WHERE settings_name='recaptcha_theme'");
-		if (!$result) { $error = 1; }
 	}
 	redirect(FUSION_SELF.$aidlink."&error=".$error);
 }
@@ -98,7 +96,6 @@ echo $locale['693']."<br />";
 echo "<div class='recaptcha_keys' style='margin-top:7px;'>";
 echo $locale['694']."<br />";
 echo "<span style='margin-top:7px; display:block;'>".$locale['695']."</span>";
-echo "<span style='margin-top:7px; display:block;'>".$locale['697']."</span>";
 echo "</div>";
 echo "</td>\n";
 echo "<td width='50%' class='tbl'>";
@@ -106,12 +103,7 @@ echo "<select name='captcha' id='captcha' size='1' class='textbox'>".captcha_opt
 echo "<div class='recaptcha_keys' style='margin-top:5px;'>";
 echo "<input type='text' name='recaptcha_public' value='".$settings['recaptcha_public']."' class='textbox' style='width:200px;' /><br />";
 echo "<input type='text' name='recaptcha_private' value='".$settings['recaptcha_private']."' class='textbox' style='width:200px; margin-top:5px;' />";
-echo "<select name='recaptcha_theme' size='1' class='textbox' style='margin-top:5px;'>\n";
-echo "<option value='red'".($settings['recaptcha_theme'] == "red" ? " selected='selected'" : "").">".$locale['697r']."</option>\n";
-echo "<option value='blackglass'".($settings['recaptcha_theme'] == "blackglass" ? " selected='selected'" : "").">".$locale['697b']."</option>\n";
-echo "<option value='clean'".($settings['recaptcha_theme'] == "clean" ? " selected='selected'" : "").">".$locale['697c']."</option>\n";
-echo "<option value='white'".($settings['recaptcha_theme'] == "white" ? " selected='selected'" : "").">".$locale['697w']."</option>\n";
-echo "</select>\n</div>";
+echo "</div>";
 echo "</td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td class='tbl2' align='center' colspan='2'>".$locale['682']."</td>\n";

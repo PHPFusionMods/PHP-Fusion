@@ -1,0 +1,9 @@
+<?php
+$result = dbquery("SELECT rank_id, rank_image FROM ".DB_FORUM_RANKS);
+while ($data = dbarray($result)) {
+	$image = explode(".", $data['rank_image']);
+	if (file_exists(IMAGES."ranks/".$image[0].".png")) {
+		$result2 = dbquery("UPDATE ".DB_FORUM_RANKS." SET rank_image='".$image[0].".png' WHERE rank_id='".$data['rank_id']."'");
+	}
+}
+?>

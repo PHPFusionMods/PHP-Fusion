@@ -48,12 +48,6 @@ if (isset($_POST['savesettings'])) {
 		if (!$result) { $error = 1; }
 		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['download_screen_max_b']) ? $_POST['download_screen_max_b'] : "0")."' WHERE settings_name='download_screen_max_b'");
 		if (!$result) { $error = 1; }
-		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['download_thumb_max_h']) ? $_POST['download_thumb_max_h'] : "100")."' WHERE settings_name='download_thumb_max_h'");
-		if (!$result) { $error = 1; }
-		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['download_thumb_max_w']) ? $_POST['download_thumb_max_w'] : "100")."' WHERE settings_name='download_thumb_max_w'");
-		if (!$result) { $error = 1; }
-		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".($_POST['download_screenshot'] == 0 || $_POST['download_screenshot'] == 1 ? $_POST['download_screenshot'] : "0")."' WHERE settings_name='download_screenshot'");
-		if (!$result) { $error = 1; }
 		set_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "");
 		redirect(FUSION_SELF.$aidlink."&error=".$error, true);
 	} else {
@@ -82,16 +76,6 @@ echo "<input type='text' name='download_screen_max_h' value='".$settings2['downl
 echo "</tr>\n<tr>\n";
 echo "<td width='50%' class='tbl'>".$locale['936']."<br /><span class='small2'>".$locale['931']."</span></td>\n";
 echo "<td width='50%' class='tbl'><input type='text' name='download_screen_max_b' value='".$settings2['download_screen_max_b']."' maxlength='10' class='textbox' style='width:100px;' /></td>\n";
-echo "</tr>\n<tr>\n";
-echo "<td width='50%' class='tbl'>".$locale['937']."<br /><span class='small2'>".$locale['935']."</span></td>\n";
-echo "<td width='50%' class='tbl'><input type='text' name='download_thumb_max_w' value='".$settings2['download_thumb_max_w']."' maxlength='4' class='textbox' style='width:40px;' /> x\n";
-echo "<input type='text' name='download_thumb_max_h' value='".$settings2['download_thumb_max_h']."' maxlength='4' class='textbox' style='width:40px;' /></td>\n";
-echo "</tr>\n<tr>\n";
-echo "<td width='50%' class='tbl'>".$locale['938']."<br /></td>\n";
-echo "<td width='50%' class='tbl'><select name='download_screenshot' size='1' class='textbox' style='width:100px;' />";
-echo "<option value='1' ".($settings['download_screenshot'] ? "selected='selected'" : "").">".$locale['518']."</option>\n";
-echo "<option value='0' ".(!$settings['download_screenshot'] ? "selected='selected'" : "").">".$locale['519']."</option>\n";
-echo "</select></td>\n";
 echo "</tr>\n<tr>\n";
 if (!check_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")) {
 	echo "<td class='tbl'>".$locale['853']."</td>\n";

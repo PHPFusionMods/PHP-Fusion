@@ -47,7 +47,7 @@ if ((str_replace(".", "", $settings['version']) != "70200") || (str_replace(".",
 		reset_admins varchar(8) NOT NULL default '0',
 		reset_reason varchar(256) NOT NULL,
 		PRIMARY KEY (reset_id)
-		) ENGINE=MYISAM;");
+		) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 		$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."errors");
 		$result = dbquery("CREATE TABLE ".$db_prefix."errors (
@@ -63,7 +63,7 @@ if ((str_replace(".", "", $settings['version']) != "70200") || (str_replace(".",
 		error_status tinyint(1) NOT NULL default '0',
 		error_timestamp int(10) NOT NULL,
 		PRIMARY KEY (error_id)
-		) ENGINE=MYISAM;");
+		) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 		$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."user_log");
 		$result = dbquery("CREATE TABLE ".$db_prefix."user_log (
@@ -76,7 +76,7 @@ if ((str_replace(".", "", $settings['version']) != "70200") || (str_replace(".",
 		PRIMARY KEY (userlog_id),
 		KEY userlog_user_id (userlog_user_id),
 		KEY userlog_field (userlog_field)
-		) ENGINE=MYISAM;");
+		) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 		$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."email_verify");
 		$result = dbquery("CREATE TABLE ".$db_prefix."email_verify (
@@ -85,17 +85,16 @@ if ((str_replace(".", "", $settings['version']) != "70200") || (str_replace(".",
 		user_email VARCHAR(100) NOT NULL,
 		user_datestamp INT(10) UNSIGNED DEFAULT '0' NOT NULL,
 		KEY user_datestamp (user_datestamp)
-		) ENGINE=MYISAM;");
+		) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 		// Add indexes
 		$result = dbquery("ALTER TABLE ".DB_ARTICLES." ADD INDEX (article_cat)");
 		$result = dbquery("ALTER TABLE ".DB_ARTICLE_CATS." ADD INDEX (article_cat_access)");
 
 		// Add fields
-		$result = dbquery("ALTER TABLE ".DB_USER_FIELDS." ADD field_required TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' AFTER field_cat");
+		$result = dbquery("ALTER TABLE ".DB_USER_FIELDS." ADD field_required TINYINT(1) UNSIGNED NOT NULL DEFAULT '1' AFTER field_cat");
 		$result = dbquery("ALTER TABLE ".DB_NEW_USERS." ADD user_name VARCHAR(30) NOT NULL AFTER user_code");
 		$result = dbquery("ALTER TABLE ".DB_FORUM_RANKS." ADD rank_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' AFTER rank_posts");
-		$result = dbquery("UPDATE ".DB_FORUM_RANKS." SET rank_type='1' WHERE rank_posts='0' and rank_apply>101");
 		$result = dbquery("ALTER TABLE ".DB_FORUM_ATTACHMENTS." ADD attach_count INT(10) UNSIGNED NOT NULL DEFAULT '0' AFTER attach_size");
 		$result = dbquery("ALTER TABLE ".DB_PANELS." ADD (panel_url_list TEXT NOT NULL DEFAULT '', panel_restriction TINYINT(1) UNSIGNED NOT NULL DEFAULT '0')");
 		$result = dbquery("ALTER TABLE ".DB_DOWNLOADS." ADD download_user MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '1' AFTER download_id");
@@ -167,20 +166,14 @@ if ((str_replace(".", "", $settings['version']) != "70200") || (str_replace(".",
 		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('userNameChange', '1')");
 		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('recaptcha_public', '')");
 		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('recaptcha_private', '')");
-		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('recaptcha_theme', 'red')");
-		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('forum_edit_timelimit', '0')");
 		$result = dbquery("DELETE FROM ".DB_SETTINGS." WHERE settings_name='news_style'");
 		$result = dbquery("DELETE FROM ".DB_SETTINGS." WHERE settings_name='login_method'");
-		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_screenshot', '1')");
-		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_thumb_max_w', '100')");
-		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_thumb_max_h', '100')");
-		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('forum_editpost_to_lastpost', '1')");
 
 		// Add robots.txt Admin
-		$result = dbquery("INSERT INTO ".DB_ADMIN." (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('ROB', 'robots.gif', '".$locale['442']."', 'robots.php', '3')");
+		$result = dbquery("INSERT INTO ".DB_ADMIN." (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('ROB', 'robots.gif', 'robots.txt', 'robots.php', '3')");
 
 		// Add User Log Admin
-		$result = dbquery("INSERT INTO ".DB_ADMIN." SET admin_rights='UL', admin_image='user_fields.gif', admin_title='".$locale['443']."', admin_link='user_log.php', admin_page='2'");
+		$result = dbquery("INSERT INTO ".DB_ADMIN." SET admin_rights='UL', admin_image='user_fields.gif', admin_title='User Log', admin_link='user_log.php', admin_page='2'");
 
 		// Add link to Download Submission
 		$result = dbquery("INSERT INTO ".$db_prefix."site_links (link_name, link_url, link_visibility, link_position, link_window, link_order) VALUES ('".$locale['440']."', 'submit.php?stype=d', '101', '1', '0', '16')");
@@ -192,8 +185,8 @@ if ((str_replace(".", "", $settings['version']) != "70200") || (str_replace(".",
 		$result = dbquery(
 			"INSERT INTO ".DB_ADMIN."
 				(admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES
-				('APWR', 'admin_pass.gif', '".$locale['444']."', 'admin_reset.php', '2'),
-				('ERRO', 'errors.gif', '".$locale['445']."', 'errors.php', '3')"
+				('APWR', 'admin_pass.gif', 'Admin Password Reset', 'admin_reset.php', '2'),
+				('ERRO', 'errors.gif', 'Error Log', 'errors.php', '3')"
 			);
 
 		// Update all user_rights from above
@@ -219,23 +212,9 @@ if ((str_replace(".", "", $settings['version']) != "70200") || (str_replace(".",
 		$result = dbquery("INSERT INTO ".DB_INFUSIONS." (inf_title, inf_folder, inf_version) VALUES ('".$locale['441']."', '".$folder."', '1.00')");
 		$result = dbquery("UPDATE ".DB_ADMIN." SET admin_link='".$folder."', admin_page='5' WHERE admin_rights='S'");
 
-		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='7.02.01' WHERE settings_name='version'");
+		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='7.02.00' WHERE settings_name='version'");
 
-		echo $locale['502']."\n";
-		echo "<div style='width:400px; margin:20px auto;' class='tbl'>\n";
-		echo "Please replace these lines with the lines in your config.php!<br />\n";
-		echo "<div class='tbl-border' style='margin-top:10px; padding: 5px; text-align:left;'>";
-		echo "&lt;?php<br />\n";
-		echo "// database settings<br />\n";
-		echo '$db_host = "'.$db_host.'";<br />';
-		echo '$db_user = "'.$db_user.'";<br />';
-		echo '$db_pass = "'.$db_pass.'";<br />';
-		echo '$db_name = "'.$db_name.'";<br />';
-		echo '$db_prefix = "'.DB_PREFIX.'";<br />';
-		echo 'define("DB_PREFIX", "'.DB_PREFIX.'");<br />';
-		echo 'define("COOKIE_PREFIX", "fusion'.createRandomPrefix().'_");<br />';
-		echo "?>";
-		echo "</div></div>";
+		echo $locale['502']."<br /><br />\n";
 	}
 } else {
 	echo $locale['401']."<br /><br />\n";
@@ -254,17 +233,6 @@ function getCurrentURL() {
 
 function strleft($s1, $s2) {
 	return substr($s1, 0, strpos($s1, $s2));
-}
-
-function createRandomPrefix ($length = 5) {
-	$chars = array("abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ", "123456789");
-	$count = array((strlen($chars[0]) - 1), (strlen($chars[1]) - 1));
-	$prefix = "";
-	for ($i = 0; $i < $length; $i++) {
-		$type = mt_rand(0, 1);
-		$prefix .= substr($chars[$type], mt_rand(0, $count[$type]), 1);
-	}
-	return $prefix;
 }
 
 require_once THEMES."templates/footer.php";

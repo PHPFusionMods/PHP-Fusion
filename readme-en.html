@@ -38,7 +38,7 @@ a:hover { color:#027AC6; text-decoration:underline; }
 
 <div align='center' class='tbl1'><img src='files/images/php-fusion-logo.png' alt='PHP-Fusion' title='PHP-Fusion'><br /><br />
 Copyright &copy; 2002 - 2011 Nick Jones<br />
-<strong>Version:</strong> 7.02.01 - <strong>Released:</strong> 18/04/2011</div>
+<strong>Version:</strong> 7.02.00 - <strong>Released:</strong> 10/04/2011</div>
 
 <div class='tbl2'>INTRODUCTION</div>
 
@@ -148,6 +148,10 @@ updated all of your files. YOU MUST upload ALL of the files from the /files-fold
 <li>setup.php</li>
 </ul>
 
+<p><strong>5.</strong> VERY IMPORTANT: Add the following line to your config.php and replace XXXXX with different chars
+or numbers and use a different prefix for every PHP-Fusion installation!<br /><br />
+define("COOKIE_PREFIX", "fusion_XXXXX");
+
 CHMOD the following files and folders to 777:
 <ul style='list-style-type:disc'>
 <li>downloads/</li>
@@ -206,7 +210,7 @@ PHP-Fusion also has a number of official foreign language support sites based in
 <a href='http://www.phpfusion-no.com'>Norway</a>,
 <a href='http://www.php-fusion.pl'>Poland</a>,
 <a href='http://www.phpfusion.ro'>Romania</a>,
-<a href='http://www.rusfusion.ru/'>Russia</a>,
+<a href='http://netck.ru'>Russia</a>,
 <a href='http://www.php-fusion.sk'>Slovakia</a>,
 <a href="http://php-fusion.uni.cc/">Spain</a>,
 <a href='http://www.php-fusion.se'>Sweden</a> and
@@ -229,41 +233,33 @@ Nick Jones {Digitanium}</p>
 Hans Kristian Flaatten {Starefossen}</p>
 
 <p><strong>Senior Developers</strong><br />
-Andy B {gh0st2k}<br />
-Arda Kilicdagi {SoulSmasher}<br />
-Christian Damsgaard J&oslash;rgensen {PMM}<br />
-Karoly Nagy {Korcsii}<br />
 Maarten Kossen {mpkossen/mistermartin75}<br />
-Marcus Gottschalk {MarcusG}<br />
-Max Toball {Matonor}<br />
-Nicolae Crefelean {Kneekoo}<br />
 Paul Beuk {Muscapaul}<br />
-Robert Gaudyn {Wooya}</p>
+Arda Kilicdagi {SoulSmasher}<br />
+Nicolae Crefelean {Kneekoo}<br />
+Andy B {gh0st2k}<br />
+Marcus Gottschalk {MarcusG}<br />
+Karoly Nagy {Korcsii}</p>
 
 <p><strong>Junior Developers</strong><br />
-Craig Dewar {Fangree_Craig}<br />
-James {Daywalker}<br />
+Sveinung Skjaerseth {sveinungs}<br />
 Johan K. Jensen {Josso}<br />
-Patric Forcelini {IceWasp}<br />
-Sveinung Skjaerseth {sveinungs}</p>
+James {Daywalker}<br />
+Craig Dewar {Fangree_Craig}</p>
 
 <p><strong>Management Team</strong><br />
-Arda Kilicdagi {SoulSmasher}<br />
-Hans Kristian Flaatten {Starefossen}<br />
 Happy Svensson {KEFF}<br />
 Jan M&oslash;lgaard {Janmol}<br />
-Johan Wilson {Barspin}<br />
-Nick Jones {Digitanium}<br />
-Nicolae Crefelean {Kneekoo}<br />
 Paul Beuk {Muscapaul}<br />
-Philip Daly {Hobbyman}<br />
-Richard Ainz {Homdax}</p>
+Nicolae Crefelean {Kneekoo}<br />
+Arda Kilicdagi {SoulSmasher}<br />
+Hans Kristian Flaatten {Starefossen}<br />
+Philip Daly {Hobbyman}</p>
 
 <p><strong>Additional Contributors</strong><br />
 Philip Daly {Hobbyman}<br />
 Johan Wilson {Barspin}<br />
-Valerio Vendrame {lelebart}<br />
-Claus Pedersen {Flyingduck}</p>
+Valerio Vendrame {lelebart}</p>
 
 <p><strong>3rd Party Components:</strong><br />
 <a href='http://tinymce.moxiecode.com/'>TinyMCE v3.3.8</a> - A HTML WYSIWYG editor by Moxiecode.<br />

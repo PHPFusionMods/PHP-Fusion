@@ -23,7 +23,7 @@ include LOCALE.LOCALESET."lostpassword.php";
 if (iMEMBER) redirect("index.php");
 
 function __autoload($class) {
-  require CLASSES.$class.".class.php";
+  require INCLUDES.$class.".class.php";
   if (!class_exists($class)) { die("Class not found"); }
 }
 

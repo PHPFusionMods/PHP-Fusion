@@ -69,7 +69,7 @@ function send_pm($to, $from, $subject, $message, $smileys = "y") {
 	$msg_settings = dbarray(dbquery("SELECT pm_inbox, pm_email_notify FROM ".DB_MESSAGES_OPTIONS." WHERE user_id='0'"));
 	$smileys = preg_match("#(\[code\](.*?)\[/code\]|\[geshi=(.*?)\](.*?)\[/geshi\]|\[php\](.*?)\[/php\])#si", $message) ? "n" : $smileys;
 	$error = 0;
-
+	
 	if (!flood_control("message_datestamp", DB_MESSAGES, "message_from='".$from."'")) {
 		$result = dbquery(
 			"SELECT u.user_id, u.user_name, u.user_email, u.user_level, mo.pm_email_notify, COUNT(message_id) as message_count FROM ".DB_USERS." u
@@ -114,7 +114,7 @@ function send_pm($to, $from, $subject, $message, $smileys = "y") {
 
 // Upload file function
 function upload_file(
-	$source_file, $target_file = "", $target_folder = DOWNLOADS, $valid_ext = ".zip,.rar,.tar,.bz2,.z7",
+	$source_file, $target_file = "", $target_folder = DOWNLOADS, $valid_ext = ".zip,.rar,.tar,.bz2,.z7", 
 	$max_size = "15000", $query = ""
 ) {
 	if (is_uploaded_file($_FILES[$source_file]['tmp_name'])) {
@@ -126,7 +126,7 @@ function upload_file(
 		$file_ext = strtolower(strrchr($file['name'],"."));
 		$file_dest = $target_folder;
 		$upload_file = array(
-			"source_file" => $source_file, "source_size" => $file['size'], "source_ext" => $file_ext, "target_file" => $target_file.$file_ext,
+			"source_file" => $source_file, "source_size" => $file['size'], "source_ext" => $file_ext, "target_file" => $target_file.$file_ext, 
 			"target_folder" => $target_folder, "valid_ext" => $valid_ext, "max_size" => $max_size, "query" => $query,
 			"error" => 0
 		);
@@ -172,7 +172,7 @@ function upload_image(
 		$image_ext = strtolower(strrchr($image['name'],"."));
 		$image_res = @getimagesize($image['tmp_name']);
 		$image_info = array(
-			"image" => false, "image_name" => $image_name.$image_ext, "image_ext" => $image_ext,
+			"image" => false, "image_name" => $image_name.$image_ext, "image_ext" => $image_ext, 
 			"image_size" => $image['size'], "image_width" => $image_res[0], "image_height" => $image_res[1],
 			"thumb1" => false, "thumb1_name" => "", "thumb2" => false, "thumb2_name" => "", "error" => 0, "query" => $query
 		);
@@ -204,7 +204,7 @@ function upload_image(
 			} elseif ($thumb1 || $thumb2) {
 				require_once INCLUDES."photo_functions_include.php";
 				if ($thumb1) {
-					if ($image_res[0] < $thumb1_width && $image_res[1] < $thumb1_height) {
+					if ($image_res[0] > $thumb1_width && $image_res[1] > $thumb1_height) {
 						$image_info['thumb1_name'] = $image_info['image_name'];
 						$image_info['thumb1'] = true;
 					} else {
@@ -219,7 +219,7 @@ function upload_image(
 					}
 				}
 				if ($thumb2) {
-					if ($image_res[0] < $thumb2_width && $image_res[1] < $thumb2_height) {
+					if ($image_res[0] > $thumb2_width && $image_res[1] > $thumb2_height) {
 						$image_info['thumb2_name'] = $image_info['image_name'];
 						$image_info['thumb2'] = true;
 					} else {
@@ -233,8 +233,8 @@ function upload_image(
 						}
 					}
 				}
-				if ($delete_original) {
-					unlink($target_folder.$image_name_full);
+				if ($delete_original) { 
+					unlink($target_folder.$image_name_full); 
 					$image_info['image'] = false;
 				}
 			}
@@ -249,7 +249,7 @@ function upload_image(
 // Download file from server
 function download_file($file) {
 	require_once INCLUDES."class.httpdownload.php";
-
+	
 	ob_end_clean();
 	$object = new httpdownload;
 	$object->set_byfile($file);

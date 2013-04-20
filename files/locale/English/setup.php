@@ -4,6 +4,8 @@ $locale['sub-title'] = "PHP-Fusion Core 7 Edition Setup";
 
 $locale['xml_lang'] = "en";
 $locale['charset'] = "iso-8859-1";
+$locale['mysql_charset'] = "latin1";
+$locale['mysql_collate'] = "latin1_swedish_ci";
 
 $locale['001'] = "Step 1: Locale";
 $locale['002'] = "Step 2: File and Folder Permissions Test";

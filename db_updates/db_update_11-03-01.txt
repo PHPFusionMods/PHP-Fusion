@@ -1,0 +1,9 @@
+<?php
+$result = dbquery("CREATE TABLE ".DB_PREFIX."email_verify (
+user_id MEDIUMINT(8) NOT NULL,
+user_code VARCHAR(32) NOT NULL,
+user_email VARCHAR(100) NOT NULL,
+user_datestamp INT(10) UNSIGNED DEFAULT '0' NOT NULL,
+KEY user_datestamp (user_datestamp)
+) ENGINE=MyISAM;");
+?>

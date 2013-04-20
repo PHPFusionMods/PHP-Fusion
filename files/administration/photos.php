@@ -594,7 +594,7 @@ if (function_exists('gd_info')) {
 						echo "</td>\n</tr>";
 					}
 					echo "<tr><td class='tbl1' colspan='2' style='text-align:center;'><br />";
-					echo "<input type='submit' name='btn_upload_dir' value='".$locale['500']."' class='button' />";
+					echo "<input type='submit' name='btn_upload_dir' value='".$locale['500']."' class='button'>";
 					echo "</td>\n</tr>\n";
 				} else {
 					echo "<tr>\n<td class='tbl1' colspan='2' style='text-align:center;'>".$locale['501']."<br /><br /><input type='submit' class='button' value='".$locale['504']."' /></td>\n</tr>\n";

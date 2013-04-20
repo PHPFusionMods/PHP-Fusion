@@ -105,7 +105,7 @@ if (isset($_GET['del']) && in_array($_GET['del'], $image_list)) {
 		} else {
 			echo $locale['441']."<br /><br />\n";
 		}
-		echo "<a href='".FUSION_SELF.$aidlink."&amp;ifolder=".$_GET['ifolder']."&amp;del=".stripinput($_GET['view'])."' onclick=\"return confirm('".$locale['470']."');\">".$locale['442']."</a>";
+		echo "<a href='".FUSION_SELF.$aidlink."&amp;ifolder=".$_GET['ifolder']."&amp;del=".stripinput($_GET['view'])." onclick=\"return confirm('".$locale['470']."');\"'>".$locale['442']."</a>";
 		echo "<br /><br />\n<a href='".FUSION_SELF.$aidlink."'>".$locale['402']."</a><br /><br />\n</div>\n";
 		closetable();
 	} else {

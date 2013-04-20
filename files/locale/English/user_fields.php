@@ -25,7 +25,7 @@ $locale['u061'] = "Add to group";
 $locale['u062'] = "User Avatar";
 $locale['u063'] = "User Level";
 $locale['u064'] = "Email";
-
+$locale['u065'] = "No visits.";
 $locale['u066'] = "Date Joined";
 $locale['u067'] = "Last Visit";
 $locale['u068'] = "User Name";

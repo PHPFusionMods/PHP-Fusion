@@ -27,25 +27,25 @@ $_errorHandler = array();
 // PHP-Fusion Error Handler
 function setError($error_level, $error_message, $error_file, $error_line, $error_context) {
 	global $userdata, $_errorHandler;
-
+	
 	$showError = true;
-
+	
 	$result = dbquery(
-		"SELECT error_id, error_status FROM ".DB_ERRORS."
-		WHERE error_level='".intval($error_level)."' AND error_file='".stripinput($error_message)."'
-			AND error_line='".stripinput($error_file)."' AND error_status!='1'
+		"SELECT error_id, error_status FROM ".DB_ERRORS." 
+		WHERE error_level='".$error_level."' AND error_file='".$error_file."'
+			AND error_line='".$error_line."' AND error_status!='1'
 		ORDER BY error_timestamp DESC LIMIT 1"
 	);
 	if (dbrows($result) == 0) {
 		$result = dbquery(
 			"INSERT INTO ".DB_ERRORS." (
-				error_level, error_message, error_file, error_line, error_page,
+				error_level, error_message, error_file, error_line, error_page, 
 				error_user_level, error_user_ip, error_user_ip_type, error_status, error_timestamp
 			) VALUES (
-				'".intval($error_level)."', '".stripinput($error_message)."',
-				'".stripinput($error_file)."', '".intval($error_line)."',
-				'".TURE_PHP_SELF."', '".$userdata['user_level']."', '".USER_IP."', '".USER_IP_TYPE."',
-				'0', '".time()."'
+				'".intval($error_level)."', '".stripinput($error_message)."', 
+				'".stripinput($error_file)."', '".intval($error_line)."', 
+				'".TURE_PHP_SELF."', '".$userdata['user_level']."', '".USER_IP."', '".USER_IP_TYPE."', 
+				'0', '".time()."' 
 			)"
 		);
 		$errorId = mysql_insert_id();
@@ -54,10 +54,10 @@ function setError($error_level, $error_message, $error_file, $error_line, $error
 		$errorId = $data['error_id'];
 		if ($data['error_status'] == 2) { $showError = false; }
 	}
-
+	
 	if ($showError) {
 		$_errorHandler[] = array(
-			"id" => $errorId, "level" => $error_level, "file" => $error_file,
+			"id" => $errorId, "level" => $error_level, "file" => $error_file, 
 			"line" => $error_line
 		);
 	}
@@ -66,7 +66,7 @@ function setError($error_level, $error_message, $error_file, $error_line, $error
 // Error Levels Desciption
 function getErrorLevel($level, $desc = false) {
 	global $locale;
-
+	
 	$errorLevels = array(
 		1 		=> array("E_ERROR", $locale['E_ERROR']),
 		2 		=> array("E_WARNING", $locale['E_WARNING']),
@@ -82,7 +82,7 @@ function getErrorLevel($level, $desc = false) {
 		2047 	=> array("E_ALL", $locale['E_ALL']),
 		2048 	=> array("E_STRICT", $locale['E_STRICT'])
 	);
-
+	
 	if (isset($errorLevels[$level])) {
 		return $errorLevels[0].($desc ? " - ".$errorLevels[1] : "");
 	} else {

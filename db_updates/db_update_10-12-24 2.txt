@@ -1,0 +1,23 @@
+<?php
+$result = dbquery("INSERT INTO ".DB_ADMIN." (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('ERRO', 'errors.gif', 'Error Log', 'errors.php', '3')");
+if ($result) {
+	$result = dbquery("SELECT user_id, user_rights FROM ".DB_USERS." WHERE user_level='103'");
+	while ($data = dbarray($result)) {
+		$result2 = dbquery("UPDATE ".DB_USERS." SET user_rights='".$data['user_rights'].".ERRO' WHERE user_id='".$data['user_id']."'");
+	}
+}
+
+$result = dbquery("CREATE TABLE ".DB_PREFIX."errors (
+	error_id mediumint(8) unsigned NOT NULL auto_increment,
+	error_level smallint(5) unsigned NOT NULL,
+	error_message text NOT NULL,
+	error_file varchar(300) NOT NULL,
+	error_line smallint(5) NOT NULL,
+	error_page varchar(200) NOT NULL,
+	error_user_level smallint(3) NOT NULL,
+	error_user_ip varchar(25) NOT NULL default '0.0.0.0',
+	error_status tinyint(1) NOT NULL default '0',
+	error_timestamp int(10) NOT NULL,
+	PRIMARY KEY (error_id)
+) ENGINE=MyISAM;");
+?>

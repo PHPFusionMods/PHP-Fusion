@@ -17,13 +17,13 @@
 +--------------------------------------------------------*/
 require_once "maincore.php";
 require_once THEMES."templates/header.php";
-require_once CLASSES."UserFields.class.php";
+require_once INCLUDES."UserFields.class.php";
 include LOCALE.LOCALESET."user_fields.php";
 
 if (!iMEMBER && $settings['hide_userprofiles'] == 1) { redirect(BASEDIR."login.php"); }
 
 if (isset($_GET['lookup']) && isnum($_GET['lookup'])) {
-	$user_status = " AND (user_status='0' OR user_status='3' OR user_status='7')";
+	$user_status = " AND user_status='0' OR user_status='3' OR user_status='7'";
 	if (iADMIN) {
 		$user_status = "";
 	}
@@ -35,7 +35,7 @@ if (isset($_GET['lookup']) && isnum($_GET['lookup'])) {
 		ORDER BY suspend_date DESC
 		LIMIT 1"
 	);
-
+	
 	if (dbrows($result)) { $user_data = dbarray($result); } else { redirect("index.php"); }
 	add_to_title($locale['global_200'].$locale['u103'].$locale['global_201'].$user_data['user_name']);
 
@@ -58,9 +58,9 @@ if (isset($_GET['lookup']) && isnum($_GET['lookup'])) {
 	if (dbrows($result)) {
 		$data = dbarray($result);
 		$result = dbquery(
-			"SELECT user_id, user_name, user_level, user_status
-			FROM ".DB_USERS."
-			WHERE user_groups REGEXP('^\\\.{$_GET['group_id']}$|\\\.{$_GET['group_id']}\\\.|\\\.{$_GET['group_id']}$')
+			"SELECT user_id, user_name, user_level, user_status 
+			FROM ".DB_USERS." 
+			WHERE user_groups REGEXP('^\\\.{$_GET['group_id']}$|\\\.{$_GET['group_id']}\\\.|\\\.{$_GET['group_id']}$') 
 			ORDER BY user_level DESC, user_name"
 		);
 		opentable($locale['u110']);

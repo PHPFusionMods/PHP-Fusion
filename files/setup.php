@@ -216,7 +216,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 			if ($db_select) {
 				if (dbrows(dbquery("SHOW TABLES LIKE '$db_prefix%'")) == "0") {
 					$table_name = uniqid($db_prefix, false); $can_write = true;
-					$result = dbquery("CREATE TABLE ".$table_name." (test_field VARCHAR(10) NOT NULL) ENGINE=MYISAM;");
+					$result = dbquery("CREATE TABLE ".$table_name." (test_field VARCHAR(10) NOT NULL) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 					if (!$result) { $can_write = false; }
 					$result = dbquery("DROP TABLE ".$table_name);
 					if (!$result) { $can_write = false; }
@@ -244,7 +244,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							admin_link VARCHAR(100) NOT NULL DEFAULT 'reserved',
 							admin_page TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
 							PRIMARY KEY (admin_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -258,7 +258,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							reset_admins varchar(8) NOT NULL default '0',
 							reset_reason varchar(256) NOT NULL,
 							PRIMARY KEY (reset_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -280,7 +280,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							KEY article_cat (article_cat),
 							KEY article_datestamp (article_datestamp),
 							KEY article_reads (article_reads)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -293,7 +293,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							article_cat_access TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (article_cat_id),
 							KEY article_cat_access (article_cat_access)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -304,7 +304,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							bbcode_order SMALLINT(5) UNSIGNED NOT NULL,
 							PRIMARY KEY (bbcode_id),
 							KEY bbcode_order (bbcode_order)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -319,7 +319,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							blacklist_datestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (blacklist_id),
 							KEY blacklist_ip_type (blacklist_ip_type)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -331,7 +331,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							captcha_encode VARCHAR(32) NOT NULL DEFAULT '',
 							captcha_string VARCHAR(15) NOT NULL DEFAULT '',
 							KEY captcha_datestamp (captcha_datestamp)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -348,7 +348,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							comment_hidden TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (comment_id),
 							KEY comment_datestamp (comment_datestamp)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -361,7 +361,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							page_allow_comments TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							page_allow_ratings TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (page_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -373,7 +373,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							download_cat_sorting VARCHAR(50) NOT NULL DEFAULT 'download_title ASC',
 							download_cat_access TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (download_cat_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -401,7 +401,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							download_allow_ratings TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (download_id),
 							KEY download_datestamp (download_datestamp)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -419,7 +419,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							error_status tinyint(1) NOT NULL default '0',
 							error_timestamp int(10) NOT NULL,
 							PRIMARY KEY (error_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -429,7 +429,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							faq_cat_name VARCHAR(200) NOT NULL DEFAULT '',
 							faq_cat_description VARCHAR(250) NOT NULL DEFAULT '',
 							PRIMARY KEY(faq_cat_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -440,7 +440,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							faq_question VARCHAR(200) NOT NULL DEFAULT '',
 							faq_answer TEXT NOT NULL,
 							PRIMARY KEY(faq_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -450,7 +450,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							flood_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
 							flood_timestamp INT(5) UNSIGNED NOT NULL DEFAULT '0',
 							KEY flood_timestamp (flood_timestamp)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -464,7 +464,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							attach_size INT(20) UNSIGNED NOT NULL DEFAULT '0',
 							attach_count INT(10) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (attach_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -477,7 +477,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							rank_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							rank_apply SMALLINT(5) UNSIGNED NOT NULL DEFAULT '101',
 							PRIMARY KEY (rank_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -488,7 +488,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							forum_poll_option_text VARCHAR(150) NOT NULL,
 							forum_poll_option_votes SMALLINT(5) UNSIGNED NOT NULL,
 							KEY thread_id (thread_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -499,7 +499,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							forum_vote_user_ip VARCHAR(45) NOT NULL,
 							forum_vote_user_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
 							KEY thread_id (thread_id,forum_vote_user_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -511,7 +511,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							forum_poll_length iNT(10) UNSIGNED NOT NULL,
 							forum_poll_votes SMALLINT(5) unsigned NOT NULL,
 							KEY thread_id (thread_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -540,7 +540,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							KEY forum_lastpost (forum_lastpost),
 							KEY forum_postcount (forum_postcount),
 							KEY forum_threadcount (forum_threadcount)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -551,7 +551,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							inf_folder VARCHAR(100) NOT NULL DEFAULT '',
 							inf_version VARCHAR(10) NOT NULL DEFAULT '0',
 							PRIMARY KEY (inf_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -568,7 +568,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							message_folder TINYINT(1) UNSIGNED NOT NULL DEFAULT  '0',
 							PRIMARY KEY (message_id),
 							KEY message_datestamp (message_datestamp)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."messages_options");
 							$result = dbquery("CREATE TABLE ".$db_prefix."messages_options (
@@ -579,7 +579,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							pm_savebox SMALLINT(5) UNSIGNED DEFAULT '0' NOT NULL,
 							pm_sentbox SMALLINT(5) UNSIGNED DEFAULT '0' NOT NULL,
 							PRIMARY KEY (user_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -607,7 +607,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							PRIMARY KEY (news_id),
 							KEY news_datestamp (news_datestamp),
 							KEY news_reads (news_reads)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -617,7 +617,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							news_cat_name VARCHAR(100) NOT NULL DEFAULT '',
 							news_cat_image VARCHAR(100) NOT NULL DEFAULT '',
 							PRIMARY KEY (news_cat_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -629,7 +629,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							user_datestamp INT(10) UNSIGNED DEFAULT '0' NOT NULL,
 							user_info TEXT NOT NULL,
 							KEY user_datestamp (user_datestamp)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."email_verify");
 							$result = dbquery("CREATE TABLE ".$db_prefix."email_verify (
@@ -638,7 +638,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							user_email VARCHAR(100) NOT NULL,
 							user_datestamp INT(10) UNSIGNED DEFAULT '0' NOT NULL,
 							KEY user_datestamp (user_datestamp)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -653,7 +653,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							rating_ip VARCHAR(45) NOT NULL DEFAULT '',
 							rating_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
 							PRIMARY KEY (rating_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -663,7 +663,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							online_ip VARCHAR(45) NOT NULL DEFAULT '',
 							online_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
 							online_lastactive INT(10) UNSIGNED NOT NULL DEFAULT '0'
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -683,7 +683,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							panel_restriction TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (panel_id),
 							KEY panel_order (panel_order)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -700,7 +700,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							PRIMARY KEY (album_id),
 							KEY album_order (album_order),
 							KEY album_datestamp (album_datestamp)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -722,7 +722,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							PRIMARY KEY (photo_id),
 							KEY photo_order (photo_order),
 							KEY photo_datestamp (photo_datestamp)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -734,7 +734,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							vote_opt SMALLINT(2) UNSIGNED NOT NULL DEFAULT '0',
 							poll_id MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (vote_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -755,7 +755,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							poll_started INT(10) UNSIGNED NOT NULL DEFAULT '0',
 							poll_ended INT(10) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (poll_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -779,7 +779,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							PRIMARY KEY (post_id),
 							KEY thread_id (thread_id),
 							KEY post_datestamp (post_datestamp)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -788,7 +788,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							settings_name VARCHAR(200) NOT NULL DEFAULT '',
 							settings_value TEXT NOT NULL,
 							PRIMARY KEY (settings_name)
-							) ENGINE=MYISAM");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate']."");
 
 							if (!$result) { $fail = true; }
 
@@ -798,7 +798,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							settings_value TEXT NOT NULL,
 							settings_inf VARCHAR(200) NOT NULL DEFAULT '',
 							PRIMARY KEY (settings_name)
-							) ENGINE=MYISAM");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate']."");
 
 							if (!$result) { $fail = true; }
 
@@ -812,7 +812,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							link_window TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							link_order SMALLINT(2) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (link_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -823,7 +823,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							smiley_image VARCHAR(100) NOT NULL,
 							smiley_text VARCHAR(100) NOT NULL,
 							PRIMARY KEY (smiley_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -835,7 +835,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							submit_datestamp INT(10) UNSIGNED DEFAULT '0' NOT NULL,
 							submit_criteria TEXT NOT NULL,
 							PRIMARY KEY (submit_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -855,7 +855,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							reinstate_ip VARCHAR(45) NOT NULL DEFAULT '',
 							reinstate_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
 							PRIMARY KEY (suspend_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -878,7 +878,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							KEY thread_postcount (thread_postcount),
 							KEY thread_lastpost (thread_lastpost),
 							KEY thread_views (thread_views)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -889,7 +889,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							notify_user MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
 							notify_status tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
 							KEY notify_datestamp (notify_datestamp)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -899,7 +899,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							field_cat_name VARCHAR(200) NOT NULL ,
 							field_cat_order SMALLINT(5) UNSIGNED NOT NULL ,
 							PRIMARY KEY (field_cat_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -913,7 +913,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
  							field_order SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (field_id),
 							KEY field_order (field_order)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -923,7 +923,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							group_name VARCHAR(100) NOT NULL,
 							group_description VARCHAR(200) NOT NULL,
 							PRIMARY KEY (group_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -938,7 +938,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							PRIMARY KEY (userlog_id),
 							KEY userlog_user_id (userlog_user_id),
 							KEY userlog_field (userlog_field)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -981,7 +981,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							KEY user_name (user_name),
 							KEY user_joined (user_joined),
 							KEY user_lastvisit (user_lastvisit)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -993,7 +993,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							weblink_cat_sorting VARCHAR(50) NOT NULL DEFAULT 'weblink_name ASC',
 							weblink_cat_access TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY(weblink_cat_id)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -1009,7 +1009,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							PRIMARY KEY(weblink_id),
 							KEY weblink_datestamp (weblink_datestamp),
 							KEY weblink_count (weblink_count)
-							) ENGINE=MYISAM;");
+							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
 
 							if (!$result) { $fail = true; }
 
@@ -1130,7 +1130,7 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 		$error_name = "1";
 	}
 
-	require_once "includes/classes/PasswordAuth.class.php";
+	require_once "includes/PasswordAuth.class.php";
 
 	$userPassword = ""; $adminPassword = "";
 
@@ -1274,7 +1274,7 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('newsperpage', '11')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('flood_interval', '15')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('counter', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('version', '7.02.01')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('version', '7.02.00')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('maintenance', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('maintenance_message', '')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('download_max_b', '512000')");
@@ -1309,9 +1309,6 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('download_screen_max_h', '768')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('recaptcha_public', '')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('recaptcha_private', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('download_screenshot', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('download_thumb_max_w', '100')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('download_thumb_max_h', '100')");
 			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('AD', 'admins.gif', '".$locale['080']."', 'administrators.php', '2')");
 			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('APWR', 'admin_pass.gif', '".$locale['128']."', 'admin_reset.php', '2')");
 			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('AC', 'article_cats.gif', '".$locale['081']."', 'article_cats.php', '1')");
@@ -1324,7 +1321,7 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('DB', 'db_backup.gif', '".$locale['088']."', 'db_backup.php', '3')");
 			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('DC', 'dl_cats.gif', '".$locale['089']."', 'download_cats.php', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('D', 'dl.gif', '".$locale['090']."', 'downloads.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('ERRO', 'errors.gif', '".$locale['129']."', 'errors.php', '3')");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('ERRO', 'errors.gif', '".$locale['129']."', 'errors.php', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('FQ', 'faq.gif', '".$locale['091']."', 'faq.php', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('F', 'forums.gif', '".$locale['092']."', 'forums.php', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('IM', 'images.gif', '".$locale['093']."', 'images.php', '1')");
@@ -1417,14 +1414,14 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."news_cats (news_cat_name, news_cat_image) VALUES ('".$locale['194']."', 'themes.gif')");
 			$result = dbquery("INSERT INTO ".$db_prefix."news_cats (news_cat_name, news_cat_image) VALUES ('".$locale['195']."', 'windows.gif')");
 
-			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status, panel_url_list) VALUES ('".$locale['160']."', 'css_navigation_panel', '', '1', '1', 'file', '0', '0', '1', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status, panel_url_list) VALUES ('".$locale['161']."', 'online_users_panel', '', '1', '2', 'file', '0', '0', '1', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status, panel_url_list) VALUES ('".$locale['162']."', 'forum_threads_panel', '', '1', '3', 'file', '0', '0', '0', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status, panel_url_list) VALUES ('".$locale['163']."', 'latest_articles_panel', '', '1', '4', 'file', '0', '0', '0', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status, panel_url_list) VALUES ('".$locale['164']."', 'welcome_message_panel', '', '2', '1', 'file', '0', '0', '1', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status, panel_url_list) VALUES ('".$locale['165']."', 'forum_threads_list_panel', '', '2', '2', 'file', '0', '0', '0', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status, panel_url_list) VALUES ('".$locale['166']."', 'user_info_panel', '', '4', 1, 'file', '0', '0', '1', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status, panel_url_list) VALUES ('".$locale['167']."', 'member_poll_panel', '', '4', '2', 'file', '0', '0', '0', '')");
+			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['160']."', 'css_navigation_panel', '', '1', '1', 'file', '0', '0', '1')");
+			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['161']."', 'online_users_panel', '', '1', '2', 'file', '0', '0', '1')");
+			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['162']."', 'forum_threads_panel', '', '1', '3', 'file', '0', '0', '0')");
+			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['163']."', 'latest_articles_panel', '', '1', '4', 'file', '0', '0', '0')");
+			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['164']."', 'welcome_message_panel', '', '2', '1', 'file', '0', '0', '1')");
+			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['165']."', 'forum_threads_list_panel', '', '2', '2', 'file', '0', '0', '0')");
+			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['166']."', 'user_info_panel', '', '4', 1, 'file', '0', '0', '1')");
+			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['167']."', 'member_poll_panel', '', '4', '2', 'file', '0', '0', '0')");
 
 			$result = dbquery("INSERT INTO ".$db_prefix."site_links (link_name, link_url, link_visibility, link_position, link_window, link_order) VALUES ('".$locale['130']."', 'index.php', '0', '2', '0', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."site_links (link_name, link_url, link_visibility, link_position, link_window, link_order) VALUES ('".$locale['131']."', 'articles.php', '0', '2', '0', '2')");

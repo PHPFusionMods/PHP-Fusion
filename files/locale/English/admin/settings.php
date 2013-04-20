@@ -33,8 +33,6 @@ $locale['429'] = "Site Path:";
 $locale['430'] = "Site Port:";
 $locale['431'] = "Preview:";
 $locale['432'] = "Other settings";
-$locale['433'] = "mysite.com";
-$locale['434'] = "myfolder";
 // Time & Date Settings
 $locale['450'] = "Time and Date";
 $locale['451'] = "Short date format:";
@@ -162,11 +160,6 @@ $locale['693'] = "Captcha";
 $locale['694'] = "Recaptcha Public Key (<a href='https://www.google.com/recaptcha/admin/create' title='Get your key here'>Get your key</a>)";
 $locale['695'] = "Recaptcha Private Key";
 $locale['696'] = "Please enter your public and private reCAPTCHA key!";
-$locale['697'] = "Choose colour scheme";
-$locale['697r'] = "Red";
-$locale['697b'] = "Blackglass";
-$locale['697c'] = "Clean";
-$locale['697w'] = "White";
 
 // Private Message Settings
 $locale['700'] = "Private Messages";
@@ -210,8 +203,6 @@ $locale['933'] = "Separate each type with a comma";
 $locale['934'] = "Maximum screenshot size:";
 $locale['935'] = "Width x Height";
 $locale['936'] = "Maximum screenshot file size (bytes):";
-$locale['937'] = "Maximum screenshot thumb size:";
-$locale['938'] = "Enable screenshots?";
 // News Settings
 $locale['950'] = "Image Upload";
 $locale['951'] = "Image link:";

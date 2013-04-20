@@ -242,10 +242,10 @@ echo "<option".($settings2['site_protocol'] == "http" ? " selected='selected'" :
 echo "<option".($settings2['site_protocol'] == "https" ? " selected='selected'" : "").">https</option>\n";
 echo "</select>\n</td>\n";
 echo "</tr>\n<tr>\n";
-echo "<td width='30%' class='tbl' valign='top'>".$locale['427']."<br /><span class='small2'>".$locale['428']." ".$locale['433']."</span></td>\n";
+echo "<td width='30%' class='tbl' valign='top'>".$locale['427']."<br /><span class='small2'>".$locale['428']." www.mysite.com</span></td>\n";
 echo "<td width='70%' class='tbl' valign='top'><input type='text' id='site_host' name='site_host' value='".$settings2['site_host']."' maxlength='255' class='textbox' style='width:230px;' /></td>\n";
 echo "</tr>\n<tr>\n";
-echo "<td width='30%' class='tbl' valign='top'>".$locale['429']."<br /><span class='small2'>".$locale['428']." /".$locale['434']."/</span></td>\n";
+echo "<td width='30%' class='tbl' valign='top'>".$locale['429']."<br /><span class='small2'>".$locale['428']." /myfolder/</span></td>\n";
 echo "<td width='70%' class='tbl' valign='top'><input type='text' id='site_path' name='site_path' value='".$settings2['site_path']."' maxlength='255' class='textbox' style='width:230px;' /></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td width='30%' class='tbl' valign='top'>".$locale['430']."<br /><span class='small2'>".$locale['408']."</span></td>\n";

@@ -134,8 +134,21 @@ if ($_SERVER['SCRIPT_NAME'] != $_SERVER['PHP_SELF']) { redirect($settings['siteu
 // Load the Global language file
 include LOCALE.LOCALESET."global.php";
 
+// REMEMBER TO REMOVE START
+// this is to prevent people who haven't updated their database
+if (!isset($settings['password_algorithm'])) {
+	$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('password_algorithm', 'sha256')");
+	$result = dbquery("ALTER TABLE ".DB_USERS." ADD user_algo VARCHAR( 10 ) NOT NULL DEFAULT 'md5' AFTER user_name ,
+												ADD user_salt VARCHAR( 32 ) NOT NULL AFTER user_algo");
+	$result = dbquery("ALTER TABLE ".DB_USERS." ADD user_admin_algo VARCHAR( 10 ) NOT NULL DEFAULT 'md5' AFTER user_password ,
+												ADD user_admin_salt VARCHAR( 32 ) NOT NULL AFTER user_admin_algo");
+	$result = dbquery("ALTER TABLE ".DB_USERS." CHANGE user_password user_password VARCHAR( 64 ) NOT NULL");
+	$result = dbquery("ALTER TABLE ".DB_USERS." CHANGE user_admin_password user_admin_password VARCHAR( 64 ) NOT NULL");
+}
+// REMEMBER TO REMOVE END
+
 // Autenticate user
-require_once CLASSES."Authenticate.class.php";
+require_once INCLUDES."Authenticate.class.php";
 
 // Log in user
 if (isset($_POST['login']) && isset($_POST['user_name']) && isset($_POST['user_pass'])) {
@@ -301,13 +314,24 @@ function set_admin_pass($password) {
 
 	Authenticate::setAdminCookie($password);
 
+	/*
+	if (!isset($_COOKIE[COOKIE_PREFIX.'admin']) && md5(md5($password)) == $userdata['user_admin_password']) {
+		setcookie(COOKIE_PREFIX."admin", md5($password), time() + 3600, "/", "", "0");
+	}
+	*/
 }
 
 // Check if admin password matches userdata
 function check_admin_pass($password) {
-
+	/*
+	global $userdata;
+	if ((isset($_COOKIE[COOKIE_PREFIX.'admin']) && md5($_COOKIE[COOKIE_PREFIX.'admin']) == $userdata['user_admin_password'])
+			|| (md5(md5($password)) == $userdata['user_admin_password'])) {
+		return true;
+	} else {
+		return false;
+	}*/
 	return Authenticate::validateAuthAdmin($password);
-
 }
 
 // Redirect browser using header or script function

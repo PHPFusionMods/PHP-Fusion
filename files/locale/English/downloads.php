@@ -18,8 +18,6 @@ $locale['423'] = "Version";
 $locale['424'] = "Downloads";
 $locale['425'] = "Comments";
 $locale['426'] = "Rating";
-$locale['427'] = "Calendar";
-$locale['428'] = "Info";
 // Downloads Notices
 $locale['430'] = "No Download Categories defined";
 $locale['431'] = "No Downloads have been added to this Category";

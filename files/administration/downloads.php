@@ -154,7 +154,7 @@ if (!empty($result)) {
 			// Maximum file size in bytes
 			$size = $settings['download_screen_max_b'];
 
-			$upload = upload_image($image, $name, $folder, $width, $height, $size, false, true, false, 1, $folder, "_thumb", $settings['download_thumb_max_w'], $settings['download_thumb_max_h']);
+			$upload = upload_image($image, $name, $folder, $width, $height, $size, false, true, false, 1, $folder);
 
 			if ($upload['error'] != 0) {
 				switch ($upload['error']) {
@@ -360,20 +360,18 @@ if (!empty($result)) {
 		echo "<label><input type='checkbox' name='calc_upload' id='calc_upload' value='1' /> ".$locale['432']."</label>\n";
 	}
 	echo "</td>\n</tr>\n";
-	if ($settings['download_screenshot']) {
-		echo "<tr>\n";
-		echo "<td class='tbl1' style='width:80px; vertical-align:top;'>".$locale['434']."</td>\n<td class='tbl1' style='vertical-align:top;'>\n";
-		if (!empty($download_image) && !empty($download_image_thumb)) {
-			echo "<img src='".DOWNLOADS."images/".$download_image_thumb."' /><br />\n";
-			echo "<label><input type='checkbox' name='del_image' value='1' /> ".$locale['431']."</label>\n";
-			echo "<input type='hidden' name='download_image' value='".$download_image."' />";
-			echo "<input type='hidden' name='download_image_thumb' value='".$download_image_thumb."' />";
-		} else {
-			echo "<input type='file' name='download_image' class='textbox' style='width:150px;' /><br />\n";
-			echo sprintf($locale['433b'], parsebytesize($settings['download_screen_max_b']), str_replace(',', ' ', ".jpg,.gif,.png"), $settings['download_screen_max_w'], $settings['download_screen_max_h'])."<br />\n";
-		}
-		echo "</td>\n</tr>\n";
+	echo "<tr>\n";
+	echo "<td class='tbl1' style='width:80px; vertical-align:top;'>".$locale['434']."</td>\n<td class='tbl1' style='vertical-align:top;'>\n";
+	if (!empty($download_image) && !empty($download_image_thumb)) {
+		echo "<img src='".DOWNLOADS."images/".$download_image_thumb."' /><br />\n";
+		echo "<label><input type='checkbox' name='del_image' value='1' /> ".$locale['431']."</label>\n";
+		echo "<input type='hidden' name='download_image' value='".$download_image."' />";
+		echo "<input type='hidden' name='download_image_thumb' value='".$download_image_thumb."' />";
+	} else {
+		echo "<input type='file' name='download_image' class='textbox' style='width:150px;' /><br />\n";
+		echo sprintf($locale['433b'], parsebytesize($settings['download_screen_max_b']), str_replace(',', ' ', ".jpg,.gif,.png"), $settings['download_screen_max_w'], $settings['download_screen_max_h'])."<br />\n";
 	}
+	echo "</td>\n</tr>\n";
 	echo "<tr>\n";
 	echo "<td class='tbl1' style='width:80px;'>".$locale['423']."</td>\n";
 	echo "<td class='tbl1'><select name='download_cat' class='textbox'>\n".$editlist."</select></td>\n";

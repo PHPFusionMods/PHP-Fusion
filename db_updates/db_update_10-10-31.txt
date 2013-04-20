@@ -1,0 +1,31 @@
+<?php
+$result = dbquery("ALTER TABLE ".DB_USER_FIELDS." ADD field_required TINYINT(1) UNSIGNED NOT NULL DEFAULT '1' AFTER field_cat");
+$result = dbquery("INSERT INTO ".DB_SETTINGS." (settings_name, settings_value) VALUES ('captcha', 'securimage2')");
+$result = dbquery("ALTER TABLE ".DB_NEW_USERS." ADD user_name VARCHAR(30) NOT NULL AFTER user_code");
+$result = dbquery("ALTER TABLE ".DB_ARTICLES." ADD INDEX (article_cat)");
+$result = dbquery("ALTER TABLE ".DB_ARTICLE_CATS." ADD INDEX (article_cat_access)");
+
+// Add Password Reset Admin
+$result = dbquery("DELETE FROM ".DB_ADMIN." WHERE admin_link='../infusions/admin_reset/index.php'");
+$reqult = dbquery("DELETE FROM ".DB_INFUSIONS." WHERE inf_folder='admin_reset'");
+
+$result = dbquery("INSERT INTO ".DB_ADMIN." (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('APWR', 'admin_pass.gif', 'Admin Password Reset', 'admin_reset.php', '2')");
+if ($result) {
+	$result = dbquery("SELECT user_id, user_rights FROM ".DB_USERS." WHERE user_level='103'");
+	while ($data = dbarray($result)) {
+		$result2 = dbquery("UPDATE ".DB_USERS." SET user_rights='".$data['user_rights'].". APWR' WHERE user_id='".$data['user_id']."'");
+	}
+}
+							
+$result = dbquery("DROP TABLE IF EXISTS ".DB_PREFIX."admin_resetlog");
+$result = dbquery("CREATE TABLE ".DB_PREFIX."admin_resetlog (
+reset_id mediumint(8) unsigned NOT NULL auto_increment,
+reset_admin_id mediumint(8) unsigned NOT NULL default '1',
+reset_timestamp int(10) unsigned NOT NULL default '0',
+reset_sucess text NOT NULL,
+reset_failed text NOT NULL,
+reset_admins varchar(8) NOT NULL default '0',
+reset_reason varchar(256) NOT NULL,
+PRIMARY KEY (reset_id)
+) ENGINE=MyISAM;");
+?>

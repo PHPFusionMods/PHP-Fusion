@@ -57,22 +57,21 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat
 		} else {
 			$cat_sorting = "article_subject ASC";
 		}
-
-		if ($cat_name) {
-			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
-				$result = dbquery("UPDATE ".DB_ARTICLE_CATS." SET article_cat_name='$cat_name', article_cat_description='$cat_description', article_cat_sorting='$cat_sorting', article_cat_access='$cat_access' WHERE article_cat_id='".$_GET['cat_id']."'");
-				redirect(FUSION_SELF.$aidlink."&status=su");
-			} else {
-				$checkCat = dbcount("(article_cat_id)", DB_ARTICLE_CATS, "article_cat_name='".$cat_name."'");
-				if ($checkCat == 0) {
+		$checkCat = dbcount("(article_cat_id)", DB_ARTICLE_CATS, "article_cat_name='".$cat_name."'");
+		if ($checkCat == 0) {
+			if ($cat_name) {
+				if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
+					$result = dbquery("UPDATE ".DB_ARTICLE_CATS." SET article_cat_name='$cat_name', article_cat_description='$cat_description', article_cat_sorting='$cat_sorting', article_cat_access='$cat_access' WHERE article_cat_id='".$_GET['cat_id']."'");
+					redirect(FUSION_SELF.$aidlink."&status=su");
+				} else {
 					$result = dbquery("INSERT INTO ".DB_ARTICLE_CATS." (article_cat_name, article_cat_description, article_cat_sorting, article_cat_access) VALUES ('$cat_name', '$cat_description', '$cat_sorting', '$cat_access')");
 					redirect(FUSION_SELF.$aidlink."&status=sn");
-				} else {
-					$error = 2;
 				}
+			} else {
+				$error = 1;
 			}
 		} else {
-			$error = 1;
+			$error = 2;
 		}
 	}
 	if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {

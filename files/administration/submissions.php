@@ -611,8 +611,8 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 				download_datestamp = '".time()."',
 				download_count = '0'");
 			$result = dbquery("DELETE FROM ".DB_SUBMISSIONS." WHERE submit_id='".$_GET['submit_id']."'");
-			opentable($locale['630']);
-			echo "<br /><div style='text-align:center'>".$locale['631']."<br /><br />\n";
+			opentable($locale['580']);
+			echo "<br /><div style='text-align:center'>".$locale['581']."<br /><br />\n";
 			echo "<a href='".FUSION_SELF.$aidlink."'>".$locale['402']."</a><br /><br />\n";
 			echo "<a href='index.php".$aidlink."'>".$locale['403']."</a></div><br />\n";
 			closetable();

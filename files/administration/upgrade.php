@@ -30,19 +30,13 @@ opentable($locale['400']);
 echo "<div style='text-align:center'><br />\n";
 echo "<form name='upgradeform' method='post' action='".FUSION_SELF.$aidlink."'>\n";
 
-if (str_replace(".", "", $settings['version']) < "70201") {
+if (str_replace(".", "", $settings['version']) < "70102") {
 	if (!isset($_POST['stage'])) {
 		echo sprintf($locale['500'], $locale['504'])."<br />\n".$locale['501']."<br /><br />\n";
 		echo "<input type='hidden' name='stage' value='2'>\n";
 		echo "<input type='submit' name='upgrade' value='".$locale['400']."' class='button'><br /><br />\n";
 	} elseif (isset($_POST['upgrade']) && isset($_POST['stage']) && $_POST['stage'] == 2) {
-		$result = dbquery("UPDATE ".DB_ADMIN." SET admin_page='3' WHERE admin_rights='ERRO' AND admin_link='errors.php'");
-		$result = dbquery("UPDATE ".DB_FORUM_RANKS." SET rank_type='1' WHERE rank_posts='0' and rank_apply>101");
-		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_screenshot', '1')");
-		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_thumb_max_w', '100')");
-		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('download_thumb_max_h', '100')");
-		$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('recaptcha_theme', 'red')");
-		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='7.02.01' WHERE settings_name='version'");
+		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='7.02.00' WHERE settings_name='version'");
 		echo $locale['502']."<br /><br />\n";
 	}
 } else {

@@ -46,23 +46,23 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat
 } elseif (isset($_POST['save_cat'])) {
 	$cat_name = stripinput($_POST['cat_name']);
 	$cat_image = stripinput($_POST['cat_image']);
-	if ($cat_name && $cat_image) {
-		if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
-			$result = dbquery("UPDATE ".DB_NEWS_CATS." SET news_cat_name='$cat_name', news_cat_image='$cat_image' WHERE news_cat_id='".$_GET['cat_id']."'");
-			redirect(FUSION_SELF.$aidlink."&status=su");
-		} else {
-			$checkCat = dbcount("(news_cat_id)", DB_NEWS_CATS, "news_cat_name='".$cat_name."'");
-			if ($checkCat == 0) {
+	$checkCat = dbcount("(news_cat_id)", DB_NEWS_CATS, "news_cat_name='".$cat_name."'");
+	if ($checkCat == 0) {
+		if ($cat_name && $cat_image) {
+			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
+				$result = dbquery("UPDATE ".DB_NEWS_CATS." SET news_cat_name='$cat_name', news_cat_image='$cat_image' WHERE news_cat_id='".$_GET['cat_id']."'");
+				redirect(FUSION_SELF.$aidlink."&status=su");
+			} else {
 				$result = dbquery("INSERT INTO ".DB_NEWS_CATS." (news_cat_name, news_cat_image) VALUES ('$cat_name', '$cat_image')");
 				redirect(FUSION_SELF.$aidlink."&status=sn");
-			} else {
-				$error = 2;
-				$formaction = FUSION_SELF.$aidlink;
-				$openTable = $locale['401'];
 			}
+		} else {
+			$error = 1;
+			$formaction = FUSION_SELF.$aidlink;
+			$openTable = $locale['401'];
 		}
 	} else {
-		$error = 1;
+		$error = 2;
 		$formaction = FUSION_SELF.$aidlink;
 		$openTable = $locale['401'];
 	}
