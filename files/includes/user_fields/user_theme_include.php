@@ -17,36 +17,21 @@
 +--------------------------------------------------------*/
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-// Display user field input
 if ($profile_method == "input") {
 	if ($settings['userthemes'] == 1 || iADMIN) {
-		$user_theme = isset($user_data['user_theme']) ? $user_data['user_theme'] : "";
-		if ($this->isError()) { $user_theme = isset($_POST['user_theme']) ? stripinput($_POST['user_theme']) : $user_theme; }
-
-		$theme_files = makefilelist(THEMES, ".|..|templates|.svn", true, "folders");
+		$theme_files = makefilelist(THEMES, ".|..|templates", true, "folders");
 		array_unshift($theme_files, "Default");
 		echo "<tr>\n";
-		echo "<td class='tbl".$this->getErrorClass("user_theme")."'><label for='user_theme_input'>".$locale['uf_theme'].$required."</label></td>\n";
-		echo "<td class='tbl".$this->getErrorClass("user_theme")."'>";
-		echo "<select id='user_theme_input' name='user_theme' class='textbox' style='width:100px;'>\n".makefileopts($theme_files, $user_theme)."</select>";
-		echo "</td>\n</tr>\n";
+		echo "<td class='tbl'>".$locale['uf_theme']."</td>\n";
+		echo "<td class='tbl'><select name='user_theme' class='textbox' style='width:100px;'>\n".makefileopts($theme_files, (isset($user_data['user_theme']) ? $user_data['user_theme'] : ""))."\n</select></td>\n";
+		echo "</tr>\n";
 	}
-
-	if ($required) { $this->setRequiredJavaScript("user_theme", $locale['uf_theme_error']); }
-
-// Display in profile
 } elseif ($profile_method == "display") {
-
-// Insert and update
-} elseif ($profile_method == "validate_insert"  || $profile_method == "validate_update") {
-	if ($settings['userthemes'] == 1 || iADMIN) {
-		// Get input data
-		if (isset($_POST['user_theme']) && $_POST['user_theme'] != "") {
-			// Set update or insert user data
-			$this->_setDBValue("user_theme", stripinput(trim($_POST['user_theme'])));
-		} else {
-			$this->_setError("user_theme", $locale['uf_theme_error'], true);	
-		}
-	}
+	// Not shown in profile
+} elseif ($profile_method == "validate_insert") {
+	$db_fields .= ", user_theme";
+	$db_values .= ", '".((isset($_POST['user_theme']) && ($settings['userthemes'] == 1 || iADMIN)) ? stripinput(trim($_POST['user_theme'])) : "Default")."'";
+} elseif ($profile_method == "validate_update") {
+	$db_values .= ", user_theme='".((isset($_POST['user_theme']) && ($settings['userthemes'] == 1 || iADMIN)) ? stripinput(trim($_POST['user_theme'])) : "Default")."'";
 }
 ?>

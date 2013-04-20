@@ -18,20 +18,6 @@
 require_once "../../maincore.php";
 require_once THEMES."templates/header.php";
 
-include_once INFUSIONS."shoutbox_panel/infusion_db.php";
-include_once INCLUDES."infusions_include.php";
-
-// Check if locale file is available matching the current site locale setting.
-if (file_exists(INFUSIONS."shoutbox_panel/locale/".$settings['locale'].".php")) {
-	// Load the locale file matching the current site locale setting.
-	include INFUSIONS."shoutbox_panel/locale/".$settings['locale'].".php";
-} else {
-	// Load the infusion's default locale file.
-	include INFUSIONS."shoutbox_panel/locale/English.php";
-}
-
-$shout_settings = get_settings("shoutbox_panel");
-
 $archive_shout_link = ""; $archive_shout_message = "";
 
 $result = dbquery("SELECT panel_access FROM ".DB_PANELS." WHERE panel_filename='shoutbox_panel' AND panel_status='1'");
@@ -92,16 +78,16 @@ function sbawrap($text) {
 	return $res;
 }
 
-add_to_title($locale['global_200'].$locale['SB_archive']);
+add_to_title($locale['global_200'].$locale['global_155']);
 
-opentable($locale['SB_archive']);
-if (iMEMBER || $shout_settings['guest_shouts'] == "1") {
+opentable($locale['global_155']);
+if (iMEMBER || $settings['guestposts'] == "1") {
 	include_once INCLUDES."bbcode_include.php";
 	if (isset($_POST['post_archive_shout'])) {
 		$flood = false;
 		if (iMEMBER) {
 			$archive_shout_name = $userdata['user_id'];
-		} elseif ($shout_settings['guest_shouts'] == "1") {
+		} elseif ($settings['guestposts'] == "1") {
 			$archive_shout_name = trim(stripinput($_POST['archive_shout_name']));
 			$archive_shout_name = preg_replace("(^[+0-9\s]*)", "", $archive_shout_name);
 			if (isnum($archive_shout_name)) { $archive_shout_name = ""; }
@@ -123,7 +109,7 @@ if (iMEMBER || $shout_settings['guest_shouts'] == "1") {
 		} elseif ($archive_shout_name && $archive_shout_message) {
 			require_once INCLUDES."flood_include.php";
 			if (!flood_control("shout_datestamp", DB_SHOUTBOX, "shout_ip='".USER_IP."'")) {
-				$result = dbquery("INSERT INTO ".DB_SHOUTBOX." (shout_name, shout_message, shout_datestamp, shout_ip, shout_ip_type) VALUES ('$archive_shout_name', '$archive_shout_message', '".time()."', '".USER_IP."', '".USER_IP_TYPE."')");
+				$result = dbquery("INSERT INTO ".DB_SHOUTBOX." (shout_name, shout_message, shout_datestamp, shout_ip) VALUES ('$archive_shout_name', '$archive_shout_message', '".time()."', '".USER_IP."')");
 			}
 			redirect(FUSION_SELF);
 		}
@@ -157,23 +143,23 @@ if (iMEMBER || $shout_settings['guest_shouts'] == "1") {
 	echo "<form name='archive_form' method='post' action='".$archive_shout_link."'>\n";
 	echo "<div style='text-align:center'>\n";
 	if (iGUEST) {
-		echo $locale['SB_name']."<br />\n";
+		echo $locale['global_151']."<br />\n";
 		echo "<input type='text' name='archive_shout_name' value='' class='textbox' maxlength='30' style='width:200px;' /><br />\n";
-		echo $locale['SB_message']."<br />\n";
+		echo $locale['global_152']."<br />\n";
 	}
 	echo "<textarea name='archive_shout_message' rows='4' cols='50' class='textbox'>".$archive_shout_message."</textarea><br />\n";
 	echo "<div style='text-align:center'>".display_bbcodes("100%", "archive_shout_message", "archive_form", "smiley|b|i|u|url|color")."</div>\n";
 	if (iGUEST) {
-		echo $locale['SB_validation_code']."<br />\n";
+		echo $locale['global_158']."<br />\n";
 		echo "<img id='captcha' src='".INCLUDES."securimage/securimage_show.php' alt='' /><br />\n";
     echo "<a href='".INCLUDES."securimage/securimage_play.php'><img src='".INCLUDES."securimage/images/audio_icon.gif' alt='' class='tbl-border' style='margin-bottom:1px' /></a>\n";
     echo "<a href='#' onclick=\"document.getElementById('captcha').src = '".INCLUDES."securimage/securimage_show.php?sid=' + Math.random(); return false\"><img src='".INCLUDES."securimage/images/refresh.gif' alt='' class='tbl-border' /></a><br />\n";
-		echo $locale['SB_enter_validation_code']."<br />\n<input type='text' name='captcha_code' class='textbox' style='width:100px' /><br />\n";
+		echo $locale['global_159']."<br />\n<input type='text' name='captcha_code' class='textbox' style='width:100px' /><br />\n";
 	}
-	echo "<br /><input type='submit' name='post_archive_shout' value='".$locale['SB_shout']."' class='button' />\n";
+	echo "<br /><input type='submit' name='post_archive_shout' value='".$locale['global_153']."' class='button' />\n";
 	echo "</div>\n</form>\n<br />\n";
 } else {
-	echo "<div style='text-align:center'>".$locale['SB_login_req']."</div>\n";
+	echo "<div style='text-align:center'>".$locale['global_154']."</div>\n";
 }
 $rows = dbcount("(shout_id)", DB_SHOUTBOX,"shout_hidden='0'");
 if (!isset($_GET['rowstart']) || !isnum($_GET['rowstart'])) { $_GET['rowstart'] = 0; }
@@ -188,8 +174,8 @@ if ($rows != 0) {
 	while ($data = dbarray($result)) {
 		echo "<div class='tbl2'>\n";
 		if ((iADMIN && checkrights("S")) || (iMEMBER && $data['shout_name'] == $userdata['user_id'] && isset($data['user_name']))) {
-			echo "<div style='float:right'>\n<a href='".FUSION_SELF."?action=edit&amp;shout_id=".$data['shout_id']."'>".$locale['SB_edit']."</a> |\n";
-			echo "<a href='".FUSION_SELF."?action=delete&amp;shout_id=".$data['shout_id']."'>".$locale['SB_delete']."</a>\n</div>\n";
+			echo "<div style='float:right'>\n<a href='".FUSION_SELF."?action=edit&amp;shout_id=".$data['shout_id']."'>".$locale['global_076']."</a> |\n";
+			echo "<a href='".FUSION_SELF."?action=delete&amp;shout_id=".$data['shout_id']."'>".$locale['global_157']."</a>\n</div>\n";
 		}
 		if ($data['user_name']) {
 			echo "<span class='comment-name'><span class='slink'>".profile_link($data['user_id'], $data['user_name'], $data['user_status'])."</span>\n</span>\n";
@@ -200,7 +186,7 @@ if ($rows != 0) {
 		echo "</div>\n<div class='tbl1'>\n".sbawrap(parseubb(parsesmileys($data['shout_message']), "b|i|u|url|color"))."</div>\n";
 	}
 } else {
-	echo "<div style='text-align:center'><br />\n".$locale['SB_no_msgs']."<br /><br />\n</div>\n";
+	echo "<div style='text-align:center'><br />\n".$locale['global_156']."<br /><br />\n</div>\n";
 }
 closetable();
 

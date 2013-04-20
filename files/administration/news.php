@@ -362,31 +362,9 @@ if (isset($_POST['save'])) {
 	if ($settings['tinymce_enabled'] != 1) {
 		echo "<label><input type='checkbox' name='line_breaks' value='yes'".$news_breaks." /> ".$locale['433']."</label><br />\n";
 	}
-	echo "<label><input type='checkbox' name='news_comments' value='yes' onclick='SetRatings();'".$news_comments." /> ".$locale['434']."</label>";
-	if ($settings['comments_enabled'] == "0") {
-		echo "<span style='color:red;font-weight:bold;margin-left:3px;'>*</span>";
-	}
-	echo "<br />\n";
-	echo "<label><input type='checkbox' name='news_ratings' value='yes'".$news_ratings." /> ".$locale['435']."</label>";
-	if ($settings['ratings_enabled'] == "0") {
-		echo "<span style='color:red;font-weight:bold;margin-left:3px;'>*</span>";
-	}
-	echo "</td>\n";
-	echo "</tr>\n";
-	if ($settings['comments_enabled'] == "0" || $settings['ratings_enabled'] == "0") {
-		$sys = "";
-		if ($settings['comments_enabled'] == "0" &&  $settings['ratings_enabled'] == "0") {
-			$sys = $locale['455'];
-		} elseif ($settings['comments_enabled'] == "0") {
-			$sys = $locale['453'];
-		} else {
-			$sys = $locale['454'];
-		}
-		echo "<tr>\n<td colspan='2' class='tbl1' style='font-weight:bold;text-align:left; color:black !important; background-color:#FFDBDB;'>";
-		echo "<span style='color:red;font-weight:bold;margin-right:5px;'>*</span>".sprintf($locale['452'], $sys);
-		echo "</td>\n</tr>";
-	}
-	echo "<tr>\n";
+	echo "<label><input type='checkbox' name='news_comments' value='yes' onclick='SetRatings();'".$news_comments." /> ".$locale['434']."</label><br />\n";
+	echo "<label><input type='checkbox' name='news_ratings' value='yes'".$news_ratings." /> ".$locale['435']."</label></td>\n";
+	echo "</tr>\n<tr>\n";
 	echo "<td align='center' colspan='2' class='tbl'><br />\n";
 	if ((isset($_POST['edit']) && (isset($_POST['news_id']) && isnum($_POST['news_id']))) || (isset($_POST['preview']) && (isset($_POST['news_id']) && isnum($_POST['news_id']))) || (isset($_GET['news_id']) && isnum($_GET['news_id']))) {
 		echo "<input type='hidden' name='news_id' value='".(isset($_POST['news_id']) ? $_POST['news_id'] : $_GET['news_id'])."' />\n";

@@ -21,5 +21,4 @@ Your new password to access your ".$settings['sitename']." account is:\n
 [NEW_PASS]\n
 Regards,
 ".$settings['siteusername'];
-$locale['412'] = "There was an error, please try again.";
 ?>

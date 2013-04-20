@@ -4,9 +4,6 @@ $locale['sub-title'] = "PHP-Fusion Core 7 Edition Setup";
 
 $locale['xml_lang'] = "en";
 $locale['charset'] = "iso-8859-1";
-$locale['mysql_charset'] = "latin1";
-$locale['mysql_collate'] = "latin1_swedish_ci";
-
 $locale['001'] = "Step 1: Locale";
 $locale['002'] = "Step 2: File and Folder Permissions Test";
 $locale['003'] = "Step 3: Database Settings";
@@ -33,7 +30,6 @@ $locale['032'] = "Database Username:";
 $locale['033'] = "Database Password:";
 $locale['034'] = "Database Name:";
 $locale['035'] = "Table Prefix:";
-$locale['036'] = "Cookie Prefix:";
 // Step 4 - Database Setup
 $locale['040'] = "Database connection established.";
 $locale['041'] = "Config file successfully written.";
@@ -65,11 +61,11 @@ $locale['066'] = "Email address:";
 $locale['070'] = "User name contains invalid characters.";
 $locale['070b'] = "User name field can not be left empty.";
 $locale['071'] = "Your two login passwords do not match.";
-$locale['072'] = "Invalid login password, please use alpha numeric characters only.<br />Password must be a minimum of 8 characters long.";
+$locale['072'] = "Invalid login password, please use alpha numeric characters only.<br />Password must be a minimum of 6 characters long.";
 $locale['072b'] = "Login password fields can not be left empty";
 $locale['073'] = "Your two admin passwords do not match.";
 $locale['074'] = "Your user password and admin password must be different.";
-$locale['075'] = "Invalid admin password, please use alpha numeric characters only.<br />Password must be a minimum of 8 characters long.";
+$locale['075'] = "Invalid admin password, please use alpha numeric characters only.<br />Password must be a minimum of 6 characters long.";
 $locale['075b'] = "Admin password fields can not be left empty.";
 $locale['076'] = "Your email address does not appear to be valid.";
 $locale['076b'] = "Email field can not be left empty.";
@@ -98,7 +94,7 @@ $locale['099'] = "Panels";
 $locale['100'] = "Photo Albums";
 $locale['101'] = "PHP Info";
 $locale['102'] = "Polls";
-$locale['103'] = "";
+$locale['103'] = "Shoutbox";
 $locale['104'] = "Site Links";
 $locale['105'] = "Smileys";
 $locale['106'] = "Submissions";
@@ -123,9 +119,6 @@ $locale['124'] = "Items per Page";
 $locale['125'] = "Security";
 $locale['126'] = "News Settings";
 $locale['127'] = "Downloads Settings";
-$locale['128'] = "Admin Password Reset";
-$locale['129'] = "Error Log";
-$locale['129a'] = "User Log";
 // Step 6 - Navigation Links
 $locale['130'] = "Home";
 $locale['131'] = "Articles";
@@ -141,7 +134,6 @@ $locale['140'] = "Submit Link";
 $locale['141'] = "Submit News";
 $locale['142'] = "Submit Article";
 $locale['143'] = "Submit Photo";
-$locale['144'] = "Submit Download";
 // Stage 6 - Panels
 $locale['160'] = "Navigation";
 $locale['161'] = "Online Users";
@@ -151,7 +143,7 @@ $locale['164'] = "Welcome Message";
 $locale['165'] = "Forum Threads List";
 $locale['166'] = "User Info";
 $locale['167'] = "Members Poll";
-$locale['168'] = "";
+$locale['168'] = "Shoutbox";
 // Stage 6 - News Categories
 $locale['180'] = "Bugs";
 $locale['181'] = "Downloads";
@@ -202,11 +194,4 @@ Click Finish to go to your PHP-Fusion powered site.<br />
 <strong>Note:</strong> After you enter your site you should delete setup.php from
 your server and chmod your config.php back to 644 for security purposes.<br /><br />
 Thank you for choosing PHP-Fusion.";
-// Default time settings
-// http://php.net/manual/en/function.strftime.php
-$locale['shortdate'] = "%d.%m.%y";
-$locale['longdate'] = "%B %d %Y %H:%M:%S";
-$locale['forumdate'] = "%d-%m-%Y %H:%M";
-$locale['newsdate'] = "%B %d %Y";
-$locale['subheaderdate'] = "%B %d %Y %H:%M:%S";
 ?>

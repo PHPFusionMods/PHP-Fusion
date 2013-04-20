@@ -6,8 +6,6 @@ a, #subheader a:hover{color: #a64906;}
 #navigation a span{background: transparent url(../images/red/navitem_r.jpg) no-repeat right;}
 #navigation a:hover{background: #9f3807 url(../images/red/navitem_hl.jpg) no-repeat left;}
 #navigation a:hover span{background: transparent url(../images/red/navitem_hr.jpg) no-repeat right;}
-#navigation li.current-link a{background: #9f3807 url(../images/red/navitem_hl.jpg) no-repeat left;}
-#navigation li.current-link a span{background: transparent url(../images/red/navitem_hr.jpg) no-repeat right;}
 .textbox, .button, .admin-message, .pagenav span, .pagenav a, .pagenav a:hover, #navigation h2, .side-label {
 	background: #d76b01;
 	border-color: #a34006;

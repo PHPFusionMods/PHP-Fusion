@@ -40,21 +40,11 @@ if (isset($_GET['status'])) {
 		$blacklist_ip = stripinput($_POST['blacklist_ip']);
 		$blacklist_email = stripinput($_POST['blacklist_email']);
 		$blacklist_reason = stripinput($_POST['blacklist_reason']);
-		$blacklist_ip_type = 0;
-		if (strpos($blacklist_ip, ".")) {
-			if (strpos($blacklist_ip, ":") === FALSE) {
-				$blacklist_ip_type = 4;
-			} else {
-				$blacklist_ip_type = 5;
-			}
-		} else {
-			$blacklist_ip_type = 6;
-		}
 		if ($blacklist_ip || $blacklist_email) {
 			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['blacklist_id']) && isnum($_GET['blacklist_id']))) {
-				$result = dbquery("UPDATE ".DB_BLACKLIST." SET blacklist_ip='$blacklist_ip', blacklist_ip_type='$blacklist_ip_type', blacklist_email='$blacklist_email', blacklist_reason='$blacklist_reason' WHERE blacklist_id='".$_GET['blacklist_id']."'");
+				$result = dbquery("UPDATE ".DB_BLACKLIST." SET blacklist_ip='$blacklist_ip', blacklist_email='$blacklist_email', blacklist_reason='$blacklist_reason' WHERE blacklist_id='".$_GET['blacklist_id']."'");
 			} else {
-				$result = dbquery("INSERT INTO ".DB_BLACKLIST." (blacklist_ip, blacklist_ip_type, blacklist_user_id, blacklist_email, blacklist_reason, blacklist_datestamp) VALUES ('$blacklist_ip', '$blacklist_ip_type', '".$userdata['user_id']."', '$blacklist_email', '$blacklist_reason', '".time()."')");
+				$result = dbquery("INSERT INTO ".DB_BLACKLIST." (blacklist_ip, blacklist_user_id, blacklist_email, blacklist_reason, blacklist_datestamp) VALUES ('$blacklist_ip', '".$userdata['user_id']."', '$blacklist_email', '$blacklist_reason', '".time()."')");
 			}
 		}
 		redirect(FUSION_SELF.$aidlink);

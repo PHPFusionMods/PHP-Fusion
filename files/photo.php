@@ -55,7 +55,7 @@ function convert_color($hex) {
 
 if (isset($_GET['photo_id']) && isnum($_GET['photo_id'])) {
 	$result = dbquery(
-		"SELECT ta.album_id, ta.album_title, ta.album_description, ta.album_access, tp.photo_title, tp.photo_filename, tp.photo_thumb2
+		"SELECT ta.album_id, ta.album_title, ta.album_description, ta.album_access, tp.photo_title, tp.photo_filename, tp.photo_thumb2 
 		FROM ".DB_PHOTOS." tp INNER JOIN ".DB_PHOTO_ALBUMS." ta USING (album_id)
 		WHERE photo_id=".$_GET['photo_id']." GROUP BY tp.photo_id"
 	);
@@ -98,12 +98,12 @@ if (isset($_GET['photo_id']) && isnum($_GET['photo_id'])) {
 		if (file_exists($cop) && preg_match("/.png/i", strtolower($cop)) && $settings['photo_watermark']) {
 			$image2 = false;
 			$image_dim_x = ImagesX($image);
-			$image_dim_y = ImagesY($image);
+			$image_dim_y = ImagesY($image); 
 			$copyright = ImageCreateFromPNG($cop);
 			$copyright_dim_x = ImagesX($copyright);
 			$copyright_dim_y = ImagesY($copyright);
 			$where_x = $image_dim_x - $copyright_dim_x - 5;
-			$where_y = $image_dim_y - $copyright_dim_y - 5;
+			$where_y = $image_dim_y - $copyright_dim_y - 5; 
 			ImageCopy ($image, $copyright, $where_x, $where_y, 0, 0, $copyright_dim_x, $copyright_dim_y);
 			$thumb_w = 0; $thumb_h = 0;
 			if (!isset($_GET['full'])) {
@@ -187,9 +187,9 @@ if (isset($_GET['photo_id']) && isnum($_GET['photo_id'])) {
 		}
 		//create image
 		if ($settings['photo_watermark_save']) { ImageJPEG(($image2 ? $image2 : $image), $wm_file); }
-		ImageJPEG((isset($image2) && $image2 ? $image2 : $image));
-		ImageDestroy((isset($image2) && $image2 ? $image2 : $image));
-		if (isset($copyright) && is_resource($copyright)) {  ImageDestroy($copyright); }
+		ImageJPEG(($image2 ? $image2 : $image));
+		ImageDestroy(($image2 ? $image2 : $image));
+		ImageDestroy($copyright);
 	} else {
 		redirect("index.php");
 	}

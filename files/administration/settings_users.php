@@ -48,8 +48,6 @@ if (isset($_POST['savesettings'])) {
 	if (!$result) { $error = 1; }
 	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['avatar_ratio']) ? $_POST['avatar_ratio'] : "0")."' WHERE settings_name='avatar_ratio'");
 	if (!$result) { $error = 1; }
-	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['userNameChange']) ? $_POST['userNameChange'] : "0")."' WHERE settings_name='userNameChange'");
-	if (!$result) { $error = 1; }
 	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['userthemes']) ? $_POST['userthemes'] : "0")."' WHERE settings_name='userthemes'");
 	if (!$result) { $error = 1; }
 
@@ -63,7 +61,7 @@ if (isset($_GET['error']) && isnum($_GET['error']) && !isset($message)) {
 		$message = $locale['901'];
 	}
 	if (isset($message)) {
-		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n";
+		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; 
 	}
 }
 
@@ -108,12 +106,6 @@ echo "<td width='50%' class='tbl'><select name='avatar_ratio' class='textbox'>\n
 echo "<option value='0'".($settings['avatar_ratio'] == 0 ? " selected='selected'" : "").">".$locale['955']."</option>\n";
 echo "<option value='1'".($settings['avatar_ratio'] == 1 ? " selected='selected'" : "").">".$locale['956']."</option>\n";
 echo "</select>\n</td>\n";
-echo "</tr>\n<tr>\n";
-echo "<td width='50%' class='tbl'>".$locale['691']."?</td>\n";
-echo "<td width='50%' class='tbl'><select name='userNameChange' class='textbox'>\n";
-echo "<option value='1'".($settings['userNameChange'] == "1" ? " selected='selected'" : "").">".$locale['518']."</option>\n";
-echo "<option value='0'".($settings['userNameChange'] == "0" ? " selected='selected'" : "").">".$locale['519']."</option>\n";
-echo "</select></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td width='50%' class='tbl'>".$locale['668']."?</td>\n";
 echo "<td width='50%' class='tbl'><select name='userthemes' class='textbox'>\n";

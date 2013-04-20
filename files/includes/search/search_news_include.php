@@ -59,14 +59,12 @@ if ($_GET['stype'] == "news" || $_GET['stype'] == "all") {
 			$text_all = $data['news_news']." ".$data['news_extended'];
 			$text_all = search_striphtmlbbcodes($text_all);
 			$text_frag = search_textfrag($text_all);
-			// $text_frag = highlight_words($swords, $text_frag);
+			$text_frag = highlight_words($swords, $text_frag);
 			$subj_c = search_stringscount($data['news_subject']);
 			$text_c = search_stringscount($data['news_news']);
 			$text_c2 = search_stringscount($data['news_extended']);
 
-			$search_result .= "<a href='news.php?readmore=".$data['news_id']."'>".$data['news_subject']."</a>"."<br /><br />\n";
-
-			// $search_result .= "<a href='news.php?readmore=".$data['news_id']."'>".highlight_words($swords, $data['news_subject'])."</a>"."<br /><br />\n";
+			$search_result .= "<a href='news.php?readmore=".$data['news_id']."'>".highlight_words($swords, $data['news_subject'])."</a>"."<br /><br />\n";
 			$search_result .= "<div class='quote' style='width:auto;height:auto;overflow:auto'>".$text_frag."</div><br />";
 			$search_result .= "<span class='small2'>".$locale['global_070'].profile_link($data['user_id'], $data['user_name'], $data['user_status'])."\n";
 			$search_result .= $locale['global_071'].showdate("longdate", $data['news_datestamp'])."</span><br />\n";

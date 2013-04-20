@@ -44,8 +44,6 @@ a#content {visibility: hidden;}
 #subheader a:hover, #links a:hover{color: #004d73;}
 #footer a{color: #4f8faf;}
 #footer a:hover{text-decoration: underline;}
-#subheader li.current-link a {color: #004d73;}
-#subheader li.current-link a:hover {color: #006699;}
 
 /*Structure*/
 #main {
@@ -157,14 +155,6 @@ a#content {visibility: hidden;}
 	background-color: #accad9;
 }
 
-#navigation li.first-link a {
-	font-weight:bold;
-}
-
-#navigation li.current-link a {
-	background-color: #eee;
-}
-
 
 /*Misc Styles*/
 .pagenav {padding: 0.4em;}
@@ -254,7 +244,11 @@ a#content {visibility: hidden;}
 	color: #777;
 	font-weight: 700;
 }
-
+.shoutboxname {font-weight: 700;}
+.shoutboxdate {
+	color: #888;
+	font-size: 0.8em;
+}
 .small,.small2,.side-small {font-size: 0.9em;}
 .tbl,.tbl1,.tbl2,.forum-caption {padding: 0.3em;}
 .tbl-border{background: #bdc5cb; border: 1px solid #bdc5cb;}
@@ -267,26 +261,6 @@ a#content {visibility: hidden;}
 code, pre {
 	font-family: monospace;
 	font-size: 1.1em;
-}
-
-div.emulated-fieldset {
-	position: relative;
-	margin: 20px 0px 10px 0px;
-	border: 1px solid #ccc;
-	width: 320px;
-	background: inherit;
-}
-div.emulated-fieldset span.emulated-legend {
-	display: inline;
-	position: absolute;
-	top: -12px;
-	margin: 0 5px;
-	padding: 4px;
-	background: inherit;
-}
-div.emulated-fieldset div.attachments-list {
-	padding: 10px 3px 3px 3px;
-	width: 320px;
 }
 hr {
 	border: solid #c1d9e4 1pt;

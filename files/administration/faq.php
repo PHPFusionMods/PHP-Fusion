@@ -42,16 +42,6 @@ if (isset($_GET['status']) && !isset($message)) {
 	if ($message) {	echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; }
 }
 
-$faq_cat_name = "";
-$faq_cat_description = "";
-$faq_cat_title = $locale['400'];
-$faq_cat_action = FUSION_SELF.$aidlink;
-$faq_question = "";
-$faq_answer = "";
-$faq_title = $locale['500'];
-$faq_action = FUSION_SELF.$aidlink;
-$errorMessage = "";
-
 if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['faq_cat_id']) && isnum($_GET['faq_cat_id'])) && (isset($_GET['t']) && $_GET['t'] == "cat")) {
 	$result = dbcount("(faq_cat_id)", DB_FAQS, "faq_cat_id='".$_GET['faq_cat_id']."'");
 	if (!empty($result)) {
@@ -71,21 +61,16 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['faq
 } elseif (isset($_POST['save_cat'])) {
 	$faq_cat_name = stripinput($_POST['faq_cat_name']);
 	$faq_cat_description = stripinput($_POST['faq_cat_description']);
-	$checkCat = dbcount("(faq_cat_id)", DB_FAQ_CATS, "faq_cat_name='".$faq_cat_name."'");
-	if ($checkCat == 0) {
-		if ($faq_cat_name) {
-			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['faq_cat_id']) && isnum($_GET['faq_cat_id'])) && (isset($_GET['t']) && $_GET['t'] == "cat")) {
-				$result = dbquery("UPDATE ".DB_FAQ_CATS." SET faq_cat_name='$faq_cat_name', faq_cat_description='$faq_cat_description' WHERE faq_cat_id='".$_GET['faq_cat_id']."'");
-				redirect(FUSION_SELF.$aidlink."&status=scu");
-			} else {
-				$result = dbquery("INSERT INTO ".DB_FAQ_CATS." (faq_cat_name, faq_cat_description) VALUES('$faq_cat_name', '$faq_cat_description')");
-				redirect(FUSION_SELF.$aidlink."&status=scn");
-			}
+	if ($faq_cat_name) {
+		if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['faq_cat_id']) && isnum($_GET['faq_cat_id'])) && (isset($_GET['t']) && $_GET['t'] == "cat")) {
+			$result = dbquery("UPDATE ".DB_FAQ_CATS." SET faq_cat_name='$faq_cat_name', faq_cat_description='$faq_cat_description' WHERE faq_cat_id='".$_GET['faq_cat_id']."'");
+			redirect(FUSION_SELF.$aidlink."&status=scu");
 		} else {
-			$error = 1;
+			$result = dbquery("INSERT INTO ".DB_FAQ_CATS." (faq_cat_name, faq_cat_description) VALUES('$faq_cat_name', '$faq_cat_description')");
+			redirect(FUSION_SELF.$aidlink."&status=scn");
 		}
 	} else {
-		$error = 2;
+		redirect(FUSION_SELF.$aidlink);
 	}
 } elseif (isset($_POST['save_faq'])) {
 	$faq_cat = intval($_POST['faq_cat']);
@@ -100,7 +85,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['faq
 			redirect(FUSION_SELF.$aidlink."&faq_cat_id=$faq_cat&status=sn");
 		}
 	} else {
-		$error = 3;
+		redirect(FUSION_SELF.$aidlink);
 	}
 } elseif (isset($_GET['action']) && $_GET['action'] == "edit") {
 	if ((isset($_GET['faq_cat_id']) && isnum($_GET['faq_cat_id'])) && (isset($_GET['t']) && $_GET['t'] == "cat")) {
@@ -138,19 +123,17 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['faq
 			redirect(FUSION_SELF.$aidlink);
 		}
 	}
+} else {
+	$faq_cat_name = "";
+	$faq_cat_description = "";
+	$faq_cat_title = $locale['400'];
+	$faq_cat_action = FUSION_SELF.$aidlink;
+	$faq_question = "";
+	$faq_answer = "";
+	$faq_title = $locale['500'];
+	$faq_action = FUSION_SELF.$aidlink;
 }
-
 if (!isset($_GET['t']) || $_GET['t'] != "faq") {
-	if (isset($error) && isnum($error)) {
-		if ($error == 1) {
-			$errorMessage = $locale['460'];
-		} elseif ($error == 2) {
-			$errorMessage = $locale['461'];
-		} elseif ($error == 3) {
-			$errorMessage = $locale['462'];
-		}
-		if (isset($errorMessage) && $errorMessage != "") { echo "<div id='close-message'><div class='admin-message'>".$errorMessage."</div></div>\n"; }
-	}
 	opentable($faq_cat_title);
 	echo "<form name='add_faq_cat' method='post' action='".$faq_cat_action."'>\n";
 	echo "<table cellpadding='0' cellspacing='0' class='center'>\n<tr>\n";

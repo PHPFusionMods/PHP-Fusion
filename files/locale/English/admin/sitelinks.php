@@ -32,7 +32,6 @@ $locale['451'] = "Down";
 $locale['452'] = "Move up";
 $locale['453'] = "Move down";
 $locale['454'] = "Refresh Link Ordering";
-$locale['455'] = "Link order updated.";
 // Delete Site Link category
 $locale['460'] = "Delete this site link?";
 ?>

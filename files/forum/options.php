@@ -111,7 +111,7 @@ if (isset($_GET['step']) && $_GET['step'] == "renew") {
 				$result = dbquery(
 					"SELECT p.forum_id, p.post_author, p.post_datestamp FROM ".DB_POSTS." p
 					INNER JOIN ".DB_THREADS." t ON p.thread_id=t.thread_id
-					WHERE p.forum_id='".$_GET['forum_id']."' AND t.thread_id='0' AND p.post_hidden='0'
+					WHERE p.forum_id='".$_GET['forum_id']."' AND t.thread_hidden='0' AND p.post_hidden='0'
 					ORDER BY p.post_datestamp DESC LIMIT 1"
 				);
 				$pdata = dbarray($result);

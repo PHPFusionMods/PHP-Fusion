@@ -17,6 +17,8 @@
 +--------------------------------------------------------*/
 if (preg_match("/maincore.php/i", $_SERVER['PHP_SELF'])) { die(); }
 
+error_reporting(E_ALL);
+
 // Calculate script start/end time
 function get_microtime() {
 	list($usec, $sec) = explode(" ", microtime());
@@ -25,33 +27,38 @@ function get_microtime() {
 
 // Define script start time
 define("START_TIME", get_microtime());
-define("IN_FUSION", TRUE);
 
 // Prevent any possible XSS attacks via $_GET.
 if (stripget($_GET)) {
 	die("Prevented a XSS attack through a GET variable!");
 }
 
+// Start Output Buffering
+//ob_start("ob_gzhandler"); //Uncomment this line and comment the one below to enable output compression.
+ob_start();
+
 // Locate config.php and set the basedir path
 $folder_level = ""; $i = 0;
 while (!file_exists($folder_level."config.php")) {
 	$folder_level .= "../"; $i++;
-	if ($i == 7) { die("config.php file not found"); }
+	if ($i == 7) { die("Config file not found"); }
 }
+require_once $folder_level."config.php";
 define("BASEDIR", $folder_level);
-
-require_once BASEDIR."config.php";
 
 // If config.php is empty, activate setup.php script
 if (!isset($db_name)) { redirect("setup.php"); }
 
+// Multisite definitions
 require_once BASEDIR."includes/multisite_include.php";
 
 // Establish mySQL database connection
 $link = dbconnect($db_host, $db_user, $db_pass, $db_name);
-unset($db_host, $db_user, $db_pass);
 
-// Fetch the settings from the database
+// MySQL Count and debug
+$mysql_queries_count = 0; $mysql_queries_time = array();
+
+// Fetch the Site Settings from the database and store them in the $settings variable
 $settings = array();
 $result = dbquery("SELECT * FROM ".DB_SETTINGS);
 if (dbrows($result)) {
@@ -59,30 +66,29 @@ if (dbrows($result)) {
 		$settings[$data['settings_name']] = $data['settings_value'];
 	}
 } else {
-	die("Settings do not exist, please check your config.php file or run setup.php again.");
+	die("Settings do not exist, please run setup again");
 }
 
 // Settings dependent functions
-date_default_timezone_set($settings['default_timezone']);
-//ob_start("ob_gzhandler"); //Uncomment this line and comment the one below to enable output compression.
-ob_start();
+$settings['default_timezone'] = (isset($settings['default_timezone']) && $settings['default_timezone'] != "" ? $settings['default_timezone'] : "Europe/London");
+if (function_exists("date_default_timezone_set")) { 
+	date_default_timezone_set($settings['default_timezone']);
+}
 
 // Sanitise $_SERVER globals
 $_SERVER['PHP_SELF'] = cleanurl($_SERVER['PHP_SELF']);
 $_SERVER['QUERY_STRING'] = isset($_SERVER['QUERY_STRING']) ? cleanurl($_SERVER['QUERY_STRING']) : "";
 $_SERVER['REQUEST_URI'] = isset($_SERVER['REQUEST_URI']) ? cleanurl($_SERVER['REQUEST_URI']) : "";
 $PHP_SELF = cleanurl($_SERVER['PHP_SELF']);
-
 // Common definitions
+define("IN_FUSION", TRUE);
 define("FUSION_REQUEST", isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != "" ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME']);
 define("FUSION_QUERY", isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : "");
 define("FUSION_SELF", basename($_SERVER['PHP_SELF']));
-define("FUSION_IP", $_SERVER['REMOTE_ADDR']);
+define("USER_IP", $_SERVER['REMOTE_ADDR']);
 define("QUOTES_GPC", (ini_get('magic_quotes_gpc') ? TRUE : FALSE));
-
 // Path definitions
 define("ADMIN", BASEDIR."administration/");
-define("CLASSES", BASEDIR."includes/classes/");
 define("DOWNLOADS", BASEDIR."downloads/");
 define("IMAGES", BASEDIR."images/");
 define("IMAGES_A", IMAGES."articles/");
@@ -98,90 +104,11 @@ define("INFUSIONS", BASEDIR."infusions/");
 define("PHOTOS", IMAGES."photoalbum/");
 define("THEMES", BASEDIR."themes/");
 
-// Variables initializing
-$mysql_queries_count = 0;
-$mysql_queries_time = array();
-$smiley_cache = "";
-$bbcode_cache = "";
-$groups_cache = "";
-$forum_rank_cache = "";
-$forum_mod_rank_cache = "";
-$locale = array();
-
-// Calculate current true url
-$script_url = explode("/", $_SERVER['PHP_SELF']);
-$url_count = count($script_url);
-$base_url_count = substr_count(BASEDIR, "/") + 1;
-$current_page = "";
-while ($base_url_count != 0) {
-	$current = $url_count - $base_url_count;
-	$current_page .= "/".$script_url[$current];
-	$base_url_count--;
-}
-
-define("TURE_PHP_SELF", $current_page);
-define("START_PAGE", substr(preg_replace("#(&amp;|\?)(s_action=edit&amp;shout_id=)([0-9]+)#s", "", TURE_PHP_SELF.(FUSION_QUERY ? "?".FUSION_QUERY : "")), 1));
-
-// IP address functions
-include BASEDIR."includes/ip_handling_include.php";
-
-// Error Handling
-require_once BASEDIR."includes/error_handling_include.php";
-
 // Redirects to the index if the URL is invalid (eg. file.php/folder/)
 if ($_SERVER['SCRIPT_NAME'] != $_SERVER['PHP_SELF']) { redirect($settings['siteurl']); }
 
-// Load the Global language file
-include LOCALE.LOCALESET."global.php";
-
-// REMEMBER TO REMOVE START
-// this is to prevent people who haven't updated their database
-if (!isset($settings['password_algorithm'])) {
-	$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('password_algorithm', 'sha256')");
-	$result = dbquery("ALTER TABLE ".DB_USERS." ADD user_algo VARCHAR( 10 ) NOT NULL DEFAULT 'md5' AFTER user_name ,
-												ADD user_salt VARCHAR( 32 ) NOT NULL AFTER user_algo");
-	$result = dbquery("ALTER TABLE ".DB_USERS." ADD user_admin_algo VARCHAR( 10 ) NOT NULL DEFAULT 'md5' AFTER user_password ,
-												ADD user_admin_salt VARCHAR( 32 ) NOT NULL AFTER user_admin_algo");
-	$result = dbquery("ALTER TABLE ".DB_USERS." CHANGE user_password user_password VARCHAR( 64 ) NOT NULL");
-	$result = dbquery("ALTER TABLE ".DB_USERS." CHANGE user_admin_password user_admin_password VARCHAR( 64 ) NOT NULL");
-}
-// REMEMBER TO REMOVE END
-
-// Autenticate user
-require_once INCLUDES."Authenticate.class.php";
-
-// Log in user
-if (isset($_POST['login']) && isset($_POST['user_name']) && isset($_POST['user_pass'])) {
-	$auth = new Authenticate($_POST['user_name'], $_POST['user_pass'], (isset($_POST['remember_me']) ? true : false));
-	$userdata = $auth->getUserData();
-	unset($auth, $_POST['user_name'], $_POST['user_pass']);
-} elseif (isset($_GET['logout']) && $_GET['logout'] == "yes") {
-	$userdata = Authenticate::logOut();
-	redirect(BASEDIR."index.php");
-} else {
-	$userdata = Authenticate::validateAuthUser();
-}
-
-// User level, Admin Rights & User Group definitions
-define("iGUEST", $userdata['user_level'] == 0 ? 1 : 0);
-define("iMEMBER", $userdata['user_level'] >= 101 ? 1 : 0);
-define("iADMIN", $userdata['user_level'] >= 102 ? 1 : 0);
-define("iSUPERADMIN", $userdata['user_level'] == 103 ? 1 : 0);
-define("iUSER", $userdata['user_level']);
-define("iUSER_RIGHTS", $userdata['user_rights']);
-define("iUSER_GROUPS", substr($userdata['user_groups'], 1));
-
-if (iADMIN) {
-	define("iAUTH", substr(md5($userdata['user_password'].USER_IP), 16, 16));
-	$aidlink = "?aid=".iAUTH;
-}
-
-// PHP-Fusion user cookie functions
-if (!isset($_COOKIE[COOKIE_PREFIX.'visited'])) {
-	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value=settings_value+1 WHERE settings_name='counter'");
-	setcookie(COOKIE_PREFIX."visited", "yes", time() + 31536000, "/", "", "0");
-}
-$lastvisited = Authenticate::setLastVisitCookie();
+// Predefine mysql_cache variables
+$smiley_cache = ""; $bbcode_cache = ""; $groups_cache = ""; $forum_rank_cache = ""; $forum_mod_rank_cache = "";
 
 // MySQL database functions
 function dbquery($query) {
@@ -268,24 +195,34 @@ function dbconnect($db_host, $db_user, $db_pass, $db_name) {
 	$db_connect = @mysql_connect($db_host, $db_user, $db_pass);
 	$db_select = @mysql_select_db($db_name);
 	if (!$db_connect) {
-		die("<strong>Unable to establish connection to MySQL</strong><br />".mysql_errno()." : ".mysql_error());
+		die("<div style='font-family:Verdana;font-size:11px;text-align:center;'><strong>Unable to establish connection to MySQL</strong><br />".mysql_errno()." : ".mysql_error()."</div>");
 	} elseif (!$db_select) {
-		die("<strong>Unable to select MySQL database</strong><br />".mysql_errno()." : ".mysql_error());
+		die("<div style='font-family:Verdana;font-size:11px;text-align:center;'><strong>Unable to select MySQL database</strong><br />".mysql_errno()." : ".mysql_error()."</div>");
 	}
 }
 
-// Set theme
-if (!theme_exists($userdata['user_theme'])) {
-	echo "<strong>".$userdata['user_theme']." - ".$locale['global_300'].".</strong><br /><br />\n";
-	echo $locale['global_301'];
-	die();
+// Initialise the $locale array
+$locale = array();
+
+// Load the Global language file
+include LOCALE.LOCALESET."global.php";
+
+// Check if users full or partial ip is blacklisted
+$sub_ip1 = substr(USER_IP, 0, strlen(USER_IP) - strlen(strrchr(USER_IP, ".")));
+$sub_ip2 = substr($sub_ip1, 0, strlen($sub_ip1) - strlen(strrchr($sub_ip1, ".")));
+
+if (dbcount("(blacklist_id)", DB_BLACKLIST, "blacklist_ip='".USER_IP."' OR blacklist_ip='$sub_ip1' OR blacklist_ip='$sub_ip2'")) {
+	redirect("http://www.google.com/");
+}
+
+// PHP-Fusion user cookie functions
+if (!isset($_COOKIE[COOKIE_PREFIX.'visited'])) {
+	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value=settings_value+1 WHERE settings_name='counter'");
+	setcookie(COOKIE_PREFIX."visited", "yes", time() + 31536000, "/", "", "0");
 }
 
 // Check that site or user theme exists
 function theme_exists($theme) {
-	global $settings;
-
-	if ($theme == "Default") { $theme = $settings['theme']; }
 	if (!file_exists(THEMES) || !is_dir(THEMES)) {
 		return false;
 	} elseif (file_exists(THEMES.$theme."/theme.php") && file_exists(THEMES.$theme."/styles.css")) {
@@ -309,29 +246,43 @@ function theme_exists($theme) {
 	}
 }
 
+// Call the required login method
+if ($settings['login_method'] == "cookies") {
+	require_once(INCLUDES."cookie_include.php");
+} elseif ($settings['login_method'] == "sessions") {
+	require_once(INCLUDES."session_include.php");
+}
+
 // Set the admin password when needed
 function set_admin_pass($password) {
-
-	Authenticate::setAdminCookie($password);
-
-	/*
-	if (!isset($_COOKIE[COOKIE_PREFIX.'admin']) && md5(md5($password)) == $userdata['user_admin_password']) {
-		setcookie(COOKIE_PREFIX."admin", md5($password), time() + 3600, "/", "", "0");
+	global $settings, $userdata;
+	if ($settings['login_method'] == "cookies") {
+		if (!isset($_COOKIE[COOKIE_PREFIX.'admin']) && md5(md5($password)) == $userdata['user_admin_password']) {
+			setcookie(COOKIE_PREFIX."admin", md5($password), time() + 3600, "/", "", "0");
+		}
+	} elseif ($settings['login_method'] == "sessions") {
+		if (!isset($_SESSION[COOKIE_PREFIX.'admin']) && md5(md5($password)) == $userdata['user_admin_password']) {
+			$_SESSION[COOKIE_PREFIX.'admin'] = md5($password);
+		}
 	}
-	*/
 }
 
 // Check if admin password matches userdata
 function check_admin_pass($password) {
-	/*
-	global $userdata;
-	if ((isset($_COOKIE[COOKIE_PREFIX.'admin']) && md5($_COOKIE[COOKIE_PREFIX.'admin']) == $userdata['user_admin_password'])
-			|| (md5(md5($password)) == $userdata['user_admin_password'])) {
-		return true;
-	} else {
-		return false;
-	}*/
-	return Authenticate::validateAuthAdmin($password);
+	global $settings, $userdata;
+	if ($settings['login_method'] == "cookies") {
+		if ((isset($_COOKIE[COOKIE_PREFIX.'admin']) && md5($_COOKIE[COOKIE_PREFIX.'admin']) == $userdata['user_admin_password']) || (md5(md5($password)) == $userdata['user_admin_password'])) {
+			return true;
+		} else {
+			return false;
+		}
+	} elseif ($settings['login_method'] == "sessions") {
+		if ((isset($_SESSION[COOKIE_PREFIX.'admin']) && md5($_SESSION[COOKIE_PREFIX.'admin']) == $userdata['user_admin_password']) || (md5(md5($password)) == $userdata['user_admin_password'])) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 // Redirect browser using header or script function
@@ -356,7 +307,7 @@ function cleanurl($url) {
 // Strip Input Function, prevents HTML in unwanted places
 function stripinput($text) {
 	if (!is_array($text)) {
-		$text = stripslashes(trim($text));
+		$text = stripslash(trim($text));
 		//$text = preg_replace("/&[^#0-9]/", "&amp;", $text)
 		$search = array("&", "\"", "'", "\\", '\"', "\'", "<", ">", "&nbsp;");
 		$replace = array("&amp;", "&quot;", "&#39;", "&#92;", "&quot;", "&#39;", "&lt;", "&gt;", " ");
@@ -374,13 +325,13 @@ function stripget($check_url) {
 	$return = false;
 	if (is_array($check_url)) {
 		foreach ($check_url as $value) {
-			if (stripget($value) == true) {
+			if (stripget($value) == true) { 
 				return true;
 			}
 		}
 	} else {
 		$check_url = str_replace(array("\"", "\'"), array("", ""), urldecode($check_url));
-		if (preg_match("/<[^<>]+>/i", $check_url)) {
+		if (preg_match("/<[^<>]+>/i", $check_url)) { 
 			return true;
 		}
 	}
@@ -597,7 +548,6 @@ function formatcode($text) {
 }
 
 // Highlights given words in subject
-// Don't forget to remove later
 function highlight_words($word, $subject) {
 	for($i = 0, $l = count($word); $i < $l; $i++) {
 		$word[$i] = str_replace(array("\\", "+", "*", "?", "[", "^", "]", "$", "(", ")", "{", "}", "=", "!", "<", ">", "|", ":", "#", "-", "_"), "", $word[$i]);
@@ -679,20 +629,6 @@ function getuserlevel($userlevel) {
 	if ($userlevel == 101) { return $locale['user1'];
 	} elseif ($userlevel == 102) { return $locale['user2'];
 	} elseif ($userlevel == 103) { return $locale['user3']; }
-}
-
-// Display the user's status
-function getuserstatus($userstatus) {
-	global $locale;
-	if ($userstatus == 0) { return $locale['status0'];
-	} elseif ($userstatus == 1) { return $locale['status1'];
-	} elseif ($userstatus == 2) { return $locale['status2'];
-	} elseif ($userstatus == 3) { return $locale['status3'];
-	} elseif ($userstatus == 4) { return $locale['status4'];
-	} elseif ($userstatus == 5) { return $locale['status5'];
-	} elseif ($userstatus == 6) { return $locale['status6'];
-	} elseif ($userstatus == 7) { return $locale['status7'];
-	} elseif ($userstatus == 8) { return $locale['status8']; }
 }
 
 // Check if Administrator has correct rights assigned
@@ -816,7 +752,7 @@ function makefileopts($files, $selected = "") {
 }
 
 // Making Page Navigation
-function makepagenav($start, $count, $total, $range = 0, $link = "", $getname = "rowstart") {
+function makepagenav($start, $count, $total, $range = 0, $link = "") {
 	global $locale;
 
 	if ($link == "") { $link = FUSION_SELF."?"; }
@@ -831,7 +767,7 @@ function makepagenav($start, $count, $total, $range = 0, $link = "", $getname = 
 	$res = $locale['global_092']." ".$cur_page.$locale['global_093'].$pg_cnt.": ";
 	if ($idx_back >= 0) {
 		if ($cur_page > ($range + 1)) {
-			$res .= "<a href='".$link.$getname."=0'>1</a>";
+			$res .= "<a href='".$link."rowstart=0'>1</a>";
 			if ($cur_page != ($range + 2)) {
 				$res .= "...";
 			}
@@ -848,7 +784,7 @@ function makepagenav($start, $count, $total, $range = 0, $link = "", $getname = 
 		if ($i == $cur_page) {
 			$res .= "<span><strong>".$i."</strong></span>";
 		} else {
-			$res .= "<a href='".$link.$getname."=".$offset_page."'>".$i."</a>";
+			$res .= "<a href='".$link."rowstart=".$offset_page."'>".$i."</a>";
 		}
 	}
 	if ($idx_next < $total) {
@@ -856,7 +792,7 @@ function makepagenav($start, $count, $total, $range = 0, $link = "", $getname = 
 			if ($cur_page != ($pg_cnt - $range - 1)) {
 				$res .= "...";
 			}
-			$res .= "<a href='".$link.$getname."=".($pg_cnt - 1) * $count."'>".$pg_cnt."</a>\n";
+			$res .= "<a href='".$link."rowstart=".($pg_cnt - 1) * $count."'>".$pg_cnt."</a>\n";
 		}
 	}
 
@@ -866,7 +802,6 @@ function makepagenav($start, $count, $total, $range = 0, $link = "", $getname = 
 // Format the date & time accordingly
 function showdate($format, $val) {
 	global $settings, $userdata;
-
 	if (isset($userdata['user_offset'])) {
 		$offset = $userdata['user_offset']+$settings['serveroffset'];
 	} else {
@@ -898,7 +833,7 @@ function profile_link($user_id, $user_name, $user_status, $class = "profile-link
 	$class = ($class ? " class='$class'" : "");
 
 	if ((in_array($user_status, array(0, 3, 7)) || checkrights("M")) && (iMEMBER || $settings['hide_userprofiles'] == "0")) {
-		$link = "<a href='".BASEDIR."profile.php?lookup=".$user_id."'".$class.">".$user_name."</a>";
+		$link = "<a href='".BASEDIR."profile.php?lookup=$user_id'$class>$user_name</a>";
 	} elseif ($user_status == "5" || $user_status == "6") {
 		$link = $locale['user_anonymous'];
 	} else {
@@ -906,6 +841,20 @@ function profile_link($user_id, $user_name, $user_status, $class = "profile-link
 	}
 
 	return $link;
+}
+
+// User level, Admin Rights & User Group definitions
+define("iGUEST", $userdata['user_level'] == 0 ? 1 : 0);
+define("iMEMBER", $userdata['user_level'] >= 101 ? 1 : 0);
+define("iADMIN", $userdata['user_level'] >= 102 ? 1 : 0);
+define("iSUPERADMIN", $userdata['user_level'] == 103 ? 1 : 0);
+define("iUSER", $userdata['user_level']);
+define("iUSER_RIGHTS", $userdata['user_rights']);
+define("iUSER_GROUPS", substr($userdata['user_groups'], 1));
+
+if (iADMIN) {
+	define("iAUTH", substr(md5($userdata['user_password'].USER_IP), 16, 16));
+	$aidlink = "?aid=".iAUTH;
 }
 
 include INCLUDES."system_images.php";

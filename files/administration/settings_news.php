@@ -29,12 +29,14 @@ if (isset($_GET['error']) && isnum($_GET['error']) && !isset($message)) {
 		$message = $locale['901'];
 	}
 	if (isset($message)) {
-		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n";
+		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; 
 	}
 }
 
 if (isset($_POST['savesettings'])) {
 	$error = 0;
+	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['news_style']) ? $_POST['news_style'] : "0")."' WHERE settings_name='news_style'");
+	if (!$result) { $error = 1; }
 	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['news_image_link']) ? $_POST['news_image_link'] : "0")."' WHERE settings_name='news_image_link'");
 	if (!$result) { $error = 1; }
 	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['news_image_frontpage']) ? $_POST['news_image_frontpage'] : "0")."' WHERE settings_name='news_image_frontpage'");
@@ -69,6 +71,12 @@ while ($data = dbarray($result)) {
 opentable($locale['400']);
 echo "<form name='settingsform' method='post' action='".FUSION_SELF.$aidlink."'>\n";
 echo "<table cellpadding='0' cellspacing='0' width='500' class='center'>\n<tr>\n";
+echo "<td width='50%' class='tbl'>".$locale['414']."</td>\n";
+echo "<td width='50%' class='tbl'><select name='news_style' class='textbox'>\n";
+echo "<option value='0'".($settings2['news_style'] == 0 ? " selected='selected'" : "").">".$locale['415']."</option>\n";
+echo "<option value='1'".($settings2['news_style'] == 1 ? " selected='selected'" : "").">".$locale['416']."</option>\n";
+echo "</select></td>\n";
+echo "</tr>\n<tr>\n";
 echo "<td width='50%' class='tbl'>".$locale['951']."</td>\n";
 echo "<td width='50%' class='tbl'><select name='news_image_link' class='textbox'>\n";
 echo "<option value='0'".($settings2['news_image_link'] == 0 ? " selected='selected'" : "").">".$locale['952']."</option>\n";

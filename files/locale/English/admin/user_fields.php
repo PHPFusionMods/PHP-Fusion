@@ -10,9 +10,6 @@ $locale['406'] = "Up";
 $locale['407'] = "Edit";
 $locale['408'] = "Disable";
 $locale['409'] = "Refresh User Fields Ordering.";
-$locale['410'] = "WARNING: Userfield data will be permanently deleted!";
-$locale['411'] = "Error";
-$locale['412'] = "Check the files of the user field %s!";
 // Enable / Edit User Field
 $locale['420'] = "Edit User Field";
 $locale['421'] = "Enable User Field";
@@ -20,11 +17,6 @@ $locale['422'] = "Field Name:";
 $locale['423'] = "Category:";
 $locale['424'] = "Update";
 $locale['425'] = "Enable";
-$locale['426'] = "API Version:";
-$locale['427'] = "Required";
-$Locale['428'] = "This user field does not support being required";
-$locale['429'] = "Log";
-$locale['429a'] = "This user field does not support being logged";
 // Disabled user fields
 $locale['430'] = "Disabled User Fields";
 $locale['431'] = "Enable";

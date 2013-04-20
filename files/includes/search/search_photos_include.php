@@ -74,7 +74,7 @@ if ($_GET['stype'] == "photos" || $_GET['stype'] == "all") {
 			$text_all = $data['photo_description'];
 			$text_all = search_striphtmlbbcodes($text_all);
 			$text_frag = search_textfrag($text_all);
-			// $text_frag = highlight_words($swords, $text_frag);
+			$text_frag = highlight_words($swords, $text_frag);
 			$subj_c = search_stringscount($data['photo_title'])+search_stringscount($data['album_title']);
 			$text_c = search_stringscount($data['photo_description'])+search_stringscount($data['album_description']);
 
@@ -89,8 +89,7 @@ if ($_GET['stype'] == "photos" || $_GET['stype'] == "all") {
 				$search_result .= "<a href='photogallery.php?photo_id=".$data['photo_id']."'><img src='".get_image("imagenotfound")."' style='border:none' alt='".$data['photo_title']."' /></a>";
 			}
 			$search_result .= "</td><td>";
-			$search_result .= "<a href='photogallery.php?photo_id=".$data['photo_id']."'>".$data['photo_title']."</a>".$new." (".$locale['p404']." <a href='photogallery.php?album_id=".$data['album_id']."'>".$data['album_title']."</a>)"."<br /><br />\n";
-			// $search_result .= "<a href='photogallery.php?photo_id=".$data['photo_id']."'>".highlight_words($swords, $data['photo_title'])."</a>".$new." (".$locale['p404']." <a href='photogallery.php?album_id=".$data['album_id']."'>".highlight_words($swords, $data['album_title'])."</a>)"."<br /><br />\n";
+			$search_result .= "<a href='photogallery.php?photo_id=".$data['photo_id']."'>".highlight_words($swords, $data['photo_title'])."</a>$new (".$locale['p404']." <a href='photogallery.php?album_id=".$data['album_id']."'>".highlight_words($swords, $data['album_title'])."</a>)"."<br /><br />\n";
 			if ($text_frag != "") $search_result .= "<div class='quote' style='width:auto;height:auto;overflow:auto'>".$text_frag."</div><br />\n";
 			$search_result .= "<span class='small'><font class='alt'>".$locale['p405']."</font> ".showdate("%d.%m.%y", $data['photo_datestamp'])." | <span class='alt'>".$locale['p406']."</span> ".$data['photo_views']."</span>";
 			$search_result .= "</td></tr></table><br /><br />\n";

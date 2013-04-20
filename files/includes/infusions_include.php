@@ -114,11 +114,11 @@ function send_pm($to, $from, $subject, $message, $smileys = "y") {
 
 // Upload file function
 function upload_file(
-	$source_file, $target_file = "", $target_folder = DOWNLOADS, $valid_ext = ".zip,.rar,.tar,.bz2,.z7", 
+	$source_file, $target_file = "", $target_folder = DOWNLOADS, $valid_ext = ".zip|.rar|.tar|.bz2|.z7", 
 	$max_size = "15000", $query = ""
 ) {
 	if (is_uploaded_file($_FILES[$source_file]['tmp_name'])) {
-		$valid_ext = explode(",", $valid_ext);
+		$valid_ext = explode("|", $valid_ext);
 		$file = $_FILES[$source_file];
 		if ($target_file == "" || preg_match("/[^a-zA-Z0-9_-]/", $target_file)) {
 			$target_file = stripfilename(substr($file['name'], 0, strrpos($file['name'], ".")));
@@ -180,7 +180,7 @@ function upload_image(
 		} elseif ($image_ext == ".jpg") { $filetype = 2;
 		} elseif ($image_ext == ".png") { $filetype = 3;
 		} else { $filetype = false; }
-
+		
 		if ($image['size'] > $max_size){
 			// Invalid file size
 			$image_info['error'] = 1;
@@ -204,33 +204,23 @@ function upload_image(
 			} elseif ($thumb1 || $thumb2) {
 				require_once INCLUDES."photo_functions_include.php";
 				if ($thumb1) {
-					if ($image_res[0] > $thumb1_width && $image_res[1] > $thumb1_height) {
-						$image_info['thumb1_name'] = $image_info['image_name'];
-						$image_info['thumb1'] = true;
+					$image_name_t1 = filename_exists($thumb1_folder, $image_name.$thumb1_suffix.$image_ext);
+					$image_info['thumb1_name'] = $image_name_t1;
+					$image_info['thumb1'] = true;
+					if ($thumb1_ratio == 0) {
+						createthumbnail($filetype, $target_folder.$image_name_full, $thumb1_folder.$image_name_t1, $thumb1_width, $thumb1_height);
 					} else {
-						$image_name_t1 = filename_exists($thumb1_folder, $image_name.$thumb1_suffix.$image_ext);
-						$image_info['thumb1_name'] = $image_name_t1;
-						$image_info['thumb1'] = true;
-						if ($thumb1_ratio == 0) {
-							createthumbnail($filetype, $target_folder.$image_name_full, $thumb1_folder.$image_name_t1, $thumb1_width, $thumb1_height);
-						} else {
-							createsquarethumbnail($filetype, $target_folder.$image_name_full, $thumb1_folder.$image_name_t1, $thumb1_width);
-						}
+						createsquarethumbnail($filetype, $target_folder.$image_name_full, $thumb1_folder.$image_name_t1, $thumb1_width);
 					}
 				}
 				if ($thumb2) {
-					if ($image_res[0] > $thumb2_width && $image_res[1] > $thumb2_height) {
-						$image_info['thumb2_name'] = $image_info['image_name'];
-						$image_info['thumb2'] = true;
+					$image_name_t2 = filename_exists($thumb2_folder, $image_name.$thumb2_suffix.$image_ext);
+					$image_info['thumb2_name'] = $image_name_t2;
+					$image_info['thumb2'] = true;
+					if ($thumb2_ratio == 0) {
+						createthumbnail($filetype, $target_folder.$image_name_full, $thumb2_folder.$image_name_t2, $thumb2_width, $thumb2_height);
 					} else {
-						$image_name_t2 = filename_exists($thumb2_folder, $image_name.$thumb2_suffix.$image_ext);
-						$image_info['thumb2_name'] = $image_name_t2;
-						$image_info['thumb2'] = true;
-						if ($thumb2_ratio == 0) {
-							createthumbnail($filetype, $target_folder.$image_name_full, $thumb2_folder.$image_name_t2, $thumb2_width, $thumb2_height);
-						} else {
-							createsquarethumbnail($filetype, $target_folder.$image_name_full, $thumb2_folder.$image_name_t2, $thumb2_width);
-						}
+						createsquarethumbnail($filetype, $target_folder.$image_name_full, $thumb2_folder.$image_name_t2, $thumb2_width);
 					}
 				}
 				if ($delete_original) { 

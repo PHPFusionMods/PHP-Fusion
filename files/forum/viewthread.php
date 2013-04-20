@@ -28,9 +28,6 @@ if (!isset($_GET['thread_id']) || !isnum($_GET['thread_id'])) { redirect("index.
 
 if (!isset($_GET['rowstart']) || !isnum($_GET['rowstart'])) { $_GET['rowstart'] = 0; }
 
-add_to_head("<link rel='stylesheet' href='".INCLUDES."jquery/colorbox/colorbox.css' type='text/css' media='screen' />");
-add_to_head("<script type='text/javascript' src='".INCLUDES."jquery/colorbox/jquery.colorbox.js'></script>");
-
 $result = dbquery(
 	"SELECT t.*, f.*, f2.forum_name AS forum_cat_name
 	FROM ".DB_THREADS." t
@@ -108,7 +105,7 @@ if (iMEMBER) {
 		if (!dbrows($result)) {
 			$result = dbquery("UPDATE ".DB_FORUM_POLL_OPTIONS." SET forum_poll_option_votes=forum_poll_option_votes+1 WHERE thread_id='".$_GET['thread_id']."' AND forum_poll_option_id='".$_POST['poll_option']."'");
 			$result = dbquery("UPDATE ".DB_FORUM_POLLS." SET forum_poll_votes=forum_poll_votes+1 WHERE thread_id='".$_GET['thread_id']."'");
-			$result = dbquery("INSERT INTO ".DB_FORUM_POLL_VOTERS." (thread_id, forum_vote_user_id, forum_vote_user_ip, forum_vote_user_ip_type) VALUES ('".$_GET['thread_id']."', '".$userdata['user_id']."', '".USER_IP."', '".USER_IP_TYPE."')");
+			$result = dbquery("INSERT INTO ".DB_FORUM_POLL_VOTERS." (thread_id, forum_vote_user_id, forum_vote_user_ip) VALUES ('".$_GET['thread_id']."', '".$userdata['user_id']."', '".USER_IP."')");
 		}
 		redirect(FUSION_SELF."?thread_id=".$_GET['thread_id']);
 	}
@@ -130,7 +127,6 @@ list($rows, $last_post) = dbarraynum(dbquery(
 	"SELECT COUNT(post_id), MAX(post_id) FROM ".DB_POSTS." WHERE thread_id='".$_GET['thread_id']."' AND post_hidden='0' GROUP BY thread_id"));
 
 opentable($locale['500']);
-echo "<a name='top'></a>\n";
 echo "<!--pre_forum_thread--><div class='tbl2 forum_breadcrumbs' style='margin:0px 0px 4px 0px'><a href='index.php'>".$settings['sitename']."</a> &raquo; ".$caption."</div>\n";
 
 if (($rows > $posts_per_page) || ($can_post || $can_reply)) {
@@ -197,11 +193,12 @@ if ($rows != 0) {
 	}
 	$result = dbquery(
 		"SELECT p.forum_id, p.thread_id, p.post_id, p.post_message, p.post_showsig, p.post_smileys, p.post_author,
-		p.post_datestamp, p.post_ip, p.post_ip_type, p.post_edituser, p.post_edittime, p.post_editreason,
+		p.post_datestamp, p.post_ip, p.post_edituser, p.post_edittime, fa.attach_id, fa.attach_name, fa.attach_ext, fa.attach_size,
 		u.user_id, u.user_name, u.user_status, u.user_avatar, u.user_level, u.user_posts, u.user_groups, u.user_joined,
 		".($user_field['user_sig'] ? " u.user_sig," : "").($user_field['user_web'] ? " u.user_web," : "")."
 		u2.user_name AS edit_name, u2.user_status AS edit_status
 		FROM ".DB_POSTS." p
+		LEFT JOIN ".DB_FORUM_ATTACHMENTS." fa USING(post_id)
 		LEFT JOIN ".DB_USERS." u ON p.post_author = u.user_id
 		LEFT JOIN ".DB_USERS." u2 ON p.post_edituser = u2.user_id AND post_edituser > '0'
 		WHERE p.thread_id='".$_GET['thread_id']."' AND post_hidden='0'
@@ -232,21 +229,17 @@ if ($rows != 0) {
 		if ($current_row > 1) { echo "<tr>\n<td colspan='2' class='tbl1 forum_thread_post_space' style='height:10px'></td>\n</tr>\n"; }
 		echo "<tr>\n<td class='tbl2 forum_thread_user_name' style='width:140px'><!--forum_thread_user_name-->".profile_link($data['user_id'], $data['user_name'], $data['user_status'])."</td>\n";
 		echo "<td class='tbl2 forum_thread_post_date'>\n";
-		echo "<div style='float:right' class='small'>";
-		echo "<a href='#top'><img src='".get_image("up")."' alt='".$locale['541']."' title='".$locale['542']."' style='border:0;vertical-align:middle' /></a>\n";
-		echo "&nbsp;<a href='#post_".$data['post_id']."' name='post_".$data['post_id']."' id='post_".$data['post_id']."'>#".($current_row+$_GET['rowstart'])."</a>";
+		echo "<div style='float:right' class='small'><a href='#post_".$data['post_id']."' name='post_".$data['post_id']."' id='post_".$data['post_id']."'>#".($current_row+$_GET['rowstart'])."</a>";
 		echo "&nbsp;<a href='".BASEDIR."print.php?type=F&amp;thread=".$_GET['thread_id']."&amp;post=".$data['post_id']."&amp;nr=".($current_row+$_GET['rowstart'])."'><img src='".get_image("printer")."' alt='".$locale['519a']."' title='".$locale['519a']."' style='border:0;vertical-align:middle' /></a></div>\n";
 		echo "<div class='small'>".$locale['505'].showdate("forumdate", $data['post_datestamp'])."</div>\n";
 		echo "</td>\n";
 		echo "</tr>\n<tr>\n<td valign='top' class='tbl2 forum_thread_user_info' style='width:140px'>\n";
 		if ($data['user_avatar'] && file_exists(IMAGES."avatars/".$data['user_avatar']) && $data['user_status']!=6 && $data['user_status']!=5) {
 			echo "<img src='".IMAGES."avatars/".$data['user_avatar']."' alt='".$locale['567']."' /><br /><br />\n";
-		} else {
-			echo "<img src='".IMAGES."avatars/noavatar100.png' alt='".$locale['567']."' /><br /><br />\n";
 		}
 		echo "<span class='small'>";
 		if ($data['user_level'] >= 102) {
-			echo $settings['forum_ranks'] ? show_forum_rank($data['user_posts'], $data['user_level'], $data['user_groups']) : getuserlevel($data['user_level']);
+			echo $settings['forum_ranks'] ? show_forum_rank($data['user_posts'], $data['user_level']) : getuserlevel($data['user_level']);
 		} else {
 			$is_mod = false;
 			foreach ($mod_groups as $mod_group) {
@@ -255,101 +248,33 @@ if ($rows != 0) {
 				}
 			}
 			if ($settings['forum_ranks']) {
-				echo $is_mod ? show_forum_rank($data['user_posts'], 104, $data['user_groups']) : show_forum_rank($data['user_posts'], $data['user_level'], $data['user_groups']);
+				echo $is_mod ? show_forum_rank($data['user_posts'], 104) : show_forum_rank($data['user_posts'], $data['user_level']);
 			} else {
 				echo $is_mod ? $locale['userf1'] : getuserlevel($data['user_level']);
 			}
 		}
 		echo "</span><br /><br />\n";
 		echo "<!--forum_thread_user_info--><span class='small'><strong>".$locale['502']."</strong> ".$data['user_posts']."</span><br />\n";
-		echo "<span class='small'><strong>".$locale['504']."</strong> ".showdate("shortdate", $data['user_joined'])."</span><br />\n";
+		echo "<span class='small'><strong>".$locale['504']."</strong> ".showdate("%d.%m.%y", $data['user_joined'])."</span><br />\n";
 		echo "<br /></td>\n<td valign='top' class='tbl1 forum_thread_user_post'>\n";
 		if (iMOD) { echo "<div style='float:right'><input type='checkbox' name='delete_post[]' value='".$data['post_id']."' /></div>\n"; }
 		if (isset($_GET['highlight'])) {
 			$words = explode(" ", urldecode($_GET['highlight']));
-			// $message = parseubb(highlight_words($words, $message));
-			$message = "<div class='search_result'>".parseubb($message)."</div>\n";
-			$higlight = ""; $i = 1;
-			foreach ($words as $hlight) {
-				$higlight .= "'".$hlight."'";
-				$higlight .= ($i < count($words) ? "," : "");
-				$i++;
-			}
-			add_to_head("<script type='text/javascript' src='".INCLUDES."jquery/jquery.highlight.js'></script>");
-			add_to_head("<script type='text/javascript'>
-			/* <![CDATA[ */\n
-			jQuery(function () {
-				jQuery('.search_result').highlight([".$higlight."], { wordsOnly: true });
-				jQuery('.highlight').css({ backgroundColor: '#FFFF88' });
-			});
-			/* ]]>*/\n
-			</script>");
+			$message = parseubb(highlight_words($words, $message));
 		} else {
 			$message = parseubb($message);
 		}
 		echo nl2br($message);
 		echo "<!--sub_forum_post_message-->";
-		$a_result = dbquery("SELECT * FROM ".DB_FORUM_ATTACHMENTS." WHERE post_id='".$data['post_id']."'");
-		$a_files = ""; $a_images = ""; $i_files = 0; $i_images = 0;
-		if(dbrows($a_result)){
-			if (checkgroup($fdata['forum_attach_download'])) {
-				while($a_data = dbarray($a_result)){
-					if (in_array($a_data['attach_ext'], $imagetypes) && @getimagesize(FORUM."attachments/".$a_data['attach_name'])) {
-						add_to_head("<script type='text/javascript'>\n
-							/* <![CDATA[ */\n
-								jQuery(document).ready(function(){
-									jQuery('a[rel=\'attach_".$data['post_id']."\']').colorbox({
-										current: '".$locale['506e']." {current} ".$locale['506f']." {total}', width:'80%', height:'80%'
-									});
-								});
-							/* ]]>*/\n
-						</script>");
-						$a_images .= display_image_attach($a_data['attach_name'], "100", "100", $data['post_id'])."\n";
-						$i_images++;
-					} else {
-						if($i_files > 0) $a_files .= "<br />\n";
-						$a_files .= "<a href='".FUSION_SELF."?thread_id=".$_GET['thread_id']."&amp;getfile=".$a_data['attach_id']."'>".$a_data['attach_name']."</a>&nbsp;";
-						$a_files .= "[<span class='small'>".parsebytesize(filesize(FORUM."attachments/".$a_data['attach_name']))." / ".$a_data['attach_count'].$locale['507a']."</span>]\n";
-						$i_files++;
-					}
-				}
+		if ($data['attach_id'] && $data['attach_name'] && file_exists(FORUM."attachments/".$data['attach_name'])) {
+			if (in_array($data['attach_ext'], $imagetypes) && @getimagesize(FORUM."attachments/".$data['attach_name'])) {
+				echo "\n<hr />\n".profile_link($data['user_id'], $data['user_name'], $data['user_status']).$locale['506']."<br /><br />\n".display_image($data['attach_name'])."<br />[".parsebytesize(filesize(FORUM."attachments/".$data['attach_name']))."]\n";
 			} else {
-				$a_files = $locale['507b'];
-			}
-			if ($a_files) {
-				echo "<div class='emulated-fieldset'>\n";
-				echo "<span class='emulated-legend'>".profile_link($data['user_id'], $data['user_name'], $data['user_status']).$locale['506'].($i_files > 1 ? $locale['506d'] : $locale['506c'])."</span>\n";
-				echo "<div class='attachments-list'>".$a_files."</div>\n";
-				echo "</div>\n";
-			}
-			if($a_images){
-				echo "<div class='emulated-fieldset'>\n";
-				echo "<span class='emulated-legend'>".profile_link($data['user_id'], $data['user_name'], $data['user_status']).$locale['506'].($i_images > 1 ? $locale['506b'] : $locale['506a'])."</span>\n";
-				echo "<div class='attachments-list'>".$a_images."</div>\n";
-				echo "</div>\n";
+				echo "\n<hr />\n".profile_link($data['user_id'], $data['user_name'], $data['user_status']).$locale['507']."<br />\n<a href='".FUSION_SELF."?thread_id=".$_GET['thread_id']."&amp;getfile=".$data['post_id']."'>".$data['attach_name']."</a>";
 			}
 		}
 		if ($data['post_edittime'] != "0") {
-			echo "\n<hr />\n<span class='small'>".$locale['508'].profile_link($data['post_edituser'], $data['edit_name'], $data['edit_status']).$locale['509'].showdate("forumdate", $data['post_edittime'])."</span>\n";
-			if ($data['post_editreason'] != "" && iMEMBER) {
-				echo "<br /><a id='reason".$data['post_id']."' class='small' style='cursor:pointer;' title='".$locale['508b']."'>\n";
-				echo "<strong>".$locale['508a']."</strong>\n";
-				echo "</a>\n";
-				echo "<div id='reason_div".$data['post_id']."' class='reason_div small'>".$data['post_editreason']."</div>\n";
-				echo "<script type=\"text/javascript\">";
-				echo "/* <![CDATA[ */\n";
-				echo "jQuery(function() {\n";
-				echo "jQuery('#reason".$data['post_id']."').click(function() {\n";
-				echo "jQuery('#reason_div".$data['post_id']."').slideToggle('slow');\n";
-				echo "jQuery('.reason_div:not(#reason_div".$data['post_id'].")').slideUp('slow');\n";
-				echo "});\n";
-				echo "jQuery('#reason_div".$data['post_id']."').click(function() {\n";
-				echo "jQuery('#reason_div".$data['post_id']."').slideUp('slow');\n";
-				echo "});\n";
-				echo "});\n";
-				echo "/* ]]>*/\n";
-				echo "</script>\n";
-			}
+			echo "\n<hr />\n".$locale['508'].profile_link($data['post_edituser'], $data['edit_name'], $data['edit_status']).$locale['509'].showdate("forumdate", $data['post_edittime']);
 		}
 		if ($data['post_showsig'] && isset($data['user_sig']) && $data['user_sig'] && $data['user_status']!=6 && $data['user_status']!=5) {
 			echo "\n<hr /><div class='forum_sig'>".nl2br(parseubb(parsesmileys($data['user_sig']), "b|i|u||center|small|url|mail|img|color")) . "</div>\n";
@@ -369,7 +294,7 @@ if ($rows != 0) {
 		if (iMEMBER && ($can_post || $can_reply)) {
 			if (!$fdata['thread_locked']) {
 				echo "<a href='post.php?action=reply&amp;forum_id=".$data['forum_id']."&amp;thread_id=".$data['thread_id']."&amp;post_id=".$data['post_id']."&amp;quote=".$data['post_id']."'><img src='".get_image("quote")."' alt='".$locale['569']."' style='border:0px;vertical-align:middle' /></a>\n";
-				if (iMOD || (($lock_edit && $last_post['post_id'] == $data['post_id'] || !$lock_edit)) && ($userdata['user_id'] == $data['post_author']) && ($settings['forum_edit_timelimit'] <= 0 || time() - $settings['forum_edit_timelimit']*60 < $data['post_datestamp'])) {
+				if (iMOD || ($lock_edit && $last_post['post_id'] == $data['post_id'] && $userdata['user_id'] == $data['post_author']) || (!$lock_edit && $userdata['user_id'] == $data['post_author'])) {
 					echo "<a href='post.php?action=edit&amp;forum_id=".$data['forum_id']."&amp;thread_id=".$data['thread_id']."&amp;post_id=".$data['post_id']."'><img src='".get_image("forum_edit")."' alt='".$locale['568']."' style='border:0px;vertical-align:middle' /></a>\n";
 				}
 			} elseif (iMOD) {
@@ -393,7 +318,7 @@ if (iMOD) {
 
 if ($rows > $posts_per_page) {
 	echo "<div align='center' style='padding-top:5px'>\n";
-	echo makepagenav($_GET['rowstart'],$posts_per_page,$rows,3,FUSION_SELF."?thread_id=".$_GET['thread_id'].(isset($_GET['highlight']) ? "&amp;highlight=".urlencode($_GET['highlight']):"")."&amp;")."\n";
+	echo makePageNav($_GET['rowstart'],$posts_per_page,$rows,3,FUSION_SELF."?thread_id=".$_GET['thread_id'].(isset($_GET['highlight']) ? "&amp;highlight=".urlencode($_GET['highlight']):"")."&amp;")."\n";
 	echo "</div>\n";
 }
 
@@ -460,7 +385,7 @@ if ($can_reply && !$fdata['thread_locked']) {
 	echo "<td align='center' class='tbl1'><textarea name='message' cols='70' rows='7' class='textbox' style='width:98%'></textarea><br />\n";
 	echo display_bbcodes("360px", "message")."</td>\n";
 	echo "</tr>\n<tr>\n";
-	echo "<td align='center' class='tbl2'><label><input type='checkbox' name='disable_smileys' value='1' /> ".$locale['513']."</label>";
+	echo "<td align='center' class='tbl2'><label><input type='checkbox' name='disable_smileys' value='1' />".$locale['513']."</label>";
 	if (array_key_exists("user_sig", $userdata) && $userdata['user_sig']) {
 		echo "<br />\n<label><input type='checkbox' name='show_sig' value='1' checked='checked' /> ".$locale['513a']."</label>";
 	}
@@ -479,20 +404,13 @@ if ($can_reply && !$fdata['thread_locked']) {
 	closetable();
 }
 
-echo "<script type='text/javascript'>\n";
-echo "/* <![CDATA[ */\n";
+echo "<script type='text/javascript'>";
+echo "/* <![CDATA[ */";
 echo "function jumpforum(forum_id) {\n";
 echo "document.location.href='".FORUM."viewforum.php?forum_id='+forum_id;\n";
 echo "}\n"."function setChecked(frmName,chkName,val) {\n";
 echo "dml=document.forms[frmName];\n"."len=dml.elements.length;\n"."for(i=0;i < len;i++) {\n";
 echo "if(dml.elements[i].name == chkName) {\n"."dml.elements[i].checked = val;\n}\n}\n}\n";
-echo "jQuery(document).ready(function() {
-	jQuery('.reason_div').hide();
-	jQuery('a[href=#top]').click(function(){
-		jQuery('html, body').animate({scrollTop:0}, 'slow');
-		return false;
-	});
-});";
 echo "/* ]]>*/\n";
 echo "</script>\n";
 

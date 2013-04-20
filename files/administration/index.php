@@ -60,7 +60,7 @@ if ($rows != 0) {
 			if ($counter != 0 && ($counter % $columns == 0)) { echo "</tr>\n<tr>\n"; }
 			echo "<td align='$align' width='20%' class='tbl'>";
 			if ($admin_images) {
-				echo "<span class='small'><a href='".$data['admin_link'].$aidlink."'><img src='".get_image("ac_".$data['admin_title'])."' alt='".$data['admin_title']."' style='border:0px;' /></a><br />\n".$data['admin_title']."</span>";
+				echo "<span class='small'><a href='".$data['admin_link'].$aidlink."'><img src='".get_image("ac_".$data['admin_title'])."' alt='".$data['admin_title']."' style='border:0px;' /><br />\n".$data['admin_title']."</a></span>";
 			} else {
 				echo "<span class='small'>".THEME_BULLET." <a href='".$data['admin_link'].$aidlink."'>".$data['admin_title']."</a></span>";
 			}
@@ -100,10 +100,10 @@ echo "</td>\n<td valign='top' width='33%' class='small'>
 ".(checkrights("SU") ? "<a href='".ADMIN."submissions.php".$aidlink."#news_submissions'>".$locale['254']."</a>" : $locale['254'])." ".dbcount("(submit_id)", DB_SUBMISSIONS, "submit_type='n'")."<br />
 ".(checkrights("SU") ? "<a href='".ADMIN."submissions.php".$aidlink."#article_submissions'>".$locale['255']."</a>" : $locale['255'])." ".dbcount("(submit_id)", DB_SUBMISSIONS, "submit_type='a'")."<br />
 ".(checkrights("SU") ? "<a href='".ADMIN."submissions.php".$aidlink."#link_submissions'>".$locale['256']."</a>" : $locale['256'])." ".dbcount("(submit_id)", DB_SUBMISSIONS, "submit_type='l'")."<br />
-".(checkrights("SU") ? "<a href='".ADMIN."submissions.php".$aidlink."#photo_submissions'>".$locale['260']."</a>" : $locale['260'])." ".dbcount("(submit_id)", DB_SUBMISSIONS, "submit_type='p'")."<br />
-".(checkrights("SU") ? "<a href='".ADMIN."submissions.php".$aidlink."#download_submissions'>".$locale['265']."</a>" : $locale['265'])." ".dbcount("(submit_id)", DB_SUBMISSIONS, "submit_type='d'")."
+".(checkrights("SU") ? "<a href='".ADMIN."submissions.php".$aidlink."#photo_submissions'>".$locale['260']."</a>" : $locale['260'])." ".dbcount("(submit_id)", DB_SUBMISSIONS, "submit_type='p'")."
 </td>\n<td valign='top' width='33%' class='small'>
 ".$locale['257']." ".dbcount("(comment_id)", DB_COMMENTS)."<br />
+".$locale['258']." ".dbcount("(shout_id)", DB_SHOUTBOX)."<br />
 ".$locale['259']." ".dbcount("(post_id)", DB_POSTS)."<br />
 ".$locale['261']." ".dbcount("(photo_id)", DB_PHOTOS)."
 </td>\n</tr>\n</table>\n";

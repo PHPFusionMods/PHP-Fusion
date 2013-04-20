@@ -56,9 +56,8 @@ if ($_GET['stype'] == "custompages" || $_GET['stype'] == "all") {
 			$text_frag = search_textfrag($text_all);
 			$subj_c = search_stringscount($data['page_title']);
 			$text_c = search_stringscount($text_all);
-			// $text_frag = highlight_words($swords, $text_frag);
-			$search_result .= "<a href='viewpage.php?page_id=".$data['page_id']."'>".$data['page_title']."</a>"."<br /><br />\n";
-			// $search_result .= "<a href='viewpage.php?page_id=".$data['page_id']."'>".highlight_words($swords, $data['page_title'])."</a>"."<br /><br />\n";
+			$text_frag = highlight_words($swords, $text_frag);
+			$search_result .= "<a href='viewpage.php?page_id=".$data['page_id']."'>".highlight_words($swords, $data['page_title'])."</a>"."<br /><br />\n";
 			$search_result .= "<div class='quote' style='width:auto;height:auto;overflow:auto'>".$text_frag."</div><br />\n";
 			$search_result .= "<span class='small'>".$subj_c." ".($subj_c == 1 ? $locale['520'] : $locale['521'])." ".$locale['c403']." ".$locale['c404'].", ";
 			$search_result .= $text_c." ".($text_c == 1 ? $locale['520'] : $locale['521'])." ".$locale['c403']." ".$locale['c405']."</span><br /><br />\n";

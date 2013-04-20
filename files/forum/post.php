@@ -104,8 +104,6 @@ if ((isset($_GET['action']) && $_GET['action'] == "newthread") && ($fdata['forum
 
 	if ($userdata['user_id'] != $pdata['post_author'] && !iMOD && !iSUPERADMIN) { redirect("index.php"); }
 
-	if ($pdata['post_locked'] && !iMOD) { redirect("postify.php?post=edit&error=5&forum_id=".$_GET['forum_id']."&thread_id=".$_GET['thread_id']."&post_id=".$_GET['post_id']); }
-	if (!iMOD && ($settings['forum_edit_timelimit'] > 0 && time() - $settings['forum_edit_timelimit']*60 > $pdata['post_datestamp'])) { redirect("postify.php?post=edit&error=6&forum_id=".$_GET['forum_id']."&thread_id=".$_GET['thread_id']."&post_id=".$_GET['post_id']); }
 	if (!$tdata['thread_locked'] && (($lock_edit && $last_post['post_id'] == $pdata['post_id'] && $userdata['user_id'] == $pdata['post_author']) || (!$lock_edit && $userdata['user_id'] == $pdata['post_author'])) ) {
 		include "postedit.php";
 	} elseif (iMOD) {

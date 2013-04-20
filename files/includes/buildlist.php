@@ -81,8 +81,6 @@ while ($file = readdir($temp)) {
 }
 closedir($temp);
 
-sort($image_files);
-
 // compile list -----------------
 if (isset($image_files)) {
 	$indhold = "var tinyMCEImageList = new Array(";

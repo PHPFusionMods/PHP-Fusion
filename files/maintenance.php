@@ -43,7 +43,7 @@ echo "</div>\n</td>\n</tr>\n</table>\n";
 
 if (!iMEMBER) {
 	echo "<div align='center'><br />\n";
-	echo "<form name='loginform' method='post' action='".$settings['opening_page']."'>\n";
+	echo "<form name='loginform' method='post' action='".FUSION_SELF."'>\n";
 	echo $locale['global_101'].": <input type='text' name='user_name' class='textbox' style='width:100px' />\n";
 	echo $locale['global_102'].": <input type='password' name='user_pass' class='textbox' style='width:100px' />\n";
 	echo "<input type='checkbox' name='remember_me' value='y' title='".$locale['global_103']."' />\n";
@@ -57,6 +57,10 @@ echo "</body>\n</html>\n";
 
 if (ob_get_length() !== FALSE){
 	ob_end_flush();
+}
+
+if ($settings['login_method'] == "sessions") {
+	session_write_close();
 }
 
 mysql_close($db_connect);

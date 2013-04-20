@@ -41,19 +41,9 @@ $locale['502'] = "Posts:";
 $locale['503'] = "Location:";
 $locale['504'] = "Joined:";
 $locale['505'] = "Posted on ";
-$locale['506'] = " attached the following ";
-$locale['506a'] = "image:";
-$locale['506b'] = "images:";
-$locale['506c'] = "file:";
-$locale['506d'] = "files:";
-$locale['506e'] = "Image";
-$locale['506f'] = "of";
+$locale['506'] = " attached the following image:";
 $locale['507'] = " attached the following file:";
-$locale['507a'] = " Downloads";
-$locale['507b'] = "You are not allowed to see attachments in this thread.";
 $locale['508'] = "Edited by ";
-$locale['508a'] = "Reason";
-$locale['508b'] = "Click here to show the edit reason.";
 $locale['509'] = " on ";
 $locale['510'] = "You are not authorised to view this Thread.";
 $locale['511'] = "Return to Forum Index";
@@ -80,10 +70,8 @@ $locale['525'] = "Make Thread Non-Sticky";
 $locale['526'] = "Move Thread";
 $locale['527'] = "Renew Thread";
 $locale['528'] = "Go";
-// Jump to Forum, back to top
+// Jump to Forum
 $locale['540'] = "Jump to Forum:";
-$locale['541'] = "Top";
-$locale['542'] = "Back to top";
 // Search Forum
 $locale['550'] = "Search";
 // Image Alt attributes

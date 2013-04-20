@@ -16,8 +16,6 @@ $locale['417'] = "View";
 $locale['418'] = "Delete";
 $locale['419'] = "Submitted Photos:";
 $locale['420'] = "No Photos awaiting verification.";
-$locale['421'] = "Submitted Downloads:";
-$locale['422'] = "No Downloads awaiting verification.";
 // Add/Delete Web Link Submissions
 $locale['430'] = "Publish link submission";
 $locale['431'] = "The link has been published";
@@ -50,8 +48,6 @@ $locale['505'] = "Subject:";
 $locale['506'] = "Category:";
 $locale['507'] = "- None -";
 $locale['508'] = "News:";
-$locale['509'] = "News Snippet:";
-$locale['510'] = "Preview News";
 // Add/Delete Article Submissions
 $locale['530'] = "Publish Article Submission";
 $locale['531'] = "The Article has been published";
@@ -67,7 +63,6 @@ $locale['545'] = "Category:";
 $locale['546'] = "Subject:";
 $locale['547'] = "Snippet:";
 $locale['548'] = "Article:";
-$locale['549'] = "Preview article";
 // Add/Delete Photo Submissions
 $locale['580'] = "Publish Photo Submission";
 $locale['581'] = "The photo has been published";
@@ -83,36 +78,4 @@ $locale['595'] = "Delete Photo";
 $locale['596'] = "Title:";
 $locale['597'] = "Description:";
 $locale['598'] = "Album";
-// Add/Delete Download Submissions
-$locale['630'] = "Publish Download Submission";
-$locale['631'] = "The Download has been published";
-$locale['632'] = "Delete Download Submission";
-$locale['633'] = "The Download has been deleted";
-// Download Submission Form
-$locale['640'] = "View Download Submission";
-$locale['641'] = "This Download was submitted by ";
-$locale['642'] = "Do you want to publish or delete this download?";
-$locale['643'] = "Publish Download";
-$locale['644'] = "Delete Download";
-$locale['645'] = "Title:";
-$locale['646'] = "Description:";
-$locale['646b'] = "Short description:";
-$locale['647'] = "URL:";
-$locale['647b'] = "File:";
-$locale['648'] = "Category:";
-$locale['649'] = "License:";
-$locale['650'] = "O/S:";
-$locale['651'] = "Version:";
-$locale['652'] = "Filesize:";
-$locale['653'] = "Screenshot:";
-$locale['654'] = "Homepage:";
-$locale['655'] = "Copyright:";
-$locale['656'] = "Comments:";
-$locale['657'] = "Ratings:";
-$locale['658'] = "Delete Screenshot";
-
-$locale['660'] = "%s are disabled for all items.<br />This setting will only take effect when they are enabled again.";
-$locale['661'] = "Comments";
-$locale['662'] = "Ratings";
-$locale['663'] = $locale['661']." and ".$locale['662'];
 ?>

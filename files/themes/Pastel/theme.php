@@ -89,7 +89,7 @@ function render_news($subject, $news, $info) {
 global $locale;
 
 opentable($subject);
-echo "<div class='floatfix'>".$info['cat_image'].$news."</div>
+echo "<div class='floatfix'>".$news."</div>
 <div class='news-footer'>
 	".newsposter($info," &middot;").newsopts($info,"&middot;").itemoptions("N",$info['news_id']).
 "</div>\n";

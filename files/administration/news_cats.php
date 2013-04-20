@@ -46,25 +46,16 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat
 } elseif (isset($_POST['save_cat'])) {
 	$cat_name = stripinput($_POST['cat_name']);
 	$cat_image = stripinput($_POST['cat_image']);
-	$checkCat = dbcount("(news_cat_id)", DB_NEWS_CATS, "news_cat_name='".$cat_name."'");
-	if ($checkCat == 0) {
-		if ($cat_name && $cat_image) {
-			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
-				$result = dbquery("UPDATE ".DB_NEWS_CATS." SET news_cat_name='$cat_name', news_cat_image='$cat_image' WHERE news_cat_id='".$_GET['cat_id']."'");
-				redirect(FUSION_SELF.$aidlink."&status=su");
-			} else {
-				$result = dbquery("INSERT INTO ".DB_NEWS_CATS." (news_cat_name, news_cat_image) VALUES ('$cat_name', '$cat_image')");
-				redirect(FUSION_SELF.$aidlink."&status=sn");
-			}
+	if ($cat_name && $cat_image) {
+		if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
+			$result = dbquery("UPDATE ".DB_NEWS_CATS." SET news_cat_name='$cat_name', news_cat_image='$cat_image' WHERE news_cat_id='".$_GET['cat_id']."'");
+			redirect(FUSION_SELF.$aidlink."&status=su");
 		} else {
-			$error = 1;
-			$formaction = FUSION_SELF.$aidlink;
-			$openTable = $locale['401'];
+			$result = dbquery("INSERT INTO ".DB_NEWS_CATS." (news_cat_name, news_cat_image) VALUES ('$cat_name', '$cat_image')");
+			redirect(FUSION_SELF.$aidlink."&status=sn");
 		}
 	} else {
-		$error = 2;
-		$formaction = FUSION_SELF.$aidlink;
-		$openTable = $locale['401'];
+		redirect(FUSION_SELF.$aidlink);
 	}
 } elseif ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
 	$result = dbquery("SELECT news_cat_id, news_cat_name, news_cat_image FROM ".DB_NEWS_CATS." WHERE news_cat_id='".$_GET['cat_id']."'");
@@ -73,7 +64,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat
 		$cat_name = $data['news_cat_name'];
 		$cat_image = $data['news_cat_image'];
 		$formaction = FUSION_SELF.$aidlink."&amp;action=edit&amp;cat_id=".$data['news_cat_id'];
-		$openTable = $locale['400'];
+		opentable($locale['400']);
 	} else {
 		redirect(FUSION_SELF.$aidlink);
 	}
@@ -81,21 +72,10 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat
 	$cat_name = "";
 	$cat_image = "";
 	$formaction = FUSION_SELF.$aidlink;
-	$openTable = $locale['401'];
+	opentable($locale['401']);
 }
 $image_files = makefilelist(IMAGES_NC, ".|..|index.php", true);
 $image_list = makefileopts($image_files,$cat_image);
-
-if (isset($error) && isnum($error)) {
-	if ($error == 1) {
-		$errorMessage = $locale['460'];
-	} elseif ($error == 2) {
-		$errorMessage = $locale['461'];
-	}
-	if ($errorMessage) { echo "<div id='close-message'><div class='admin-message'>".$errorMessage."</div></div>\n"; }
-}
-
-opentable($openTable);
 echo "<form name='addcat' method='post' action='".$formaction."'>\n";
 echo "<table cellpadding='0' cellspacing='0' width='400' class='center'>\n<tr>\n";
 echo "<td width='130' class='tbl'>".$locale['430']."</td>\n";

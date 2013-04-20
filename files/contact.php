@@ -22,32 +22,32 @@ include LOCALE.LOCALESET."contact.php";
 add_to_title($locale['global_200'].$locale['400']);
 
 if (isset($_POST['sendmessage'])) {
+	include_once INCLUDES."securimage/securimage.php";
 	$error = "";
 	$mailname = substr(stripinput(trim($_POST['mailname'])), 0, 50);
 	$email = substr(stripinput(trim($_POST['email'])), 0, 100);
 	$subject = substr(str_replace(array("\r","\n","@"), "", descript(stripslash(trim($_POST['subject'])))), 0, 50);
 	$message = descript(stripslash(trim($_POST['message'])));
 	if ($mailname == "") {
-		$error .= " <span class='alt'>".$locale['420']."</span><br />\n";
+		$error .= "· <span class='alt'>".$locale['420']."</span><br />\n";
 	}
 	if ($email == "" || !preg_match("/^[-0-9A-Z_\.]{1,50}@([-0-9A-Z_\.]+\.){1,50}([0-9A-Z]){2,4}$/i", $email)) {
-		$error .= " <span class='alt'>".$locale['421']."</span><br />\n";
+		$error .= "· <span class='alt'>".$locale['421']."</span><br />\n";
 	}
 	if ($subject == "") {
-		$error .= " <span class='alt'>".$locale['422']."</span><br />\n";
+		$error .= "· <span class='alt'>".$locale['422']."</span><br />\n";
 	}
 	if ($message == "") {
-		$error .= " <span class='alt'>".$locale['423']."</span><br />\n";
+		$error .= "· <span class='alt'>".$locale['423']."</span><br />\n";
 	}
-	$_CAPTCHA_IS_VALID = false;
-	include INCLUDES."captchas/".$settings['captcha']."/captcha_check.php";
-	if ($_CAPTCHA_IS_VALID == false) {
-		$error .= " <span class='alt'>".$locale['424']."</span><br />\n";
+	$securimage = new Securimage();
+	if (!isset($_POST['captcha_code']) || $securimage->check($_POST['captcha_code']) == false) {
+		$error .= "· <span class='alt'>".$locale['424']."</span><br />\n";
 	}
 	if (!$error) {
 		require_once INCLUDES."sendmail_include.php";
 		if (!sendemail($settings['siteusername'],$settings['siteemail'],$mailname,$email,$subject,$message)) {
-			$error .= " <span class='alt'>".$locale['425']."</span><br />\n";
+			$error .= "· <span class='alt'>".$locale['425']."</span><br />\n";
 		}
 	}
 	if ($error) {
@@ -78,14 +78,13 @@ if (isset($_POST['sendmessage'])) {
 	echo "</tr>\n<tr>\n";
 	echo "<td width='100' class='tbl'>".$locale['407']."</td>\n";
 	echo "<td class='tbl'>";
-	include INCLUDES."captchas/".$settings['captcha']."/captcha_display.php";
-	if (!isset($_CAPTCHA_HIDE_INPUT) || (isset($_CAPTCHA_HIDE_INPUT) && !$_CAPTCHA_HIDE_INPUT)) {
-		echo "</td>\n</tr>\n<tr>";
-		echo "<td class='tbl'><label for='captcha_code'>".$locale['408']."</label></td>\n";
-		echo "<td class='tbl'>";
-		echo "<input type='text' id='captcha_code' name='captcha_code' class='textbox' autocomplete='off' style='width:100px' />";
-	}
-	echo "</td>\n</tr>\n<tr>\n";
+	echo "<img id='captcha' src='".INCLUDES."securimage/securimage_show.php' alt='' align='left' />\n";
+  echo "<a href='".INCLUDES."securimage/securimage_play.php'><img src='".INCLUDES."securimage/images/audio_icon.gif' alt='' align='top' class='tbl-border' style='margin-bottom:1px' /></a><br />\n";
+  echo "<a href='#' onclick=\"document.getElementById('captcha').src = '".INCLUDES."securimage/securimage_show.php?sid=' + Math.random(); return false\"><img src='".INCLUDES."securimage/images/refresh.gif' alt='' align='bottom' class='tbl-border' /></a>\n";
+	echo "</td>\n</tr>\n<tr>";
+	echo "<td class='tbl'>".$locale['408']."</td>\n";
+	echo "<td class='tbl'><input type='text' name='captcha_code' class='textbox' style='width:100px' /></td>\n";
+	echo "</tr>\n<tr>\n";
 	echo "<td align='center' colspan='2' class='tbl'>\n";
 	echo "<input type='submit' name='sendmessage' value='".$locale['406']."' class='button' /></td>\n";
 	echo "</tr>\n</table>\n</form>\n";

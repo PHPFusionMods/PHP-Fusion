@@ -29,7 +29,7 @@ if (isset($_GET['error']) && isnum($_GET['error']) && !isset($message)) {
 		$message = $locale['901'];
 	}
 	if (isset($message)) {
-		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n";
+		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; 
 	}
 }
 
@@ -53,10 +53,6 @@ if (isset($_POST['savesettings'])) {
 	if (!$result) { $error = 1; }
 	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['visitorcounter_enabled']) ? $_POST['visitorcounter_enabled'] : "0")."' WHERE settings_name='visitorcounter_enabled'");
 	if (!$result) { $error = 1; }
-	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['rendertime_enabled']) ? $_POST['rendertime_enabled'] : "0")."' WHERE settings_name='rendertime_enabled'");
-	if (!$result) { $error = 1; }
-	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".stripinput($_POST['comments_sorting'])."' WHERE settings_name='comments_sorting'");
-	if (!$result) { $error = 1; }
 
 	redirect(FUSION_SELF.$aidlink."&error=".$error);
 }
@@ -77,10 +73,10 @@ echo "<td width='50%' class='tbl'>".$locale['674']."</td>\n";
 echo "<td width='50%' class='tbl'><input type='text' name='smtp_port' value='".$settings['smtp_port']."' maxlength='10' class='textbox' style='width:200px;' /></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td width='50%' class='tbl'>".$locale['666']."</td>\n";
-echo "<td width='50%' class='tbl'><input type='text' name='smtp_username' value='".$settings['smtp_username']."' maxlength='100' class='textbox' style='width:200px;' autocomplete='off' /></td>\n";
+echo "<td width='50%' class='tbl'><input type='text' name='smtp_username' value='".$settings['smtp_username']."' maxlength='100' class='textbox' style='width:200px;' /></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td width='50%' class='tbl'>".$locale['667']."</td>\n";
-echo "<td width='50%' class='tbl'><input type='password' name='smtp_password' value='".$settings['smtp_password']."' maxlength='100' class='textbox' style='width:200px;' autocomplete='off' /></td>\n";
+echo "<td width='50%' class='tbl'><input type='password' name='smtp_password' value='".$settings['smtp_password']."' maxlength='100' class='textbox' style='width:200px;' /></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td width='50%' class='tbl'>".$locale['655']."</td>\n";
 echo "<td width='50%' class='tbl'><select name='guestposts' class='textbox'>\n";
@@ -94,12 +90,6 @@ echo "<option value='1'".($settings['comments_enabled'] == "1" ? " selected='sel
 echo "<option value='0'".($settings['comments_enabled'] == "0" ? " selected='selected'" : "").">".$locale['519']."</option>\n";
 echo "</select></td>\n";
 echo "</tr>\n<tr>\n";
-echo "<td width='50%' class='tbl'>".$locale['684']."</td>\n";
-echo "<td width='50%' class='tbl'><select name='comments_sorting' class='textbox'>\n";
-echo "<option value='ASC'".($settings['comments_sorting'] == "ASC" ? " selected='selected'" : "").">".$locale['685']."</option>\n";
-echo "<option value='DESC'".($settings['comments_sorting'] == "DESC" ? " selected='selected'" : "").">".$locale['686']."</option>\n";
-echo "</select></td>\n";
-echo "</tr>\n<tr>\n";
 echo "<td width='50%' class='tbl'>".$locale['672']."</td>\n";
 echo "<td width='50%' class='tbl'><select name='ratings_enabled' class='textbox'>\n";
 echo "<option value='1'".($settings['ratings_enabled'] == "1" ? " selected='selected'" : "").">".$locale['518']."</option>\n";
@@ -110,13 +100,6 @@ echo "<td width='50%' class='tbl'>".$locale['679']."</td>\n";
 echo "<td width='50%' class='tbl'><select name='visitorcounter_enabled' class='textbox'>\n";
 echo "<option value='1'".($settings['visitorcounter_enabled'] == "1" ? " selected='selected'" : "").">".$locale['518']."</option>\n";
 echo "<option value='0'".($settings['visitorcounter_enabled'] == "0" ? " selected='selected'" : "").">".$locale['519']."</option>\n";
-echo "</select></td>\n";
-echo "</tr>\n<tr>\n";
-echo "<td width='50%' class='tbl'>".$locale['688']."</td>\n";
-echo "<td width='50%' class='tbl'><select name='rendertime_enabled' class='textbox'>\n";
-echo "<option value='0'".($settings['rendertime_enabled'] == "0" ? " selected='selected'" : "").">".$locale['519']."</option>\n";
-echo "<option value='1'".($settings['rendertime_enabled'] == "1" ? " selected='selected'" : "").">".$locale['689']."</option>\n";
-echo "<option value='2'".($settings['rendertime_enabled'] == "2" ? " selected='selected'" : "").">".$locale['690']."</option>\n";
 echo "</select></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td align='center' colspan='2' class='tbl'><br />\n";

@@ -34,8 +34,4 @@ $locale['544'] = "No FAQs have been added.";
 $locale['545'] = "No FAQ Categories defined.";
 $locale['546'] = "Delete this FAQ Category?";
 $locale['547'] = "Delete this FAQ?";
-// Error Messages
-$locale['460'] = "Please enter a category name.";
-$locale['461'] = "This category already exists.";
-$locale['462'] = "Please enter a faq question and faq answer.";
 ?>

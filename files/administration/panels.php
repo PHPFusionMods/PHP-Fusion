@@ -22,47 +22,32 @@ if (!checkrights("P") || !defined("iAUTH") || $_GET['aid'] != iAUTH) { redirect(
 require_once THEMES."templates/admin_header.php";
 include LOCALE.LOCALESET."admin/panels.php";
 
-add_to_head("<script type='text/javascript' src='".INCLUDES."jquery/jquery-ui.js'></script>");
-add_to_head("<link rel='stylesheet' href='".THEMES."templates/panels.css' type='text/css' media='all' />");
-add_to_head("<script type='text/javascript'>
-$(document).ready(function() {
-	$('.pdisabled').fadeTo(0, .5);
-	$('.panels-list').sortable({
-		handle : '.handle',
-		placeholder: 'state-highlight',
-		connectWith: '.connected',
-		scroll: true,
-		axis: 'y',
-		update: function () {
-			var ul = $(this),
-				order = ul.sortable('serialize'),
-				i = 0;
-			$('#info').load('panels_updater.php".$aidlink."&'+order);
-			ul.find('.num').each(function(i) {
-				$(this).text(i+1);
-			});
-			ul.find('li').removeClass('tbl2').removeClass('tbl1');
-			ul.find('li:odd').addClass('tbl2');
-			ul.find('li:even').addClass('tbl1');
-			window.setTimeout('closeDiv();',2500);
-		},
-		receive: function () {
-			var ul = $(this),
-				order = ul.sortable('serialize'),
-				pdata = ul.attr('data-side');
-				if (pdata == 1) { var psidetext = '".$locale['420']."'; }
-				if (pdata == 2) { var psidetext = '".$locale['421']."'; }
-				if (pdata == 3) { var psidetext = '".$locale['425']."'; }
-				if (pdata == 4) { var psidetext = '".$locale['422']."'; }
-			ul.find('.pside').each(function() {
-				$(this).text(psidetext);
-			});
-			$('#info').load('panels_updater.php".$aidlink."&panel_side='+pdata+'&'+order);
-		}
-	});
-});
-</script>");
-
+if (isset($_GET['action']) && $_GET['action'] == "refresh") {
+	$i = 1;
+	$result = dbquery("SELECT panel_id FROM ".DB_PANELS." WHERE panel_side='1' ORDER BY panel_order");
+	while ($data = dbarray($result)) {
+		$result2 = dbquery("UPDATE ".DB_PANELS." SET panel_order='$i' WHERE panel_id='".$data['panel_id']."'");
+		$i++;
+	}
+	$i = 1;
+	$result = dbquery("SELECT panel_id FROM ".DB_PANELS." WHERE panel_side='2' ORDER BY panel_order");
+	while ($data = dbarray($result)) {
+		$result2 = dbquery("UPDATE ".DB_PANELS." SET panel_order='$i' WHERE panel_id='".$data['panel_id']."'");
+		$i++;
+	}
+	$i = 1;
+	$result = dbquery("SELECT panel_id FROM ".DB_PANELS." WHERE panel_side='3' ORDER BY panel_order");
+	while ($data = dbarray($result)) {
+		$result2 = dbquery("UPDATE ".DB_PANELS." SET panel_order='$i' WHERE panel_id='".$data['panel_id']."'");
+		$i++;
+	}
+	$i = 1;
+	$result = dbquery("SELECT panel_id FROM ".DB_PANELS." WHERE panel_side='4' ORDER BY panel_order");
+	while ($data = dbarray($result)) {
+		$result2 = dbquery("UPDATE ".DB_PANELS." SET panel_order='$i' WHERE panel_id='".$data['panel_id']."'");
+		$i++;
+	}
+}
 if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['panel_id']) && isnum($_GET['panel_id']))) {
 	$data = dbarray(dbquery("SELECT panel_side, panel_order FROM ".DB_PANELS." WHERE panel_id='".$_GET['panel_id']."'"));
 	$result = dbquery("DELETE FROM ".DB_PANELS." WHERE panel_id='".$_GET['panel_id']."'");
@@ -72,64 +57,110 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['pan
 if ((isset($_GET['action']) && $_GET['action'] == "setstatus") && (isset($_GET['panel_id']) && isnum($_GET['panel_id']))) {
 	$result = dbquery("UPDATE ".DB_PANELS." SET panel_status='".intval($_GET['status'])."' WHERE panel_id='".$_GET['panel_id']."'");
 }
-
+if ((isset($_GET['action']) && $_GET['action'] == "mup") && (isset($_GET['panel_id']) && isnum($_GET['panel_id']))) {
+	$data = dbarray(dbquery("SELECT panel_id FROM ".DB_PANELS." WHERE panel_side='".intval($_GET['panel_side'])."' AND panel_order='".intval($_GET['order'])."'"));
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_order=panel_order+1 WHERE panel_id='".$data['panel_id']."'");
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_order=panel_order-1 WHERE panel_id='".$_GET['panel_id']."'");
+	redirect(FUSION_SELF.$aidlink);
+}
+if ((isset($_GET['action']) && $_GET['action'] == "mdown") && (isset($_GET['panel_id']) && isnum($_GET['panel_id']))) {
+	$data = dbarray(dbquery("SELECT panel_id FROM ".DB_PANELS." WHERE panel_side='".intval($_GET['panel_side'])."' AND panel_order='".intval($_GET['order'])."'"));
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_order=panel_order-1 WHERE panel_id='".$data['panel_id']."'");
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_order=panel_order+1 WHERE panel_id='".$_GET['panel_id']."'");
+	redirect(FUSION_SELF.$aidlink);
+}
+if ((isset($_GET['action']) && $_GET['action'] == "mleft") && (isset($_GET['panel_id']) && isnum($_GET['panel_id']))) {
+	$result = dbquery("SELECT panel_order FROM ".DB_PANELS." WHERE panel_side='1' ORDER BY panel_order DESC LIMIT 1");
+	if (dbrows($result) != 0) { $data = dbarray($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_side='1', panel_order='$neworder' WHERE panel_id='".$_GET['panel_id']."'");
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_order=panel_order-1 WHERE panel_side='4' AND panel_order>='".intval($_GET['order'])."'");
+	redirect(FUSION_SELF.$aidlink);
+}
+if ((isset($_GET['action']) && $_GET['action'] == "mright") && (isset($_GET['panel_id']) && isnum($_GET['panel_id']))) {
+	$result = dbquery("SELECT panel_order FROM ".DB_PANELS." WHERE panel_side='4' ORDER BY panel_order DESC LIMIT 1");
+	if (dbrows($result) != 0) { $data = dbarray($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_side='4', panel_order='$neworder' WHERE panel_id='".$_GET['panel_id']."'");
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_order=panel_order-1 WHERE panel_side='1' AND panel_order>='".intval($_GET['order'])."'");
+	redirect(FUSION_SELF.$aidlink);
+}
+if ((isset($_GET['action']) && $_GET['action'] == "mupper") && (isset($_GET['panel_id']) && isnum($_GET['panel_id']))) {
+	$result = dbquery("SELECT panel_order FROM ".DB_PANELS." WHERE panel_side='2' ORDER BY panel_order DESC LIMIT 1");
+	if (dbrows($result) != 0) { $data = dbarray($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_side='2', panel_order='$neworder' WHERE panel_id='".$_GET['panel_id']."'");
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_order=panel_order-1 WHERE panel_side='3' AND panel_order>='".intval($_GET['order'])."'");
+	redirect(FUSION_SELF.$aidlink);
+}
+if ((isset($_GET['action']) && $_GET['action'] == "mlower") && (isset($_GET['panel_id']) && isnum($_GET['panel_id']))) {
+	$result = dbquery("SELECT panel_order FROM ".DB_PANELS." WHERE panel_side='3' ORDER BY panel_order DESC LIMIT 1");
+	if (dbrows($result) != 0) { $data = dbarray($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_side='3', panel_order='$neworder' WHERE panel_id='".$_GET['panel_id']."'");
+	$result = dbquery("UPDATE ".DB_PANELS." SET panel_order=panel_order-1 WHERE panel_side='2' AND panel_order>='".intval($_GET['order'])."'");
+	redirect(FUSION_SELF.$aidlink);
+}
 opentable($locale['400']);
-echo "<div id='info'></div>\n";
-
-$side = array("1" => $locale['420'], "2" => $locale['421'], "3" => $locale['425'], "4" => $locale['422']);
-$panels = array("1" => array(), "2" => array(), "3" => array(), "4" => array());
-
-$result = dbquery(
-	"SELECT panel_id, panel_name, panel_side, panel_order, panel_type, panel_access, panel_status
-	FROM ".DB_PANELS."
-	ORDER BY panel_side,panel_order"
-);
+echo "<table cellpadding='0' cellspacing='1' width='80%' class='tbl-border center'>\n<tr>\n";
+echo "<td class='tbl2'><strong>".$locale['401']."</strong></td>\n";
+echo "<td align='center' width='1%' class='tbl2' colspan='2' style='white-space:nowrap'><strong>".$locale['402']."</strong></td>\n";
+echo "<td align='center' width='1%' class='tbl2' style='white-space:nowrap'><strong>".$locale['403']."</strong></td>\n";
+echo "<td align='center' width='1%' class='tbl2' style='white-space:nowrap'><strong>".$locale['404']."</strong></td>\n";
+echo "<td align='center' width='1%' class='tbl2' style='white-space:nowrap'><strong>".$locale['405']."</strong></td>\n";
+echo "<td align='center' width='1%' class='tbl2' style='white-space:nowrap'><strong>".$locale['406']."</strong></td>\n";
+echo "</tr>\n";
+$ps = 1; $i = 1; $k = 0;
+$result = dbquery("SELECT panel_id, panel_name, panel_side, panel_order, panel_type, panel_access, panel_status FROM ".DB_PANELS." ORDER BY panel_side,panel_order");
 while ($data = dbarray($result)) {
-	$panels[$data['panel_side']][] = $data;
-}
-
-for ($i = 1; $i <= 4; $i++) {
-	$k = 0;
-	echo "<div style='width:600px;' class='panels tbl-border center floatfix'><div class='tbl2'>\n";
-	echo "<div style='float:left; padding-left:30px;'>";
-	echo "<strong>".$side[$i]." [<a href='panel_editor.php".$aidlink."'>".$locale['438']."</a>]</strong>";
-	echo "</div>\n<div style='float:right; width:150px;'><strong>".$locale['406']."</strong></div>\n";
-	echo "<div style='float:right; width:10%;'><strong>".$locale['405']."</strong></div>\n";
-	echo "<div style='float:right; width:10%;'><strong>".$locale['404']."</strong></div>\n";
-	echo "<div style='float:right; width:10%;'><strong>".$locale['403']."</strong></div>\n";
-	echo "<div style='float:right; width:10%;'><strong>".$locale['402']."</strong></div>\n";
-	echo "<div style='clear:both;'></div>\n</div>\n";
-
-	echo "<ul id='panel-side".$i."' data-side='".$i."' style='list-style: none;' class='panels-list connected'>\n";
-
-	foreach($panels[$i] as $data) {
-		$row_color = ($k % 2 == 0 ? "tbl1" : "tbl2");
-		$type = $data['panel_type'] == "file" ? $locale['423'] : $locale['424'];
-
-		echo "<li id='listItem_".$data['panel_id']."' class='".$row_color.($data['panel_status'] == 0 ? " pdisabled" : "")."'>\n";
-		echo "<div style='float:left; width:30px;'><img src='".IMAGES."arrow.png' alt='move' class='handle' /></div>\n";
-		echo "<div style='float:left;'>".$data['panel_name']."</div>\n";
-		echo "<div style='float:right; width:150px;'>";
-		echo "[<a href='panel_editor.php".$aidlink."&amp;action=edit&amp;panel_id=".$data['panel_id']."&amp;panel_side=1'>".$locale['434']."</a>]\n";
-		if ($data['panel_status'] == 0) {
-			echo "[<a href='".FUSION_SELF.$aidlink."&amp;action=setstatus&amp;status=1&amp;panel_id=".$data['panel_id']."'>".$locale['435']."</a>]\n";
+	$row_color = ($k % 2 == 0 ? "tbl1" : "tbl2");
+	$numrows = dbcount("(panel_id)", DB_PANELS, "panel_side='".$data['panel_side']."'");
+	if ($ps != $data['panel_side']) { $ps = $data['panel_side']; $i = 1; }
+	if ($numrows != 1) {
+		$up = $data['panel_order'] - 1;
+		$down = $data['panel_order'] + 1;
+		if ($i == 1) {
+			$up_down = " <a href='".FUSION_SELF.$aidlink."&amp;action=mdown&amp;panel_id=".$data['panel_id']."&amp;panel_side=".$data['panel_side']."&amp;order=$down'><img src='".get_image("down")."' alt='".$locale['444']."' title='".$locale['433']."' style='border:0px;' /></a>";
+		} else if ($i < $numrows) {
+			$up_down = " <a href='".FUSION_SELF.$aidlink."&amp;action=mup&amp;panel_id=".$data['panel_id']."&amp;panel_side=".$data['panel_side']."&amp;order=$up'><img src='".get_image("up")."' alt='".$locale['443']."' title='".$locale['432']."' style='border:0px;' /></a>\n";
+			$up_down .= " <a href='".FUSION_SELF.$aidlink."&amp;action=mdown&amp;panel_id=".$data['panel_id']."&amp;panel_side=".$data['panel_side']."&amp;order=$down'><img src='".get_image("down")."' alt='".$locale['444']."' title='".$locale['433']."' style='border:0px;' /></a>";
 		} else {
-			echo "[<a href='".FUSION_SELF.$aidlink."&amp;action=setstatus&amp;status=0&amp;panel_id=".$data['panel_id']."'>".$locale['436']."</a>]\n";
+			$up_down = " <a href='".FUSION_SELF.$aidlink."&amp;action=mup&amp;panel_id=".$data['panel_id']."&amp;panel_side=".$data['panel_side']."&amp;order=$up'><img src='".get_image("up")."' alt='".$locale['443']."' title='".$locale['432']."' style='border:0px;' /></a>";
 		}
-		echo "[<a href='".FUSION_SELF.$aidlink."&amp;action=delete&amp;panel_id=".$data['panel_id']."&amp;panel_side=".$data['panel_side']."' onclick=\"return confirm('".$locale['440']."');\">".$locale['437']."</a>]\n";
-		echo "</div>\n";
-		echo "<div style='float:right; width:10%;'>".getgroupname($data['panel_access'])."</div>\n";
-		echo "<div style='float:right; width:10%;'>".$type."</div>\n";
-		echo "<div class='num' style='float:right; width:10%;'>".$data['panel_order']."</div>\n";
-		echo "<div class='pside' style='float:right; width:10%;'>".$side[$i]."</div>\n";
-		echo "<div style='clear:both;'></div>\n";
-		echo "</li>\n";
-		$k++;
+	} else {
+		$up_down = "";
 	}
-
-	echo "</ul>\n</div>\n";
-	echo "<div style='margin:5px;'></div>\n";
+	echo "<tr>\n<td class='".$row_color."'>".$data['panel_name']."</td>\n";
+	echo "<td align='center' width='1%' class='".$row_color."' style='white-space:nowrap'>";
+	if ($data['panel_side'] == 1) { echo $locale['420'];
+	} elseif ($data['panel_side'] == 2) { echo $locale['421'];
+	} elseif ($data['panel_side'] == 3) { echo $locale['425'];
+	} elseif ($data['panel_side'] == 4) { echo $locale['422']; }
+	echo "</td>\n<td align='center' width='1%' class='".$row_color."' style='white-space:nowrap'>";
+	if ($data['panel_side'] == 1) {
+		echo "<a href='".FUSION_SELF.$aidlink."&amp;action=mright&amp;panel_id=".$data['panel_id']."&amp;order=".$data['panel_order']."'><img src='".get_image("right")."' alt='".$locale['442']."' title='".$locale['431']."' style='border:0px;' /></a>";
+	} elseif ($data['panel_side'] == 2) {
+		echo "<a href='".FUSION_SELF.$aidlink."&amp;action=mlower&amp;panel_id=".$data['panel_id']."&amp;order=".$data['panel_order']."'><img src='".get_image("down")."' alt='".$locale['444']."' title='".$locale['446']."' style='border:0px;' /></a>";
+	} elseif ($data['panel_side'] == 3) {
+		echo "<a href='".FUSION_SELF.$aidlink."&amp;action=mupper&amp;panel_id=".$data['panel_id']."&amp;order=".$data['panel_order']."'><img src='".get_image("up")."' alt='".$locale['443']."' title='".$locale['445']."' style='border:0px;' /></a>";
+	} elseif ($data['panel_side'] == 4) {
+		echo "<a href='".FUSION_SELF.$aidlink."&amp;action=mleft&amp;panel_id=".$data['panel_id']."&amp;order=".$data['panel_order']."'><img src='".get_image("left")."' alt='".$locale['441']."' title='".$locale['430']."' style='border:0px;' /></a>";
+	}
+	echo "</td>\n<td width='1%' class='".$row_color."' style='white-space:nowrap'>".$data['panel_order']."$up_down</td>\n";
+	echo "<td align='center' width='1%' class='".$row_color."' style='white-space:nowrap'>".($data['panel_type'] == "file" ? $locale['423'] : $locale['424'])."</td>\n";
+	echo "<td align='center' width='1%' class='".$row_color."' style='white-space:nowrap'>".getgroupname($data['panel_access'])."</td>\n";
+	echo "<td align='center' width='1%' class='".$row_color."' style='white-space:nowrap'>\n";
+	echo "[<a href='panel_editor.php".$aidlink."&amp;action=edit&amp;panel_id=".$data['panel_id']."&amp;panel_side=1'>".$locale['434']."</a>]\n";
+	if ($data['panel_status'] == 0) {
+		echo "[<a href='".FUSION_SELF.$aidlink."&amp;action=setstatus&amp;status=1&amp;panel_id=".$data['panel_id']."'>".$locale['435']."</a>]\n";
+	} else {
+		echo "[<a href='".FUSION_SELF.$aidlink."&amp;action=setstatus&amp;status=0&amp;panel_id=".$data['panel_id']."'>".$locale['436']."</a>]\n";
+	}
+	echo "[<a href='".FUSION_SELF.$aidlink."&amp;action=delete&amp;panel_id=".$data['panel_id']."&amp;panel_side=".$data['panel_side']."' onclick=\"return confirm('".$locale['440']."');\">".$locale['437']."</a>]\n";
+	echo "</td>\n</tr>\n";
+	$i++; $k++;
 }
+echo "</table>\n";
+
+echo "<div style='text-align:center;margin-top:5px'>[ <a href='panel_editor.php".$aidlink."'>".$locale['438']."</a> ]\n";
+echo "[ <a href='".FUSION_SELF.$aidlink."&amp;action=refresh'>".$locale['439']."</a> ]</div>\n";
+
 closetable();
 
 require_once THEMES."templates/footer.php";

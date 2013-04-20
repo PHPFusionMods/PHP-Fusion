@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
-| Copyright (C) 2002 - 2009 Nick Jones
+| Copyright (C) 2002 - 2011 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: smileys.php
@@ -110,7 +110,6 @@ echo "<tr>\n<td align='center' colspan='2' class='tbl'><br />\n";
 echo "<input type='submit' name='save_smiley' value='".$locale['423']."' class='button' /></td>\n";
 echo "</tr>\n</table>\n</form>\n";
 echo "<script type='text/javascript'>\n";
-echo "/* <![CDATA[ */\n";
 echo "function PreviewSmiley() {\n";
 echo "\tvar selectSmiley = document.getElementById('smiley_image');\n";
 echo "\tvar imageSmiley = document.getElementById('smiley_preview');\n";
@@ -124,7 +123,6 @@ echo "}\n";
 echo "function ConfirmDelete() {\n";
 echo "return confirm('".$locale['416']."');\n";
 echo "}\n";
-echo "/* ]]>*/\n";
 echo "</script>\n";
 closetable();
 

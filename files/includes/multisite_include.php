@@ -15,10 +15,10 @@
 | copyright header is strictly prohibited without
 | written permission from the original author(s).
 +--------------------------------------------------------*/
-
+// Cookie prefix
+define("COOKIE_PREFIX", "fusion_");
 // Database table definitions
 define("DB_ADMIN", DB_PREFIX."admin");
-define("DB_ADMIN_RESETLOG", DB_PREFIX."admin_resetlog");
 define("DB_ARTICLE_CATS", DB_PREFIX."article_cats");
 define("DB_ARTICLES", DB_PREFIX."articles");
 define("DB_BBCODES", DB_PREFIX."bbcodes");
@@ -28,8 +28,6 @@ define("DB_COMMENTS", DB_PREFIX."comments");
 define("DB_CUSTOM_PAGES", DB_PREFIX."custom_pages");
 define("DB_DOWNLOAD_CATS", DB_PREFIX."download_cats");
 define("DB_DOWNLOADS", DB_PREFIX."downloads");
-define("DB_EMAIL_VERIFY", DB_PREFIX."email_verify");
-define("DB_ERRORS", DB_PREFIX."errors");
 define("DB_FAQ_CATS", DB_PREFIX."faq_cats");
 define("DB_FAQS", DB_PREFIX."faqs");
 define("DB_FLOOD_CONTROL", DB_PREFIX."flood_control");
@@ -53,8 +51,10 @@ define("DB_POLL_VOTES", DB_PREFIX."poll_votes");
 define("DB_POLLS", DB_PREFIX."polls");
 define("DB_POSTS", DB_PREFIX."posts");
 define("DB_RATINGS", DB_PREFIX."ratings");
+define("DB_SESSIONS", DB_PREFIX."sessions");
 define("DB_SETTINGS", DB_PREFIX."settings");
 define("DB_SETTINGS_INF", DB_PREFIX."settings_inf");
+define("DB_SHOUTBOX", DB_PREFIX."shoutbox");
 define("DB_SITE_LINKS", DB_PREFIX."site_links");
 define("DB_SMILEYS", DB_PREFIX."smileys");
 define("DB_SUBMISSIONS", DB_PREFIX."submissions");
@@ -64,7 +64,6 @@ define("DB_THREADS", DB_PREFIX."threads");
 define("DB_USER_FIELD_CATS", DB_PREFIX."user_field_cats");
 define("DB_USER_FIELDS", DB_PREFIX."user_fields");
 define("DB_USER_GROUPS", DB_PREFIX."user_groups");
-define("DB_USER_LOG", DB_PREFIX."user_log");
 define("DB_USERS", DB_PREFIX."users");
 define("DB_WEBLINK_CATS", DB_PREFIX."weblink_cats");
 define("DB_WEBLINKS", DB_PREFIX."weblinks");

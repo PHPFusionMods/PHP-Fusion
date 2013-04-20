@@ -34,6 +34,4 @@ $locale['455'] = "pixels";
 $locale['456'] = "Filesize: ";
 $locale['457'] = "Number of views: ";
 $locale['458'] = "Click to close";
-$locale['459'] = "First photo";
-$locale['460'] = "Last photo";
 ?>

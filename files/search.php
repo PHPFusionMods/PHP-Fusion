@@ -69,14 +69,15 @@ $available[] = "all";
 if (isset($_GET['stype'])) { $_GET['stype'] = in_array($_GET['stype'], $available) ? $_GET['stype'] : "all"; }
 if (!isset($_GET['stype'])) { $_GET['stype'] = $settings['default_search']; }
 
-for ($i = 0; $i < count($available) - 1; $i++) {
+$c_available = count($available);
+for ($i = 0; $i < $c_available - 1; $i++) {
 	include (INCLUDES."search/search_".$available[$i]."_include_button.php");
 }
 sort($radio_button);
 
 opentable($locale['400']);
 
-echo "<script type='text/javascript'>\n<!--\n";
+echo "<script type='text/javascript'>\n/*<![CDATA[*/\n";
 echo "function display(val) {\nswitch (val) {\n";
 foreach ($form_elements as $type => $array1) {
 	echo "case '".$type."':\n";
@@ -95,7 +96,7 @@ foreach ($form_elements as $type => $array1) {
 	}
 	echo "break;\n";
 }
-	
+
 echo "case 'all':\n";
 echo "document.getElementById('datelimit').disabled = false;\n";
 echo "document.getElementById('fields1').disabled = false;\n";
@@ -105,7 +106,7 @@ echo "document.getElementById('sort').disabled = false;\n";
 echo "document.getElementById('order1').disabled = false;\n";
 echo "document.getElementById('order2').disabled = false;\n";
 echo "document.getElementById('chars').disabled = false;\n";
-echo "break;\n}\n}\n-->\n</script>\n";
+echo "break;\n}\n}\n/*]]>*/\n</script>\n";
 
 echo "<form id='searchform' name='searchform' method='get' action='".FUSION_SELF."'>\n";
 echo "<table width='100%' cellpadding='0' cellspacing='1' class='tbl-border'>\n<tr>\n";
@@ -115,7 +116,7 @@ echo "<td class='tbl1' style='width:50%;'>\n";
 echo "<input type='text' name='stext' value='".urldecode($_GET['stext'])."' class='textbox' style='width:200px' />\n";
 echo "<input type='submit' name='search' value='".$locale['402']."' class='button' />\n</td>\n";
 echo "<td class='tbl1' align='left' style='width:50%;'>\n";
-echo "<label><input type='radio' name='method' value='OR'".($_GET['method'] == "OR" ? " checked='checked'" : "")." /> ".$locale['403']."</label><br  />\n";
+echo "<label><input type='radio' name='method' value='OR'".($_GET['method'] == "OR" ? " checked='checked'" : "")." /> ".$locale['403']."</label><br />\n";
 echo "<label><input type='radio' name='method' value='AND'".($_GET['method'] == "AND" ? " checked='checked'" : "")." /> ".$locale['404']."</label></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td class='tbl2'><strong>".$locale['405']."</strong></td>\n";
@@ -143,8 +144,8 @@ echo "<option value='14515200'".($_GET['datelimit']==14515200?" selected='select
 echo "</select></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td class='tbl1'>&nbsp;</td>\n";
-echo "<td class='tbl1'><label><input type='radio' id='fields1' name='fields' value='2'".($_GET['fields']==2?" checked='checked'":"").($_GET['stype']!="all"?(in_array("fields1", $form_elements[$_GET['stype']]['disabled'])?" disabled='disabled'":""):"")." /> ".$locale['430']."</label><br  />\n";
-echo "<label><input type='radio' id='fields2' name='fields' value='1'".($_GET['fields']==1?" checked='checked'":"").($_GET['stype']!="all"?(in_array("fields2", $form_elements[$_GET['stype']]['disabled'])?" disabled='disabled'":""):"")." /> ".$locale['431']."</label><br  />\n";
+echo "<td class='tbl1'><label><input type='radio' id='fields1' name='fields' value='2'".($_GET['fields']==2?" checked='checked'":"").($_GET['stype']!="all"?(in_array("fields1", $form_elements[$_GET['stype']]['disabled'])?" disabled='disabled'":""):"")." /> ".$locale['430']."</label><br />\n";
+echo "<label><input type='radio' id='fields2' name='fields' value='1'".($_GET['fields']==1?" checked='checked'":"").($_GET['stype']!="all"?(in_array("fields2", $form_elements[$_GET['stype']]['disabled'])?" disabled='disabled'":""):"")." /> ".$locale['431']."</label><br />\n";
 echo "<label><input type='radio' id='fields3' name='fields' value='0'".($_GET['fields']==0?" checked='checked'":"").($_GET['stype']!="all"?(in_array("fields3", $form_elements[$_GET['stype']]['disabled'])?" disabled='disabled'":""):"")." /> ".$locale['432']."</label></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td class='tbl1'>".$locale['440']."&nbsp;</td>\n";
@@ -155,8 +156,8 @@ echo "<option value='author'".($_GET['sort']=="author"?" selected='selected'":""
 echo "</select></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td class='tbl1'>&nbsp;</td>\n";
-echo "<td class='tbl1'><label><input type='radio' id='order1' name='order' value='0'".($_GET['order']==0?" checked='checked'":"").($_GET['stype']!="all"?(in_array("order1", $form_elements[$_GET['stype']]['disabled'])?" disabled='disabled'":""):"")." /> ".$locale['450']."</label><br  />\n";
-echo "<label><input type='radio' id='order2' name='order' value='1'".($_GET['order']==1?" checked='checked'":"").($_GET['stype']!="all"?(in_array("order2", $form_elements[$_GET['stype']]['disabled'])?" disabled='disabled'":""):"")." /> ".$locale['451']."</label><br  /></td>\n";
+echo "<td class='tbl1'><label><input type='radio' id='order1' name='order' value='0'".($_GET['order']==0?" checked='checked'":"").($_GET['stype']!="all"?(in_array("order1", $form_elements[$_GET['stype']]['disabled'])?" disabled='disabled'":""):"")." /> ".$locale['450']."</label><br />\n";
+echo "<label><input type='radio' id='order2' name='order' value='1'".($_GET['order']==1?" checked='checked'":"").($_GET['stype']!="all"?(in_array("order2", $form_elements[$_GET['stype']]['disabled'])?" disabled='disabled'":""):"")." /> ".$locale['451']."</label><br /></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td class='tbl1'>".$locale['460']."</td>\n";
 echo "<td class='tbl1'><select id='chars' name='chars' class='textbox'".($_GET['stype']!="all"?(in_array("chars", $form_elements[$_GET['stype']]['disabled'])?" disabled='disabled'":""):"").">\n";
@@ -186,8 +187,8 @@ function search_textfrag($text) {
 
 function search_stringscount($text) {
 	global $swords;
-	$count = 0;
-	for ($i = 0; $i < sizeof($swords); $i++) {
+	$count = 0; $c_swords = count($swords); //sizeof($swords)
+	for ($i = 0; $i < $c_swords; $i++) {
 		$count += substr_count(strtolower($text), strtolower($swords[$i]));
 	}  
 	return $count;
@@ -195,9 +196,9 @@ function search_stringscount($text) {
 
 function search_querylike($field) {
 	global $swords;
-	$querylike = "";
-	for ($i = 0; $i < sizeof($swords); $i++) {
-		$querylike .= $field." LIKE '%".$swords[$i]."%'".($i < sizeof($swords) - 1 ? " ".$_GET['method']." " : "");
+	$querylike = ""; $c_swords = count($swords);
+	for ($i = 0; $i < $c_swords; $i++) {
+		$querylike .= $field." LIKE '%".$swords[$i]."%'".($i < $c_swords - 1 ? " ".$_GET['method']." " : "");
 	}
 	return $querylike;
 }
@@ -243,14 +244,15 @@ $navigation_result = "";
 $items_count = "";
 
 $_GET['stext'] = urldecode($_GET['stext']);
-add_to_head("<script type='text/javascript' src='".INCLUDES."jquery/jquery.highlight.js'></script>");
+
 if ($_GET['stext'] != "" && strlen($_GET['stext']) >= 3) {
 	add_to_title($locale['global_201'].$locale['408']);
 	opentable($locale['408']);
 	$fswords = explode(" ", $_GET['stext']);
 	$swords = array();
 	$iwords = array();
-	for ($i = 0; $i < sizeof($fswords); $i++) {
+	$c_fswords = count($fswords); //sizeof($fswords)
+	for ($i = 0; $i < $c_fswords; $i++) {
 		if (strlen($fswords[$i]) >= 3) {
 			$swords[] = $fswords[$i];
 		} else {
@@ -258,23 +260,8 @@ if ($_GET['stext'] != "" && strlen($_GET['stext']) >= 3) {
 		}
 	}
 	unset($fswords);
-   
+
 	if (sizeof($swords) == 0) { redirect(FUSION_SELF); }
-	$higlight = ""; $i = 1;
-	foreach ($swords as $hlight) {
-		$higlight .= "'".$hlight."'";
-		$higlight .= ($i < count($swords) ? "," : "");
-		$i++;
-	}
-	add_to_head("<script type='text/javascript'>\n
-	/* <![CDATA[ */\n
-	jQuery(function () {
-	jQuery('.search_result').highlight([".$higlight."], { wordsOnly: true });
-	jQuery('.highlight').css({ backgroundColor: '#FFFF88' });
-	});\n
-	/* ]]>*/\n
-	</script>\n");
-	echo "<div class='search_result'>\n";
 
 	if ($_GET['stype'] == "all") {
 		$dh = opendir(INCLUDES."search");
@@ -287,36 +274,37 @@ if ($_GET['stext'] != "" && strlen($_GET['stext']) >= 3) {
 	} else {
 		include INCLUDES."search/search_".$_GET['stype']."_include.php";
 	}
-	
-	if (count($iwords)) {
+
+	$c_iwords = count($iwords);
+	if ($c_iwords) {
 		$txt = "";
-		for ($i = 0; $i < count($iwords); $i++) {
-			$txt .= $iwords[$i].($i < count($iwords) - 1 ? ", " : "");
+		for ($i = 0; $i < $c_iwords; $i++) {
+			$txt .= $iwords[$i].($i < $c_iwords - 1 ? ", " : "");
 		}
-		echo "<div style='text-align:center;font-weight:bold'>".sprintf($locale['502'], $txt)."</div><br  />";
+		echo "<div style='text-align:center;font-weight:bold'>".sprintf($locale['502'], $txt)."</div><br />";
 	}
-	
+
 	if ($_GET['stype'] == "all") {
 		$navigation_result = search_navigation(0);
-		echo "<div class='quote'>".$items_count."<hr  />".THEME_BULLET."&nbsp;<strong>".(($site_search_count>100 || search_globalarray(""))?sprintf($locale['530'], $site_search_count):$site_search_count." ".$locale['510'])."</strong></div><hr  />";
+		echo "<div class='quote'>".$items_count."<hr />".THEME_BULLET."&nbsp;<strong>".(($site_search_count>100 || search_globalarray(""))?sprintf($locale['530'], $site_search_count):$site_search_count." ".$locale['510'])."</strong></div><hr />";
 	} else {
-		echo $items_count."<hr  />";
-		echo (($site_search_count>100 || search_globalarray("")) ? "<strong>".sprintf($locale['530'], $site_search_count)."</strong><hr  />" : "");
+		echo $items_count."<hr />";
+		echo (($site_search_count>100 || search_globalarray("")) ? "<strong>".sprintf($locale['530'], $site_search_count)."</strong><hr />" : "");
 	}
-		
+
+	$c_search_result_array = count($search_result_array);
 	if ($_GET['stype'] == "all") {
 		$from = $_GET['rowstart'];
-		$to = (count($search_result_array) - ($_GET['rowstart'] + 10)) <= 0 ? count($search_result_array) : $_GET['rowstart'] + 10;
+		$to = ($c_search_result_array - ($_GET['rowstart'] + 10)) <= 0 ? $c_search_result_array : $_GET['rowstart'] + 10;
 	} else {
 		$from = 0;
-		$to = count($search_result_array) < 10 ? count($search_result_array) : 10;
+		$to = $c_search_result_array < 10 ? $c_search_result_array : 10;
 	}
 	
 	for ($i = $from; $i < $to; $i++) {
 		echo $search_result_array[$i];
 	}
 	echo $navigation_result;
-	echo "</div>\n";
 	closetable();
 
 } elseif (isset($_GET['stext'])) {

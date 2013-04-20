@@ -70,7 +70,7 @@ if (isset($_GET['remove']) && (isset($_GET['remove']) && isnum($_GET['remove']) 
 		opentable($locale['470']);
 		echo "<div style='text-align:center'>\n";
 		echo "<form action='".FUSION_SELF.$aidlink."&amp;remove=".$_GET['remove']."' method='post'>\n";
-		echo $locale['471']."<br /><br />\n<input class='textbox' type='password' name='admin_password' autocomplete='off' /><br /><br />\n";
+		echo $locale['471']."<br /><br />\n<input class='textbox' type='password' name='admin_password' /><br /><br />\n";
 		echo "<input class='button' type='submit' name='confirm' value='".$locale['472']."' />\n";
 		echo "<input class='button' type='submit' name='cancel' value='".$locale['473']."' />\n";
 		echo "</form>\n</div>\n";
@@ -127,13 +127,13 @@ if (isset($_GET['edit']) && isnum($_GET['edit']) && $_GET['edit'] != 1) {
 		echo "<input type='button' class='button' onclick=\"setCheckedSecure('rightsform','rights[]',1);\" value='".$locale['450']."' />\n";
 		echo "<input type='button' class='button' onclick=\"setChecked('rightsform','rights[]',0);\" value='".$locale['446']."' /><br /><br />\n";
 		if (!check_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")) {
-			echo $locale['447']." <input type='password' name='admin_password' class='textbox' style='width:150px;' autocomplete='off' /><br /><br />\n";
+			echo $locale['447']." <input type='password' name='admin_password' class='textbox' style='width:150px;' /><br /><br />\n";
 		}
 		echo "<input type='submit' name='update_admin' value='".$locale['448']."' class='button' />\n";
 		echo "</div>\n</form>\n";
 		closetable();
 		echo "<script type='text/javascript'>\n";
-		echo "/* <![CDATA[ */\n";
+		echo "/* <![CDATA[ */";
 		echo "function setChecked(frmName,chkName,val) {"."\n";
 		echo "dml=document.forms[frmName];"."\n"."len=dml.elements.length;"."\n"."for(i=0;i < len;i++) {"."\n";
 		echo "if(dml.elements[i].name == chkName) {"."\n"."dml.elements[i].checked = val;"."\n";
@@ -182,7 +182,7 @@ if (isset($_GET['edit']) && isnum($_GET['edit']) && $_GET['edit'] != 1) {
 				echo "<label><input type='checkbox' name='all_rights' value='1' /> ".$locale['415']."</label><span style='color:red;font-weight:bold;margin-left:5px;'>*</span><br />\n";
 				if ($userdata['user_level'] == 103) { echo "<label><input type='checkbox' name='make_super' value='1' /> ".$locale['416']."</label><span style='color:red;font-weight:bold;margin-left:5px;'>*</span><br />\n"; }
 				if (!check_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")) {
-					echo $locale['447']." <input type='password' name='admin_password' class='textbox' style='width:150px;' autocomplete='off' /><br /><br />\n";
+					echo $locale['447']." <input type='password' name='admin_password' class='textbox' style='width:150px;' /><br /><br />\n";
 				}
 				echo "<br />\n<input type='submit' name='add_admin' value='".$locale['417']."' class='button' onclick=\"return confirm('".$locale['461']."');\" />\n";
 				echo "</td>\n</tr>\n";

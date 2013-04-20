@@ -29,7 +29,4 @@ $locale['444'] = "Delete";
 $locale['445'] = "There are no Download Categories defined";
 // Delete Download category
 $locale['450'] = "Delete this download category?";
-// Error Messages
-$locale['460'] = "Please enter a category name.";
-$locale['461'] = "This category already exists.";
 ?>

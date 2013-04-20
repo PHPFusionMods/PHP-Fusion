@@ -178,7 +178,7 @@ if (isset($_POST['save'])) {
 		echo "</tr>\n<tr>\n";
 	}
 	echo "<td width='100' class='tbl'>".$locale['422']."</td>\n";
-	echo "<td width='80%' class='tbl'><input type='text' name='page_title' value='".$page_title."' class='textbox' style='width:250px;' autocomplete='off' />\n";
+	echo "<td width='80%' class='tbl'><input type='text' name='page_title' value='".$page_title."' class='textbox' style='width:250px;' />\n";
 	echo "&nbsp;".$locale['423']."<select name='page_access' class='textbox' style='width:150px;'>\n".$access_opts."</select></td>\n";
 	echo "</tr>\n<tr>\n";
 	echo "<td valign='top' width='100' class='tbl'>".$locale['424']."</td>\n";
@@ -194,37 +194,16 @@ if (isset($_POST['save'])) {
 	}
 	if (!check_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")) {
 		echo "<td class='tbl'>".$locale['425']."</td>\n";
-		echo "<td class='tbl'><input type='password' name='admin_password' value='".(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")."' class='textbox' style='width:150px;' autocomplete='off' /></td>\n";
+		echo "<td class='tbl'><input type='password' name='admin_password' value='".(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")."' class='textbox' style='width:150px;' /></td>\n";
 		echo "</tr>\n<tr>\n";
 	}
 	echo "<td class='tbl'></td><td class='tbl'>\n";
 	if (!isset($_POST['page_id']) || !isnum($_POST['page_id'])) {
 		echo "<label><input type='checkbox' name='add_link' value='1'".$addlink." />  ".$locale['426']."</label><br />\n";
 	}
-	echo "<label><input type='checkbox' name='page_comments' value='1'".$comments." /> ".$locale['427']."</label>";
-	if ($settings['comments_enabled'] == "0") {
-		echo "<span style='color:red;font-weight:bold;margin-left:3px;'>*</span>";
-	}
-	echo "<br />\n";
+	echo "<label><input type='checkbox' name='page_comments' value='1'".$comments." /> ".$locale['427']."</label><br />\n";
 	echo "<label><input type='checkbox' name='page_ratings' value='1'".$ratings." /> ".$locale['428']."</label>\n";
-	if ($settings['ratings_enabled'] == "0") {
-		echo "<span style='color:red;font-weight:bold;margin-left:3px;'>*</span>";
-	}
-	echo "</td>\n</tr>\n";
-	if ($settings['comments_enabled'] == "0" || $settings['ratings_enabled'] == "0") {
-		$sys = "";
-		if ($settings['comments_enabled'] == "0" &&  $settings['ratings_enabled'] == "0") {
-			$sys = $locale['457'];
-		} elseif ($settings['comments_enabled'] == "0") {
-			$sys = $locale['455'];
-		} else {
-			$sys = $locale['456'];
-		}
-		echo "<tr>\n<td colspan='2' class='tbl1' style='font-weight:bold;text-align:left; color:black !important; background-color:#FFDBDB;'>";
-		echo "<span style='color:red;font-weight:bold;margin-right:5px;'>*</span>".sprintf($locale['454'], $sys);
-		echo "</td>\n</tr>";
-	}
-	echo "<tr>\n";
+	echo "</td>\n</tr>\n<tr>\n";
 	echo "<td align='center' colspan='2' class='tbl'><br />\n";
 	if (isset($_POST['page_id']) && isnum($_POST['page_id'])) {
 		echo "<input type='hidden' name='page_id' value='".$_POST['page_id']."' />\n";

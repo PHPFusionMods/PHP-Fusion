@@ -24,8 +24,6 @@ $locale['512'] = "The Forum cannot be deleted";
 $locale['513'] = "There are threads associated with this category";
 $locale['514'] = "Forum deleted";
 $locale['515'] = "Forum Moderators updated";
-$locale['516'] = "Please enter a category name.";
-$locale['517'] = "Please enter a forum name.";
 // Add/Edit Forum Form
 $locale['520'] = "Forum Name:";
 $locale['521'] = "Forum Description:";
@@ -35,19 +33,13 @@ $locale['524'] = "Forum Privileges";
 $locale['525'] = "Forum Access:";
 $locale['526'] = "Create Threads:";
 $locale['527'] = "Post Replies:";
-$locale['528'] = "Add Attachments:";
+$locale['528'] = "Attachments:";
 $locale['529'] = "Create Polls:";
 $locale['530'] = "Cast Votes:";
 $locale['531'] = "Off";
 $locale['532'] = "Save Forum";
 $locale['533'] = "Forum Moderators";
 $locale['534'] = "Save Forum Moderators";
-$locale['535'] = "Download Attachments:";
-// Forum Settings
-$locale['540'] = "Forum Settings:";
-$locale['541'] = "Post Merger:";
-$locale['542'] = "Enabled";
-$locale['543'] = "Disabled";
 // Current Forums
 $locale['550'] = "Current Forums";
 $locale['551'] = "Category/Forum";

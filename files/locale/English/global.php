@@ -9,8 +9,6 @@ Web: http://www.php-fusion.co.uk
 // Locale Settings
 setlocale(LC_TIME, "en","GB"); // Linux Server (Windows may differ)
 $locale['charset'] = "iso-8859-1";
-$locale['mysql_charset'] = "latin1";
-$locale['mysql_collate'] = "latin1_swedish_ci";
 $locale['xml_lang'] = "en";
 $locale['tinymce'] = "en";
 $locale['phpmailer'] = "en";
@@ -26,16 +24,6 @@ $locale['user2'] = "Administrator";
 $locale['user3'] = "Super Administrator";
 $locale['user_na'] = "N/A";
 $locale['user_anonymous'] = "Anonymous User";
-// Standard User Status
-$locale['status0'] = "Active";
-$locale['status1'] = "Banned";
-$locale['status2'] = "Unactivated";
-$locale['status3'] = "Suspended";
-$locale['status4'] = "Security Banned";
-$locale['status5'] = "Canceled";
-$locale['status6'] = "Anonymous";
-$locale['status7'] = "Deactivated";
-$locale['status8'] = "Inactive";
 // Forum Moderator Level(s)
 $locale['userf1'] = "Moderator";
 // Navigation
@@ -54,15 +42,9 @@ $locale['global_020'] = "Forum Threads";
 $locale['global_021'] = "Newest Threads";
 $locale['global_022'] = "Hottest Threads";
 $locale['global_023'] = "No Threads created";
-// Comments Side panel
-$locale['global_025'] = "Latest Comments";
-$locale['global_026'] = "No comments available";
 // Articles Side panel
 $locale['global_030'] = "Latest Articles";
 $locale['global_031'] = "No Articles available";
-// Downloads Side panel
-$locale['global_032'] = "Latest Downloads";
-$locale['global_033'] = "No Downloads available";
 // Welcome panel
 $locale['global_035'] = "Welcome";
 // Latest Active Forum Threads panel
@@ -81,7 +63,7 @@ $locale['global_051'] = "Poll";
 $locale['global_052'] = "Moved";
 $locale['global_053'] = "You have not started any forum threads yet.";
 $locale['global_054'] = "You have not posted any forum messages yet.";
-$locale['global_055'] = "There are %u new posts in %u different threads since your last visit.";
+$locale['global_055'] = "There are %u new posts since your last visit.";
 $locale['global_056'] = "My Tracked Threads";
 $locale['global_057'] = "Options";
 $locale['global_058'] = "Stop";
@@ -124,8 +106,6 @@ $locale['global_124'] = "Logout";
 $locale['global_125'] = "You have %u new ";
 $locale['global_126'] = "message";
 $locale['global_127'] = "messages";
-$locale['global_128'] = "submission";
-$locale['global_129'] = "submissions";
 // Poll
 $locale['global_130'] = "Member Poll";
 $locale['global_131'] = "Submit Vote";
@@ -140,11 +120,17 @@ $locale['global_139'] = "Select a Poll to view from the list:";
 $locale['global_140'] = "View";
 $locale['global_141'] = "View Poll";
 $locale['global_142'] = "There are no polls defined.";
-
-// Captcha
-$locale['global_150'] = "Validation Code:";
-$locale['global_151'] = "Enter Validation Code:";
-
+// Shoutbox
+$locale['global_150'] = "Shoutbox";
+$locale['global_151'] = "Name:";
+$locale['global_152'] = "Message:";
+$locale['global_153'] = "Shout";
+$locale['global_154'] = "You must login to post a message.";
+$locale['global_155'] = "Shoutbox Archive";
+$locale['global_156'] = "No messages have been posted.";
+$locale['global_157'] = "Delete";
+$locale['global_158'] = "Validation Code:";
+$locale['global_159'] = "Enter Validation Code:";
 // Footer Counter
 $locale['global_170'] = "unique visit";
 $locale['global_171'] = "unique visits";
@@ -157,8 +143,8 @@ $locale['global_182'] = "<strong>Notice:</strong> Admin Password not entered or 
 // Miscellaneous
 $locale['global_190'] = "Maintenance Mode Activated";
 $locale['global_191'] = "Your IP address is currently blacklisted.";
-$locale['global_192'] = "Your user cookie has expired. Please log in again to proceed.";
-$locale['global_193'] = "Could not set user cookie. Please make sure you have cookies enabled to be able to log in properly.";
+$locale['global_192'] = "Logging out as ";
+$locale['global_193'] = "Logging in as ";
 $locale['global_194'] = "This account is currently suspended.";
 $locale['global_195'] = "This account has not been activated.";
 $locale['global_196'] = "Invalid username or password.";
@@ -230,7 +216,4 @@ $locale['global_464'] = "GB";
 $locale['global_465'] = "TB";
 //Safe Redirect
 $locale['global_500'] = "You are being redirected to %s, please wait. If you're not redirected, click here.";
-
-// Captcha Locales
-$locale['global_600'] = "Validation Code";
 ?>

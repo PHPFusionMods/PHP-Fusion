@@ -244,6 +244,11 @@ a:hover {
 	height: 1em;
 	border: 2px solid #fff;
 }
+.comment-name, .shoutboxname {font-weight: bold;}
+.shoutboxdate {
+	font-size: 0.8em;
+	color: #ddd;
+}
 .small, .small2, .side-small {font-size: 0.85em;}
 .side-label {
 	font-weight: bold;
@@ -254,26 +259,6 @@ code, pre {
 	font-size: 1.1em;
 }
 .alt {color: #555;}
-
-div.emulated-fieldset {
-	position: relative;
-	margin: 20px 0px 10px 0px;
-	border: 1px solid #ccc;
-	width: 320px;
-	background: inherit;
-}
-div.emulated-fieldset span.emulated-legend {
-	display: inline;
-	position: absolute;
-	top: -12px;
-	margin: 0 5px;
-	padding: 4px;
-	background: inherit;
-}
-div.emulated-fieldset div.attachments-list {
-	padding: 10px 3px 3px 3px;
-	width: 320px;
-}
 hr {
 	border:solid #fff 1pt;
 	height: 1pt;

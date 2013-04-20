@@ -48,7 +48,7 @@ if (isset($_POST['save'])) {
 			for ($i = 0; $i < count($poll_option); $i++) {
 				$values .= ", poll_opt_".$i."='".$poll_option[$i]."'";
 			}
-			$result = dbquery("UPDATE ".DB_POLLS." SET poll_title='".$poll_title."' ".$values.", poll_ended='".$ended."' WHERE poll_id='".$_GET['poll_id']."'");
+			$result = dbquery("UPDATE ".DB_POLLS." SET poll_title='".$poll_title."', ".$values.", poll_ended='".$ended."' WHERE poll_id='".$_GET['poll_id']."'");
 			redirect(FUSION_SELF.$aidlink."&amp;status=su");
 		} else {
 			redirect(FUSION_SELF.$aidlink);
@@ -56,11 +56,11 @@ if (isset($_POST['save'])) {
 	} else {
 		if ($poll_title && count($poll_option)) {
 			$values = "";
-			for ($i = 0; $i < 10; $i++) {
+			for ($i = 0; $i < count($poll_option); $i++) {
 				$values .= ", '".$poll_option[$i]."'";
 			}
 			$result = dbquery("UPDATE ".DB_POLLS." SET poll_ended='".time()."' WHERE poll_ended='0'");
-			$result = dbquery("INSERT INTO ".DB_POLLS." (poll_title, poll_opt_0, poll_opt_1, poll_opt_2, poll_opt_3, poll_opt_4, poll_opt_5, poll_opt_6, poll_opt_7, poll_opt_8, poll_opt_9, poll_started, poll_ended) VALUES ('".$poll_title."' ".$values.", '".time()."', '0')");
+			$result = dbquery("INSERT INTO ".DB_POLLS." (poll_title, poll_opt_0, poll_opt_1, poll_opt_2, poll_opt_3, poll_opt_4, poll_opt_5, poll_opt_6, poll_opt_7, poll_opt_8, poll_opt_9, poll_started, poll_ended) VALUES ('".$poll_title."', ".$values.", '".time()."', '0')");
 			redirect(FUSION_SELF.$aidlink."&amp;status=sn");
 		} else {
 			redirect(FUSION_SELF.$aidlink);
@@ -86,7 +86,7 @@ if (isset($_POST['save'])) {
 			echo "<table cellpadding='0' cellspacing='0' width='280' class='center'>\n<tr>\n";
 			echo "<td class='tbl'><strong>".$poll_title."</strong><br /><br />\n".$poll."</td>\n";
 			echo "</tr>\n<tr>\n";
-			echo "<td align='center' class='tbl'><input type='button' name='blank' value='".$locale['430']."' class='button' /></td>\n";
+			echo "<td align='center' class='tbl'><input type='button' name='blank' value='".$locale['430']."' class='button' style='width:70px' /></td>\n";
 			echo "</tr>\n</table>\n";
 			closetable();
 		}

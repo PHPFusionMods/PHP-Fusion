@@ -35,7 +35,7 @@ if (isset($_GET['error']) && isnum($_GET['error']) && !isset($message)) {
 		$message = $locale['901'];
 	}
 	if (isset($message)) {
-		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n";
+		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; 
 	}
 }
 
@@ -47,15 +47,15 @@ while ($data = dbarray($result)) {
 
 if (isset($_POST['savesettings'])) {
 	$error = 0;
-
+	
 	if (addslash($_POST['license_agreement']) != $settings2['license_agreement']) {
 		$license_lastupdate = time();
 	} else {
 		$license_lastupdate = $settings2['license_lastupdate'];
 	}
-
+	
 	$license_agreement = addslash(preg_replace("(^<p>\s</p>$)", "", $_POST['license_agreement']));
-
+	
 	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['enable_registration']) ? $_POST['enable_registration'] : "1")."' WHERE settings_name='enable_registration'");
 	if (!$result) { $error = 1; }
 	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['email_verification']) ? $_POST['email_verification'] : "1")."' WHERE settings_name='email_verification'");
@@ -63,6 +63,8 @@ if (isset($_POST['savesettings'])) {
 	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['admin_activation']) ? $_POST['admin_activation'] : "0")."' WHERE settings_name='admin_activation'");
 	if (!$result) { $error = 1; }
 	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['display_validation']) ? $_POST['display_validation'] : "1")."' WHERE settings_name='display_validation'");
+	if (!$result) { $error = 1; }
+	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".($_POST['login_method'] == "cookies" ? "cookies" : "sessions")."' WHERE settings_name='login_method'");
 	if (!$result) { $error = 1; }
 	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['enable_terms']) ? $_POST['enable_terms'] : "0")."' WHERE settings_name='enable_terms'");
 	if (!$result) { $error = 1; }
@@ -99,6 +101,12 @@ echo "<td width='50%' class='tbl'>".$locale['553']."</td>\n";
 echo "<td width='50%' class='tbl'><select name='display_validation' class='textbox'>\n";
 echo "<option value='1'".($settings2['display_validation'] == "1" ? " selected='selected'" : "").">".$locale['518']."</option>\n";
 echo "<option value='0'".($settings2['display_validation'] == "0" ? " selected='selected'" : "").">".$locale['519']."</option>\n";
+echo "</select></td>\n";
+echo "</tr>\n<tr>\n";
+echo "<td width='50%' class='tbl'>".$locale['560']."</td>\n";
+echo "<td width='50%' class='tbl'><select name='login_method' class='textbox'>\n";
+echo "<option value='cookies'".($settings2['login_method'] == "cookies" ? " selected='selected'" : "").">".$locale['561']."</option>\n";
+echo "<option value='sessions'".($settings2['login_method'] == "sessions" ? " selected='selected'" : "").">".$locale['562']."</option>\n";
 echo "</select></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td width='50%' class='tbl'>".$locale['558']."</td>\n";

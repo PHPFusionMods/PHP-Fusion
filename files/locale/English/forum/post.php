@@ -20,9 +20,6 @@ $locale['426'] = "Posted on ";
 $locale['427'] = "Edited by ";
 $locale['428'] = " on ";
 $locale['429'] = " wrote:";
-$locale['430'] = "User Avatar";
-$locale['431'] = "Latest post";
-$locale['432'] = "Latest %s posts";
 // Post Error/Success
 $locale['440a'] = "Attachment file type not allowed.";
 $locale['440b'] = "Invalid attachment filename or filesize.";
@@ -39,8 +36,6 @@ $locale['450'] = "Error: Your cookie session has expired, please login and repos
 $locale['451'] = "Track Thread";
 $locale['452'] = "You are now tracking this thread";
 $locale['453'] = "You are no longer tracking this thread";
-$locale['454'] = "This post is locked. Contact the moderator for further information.";
-$locale['455'] = "You may only edit a post for %d minute(s) after initial submission.";
 // Post Form
 $locale['460'] = "Subject";
 $locale['461'] = "Message";
@@ -48,7 +43,7 @@ $locale['462'] = "Font Color: ";
 $locale['463'] = "Options";
 $locale['464'] = "Attachment";
 $locale['465'] = " (Optional)";
-$locale['466'] = "Max. filesize: %s / Allowed filetypes: %s / Max. number of  attachments: %s";
+$locale['466'] = "Max. filesize: %s / Allowed filetypes: %s";
 $locale['467'] = "Add Poll (Optional)";
 $locale['468'] = "Edit Poll";
 $locale['469'] = "Poll Title";
@@ -56,7 +51,6 @@ $locale['470'] = "Poll Option";
 $locale['471'] = "Add Option";
 $locale['472'] = "Update";
 $locale['473'] = "Delete";
-$locale['474'] = "Edit Reason";
 // Post Form Options
 $locale['480'] = "Make this Thread Sticky";
 $locale['481'] = "Lock this Thread";
@@ -65,14 +59,8 @@ $locale['483'] = "Show My Signature in this Post";
 $locale['484'] = "Delete this Post";
 $locale['485'] = "Delete attachment -";
 $locale['486'] = "Notify me when a reply is posted";
-$locale['487'] = "Hide Edit";
-$locale['488'] = "Lock Post";
 // Post Access Violation
 $locale['500'] = "You cannot edit this post.";
-
-// Forum Post Merger
-$locale['520'] = "Merged on";
-
 // Search Forum Form
 $locale['530'] = "Search Forum";
 $locale['531'] = "Search Keyword(s)";

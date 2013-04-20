@@ -38,12 +38,12 @@ a:hover { color:#027AC6; text-decoration:underline; }
 
 <div align='center' class='tbl1'><img src='files/images/php-fusion-logo.png' alt='PHP-Fusion' title='PHP-Fusion'><br /><br />
 Copyright &copy; 2002 - 2011 Nick Jones<br />
-<strong>Version:</strong> 7.02.00 - <strong>Released:</strong> 10/04/2011</div>
+<strong>Version:</strong> 7.01.05 BETA 1 - <strong>Released:</strong> 14/02/2011</div>
 
 <div class='tbl2'>INTRODUCTION</div>
 
 <div class='tbl1'>PHP-Fusion is a
-light-weight open-source content management system (CMS) written in PHP 5.
+light-weight open-source content management system (CMS) written in PHP 5 (compatible with PHP 4).
 It utilises a MySQL database to store your site content and includes a simple, comprehensive
 administration system. PHP-Fusion includes the most common features you would expect to see in many
 other CMS packages.
@@ -70,11 +70,9 @@ Released as free software without warranties under <a href='http://www.fsf.org/l
 
 <div class='tbl2'>INSTALLATION</div>
 
-<div class='tbl1'>Before installing PHP-Fusion you need to check the requirements for this version:
-<p>- PHP5<br />
-- MySQL 4
-<p>You have to create a MySQL database. You can do this via your web-hosting control panel or phpMyAdmin.
-Make sure you have your mysql access details at hand including the hostname, username, password and database
+<div class='tbl1'>Before installing PHP-Fusion you need to create a MySQL database. You
+can do this via your web-hosting control panel or phpMyAdmin. Make sure you have your
+mysql access details at hand including the hostname, username, password and database
 name as you will need to specify these during setup.
 
 <p><strong>1.</strong> Before you upload the files, rename the file _config.php (located
@@ -87,12 +85,6 @@ will need to CHMOD the following files and folders to 777:
 
 <ul style='list-style-type:disc'>
 <li>administration/db_backups/</li>
-<li>downloads/</li>
-<li>downloads/images/</li>
-<li>downloads/submissions/</li>
-<li>downloads/submissions/images/</li>
-<li>forum/attachments/</li>
-<li>ftp_upload/</li>
 <li>images/</li>
 <li>images/imagelist.js</li>
 <li>images/articles/</li>
@@ -102,6 +94,7 @@ will need to CHMOD the following files and folders to 777:
 <li>images/news_cats/</li>
 <li>images/photoalbum/</li>
 <li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
 <li>config.php</li>
 </ul>
 
@@ -117,20 +110,18 @@ should run setup.php manually by entering your full site url followed by
 <b>must</b> CHMOD config.php back to 644 AND delete setup.php from your web server.
 Failure to do so could lead to someone else taking control of your site.</div>
 
-<div class='tbl2'>UPGRADE FROM V7.00.XX OR V7.01.XX</div>
+<div class='tbl2'>UPGRADE FROM V7.00.XX</div>
 
 <div class='tbl1'>Before you upgrade we strongly recommend that you backup your
-files and your database as PHP-Fusion 7.02 is a major update from PHP-Fusion 7.01.
+files and your database as PHP-Fusion 7.01 is a major update from PHP-Fusion 7.00.
 You need to follow these instructions precisely.
-We also recommend that you do the upgrade from 7.00.xx to 7.01.xx first before you upgrade to 7.02.00.
 
-<p><strong>1.</strong> Version 7.02 code is mostly compatible with version 7.01, however since
+<p><strong>1.</strong> Version 7 code is mostly compatible with version 7.01, however since
 there are a lot of changes to the core, some addons (mods, infusions, panels or themes) may
 not work properly.
 
 <p><strong>2.</strong> You must first upload the upgrade script from the folder
-named 'upgrade v7' (or 'upgrade v701' if you already have v7.01 running)
-to the administration folder of your site and upload the folder named
+named 'upgrade v7' to the administration folder of your site and upload the folder named 
 'locale' to the root of your site. Without the locale files, some names may not be added
 to the database.
 
@@ -146,19 +137,6 @@ updated all of your files. YOU MUST upload ALL of the files from the /files-fold
 <ul style='list-style-type:disc'>
 <li>_config.php</li>
 <li>setup.php</li>
-</ul>
-
-<p><strong>5.</strong> VERY IMPORTANT: Add the following line to your config.php and replace XXXXX with different chars
-or numbers and use a different prefix for every PHP-Fusion installation!<br /><br />
-define("COOKIE_PREFIX", "fusion_XXXXX");
-
-CHMOD the following files and folders to 777:
-<ul style='list-style-type:disc'>
-<li>downloads/</li>
-<li>downloads/images/</li>
-<li>downloads/submissions/</li>
-<li>downloads/submissions/images/</li>
-<li>ftp_upload/</li>
 </ul>
 
 <p>If at all you are any doubt please feel free to ask one of our support
@@ -185,12 +163,12 @@ resolve any issues you may have within 48 hours.<br /><br />
 
   Addons:
 
-PHP-Fusion's features can be expanded by adding Infusions, these are plugins which are extremely
-easy to install. You can find a variety of useful Infusions in our
+PHP-Fusion's features can be expanded by adding Infusions, these are plugins which are extremely 
+easy to install. You can find a variety of useful Infusions in our 
 <a href='http://www.php-fusion.co.uk/infusions/addondb/'>AddonDB</a>.<br /><br />
 
 If you are not satisfied with PHP-Fusion's bundled themes or if you simply want a more uniqe look
-to your site you can find a large variety of high quality themes also in our
+to your site you can find a large variety of high quality themes also in our 
 <a href='http://www.php-fusion.co.uk/infusions/addondb/'>AddonDB</a>.<br /><br />
 
 PHP-Fusion also has a number of official foreign language support sites based in
@@ -210,7 +188,7 @@ PHP-Fusion also has a number of official foreign language support sites based in
 <a href='http://www.phpfusion-no.com'>Norway</a>,
 <a href='http://www.php-fusion.pl'>Poland</a>,
 <a href='http://www.phpfusion.ro'>Romania</a>,
-<a href='http://netck.ru'>Russia</a>,
+<a href='http://www.rusfusion.ru/'>Russia</a>,
 <a href='http://www.php-fusion.sk'>Slovakia</a>,
 <a href="http://php-fusion.uni.cc/">Spain</a>,
 <a href='http://www.php-fusion.se'>Sweden</a> and
@@ -233,39 +211,47 @@ Nick Jones {Digitanium}</p>
 Hans Kristian Flaatten {Starefossen}</p>
 
 <p><strong>Senior Developers</strong><br />
-Maarten Kossen {mpkossen/mistermartin75}<br />
-Paul Beuk {Muscapaul}<br />
-Arda Kilicdagi {SoulSmasher}<br />
-Nicolae Crefelean {Kneekoo}<br />
 Andy B {gh0st2k}<br />
+Arda Kilicdagi {SoulSmasher}<br />
+Christian Damsgaard J&oslash;rgensen {PMM}<br />
+Karoly Nagy {Korcsii}<br />
+Maarten Kossen {mpkossen/mistermartin75}<br />
 Marcus Gottschalk {MarcusG}<br />
-Karoly Nagy {Korcsii}</p>
+Max Toball {Matonor}<br />
+Nicolae Crefelean {Kneekoo}<br />
+Paul Beuk {Muscapaul}<br />
+Robert Gaudyn {Wooya}</p>
 
 <p><strong>Junior Developers</strong><br />
-Sveinung Skjaerseth {sveinungs}<br />
-Johan K. Jensen {Josso}<br />
+Craig Dewar {Fangree_Craig}<br />
 James {Daywalker}<br />
-Craig Dewar {Fangree_Craig}</p>
+Johan K. Jensen {Josso}<br />
+Patric Forcelini {IceWasp}<br />
+Sveinung Skjaerseth {sveinungs}</p>
 
 <p><strong>Management Team</strong><br />
-Happy Svensson {KEFF}<br />
-Jan M&oslash;lgaard {Janmol}<br />
-Paul Beuk {Muscapaul}<br />
-Nicolae Crefelean {Kneekoo}<br />
 Arda Kilicdagi {SoulSmasher}<br />
 Hans Kristian Flaatten {Starefossen}<br />
-Philip Daly {Hobbyman}</p>
+Happy Svensson {KEFF}<br />
+Jan M&oslash;lgaard {Janmol}<br />
+Johan Wilson {Barspin}<br />
+Nick Jones {Digitanium}<br />
+Nicolae Crefelean {Kneekoo}<br />
+Paul Beuk {Muscapaul}<br />
+Philip Daly {Hobbyman}<br />
+Richard Ainz {Homdax}</p>
 
 <p><strong>Additional Contributors</strong><br />
 Philip Daly {Hobbyman}<br />
 Johan Wilson {Barspin}<br />
-Valerio Vendrame {lelebart}</p>
+Valerio Vendrame {lelebart}<br />
+Claus Pedersen {Flyingduck}</p>
 
 <p><strong>3rd Party Components:</strong><br />
 <a href='http://tinymce.moxiecode.com/'>TinyMCE v3.3.8</a> - A HTML WYSIWYG editor by Moxiecode.<br />
 <a href='http://phpmailer.sourceforge.net/'>PHPMailer v2.0.4</a> - A sendmail class with SMTP support by Brent R. Matzelle.<br />
 <a href='http://www.phpclasses.org/browse/package/2221.html'>HTTPDownload v1.3</a> - A download handler class by Nguyen Quoc Bao.<br />
-<a href='http://jquery.com/'>jQuery v1.5.0</a> - Javascript/Ajax toolkit.<br />
+<a href='http://jquery.com/'>jQuery v1.4.2</a> - Javascript/Ajax toolkit.<br />
 <a href='http://icon-king.com'>Nuvola Icons</a> - Images used in bbcodes, news categories and admin icons by David Vignoni.</div>
 
 </div>

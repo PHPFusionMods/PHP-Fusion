@@ -29,7 +29,4 @@ $locale['444'] = "Delete";
 $locale['445'] = "No Article Categories defined";
 // Delete Article category
 $locale['450'] = "Delete this article category?";
-// Error Messages
-$locale['460'] = "Please enter a category name.";
-$locale['461'] = "This category already exists.";
 ?>

@@ -36,8 +36,4 @@ $locale['440'] = "Max. filesize: %s / Allowed filetypes: GIF, JPEG or PNG.";
 // Popup Error/Warning Messages
 $locale['450'] = "Please specify a subject";
 $locale['451'] = "Delete this News?";
-$locale['452'] = "%s are disabled for all items.<br />This setting will only take effect when they are enabled again.";
-$locale['453'] = "Comments";
-$locale['454'] = "Ratings";
-$locale['455'] = $locale['453']." and ".$locale['454'];
 ?>

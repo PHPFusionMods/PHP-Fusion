@@ -6,7 +6,7 @@
 +--------------------------------------------------------+
 | Filename: infusions.php
 | Author: Nick Jones (Digitanium)
-| Co-Author: Christian Damsgaard J�rgensen (PMM)
+| Co-Author: Christian Damsgaard Jorgensen (PMM)
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or

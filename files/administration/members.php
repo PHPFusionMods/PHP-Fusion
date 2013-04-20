@@ -88,97 +88,306 @@ if (isset($_POST['cancel'])) {
 	}
 // Add new User
 } elseif (isset($_GET['step']) && $_GET['step'] == "add") {
-	require_once INCLUDES."UserFields.class.php";
-	require_once INCLUDES."UserFieldsInput.class.php";
-
-	$errors = array();
 	if (isset($_POST['add_user'])) {
-		$userInput = new UserFieldsInput();
-		$userInput->adminActivation 		= 0;
-		$userInput->emailVerification 		= 0;
-		$userInput->isAdminPanel			= true;
-		$userInput->skipCurrentPass 		= true;
-		$userInput->validation 				= 0;
-		$userInput->saveInsert();
-		$userInput->displayMessages();
-		$errors 							= $userInput->getErrorsArray();
-		unset($userInput);
-	}
+		$error = "";
 
-	if (!isset($_POST['add_user']) || (isset($_POST['add_user']) && count($errors) > 0)) {
+		$username = trim(preg_replace("/ +/i", " ", $_POST['username']));
+
+		if ($username == "" || trim($_POST['password1']) == "" || trim($_POST['email']) == "") { $error .= $locale['451']."<br />\n"; }
+
+		if (!preg_match("/^[-0-9A-Z_@\s]+$/i", $username)) { $error .= $locale['452']."<br />\n"; }
+
+		if (preg_match("/^[0-9A-Z@]{6,20}$/i", $_POST['password1'])) {
+			if ($_POST['password1'] != $_POST['password2']) { $error .= $locale['456']."<br />\n"; }
+		} else {
+			$error .= $locale['457']."<br />\n";
+		}
+
+		if (!preg_match("/^[-0-9A-Z_\.]{1,50}@([-0-9A-Z_\.]+\.){1,50}([0-9A-Z]){2,4}$/i", $_POST['email'])) {
+			$error .= $locale['454']."<br />\n";
+		}
+
+		$result = dbcount("(user_id)", DB_USERS, "user_name='$username'");
+		if (!empty($result)) { $error = $locale['453']."<br />\n"; }
+
+		$result = dbcount("(user_id)", DB_USERS, "user_email='".$_POST['email']."'");
+		if (!empty($result)) { $error = $locale['455']."<br />\n"; }
+
+		$profile_method = "validate_insert"; $db_fields = ""; $db_values = "";
+		$result = dbquery(
+			"SELECT * FROM ".DB_USER_FIELDS." tuf
+			INNER JOIN ".DB_USER_FIELD_CATS." tufc ON tuf.field_cat = tufc.field_cat_id
+			ORDER BY field_cat_order, field_order"
+		);
+		if (dbrows($result)) {
+			while($data = dbarray($result)) {
+				if (file_exists(LOCALE.LOCALESET."user_fields/".$data['field_name'].".php")) {
+					include LOCALE.LOCALESET."user_fields/".$data['field_name'].".php";
+				}
+				if (file_exists(INCLUDES."user_fields/".$data['field_name']."_include.php")) {
+					include INCLUDES."user_fields/".$data['field_name']."_include.php";
+				}
+			}
+		}
+
+		if ($error == "") {
+			$result = dbquery("INSERT INTO ".DB_USERS." (user_name, user_password, user_admin_password, user_email, user_hide_email, user_avatar, user_posts, user_threads, user_joined, user_lastvisit, user_ip, user_rights, user_groups, user_level, user_status, user_actiontime".(isset($db_fields) ? $db_fields : "").") VALUES('$username', '".md5(md5($_POST['password1']))."', '', '".$_POST['email']."', '".intval($_POST['hide_email'])."', '', '0', '0', '".time()."', '0', '".USER_IP."', '', '', '101', '0', '0'".(isset($db_values) ? $db_values : "").")");
+			require_once LOCALE.LOCALESET."admin/members_email.php";
+			require_once INCLUDES."sendmail_include.php";
+			$subject = $locale['email_create_subject'].$settings['sitename'];
+			$replace_this = array("[USER_NAME]", "[PASSWORD]");
+			$replace_with = array($username, $_POST['password1']);
+			$message = str_replace($replace_this, $replace_with, $locale['email_create_message']);
+			sendemail($username, $_POST['email'], $settings['siteusername'], $settings['siteemail'], $subject, $message);
+			opentable($locale['480']);
+			echo "<div style='text-align:center'><br />\n".$locale['481']."<br /><br />\n";
+			echo "<a href='members.php".$aidlink."'>".$locale['432']."</a><br /><br />\n";
+			echo "<a href='index.php".$aidlink."'>".$locale['433']."</a><br /><br />\n";
+			echo "</div>\n";
+			closetable();
+		} else {
+			opentable($locale['480']);
+			echo "<div style='text-align:center'><br />\n".$locale['482']."<br /><br />\n".$error."<br />\n";
+			echo "<a href='members.php".$aidlink."'>".$locale['432']."</a><br /><br />\n";
+			echo "<a href='index.php".$aidlink."'>".$locale['433']."</a><br /><br />\n";
+			echo "</div>\n";
+			closetable();
+		}
+	} else {
 		opentable($locale['480']);
 		member_nav(member_url("add", "")."| ".$locale['480']);
-		$userFields 						= new UserFields();
-		$userFields->postName 				= "add_user";
-		$userFields->postValue 				= $locale['480'];
-		$userFields->formaction				= FUSION_SELF.$aidlink."&amp;step=add";
-		$userFields->isAdminPanel			= true;
-		$userFields->showAdminPass 			= false;
-		$userFields->showAvatarInput 		= false;
-		$userFields->skipCurrentPass 		= true;
-		$userFields->errorsArray 			= $errors;
-		$userFields->displayInput();
+		echo "<form name='addform' method='post' action='".FUSION_SELF.$aidlink."&amp;step=add'>\n";
+		echo "<table cellpadding='0' cellspacing='0' class='center'>\n<tr>\n";
+		echo "<td class='tbl'>".$locale['u001']."<span style='color:#ff0000'>*</span></td>\n";
+		echo "<td class='tbl'><input type='text' name='username' maxlength='30' class='textbox' style='width:200px;' /></td>\n";
+		echo "</tr>\n<tr>\n";
+		echo "<td class='tbl'>".$locale['u002']."<span style='color:#ff0000'>*</span></td>\n";
+		echo "<td class='tbl'><input type='password' name='password1' maxlength='20' class='textbox' style='width:200px;' /></td>\n";
+		echo "</tr>\n<tr>\n";
+		echo "<td class='tbl'>".$locale['u004']."<span style='color:#ff0000'>*</span></td>\n";
+		echo "<td class='tbl'><input type='password' name='password2' maxlength='20' class='textbox' style='width:200px;' /></td>\n";
+		echo "</tr>\n<tr>\n";
+		echo "<td class='tbl'>".$locale['u005']."<span style='color:#ff0000'>*</span></td>\n";
+		echo "<td class='tbl'><input type='text' name='email' maxlength='100' class='textbox' style='width:200px;' /></td>\n";
+		echo "</tr>\n<tr>\n";
+		echo "<td class='tbl'>".$locale['u006']."</td>\n";
+		echo "<td class='tbl'><label><input type='radio' name='hide_email' value='1' />".$locale['u007']."</label> <label><input type='radio' name='hide_email' value='0' checked='checked' />".$locale['u008']."</label></td>\n";
+		echo "</tr>\n<tr>\n";
+		echo "<td align='center' colspan='2'><br />\n";
+		echo "<input type='submit' name='add_user' value='".$locale['480']."' class='button' /></td>\n";
+		echo "</tr>\n</table>\n</form>\n";
 		closetable();
 	}
-
 // View User Profile
 } elseif (isset($_GET['step']) && $_GET['step'] == "view" && $user_id) {
-	require_once INCLUDES."UserFields.class.php";
-
-	$result = dbquery(
-		"SELECT u.*, s.suspend_reason
-		FROM ".DB_USERS." u
-		LEFT JOIN ".DB_SUSPENDS." s ON u.user_id=s.suspended_user
-		WHERE user_id='".$user_id."'
-		ORDER BY suspend_date DESC
-		LIMIT 1"
-	);
+	$result = dbquery("SELECT * FROM ".DB_USERS." WHERE user_id='$user_id'");
 	if (dbrows($result)) { $user_data = dbarray($result); } else { redirect(FUSION_SELF.$aidlink); }
 
+	opentable($locale['470']);
 	member_nav(member_url("view", $user_id)."|".$user_data['user_name']);
-	opentable($locale['u104']." ".$user_data['user_name']);
-	$userFields 							= new UserFields();
-	$userFields->userData 					= $user_data;
-	$userFields->displayOutput();
-	closetable();
+	echo "<table cellpadding='0' cellspacing='1' width='400' class='tbl-border center'>\n<tr>\n";
+	if ($user_data['user_avatar'] && file_exists(IMAGES."avatars/".$user_data['user_avatar'])) {
+		echo "<td rowspan='5' width='1%' class='tbl'><img src='".IMAGES."avatars/".$user_data['user_avatar']."' alt='' /></td>\n";
+	}
+	echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$locale['u001']."</td>\n";
+	echo "<td align='right' class='tbl1'>".$user_data['user_name']."</td>\n";
+	echo "</tr>\n<tr>\n";
+	echo "<td width='1%' class='tbl1' style='white-space:nowrap'></td>\n";
+	echo "<td align='right' class='tbl1'>".getuserlevel($user_data['user_level'])."</td>\n";
+	echo "</tr>\n<tr>\n";
+	echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$locale['u005']."</td>\n";
+	echo "<td align='right' class='tbl1'>".hide_email($user_data['user_email'])."</td>\n";
+	echo "</tr>\n<tr>\n";
+	echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$locale['u040']."</td>\n";
+	echo "<td align='right' class='tbl1'>".showdate("longdate", $user_data['user_joined'])."</td>\n";
+	echo "</tr>\n<tr>\n";
+	echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$locale['u041']."</td>\n";
+	echo "<td align='right' class='tbl1'>".($user_data['user_lastvisit'] ? showdate("longdate", $user_data['user_lastvisit']) : $locale['u042'])."</td>\n";
+	if ($user_data['user_status'] == "0") {
+		echo "</tr>\n<tr>\n";
+		echo "<td colspan='".($user_data['user_avatar'] && file_exists(IMAGES."avatars/".$user_data['user_avatar']) ? "3" : "2")."' class='tbl2' style='text-align:center;white-space:nowrap'><a href='".BASEDIR."messages.php?msg_send=".$user_data['user_id']."' title='".$locale['u043']."'>".$locale['u043']."</a></td>\n";
+	}
+	echo "</tr>\n</table>\n";
 
-// Edit User Profile
-} elseif (isset($_GET['step']) && $_GET['step'] == "edit" && $user_id) {
-	require_once INCLUDES."UserFields.class.php";
-	require_once INCLUDES."UserFieldsInput.class.php";
+	echo "<div style='margin:5px'></div>\n";
 
-	$user_data = dbarray(dbquery("SELECT * FROM ".DB_USERS." WHERE user_id='".$user_id."'"));
-	if (!$user_data || $user_data['user_level'] == 103) { redirect(FUSION_SELF.$aidlink); }
-
-	$errors = array();
-	if (isset($_POST['savechanges'])) {
-		$userInput 							= new UserFieldsInput();
-		$userInput->userData 				= $user_data;
-		$userInput->adminActivation 		= 0;
-		$userInput->emailVerification 		= 0;
-		$userInput->isAdminPanel 			= true;
-		$userInput->skipCurrentPass 		= true;
-		$userInput->saveUpdate();
-		$userInput->displayMessages();
-		$errors 							= $userInput->getErrorsArray();
-
-		$user_data = dbarray(dbquery("SELECT * FROM ".DB_USERS." WHERE user_id='".$user_id."'"));
-		unset($userInput);
+	$profile_method = "display"; $i = 0; $user_cats = array(); $user_fields = array(); $ob_active = false;
+	$result2 = dbquery(
+		"SELECT * FROM ".DB_USER_FIELDS." tuf
+		INNER JOIN ".DB_USER_FIELD_CATS." tufc ON tuf.field_cat = tufc.field_cat_id
+		ORDER BY field_cat_order, field_order"
+	);
+	if (dbrows($result2)) {
+		while($data2 = dbarray($result2)) {
+			if ($i != $data2['field_cat']) {
+				if ($ob_active) {
+					$user_fields[$i] = ob_get_contents();
+					ob_end_clean();
+					$ob_active = false;
+				}
+				$i = $data2['field_cat'];
+				$user_cats[] = array(
+					"field_cat_name" => $data2['field_cat_name'],
+					"field_cat" => $data2['field_cat']
+				);
+			}
+			if (!$ob_active) {
+				ob_start();
+				$ob_active = true;
+			}
+			if (file_exists(LOCALE.LOCALESET."user_fields/".$data2['field_name'].".php")) {
+				include LOCALE.LOCALESET."user_fields/".$data2['field_name'].".php";
+			}
+			if (file_exists(INCLUDES."user_fields/".$data2['field_name']."_include.php")) {
+				include INCLUDES."user_fields/".$data2['field_name']."_include.php";
+			}
+		}
 	}
 
-	opentable($locale['430']);
-	member_nav(member_url("edit", $user_id)."| ".$locale['430']);
-	$userFields 							= new UserFields();
-	$userFields->postName 					= "savechanges";
-	$userFields->postValue 					= $locale['430'];
-	$userFields->formaction					= FUSION_SELF.$aidlink."&amp;step=edit&amp;user_id=".$user_id;
-	$userFields->isAdminPanel				= true;
-	$userFields->showAdminPass 				= false;
-	$userFields->skipCurrentPass 			= true;
-	$userFields->userData 					= $user_data;
-	$userFields->errorsArray 				= $errors;
-	$userFields->displayInput();
+	if ($ob_active) {
+		$user_fields[$i] = ob_get_contents();
+		ob_end_clean();
+	}
+
+	foreach ($user_cats as $category) {
+		if (array_key_exists($category['field_cat'], $user_fields) && $user_fields[$category['field_cat']]) {
+			echo "<div style='margin:5px'></div>\n";
+			echo "<table cellpadding='0' cellspacing='1' width='400' class='tbl-border center'>\n<tr>\n";
+			echo "<td colspan='2' class='tbl2'><strong>".$category['field_cat_name']."</strong></td>\n";
+			echo "</tr>\n".$user_fields[$category['field_cat']];
+			echo "</table>\n";
+		}
+	}
+
+	echo "<div style='margin:5px'></div>\n";
+	echo "<table cellpadding='0' cellspacing='1' width='400' class='tbl-border center'>\n<tr>\n";
+	echo "<td colspan='2' class='tbl2'><strong>".$locale['u048']."</strong></td>\n";
+	echo "</tr>\n<tr>\n";
+	echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$locale['u049']."</td>\n";
+	echo "<td align='right' class='tbl1'>".$user_data['user_ip']."</td>\n";
+	echo "</tr>\n<tr>\n";
+	echo "<td width='1%' class='tbl1' style='white-space:nowrap' colspan='2' align='center'><a href='".FUSION_SELF.$aidlink."&amp;step=log&amp;user_id=".$user_id."'>".$locale['519']."</a></td>\n";
+	echo "</tr>\n</table>\n";
 	closetable();
+// Edit User Profile
+} elseif (isset($_GET['step']) && $_GET['step'] == "edit" && $user_id) {
+	$user_data = dbarray(dbquery("SELECT * FROM ".DB_USERS." WHERE user_id='".$_GET['user_id']."'"));
+	if (!$user_data || $user_data['user_level'] == 103) { redirect(FUSION_SELF.$aidlink); }
+	if (isset($_POST['savechanges'])) {
+		require_once "updateuser.php";
+		if ($error == "") {
+			opentable($locale['430']);
+			echo "<div style='text-align:center'><br />\n";
+			echo $locale['431']."<br /><br />\n";
+			echo "<a href='members.php".$aidlink."'>".$locale['432']."</a><br /><br />\n";
+			echo "<a href='index.php".$aidlink."'>".$locale['433']."</a><br /><br />\n";
+			echo "</div>\n";
+			closetable();
+		} else {
+			opentable($locale['430']);
+			echo "<div style='text-align:center'><br />\n";
+			echo $locale['434']."<br /><br />\n".$error."<br />\n";
+			echo "<a href='members.php".$aidlink."'>".$locale['432']."</a><br /><br />\n";
+			echo "<a href='index.php".$aidlink."'>".$locale['433']."</a><br /><br />\n";
+			echo "</div>\n";
+			closetable();
+		}
+	} else {
+		require_once INCLUDES."bbcode_include.php";
+		$offset_list = "";
+		for ($i = -13; $i < 17; $i++) {
+			if ($i > 0) { $offset = "+".$i; } else { $offset = $i; }
+			$offset_list .= "<option".($offset == $data['user_offset'] ? " selected='selected'" : "").">".$offset."</option>\n";
+		}
+		opentable($locale['430']);
+		member_nav(member_url("edit", $user_id)."| ".$locale['430']);
+		echo "<form name='inputform' method='post' action='".FUSION_SELF.$aidlink."&amp;step=edit&amp;user_id=".$_GET['user_id']."' enctype='multipart/form-data'>\n";
+		echo "<table cellpadding='0' cellspacing='0' class='center'>\n";
+		echo "<tr>\n<td class='tbl'>".$locale['u001'].":<span style='color:#ff0000'>*</span></td>\n";
+		echo "<td class='tbl'><input type='text' name='user_name' value='".$user_data['user_name']."' maxlength='30' class='textbox' style='width:200px;' /></td>\n";
+		echo "</tr>\n<tr>\n";
+		echo "<td class='tbl'>".$locale['u003'].":</td>\n";
+		echo "<td class='tbl'><input type='password' name='user_new_password' maxlength='20' class='textbox' style='width:200px;' /></td>\n";
+		echo "</tr>\n<tr>\n";
+		echo "<td class='tbl'>".$locale['u004'].":</td>\n";
+		echo "<td class='tbl'><input type='password' name='user_new_password2' maxlength='20' class='textbox' style='width:200px;' /></td>\n";
+		echo "</tr>\n<tr>\n";
+		echo "<td class='tbl'>".$locale['u005'].":<span style='color:#ff0000'>*</span></td>\n";
+		echo "<td class='tbl'><input type='text' name='user_email' value='".$user_data['user_email']."' maxlength='100' class='textbox' style='width:200px;' /></td>\n";
+		echo "</tr>\n<tr>\n";
+		echo "<td class='tbl'>".$locale['u006'].":</td>\n";
+		echo "<td class='tbl'><input type='radio' name='user_hide_email' value='1'".($user_data['user_hide_email'] == "1" ? " checked='checked'" : "")." />".$locale['u007']." ";
+		echo "<input type='radio' name='user_hide_email' value='0'".($user_data['user_hide_email'] == "0" ? " checked='checked'" : "")." />".$locale['u008']."</td>\n";
+		echo "</tr>\n";
+
+		if (!$user_data['user_avatar']) {
+			echo "<tr>\n";
+			echo "<td valign='top' class='tbl'>".$locale['u010'].":</td>\n";
+			echo "<td class='tbl'><input type='file' name='user_avatar' class='textbox' style='width:200px;' /><br />\n";
+			echo "<span class='small2'>".$locale['u011']."</span><br />\n";
+			echo "<span class='small2'>".sprintf($locale['u012'], parsebytesize($settings['avatar_filesize']), $settings['avatar_width'], $settings['avatar_height'])."</span></td>\n";
+			echo "</tr>\n";
+		} else {
+			echo "<tr>\n";
+			echo "<td valign='top' class='tbl'>".$locale['u010'].":</td>\n";
+			echo "<td class='tbl'><img src='".IMAGES."avatars/".$user_data['user_avatar']."' alt='".$locale['u010']."' /><br />\n";
+			echo "<input type='checkbox' name='del_avatar' value='y' /> ".$locale['u013']."\n";
+			echo "<input type='hidden' name='user_avatar' value='".$user_data['user_avatar']."' /></td>\n";
+			echo "</tr>\n";
+		}
+
+		$profile_method = "input"; $i = 0; $user_cats = array(); $user_fields = array(); $ob_active = false;
+		$result2 = dbquery(
+			"SELECT * FROM ".DB_USER_FIELDS." tuf
+			INNER JOIN ".DB_USER_FIELD_CATS." tufc ON tuf.field_cat = tufc.field_cat_id
+			ORDER BY field_cat_order, field_order"
+		);
+		if (dbrows($result2)) {
+			while($data2 = dbarray($result2)) {
+				if ($i != $data2['field_cat']) {
+					if ($ob_active) {
+						$user_fields[$i] = ob_get_contents();
+						ob_end_clean();
+						$ob_active = false;
+					}
+					$i = $data2['field_cat'];
+					$user_cats[] = array(
+						"field_cat_name" => $data2['field_cat_name'],
+						"field_cat" => $data2['field_cat']
+					);
+				}
+				if (!$ob_active) {
+					ob_start();
+					$ob_active = true;
+				}
+				if (file_exists(LOCALE.LOCALESET."user_fields/".$data2['field_name'].".php")) {
+					include LOCALE.LOCALESET."user_fields/".$data2['field_name'].".php";
+				}
+				if (file_exists(INCLUDES."user_fields/".$data2['field_name']."_include.php")) {
+					include INCLUDES."user_fields/".$data2['field_name']."_include.php";
+				}
+			}
+		}
+
+		if ($ob_active) {
+			$user_fields[$i] = ob_get_contents();
+			ob_end_clean();
+		}
+
+		foreach ($user_cats as $category) {
+			if (array_key_exists($category['field_cat'], $user_fields) && $user_fields[$category['field_cat']]) {
+				echo "<tr>\n";
+				echo "<td colspan='2' class='tbl2'><strong>".$category['field_cat_name']."</strong></td>\n";
+				echo "</tr>\n".$user_fields[$category['field_cat']];
+			}
+		}
+
+		echo "<tr>\n<td align='center' colspan='2' class='tbl'><br />\n";
+		echo "<input type='hidden' name='user_hash' value='".$user_data['user_password']."' />\n";
+		echo "<input type='submit' name='savechanges' value='".$locale['440']."' class='button' /></td>\n";
+		echo "</tr>\n</table>\n</form>\n";
+		closetable();
+	}
 
 // Delete User
 } elseif (isset($_GET['step']) && $_GET['step'] == "delete" && $user_id) {
@@ -209,6 +418,7 @@ if (isset($_POST['cancel'])) {
 		$result = dbquery("DELETE FROM ".DB_NEWS." WHERE news_name='".$user_id."'");
 		$result = dbquery("DELETE FROM ".DB_POLL_VOTES." WHERE vote_user='".$user_id."'");
 		$result = dbquery("DELETE FROM ".DB_RATINGS." WHERE rating_user='".$user_id."'");
+		$result = dbquery("DELETE FROM ".DB_SHOUTBOX." WHERE shout_name='".$user_id."'");
 		$result = dbquery("DELETE FROM ".DB_SUSPENDS." WHERE suspended_user='".$user_id."'");
 		$result = dbquery("DELETE FROM ".DB_THREADS." WHERE thread_author='".$user_id."'");
 		$result = dbquery("DELETE FROM ".DB_POSTS." WHERE post_author='".$user_id."'");
@@ -222,16 +432,16 @@ if (isset($_POST['cancel'])) {
 	require_once LOCALE.LOCALESET."admin/members_email.php";
 	require_once INCLUDES."sendmail_include.php";
 
-	$result = dbquery("SELECT user_name, user_email, user_status FROM ".DB_USERS." WHERE user_id='".$user_id."' AND user_level<'103'");
+	$result = dbquery("SELECT user_name, user_email, user_status FROM ".DB_USERS." WHERE user_id='$user_id' AND user_level<'103'");
 	if (dbrows($result)) {
 		$udata = dbarray($result);
 		if (isset($_POST['ban_user'])) {
 			if ($udata['user_status'] == 1) {
-				$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='".$user_id."'");
+				$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='$user_id'");
 				unsuspend_log($user_id, 1, stripinput($_POST['ban_reason']));
 				redirect(USER_MANAGEMENT_SELF."&status=bre");
 			} else {
-				$result = dbquery("UPDATE ".DB_USERS." SET user_status='1', user_actiontime='0' WHERE user_id='".$user_id."'");
+				$result = dbquery("UPDATE ".DB_USERS." SET user_status='1', user_actiontime='0' WHERE user_id='$user_id'");
 				suspend_log($user_id, 1, stripinput($_POST['ban_reason']));
 				$message = str_replace("[USER_NAME]", $udata['user_name'], $locale['email_ban_message']);
 				$message = str_replace("[REASON]", stripinput($_POST['ban_reason']), $message);
@@ -245,7 +455,7 @@ if (isset($_POST['cancel'])) {
 				$ban_title = $locale['409']." ".$udata['user_name'];
 			}
 			opentable($ban_title);
-			echo "<form method='post' action='".stripinput(USER_MANAGEMENT_SELF)."&amp;action=1&amp;user_id=".$user_id."'>\n";
+			echo "<form method='post' action='".stripinput(USER_MANAGEMENT_SELF)."&amp;action=1&amp;user_id=$user_id'>\n";
 			echo "<table cellpadding='0' cellspacing='0' width='460' class='center'>\n<tr>\n";
 			echo "<td colspan='2' class='tbl'>".$locale['585a'].$udata['user_name'].".</td>\n";
 			echo "</tr>\n<tr>\n";
@@ -266,10 +476,10 @@ if (isset($_POST['cancel'])) {
 	require_once LOCALE.LOCALESET."admin/members_email.php";
 	require_once INCLUDES."sendmail_include.php";
 
-	$result = dbquery("SELECT user_name, user_email FROM ".DB_USERS." WHERE user_id='".$user_id."' LIMIT 1");
+	$result = dbquery("SELECT user_name, user_email FROM ".DB_USERS." WHERE user_id='$user_id' LIMIT 1");
 	if (dbrows($result)) {
 		$udata = dbarray($result);
-		$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='".$user_id."'");
+		$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='$user_id'");
 		suspend_log($user_id, 2);
 		$subject = $locale['email_activate_subject'].$settings['sitename'];
 		$message = str_replace("[USER_NAME]", $udata['user_name'], $locale['email_activate_message']);
@@ -283,17 +493,17 @@ if (isset($_POST['cancel'])) {
 	include LOCALE.LOCALESET."admin/members_email.php";
 	require_once INCLUDES."sendmail_include.php";
 
-	$result = dbquery("SELECT user_name, user_email, user_status FROM ".DB_USERS." WHERE user_id='".$user_id."' AND user_level<'103'");
+	$result = dbquery("SELECT user_name, user_email, user_status FROM ".DB_USERS." WHERE user_id='$user_id' AND user_level<'103'");
 	if (dbrows($result)) {
 		$udata = dbarray($result);
 		if (isset($_POST['suspend_user'])) {
 			if ($udata['user_status'] == 3) {
-				$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='".$user_id."'");
+				$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='$user_id'");
 				unsuspend_log($user_id, 3, stripinput($_POST['suspend_reason']));
 				redirect(USER_MANAGEMENT_SELF."&status=sre");
 			} else {
 				$actiontime = (isset($_POST['suspend_duration']) && isnum($_POST['suspend_duration']) ? $_POST['suspend_duration'] * 86400 : 864000) + time();
-				$result = dbquery("UPDATE ".DB_USERS." SET user_status='3', user_actiontime='$actiontime' WHERE user_id='".$user_id."'");
+				$result = dbquery("UPDATE ".DB_USERS." SET user_status='3', user_actiontime='$actiontime' WHERE user_id='$user_id'");
 				suspend_log($user_id, 3, stripinput($_POST['suspend_reason']));
 				$message = str_replace("[USER_NAME]", $udata['user_name'], $locale['email_suspend_message']);
 				$message = str_replace("[DATE]", showdate('longdate', $actiontime), $message);
@@ -310,7 +520,7 @@ if (isset($_POST['cancel'])) {
 				$action = $locale['592'];
 			}
 			opentable($suspend_title);
-			echo "<form method='post' action='".stripinput(USER_MANAGEMENT_SELF)."&amp;action=3&amp;user_id=".$user_id."'>\n";
+			echo "<form method='post' action='".stripinput(USER_MANAGEMENT_SELF)."&amp;action=3&amp;user_id=$user_id'>\n";
 			echo "<table cellpadding='0' cellspacing='0' width='460' class='center'>\n<tr>\n";
 			echo "<td colspan='2' class='tbl'>".$locale['594'].$action.$locale['595'].$udata['user_name'].".</td>\n";
 			if ($udata['user_status'] != 3) {
@@ -336,16 +546,16 @@ if (isset($_POST['cancel'])) {
 	require_once LOCALE.LOCALESET."admin/members_email.php";
 	require_once INCLUDES."sendmail_include.php";
 
-	$result = dbquery("SELECT user_name, user_email, user_status FROM ".DB_USERS." WHERE user_id='".$user_id."' AND user_level<'103'");
+	$result = dbquery("SELECT user_name, user_email, user_status FROM ".DB_USERS." WHERE user_id='$user_id' AND user_level<'103'");
 	if (dbrows($result)) {
 		$udata = dbarray($result);
 		if (isset($_POST['sban_user'])) {
 			if ($udata['user_status'] == 4) {
-				$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='".$user_id."'");
+				$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='$user_id'");
 				unsuspend_log($user_id, 4, stripinput($_POST['sban_reason']));
 				redirect(USER_MANAGEMENT_SELF."&status=sbre");
 			} else {
-				$result = dbquery("UPDATE ".DB_USERS." SET user_status='4', user_actiontime='0' WHERE user_id='".$user_id."'");
+				$result = dbquery("UPDATE ".DB_USERS." SET user_status='4', user_actiontime='0' WHERE user_id='$user_id'");
 				suspend_log($user_id, 4, stripinput($_POST['sban_reason']));
 				$message = str_replace("[USER_NAME]", $udata['user_name'], $locale['email_secban_message']);
 				sendemail($udata['user_name'], $data['user_email'], $settings['siteusername'], $settings['siteemail'], $locale['email_secban_subject'], $message);
@@ -360,7 +570,7 @@ if (isset($_POST['cancel'])) {
 				$action = $locale['601'];
 			}
 			opentable($ban_title);
-			echo "<form method='post' action='".stripinput(USER_MANAGEMENT_SELF)."&amp;action=4&amp;user_id=".$user_id."'>\n";
+			echo "<form method='post' action='".stripinput(USER_MANAGEMENT_SELF)."&amp;action=4&amp;user_id=$user_id'>\n";
 			echo "<table cellpadding='0' cellspacing='0' width='460' class='center'>\n<tr>\n";
 			echo "<td colspan='2' class='tbl'>".$locale['594'].$action.$locale['595'].$udata['user_name'].".</td>\n";
 			echo "</tr>\n<tr>\n";
@@ -378,14 +588,14 @@ if (isset($_POST['cancel'])) {
 	}
 // Cancel User
 } elseif (isset($_GET['action']) && $_GET['action'] == 5 && $user_id) {
-	$result = dbquery("SELECT user_status FROM ".DB_USERS." WHERE user_id='".$user_id."' AND user_level<'103'");
+	$result = dbquery("SELECT user_status FROM ".DB_USERS." WHERE user_id='$user_id' AND user_level<'103'");
 	if (dbrows($result)) {
 		$udata = dbarray($result);
 		if ($udata['user_status'] == 5) {
-			$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='".$user_id."'");
+			$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='$user_id'");
 			unsuspend_log($user_id, 5);
 		} else {
-			$result = dbquery("UPDATE ".DB_USERS." SET user_status='5', user_actiontime='".$response_required."' WHERE user_id='".$user_id."'");
+			$result = dbquery("UPDATE ".DB_USERS." SET user_status='5', user_actiontime='".$response_required."' WHERE user_id='$user_id'");
 			suspend_log($user_id, 5);
 		}
 		redirect(USER_MANAGEMENT_SELF);
@@ -394,14 +604,14 @@ if (isset($_POST['cancel'])) {
 	}
 // Annonymise User
 } elseif (isset($_GET['action']) && $_GET['action'] == 6 && $user_id) {
-	$result = dbquery("SELECT user_status FROM ".DB_USERS." WHERE user_id='".$user_id."' AND user_level<'103'");
+	$result = dbquery("SELECT user_status FROM ".DB_USERS." WHERE user_id='$user_id' AND user_level<'103'");
 	if (dbrows($result)) {
 		$udata = dbarray($result);
 		if ($udata['user_status'] == 6) {
-			$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='".$user_id."'");
+			$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='$user_id'");
 			unsuspend_log($user_id, 6);
 		} else {
-			$result = dbquery("UPDATE ".DB_USERS." SET user_status='6', user_actiontime='0' WHERE user_id='".$user_id."'");
+			$result = dbquery("UPDATE ".DB_USERS." SET user_status='6', user_actiontime='0' WHERE user_id='$user_id'");
 			suspend_log($user_id, 6);
 		}
 		redirect(USER_MANAGEMENT_SELF);
@@ -410,11 +620,11 @@ if (isset($_POST['cancel'])) {
 	}
 // Deactivate User
 } elseif (isset($_GET['action']) && $_GET['action'] == 7 && $user_id) {
-	$result = dbquery("SELECT user_status FROM ".DB_USERS." WHERE user_id='".$user_id."' AND user_level<'103'");
+	$result = dbquery("SELECT user_status FROM ".DB_USERS." WHERE user_id='$user_id' AND user_level<'103'");
 	if (dbrows($result)) {
 		$udata = dbarray($result);
 		if ($udata['user_status'] == 7) {
-			$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='".$user_id."'");
+			$result = dbquery("UPDATE ".DB_USERS." SET user_status='0', user_actiontime='0' WHERE user_id='$user_id'");
 			unsuspend_log($user_id, 7);
 		} else {
 			require_once LOCALE.LOCALESET."admin/members_email.php";

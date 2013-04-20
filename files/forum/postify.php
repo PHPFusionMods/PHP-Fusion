@@ -23,13 +23,11 @@ add_to_title($locale['global_204']);
 
 if (!isset($_GET['forum_id']) || !isnum($_GET['forum_id'])) { redirect("index.php"); }
 
-if (!isset($_GET['error']) || !isnum($_GET['error']) || $_GET['error'] == 0 || $_GET['error'] > 6) { $_GET['error'] = 0; $errorb = ""; }
+if (!isset($_GET['error']) || !isnum($_GET['error']) || $_GET['error'] == 0 || $_GET['error'] > 4) { $_GET['error'] = 0; $errorb = ""; }
 elseif ($_GET['error'] == 1) { $errorb = $locale['440a']; }
 elseif ($_GET['error'] == 2) { $errorb = $locale['440b']; }
 elseif ($_GET['error'] == 3) { $errorb = $locale['441']; }
 elseif ($_GET['error'] == 4) { $errorb = $locale['450']; }
-elseif ($_GET['error'] == 5) { $errorb = $locale['454']; }
-elseif ($_GET['error'] == 6) { $errorb = sprintf($locale['455'], $settings['forum_edit_timelimit']); }
 
 $valid_get = array("on", "off", "new", "reply", "edit");
 

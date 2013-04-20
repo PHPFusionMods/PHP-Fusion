@@ -17,20 +17,6 @@
 +--------------------------------------------------------*/
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-include_once INFUSIONS."shoutbox_panel/infusion_db.php";
-include_once INCLUDES."infusions_include.php";
-
-// Check if locale file is available matching the current site locale setting.
-if (file_exists(INFUSIONS."shoutbox_panel/locale/".$settings['locale'].".php")) {
-	// Load the locale file matching the current site locale setting.
-	include INFUSIONS."shoutbox_panel/locale/".$settings['locale'].".php";
-} else {
-	// Load the infusion's default locale file.
-	include INFUSIONS."shoutbox_panel/locale/English.php";
-}
-
-$shout_settings = get_settings("shoutbox_panel");
-
 $link = FUSION_SELF.(FUSION_QUERY ? "?".FUSION_QUERY : "");
 $link = preg_replace("^(&amp;|\?)s_action=(edit|delete)&amp;shout_id=\d*^", "", $link);
 $sep = stristr($link, "?") ? "&amp;" : "?";
@@ -43,57 +29,55 @@ if (iMEMBER && (isset($_GET['s_action']) && $_GET['s_action'] == "delete") && (i
 	redirect($link);
 }
 
-if (!function_exists("sbwrap")) {
-	function sbwrap($text) {
-		global $locale;
+function sbwrap($text) {
+	global $locale;
 
-		$i = 0; $tags = 0; $chars = 0; $res = "";
+	$i = 0; $tags = 0; $chars = 0; $res = "";
 
-		$str_len = strlen($text);
+	$str_len = strlen($text);
 
-		for ($i = 0; $i < $str_len; $i++) {
-			$chr = mb_substr($text, $i, 1, $locale['charset']);
-			if ($chr == "<") {
-				if (mb_substr($text, ($i + 1), 6, $locale['charset']) == "a href" || mb_substr($text, ($i + 1), 3, $locale['charset']) == "img") {
-					$chr = " ".$chr;
-					$chars = 0;
-				}
-				$tags++;
-			} elseif ($chr == "&") {
-				if (mb_substr($text, ($i + 1), 5, $locale['charset']) == "quot;") {
-					$chars = $chars - 5;
-				} elseif (mb_substr($text, ($i + 1), 4, $locale['charset']) == "amp;" || mb_substr($text, ($i + 1), 4, $locale['charset']) == "#39;" || mb_substr($text, ($i + 1), 4, $locale['charset']) == "#92;") {
-					$chars = $chars - 4;
-				} elseif (mb_substr($text, ($i + 1), 3, $locale['charset']) == "lt;" || mb_substr($text, ($i + 1), 3, $locale['charset']) == "gt;") {
-					$chars = $chars - 3;
-				}
-			} elseif ($chr == ">") {
-				$tags--;
-			} elseif ($chr == " ") {
-				$chars = 0;
-			} elseif (!$tags) {
-				$chars++;
-			}
-
-			if (!$tags && $chars == 18) {
-				$chr .= "<br />";
+	for ($i = 0; $i < $str_len; $i++) {
+		$chr = mb_substr($text, $i, 1, $locale['charset']);
+		if ($chr == "<") {
+			if (mb_substr($text, ($i + 1), 6, $locale['charset']) == "a href" || mb_substr($text, ($i + 1), 3, $locale['charset']) == "img") {
+				$chr = " ".$chr;
 				$chars = 0;
 			}
-			$res .= $chr;
+			$tags++;
+		} elseif ($chr == "&") {
+			if (mb_substr($text, ($i + 1), 5, $locale['charset']) == "quot;") {
+				$chars = $chars - 5;
+			} elseif (mb_substr($text, ($i + 1), 4, $locale['charset']) == "amp;" || mb_substr($text, ($i + 1), 4, $locale['charset']) == "#39;" || mb_substr($text, ($i + 1), 4, $locale['charset']) == "#92;") {
+				$chars = $chars - 4;
+			} elseif (mb_substr($text, ($i + 1), 3, $locale['charset']) == "lt;" || mb_substr($text, ($i + 1), 3, $locale['charset']) == "gt;") {
+				$chars = $chars - 3;
+			}
+		} elseif ($chr == ">") {
+			$tags--;
+		} elseif ($chr == " ") {
+			$chars = 0;
+		} elseif (!$tags) {
+			$chars++;
 		}
 
-		return $res;
+		if (!$tags && $chars == 18) {
+			$chr .= "<br />";
+			$chars = 0;
+		}
+		$res .= $chr;
 	}
+
+	return $res;
 }
 
-openside($locale['SB_title']);
-if (iMEMBER || $shout_settings['guest_shouts'] == "1") {
+openside($locale['global_150']);
+if (iMEMBER || $settings['guestposts'] == "1") {
 	include_once INCLUDES."bbcode_include.php";
 	if (isset($_POST['post_shout'])) {
 		$flood = false;
 		if (iMEMBER) {
 			$shout_name = $userdata['user_id'];
-		} elseif ($shout_settings['guest_shouts'] == "1") {
+		} elseif ($settings['guestposts'] == "1") {
 			$shout_name = trim(stripinput($_POST['shout_name']));
 			$shout_name = preg_replace("(^[+0-9\s]*)", "", $shout_name);
 			if (isnum($shout_name)) { $shout_name = ""; }
@@ -115,7 +99,7 @@ if (iMEMBER || $shout_settings['guest_shouts'] == "1") {
 		} elseif ($shout_name && $shout_message) {
 			require_once INCLUDES."flood_include.php";
 			if (!flood_control("shout_datestamp", DB_SHOUTBOX, "shout_ip='".USER_IP."'")) {
-				$result = dbquery("INSERT INTO ".DB_SHOUTBOX." (shout_name, shout_message, shout_datestamp, shout_ip, shout_ip_type, shout_hidden) VALUES ('$shout_name', '$shout_message', '".time()."', '".USER_IP."', '".USER_IP_TYPE."', '0')");
+				$result = dbquery("INSERT INTO ".DB_SHOUTBOX." (shout_name, shout_message, shout_datestamp, shout_ip, shout_hidden) VALUES ('$shout_name', '$shout_message', '".time()."', '".USER_IP."', '0')");
 			}
 		}
 		redirect($link);
@@ -150,23 +134,23 @@ if (iMEMBER || $shout_settings['guest_shouts'] == "1") {
 	echo "<a id='edit_shout' name='edit_shout'></a>\n";
 	echo "<form name='shout_form' method='post' action='".$shout_link."'>\n";
 	if (iGUEST) {
-		echo $locale['SB_name']."<br />\n";
+		echo $locale['global_151']."<br />\n";
 		echo "<input type='text' name='shout_name' value='' class='textbox' maxlength='30' style='width:140px' /><br />\n";
-		echo $locale['SB_message']."<br />\n";
+		echo $locale['global_152']."<br />\n";
 	}
 	echo "<textarea name='shout_message' rows='4' cols='20' class='textbox' style='width:140px'>".$shout_message."</textarea><br />\n";
 	echo display_bbcodes("150px;", "shout_message", "shout_form", "smiley|b|u|url|color")."\n";
 	if (iGUEST) {
-		echo $locale['SB_validation_code']."<br />\n";
+		echo $locale['global_158']."<br />\n";
 		echo "<img id='sb_captcha' src='".INCLUDES."securimage/securimage_show.php' alt='' /><br />\n";
     echo "<a href='".INCLUDES."securimage/securimage_play.php'><img src='".INCLUDES."securimage/images/audio_icon.gif' alt='' class='tbl-border' style='margin-bottom:1px' /></a>\n";
     echo "<a href='#' onclick=\"document.getElementById('sb_captcha').src = '".INCLUDES."securimage/securimage_show.php?sid=' + Math.random(); return false\"><img src='".INCLUDES."securimage/images/refresh.gif' alt='' class='tbl-border' /></a><br />\n";
-		echo $locale['SB_enter_validation_code']."<br />\n<input type='text' name='sb_captcha_code' class='textbox' style='width:100px' /><br />\n";
+		echo $locale['global_159']."<br />\n<input type='text' name='sb_captcha_code' class='textbox' style='width:100px' /><br />\n";
 	}
-	echo "<br /><input type='submit' name='post_shout' value='".$locale['SB_shout']."' class='button' />\n";
+	echo "<br /><input type='submit' name='post_shout' value='".$locale['global_153']."' class='button' />\n";
 	echo "</form>\n<br />\n";
 } else {
-	echo "<div style='text-align:center'>".$locale['SB_login_req']."</div><br />\n";
+	echo "<div style='text-align:center'>".$locale['global_154']."</div><br />\n";
 }
 $numrows = dbcount("(shout_id)", DB_SHOUTBOX, "shout_hidden='0'");
 $result = dbquery(
@@ -174,7 +158,7 @@ $result = dbquery(
 	FROM ".DB_SHOUTBOX." ts
 	LEFT JOIN ".DB_USERS." tu ON ts.shout_name=tu.user_id
 	WHERE shout_hidden='0'
-	ORDER BY ts.shout_datestamp DESC LIMIT 0,".$shout_settings['visible_shouts']
+	ORDER BY ts.shout_datestamp DESC LIMIT 0,".$settings['numofshouts']
 );
 if (dbrows($result)) {
 	$i = 0;
@@ -186,20 +170,20 @@ if (dbrows($result)) {
 			echo $data['shout_name']."\n";
 		}
 		echo "</div>\n";
-		echo "<div class='shoutboxdate'>".showdate("forumdate", $data['shout_datestamp'])."</div>";
+		echo "<div class='shoutboxdate'>".showdate("shortdate", $data['shout_datestamp'])."</div>";
 		echo "<div class='shoutbox'>".sbwrap(parseubb(parsesmileys($data['shout_message']), "b|i|u|url|color"))."</div>\n";
 		if ((iADMIN && checkrights("S")) || (iMEMBER && $data['shout_name'] == $userdata['user_id'] && isset($data['user_name']))) {
-			echo "[<a href='".$link.$sep."s_action=edit&amp;shout_id=".$data['shout_id']."#edit_shout"."' class='side'>".$locale['SB_edit']."</a>]\n";
-			echo "[<a href='".$link.$sep."s_action=delete&amp;shout_id=".$data['shout_id']."' class='side'>".$locale['SB_delete']."</a>]<br />\n";
+			echo "[<a href='".$link.$sep."s_action=edit&amp;shout_id=".$data['shout_id']."#edit_shout"."' class='side'>".$locale['global_076']."</a>]\n";
+			echo "[<a href='".$link.$sep."s_action=delete&amp;shout_id=".$data['shout_id']."' class='side'>".$locale['global_157']."</a>]<br />\n";
 		}
 		$i++;
 		if ($i != $numrows) { echo "<br />\n"; }
 	}
-	if ($numrows > $shout_settings['visible_shouts']) {
-		echo "<div style='text-align:center'>\n<a href='".INFUSIONS."shoutbox_panel/shoutbox_archive.php' class='side'>".$locale['SB_archive']."</a>\n</div>\n";
+	if ($numrows > $settings['numofshouts']) {
+		echo "<div style='text-align:center'>\n<a href='".INFUSIONS."shoutbox_panel/shoutbox_archive.php' class='side'>".$locale['global_155']."</a>\n</div>\n";
 	}
 } else {
-	echo "<div>".$locale['SB_no_msgs']."</div>\n";
+	echo "<div>".$locale['global_156']."</div>\n";
 }
 closeside();
 ?>

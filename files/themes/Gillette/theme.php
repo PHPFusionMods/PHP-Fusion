@@ -7,7 +7,7 @@ require_once INCLUDES."theme_functions_include.php";
 
 function render_page($license = false) {
 	
-	global $settings, $main_style, $locale, $mysql_queries_time;
+	global $settings, $main_style, $locale;
 
 	//Header
 	echo "<table cellpadding='0' cellspacing='0' width='100%'>\n<tr>\n";
@@ -40,42 +40,7 @@ function render_page($license = false) {
 	if (!$license) { echo "<br /><br />\n".showcopyright(); }
 	echo "</td>\n";
 	echo "</tr>\n</table>\n";
-	
-	/*foreach ($mysql_queries_time as $query) {
-		echo $query[0]." QUERY: ".$query[1]."<br />";
-	}*/
 
-}
-
-/* New in v7.02 - render comments */
-function render_comments($c_data, $c_info){
-	global $locale;
-	opentable($locale['c100']);
-	if (!empty($c_data)){
-		echo "<div class='comments floatfix'>\n";
-			$c_makepagenav = '';
-			if ($c_info['c_makepagenav'] !== FALSE) { 
-			echo $c_makepagenav = "<div style='text-align:center;margin-bottom:5px;'>".$c_info['c_makepagenav']."</div>\n"; 
-		}
-			foreach($c_data as $data) {
-			echo "<div class='tbl2'>\n";
-			if ($data['edit_dell'] !== FALSE) { 
-				echo "<div style='float:right' class='comment_actions'>".$data['edit_dell']."\n</div>\n";
-			}
-			echo "<a href='".FUSION_REQUEST."#c".$data['comment_id']."' id='c".$data['comment_id']."' name='c".$data['comment_id']."'>#".$data['i']."</a> |\n";
-			echo "<span class='comment-name'>".$data['comment_name']."</span>\n";
-			echo "<span class='small'>".$data['comment_datestamp']."</span>\n";
-			echo "</div>\n<div class='tbl1 comment_message'>".$data['comment_message']."</div>\n";
-		}
-		echo $c_makepagenav;
-		if ($c_info['admin_link'] !== FALSE) {
-			echo "<div style='float:right' class='comment_admin'>".$c_info['admin_link']."</div>\n";
-		}
-		echo "</div>\n";
-	} else {
-		echo $locale['c101']."\n";
-	}
-	closetable();   
 }
 
 function render_news($subject, $news, $info) {
@@ -86,7 +51,7 @@ function render_news($subject, $news, $info) {
 	echo "<td class='capmain-right'></td>\n";
 	echo "</tr>\n</table>\n";
 	echo "<table width='100%' cellpadding='0' cellspacing='0' class='spacer'>\n<tr>\n";
-	echo "<td class='main-body middle-border'>".$info['cat_image'].$news."</td>\n";
+	echo "<td class='main-body middle-border'>".$news."</td>\n";
 	echo "</tr>\n<tr>\n";
 	echo "<td align='center' class='news-footer middle-border'>\n";
 	echo newsposter($info," &middot;").newscat($info," &middot;").newsopts($info,"&middot;").itemoptions("N",$info['news_id']);
@@ -140,7 +105,7 @@ function openside($title, $collapse = false, $state = "on") {
 	
 	echo "<table cellpadding='0' cellspacing='0' width='100%'>\n<tr>\n";
 	echo "<td class='scapmain-left'></td>\n";
-	echo "<td class='scapmain'>".$title."</td>\n";
+	echo "<td class='scapmain'>$title</td>\n";
 	if ($collapse == true) {
 		$boxname = str_replace(" ", "", $title);
 		echo "<td class='scapmain' align='right'>".panelbutton($state, $boxname)."</td>\n";

@@ -19,7 +19,4 @@ $locale['435'] = "No News Categories defined";
 $locale['436'] = "Click Here to upload category images";
 // Popup Error/Warning Messages
 $locale['450'] = "Delete this news category?";
-// Error Messages
-$locale['460'] = "Please enter a category name.";
-$locale['461'] = "This category already exists.";
 ?>

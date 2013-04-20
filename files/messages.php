@@ -167,7 +167,7 @@ if (isset($_POST['send_message'])) {
 		require_once INCLUDES."flood_include.php";
 		if (!flood_control("message_datestamp", DB_MESSAGES, "message_from='".$userdata['user_id']."'")) {
 			$result = dbquery(
-				"SELECT u.user_id, u.user_name, u.user_email, u.user_level, mo.pm_email_notify, s.pm_inbox, COUNT(message_id) as message_count
+				"SELECT u.user_id, u.user_name, u.user_email, u.user_level, mo.pm_email_notify, s.pm_inbox, COUNT(message_id) as message_count 
 				FROM ".DB_USERS." u
 				LEFT JOIN ".DB_MESSAGES_OPTIONS." mo USING(user_id)
 				LEFT JOIN ".DB_MESSAGES_OPTIONS." s ON s.user_id='0'
@@ -180,10 +180,10 @@ if (isset($_POST['send_message'])) {
 					if ($data['user_id'] == 1 || $data['user_level'] > 101 || $data['pm_inbox'] == "0" || ($data['message_count'] + 1) <= $data['pm_inbox']) {
 						$result = dbquery("INSERT INTO ".DB_MESSAGES." (message_to, message_from, message_subject, message_message, message_smileys, message_read, message_datestamp, message_folder) VALUES('".$data['user_id']."','".$userdata['user_id']."','".$subject."','".$message."','".$smileys."','0','".time()."','0')");
 						$send_email = isset($data['pm_email_notify']) ? $data['pm_email_notify'] : $msg_settings['pm_email_notify'];
-						if ($send_email == "1") {
+						if ($send_email == "1") { 
 							$message_content = str_replace("[SUBJECT]", $subject, $locale['626']);
 							$message_content = str_replace("[USER]", $userdata['user_name'], $message_content);
-							sendemail($data['user_name'], $data['user_email'], $settings['siteusername'], $settings['siteemail'], $locale['625'], $data['user_name'].$message_content);
+							sendemail($data['user_name'], $data['user_email'], $settings['siteusername'], $settings['siteemail'], $locale['625'], $data['user_name'].$message_content); 
 						}
 					} else {
 						$error = "2";
@@ -274,7 +274,7 @@ if (!isset($_GET['msg_send']) && !isset($_GET['msg_read']) && $_GET['folder'] !=
 			ORDER BY message_datestamp DESC LIMIT ".$_GET['rowstart'].",20"
 		);
 	}
-
+	
 	$folders = array("inbox" => $locale['402'], "outbox" => $locale['403'], "archive" => $locale['404'], "options" => $locale['425']);
 	add_to_title($locale['global_201'].$folders[$_GET['folder']]);
 	opentable($locale['400']);
@@ -300,7 +300,7 @@ if (!isset($_GET['msg_send']) && !isset($_GET['msg_read']) && $_GET['folder'] !=
 			echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".showdate("shortdate", $data['message_datestamp'])."</td>\n</tr>\n";
 		}
 		echo "</table>\n";
-
+		
 		echo "<table cellpadding='0' cellspacing='0' width='100%'>\n";
 		echo "<tr>\n<td class='tbl'><a href='#' onclick=\"javascript:setChecked('pm_form','check_mark[]',1);return false;\">".$locale['410']."</a> |\n";
 		echo "<a href='#' onclick=\"javascript:setChecked('pm_form','check_mark[]',0);return false;\">".$locale['411']."</a></td>\n";
@@ -315,12 +315,12 @@ if (!isset($_GET['msg_send']) && !isset($_GET['msg_read']) && $_GET['folder'] !=
 		echo "<div style='text-align:center'><br />".$locale['461']."<br /><br /></div>";
 	}
 	echo "<script type='text/javascript'>\n";
-	echo "/* <![CDATA[ */\n";
+	echo "/* <![CDATA[ */";
 	echo "function setChecked(frmName,chkName,val) {"."\n";
 	echo "dml=document.forms[frmName];"."\n"."len=dml.elements.length;"."\n"."for(i=0;i < len;i++) {"."\n";
 	echo "if(dml.elements[i].name == chkName) {"."\n"."dml.elements[i].checked = val;"."\n";
 	echo "}\n}\n}\n";
-	echo "/* ]]> */\n";
+	echo "/* ]]>\n */";
 	echo "</script>\n";
 	closetable();
 	if ($total_rows > 20) echo "<div align='center' style='margin-top:5px;'>\n".makepagenav($_GET['rowstart'], 20, $total_rows, 3, FUSION_SELF."?folder=".$_GET['folder']."&amp;")."\n</div>\n";
@@ -373,7 +373,7 @@ if (!isset($_GET['msg_send']) && !isset($_GET['msg_read']) && $_GET['folder'] !=
 	closetable();
 } elseif ((isset($_GET['msg_read']) && isnum($_GET['msg_read'])) && ($_GET['folder'] == "inbox" || $_GET['folder'] == "archive" || $_GET['folder'] == "outbox")) {
 	$result = dbquery(
-		"SELECT m.message_id, m.message_subject, m.message_message, m.message_smileys,
+		"SELECT m.message_id, m.message_subject, m.message_message, m.message_smileys, 
 		m.message_datestamp, m.message_folder, u.user_id, u.user_name, u.user_status
 		FROM ".DB_MESSAGES." m
 		LEFT JOIN ".DB_USERS." u ON m.message_from=u.user_id
@@ -434,9 +434,9 @@ if (!isset($_GET['msg_send']) && !isset($_GET['msg_read']) && $_GET['folder'] !=
 		closetable();
 	} else {
 		$subject = ""; $message = ""; $msg_send_state = ""; $msg_to_group = "";
-		$msg_to_group_state = " disabled"; $sendtoall_chk = ""; $disablesmileys_chk = "";
-	}
-
+		$msg_to_group_state = " disabled"; $sendtoall_chk = ""; $disablesmileys_chk = "";	
+	}	
+	
 	if (isset($_GET['msg_id']) && isnum($_GET['msg_id'])) {
 		$result = dbquery(
 			"SELECT m.message_subject, m.message_message, m.message_smileys, u.user_id, u.user_name FROM ".DB_MESSAGES." m
@@ -451,7 +451,7 @@ if (!isset($_GET['msg_send']) && !isset($_GET['msg_read']) && $_GET['folder'] !=
 	} else {
 		$reply_message = "";
 	}
-
+		
 	if (!isset($_POST['chk_sendtoall']) || $_GET['msg_send'] != "0") {
 		$user_list = ""; $user_types = ""; $sel = "";
 		$result = dbquery("SELECT user_id, user_name FROM ".DB_USERS." WHERE user_status='0' ORDER BY user_level DESC, user_name ASC");
@@ -462,7 +462,7 @@ if (!isset($_GET['msg_send']) && !isset($_GET['msg_read']) && $_GET['folder'] !=
 			}
 		}
 	}
-
+	
 	if (iADMIN && !isset($_GET['msg_id'])) {
 		$user_groups = getusergroups();
 		while(list($key, $user_group) = each($user_groups)){
@@ -472,7 +472,7 @@ if (!isset($_GET['msg_send']) && !isset($_GET['msg_read']) && $_GET['folder'] !=
 			}
 		}
 	}
-
+	
 	add_to_title($locale['global_201'].$locale['420']);
 	opentable($locale['420']);
 	echo "<form name='inputform' method='post' action='".FUSION_SELF."?msg_send=0' onsubmit=\"return ValidateForm(this)\">\n";
@@ -510,8 +510,8 @@ if (!isset($_GET['msg_send']) && !isset($_GET['msg_read']) && $_GET['folder'] !=
 	echo "<input type='submit' name='send_message' value='".$locale['430']."' class='button' />\n</td>\n</tr>\n";
 	echo "</table>\n</form>\n";
 	closetable();
-	echo "<script type='text/javascript'>\n";
-	echo "/* <![CDATA[ */\n";
+	echo "<script type='text/javascript'>";
+	echo "/* <![CDATA[ */";
 	echo "function ValidateForm(frm){\n";
 	echo "if (frm.subject.value == \"\" || frm.message.value == \"\"){\n";
 	echo "alert(\"".$locale['486']."\");return false;}\n";

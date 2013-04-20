@@ -23,7 +23,6 @@ require_once THEMES."templates/admin_header.php";
 include LOCALE.LOCALESET."admin/forums.php";
 
 if (isset($_GET['action']) && $_GET['action'] == "prune") { require_once "forums_prune.php"; }
-
 if (isset($_GET['action']) && $_GET['action'] == "refresh") {
 	$i = 1; $k = 1;
 	$result = dbquery("SELECT forum_id FROM ".DB_FORUMS." WHERE forum_cat='0' ORDER BY forum_order");
@@ -44,10 +43,6 @@ if (isset($_GET['status']) && !isset($message)) {
 		$message = $locale['410'];
 	} elseif ($_GET['status'] == "savecu") {
 		$message = $locale['411'];
-	} elseif ($_GET['status'] == "savect") {
-		$message = $locale['516'];
-	} elseif ($_GET['status'] == "saveft") {
-		$message = $locale['517'];
 	} elseif ($_GET['status'] == "savefn") {
 		$message = $locale['510'];
 	} elseif ($_GET['status'] == "savefu") {
@@ -68,46 +63,42 @@ if (isset($_GET['status']) && !isset($message)) {
 
 if (isset($_POST['save_cat'])) {
 	$cat_name = trim(stripinput($_POST['cat_name']));
-	if ($cat_name != "") {
-		if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])) && (isset($_GET['t']) && $_GET['t'] == "cat")) {
-			$result = dbquery("UPDATE ".DB_FORUMS." SET forum_name='$cat_name' WHERE forum_id='".$_GET['forum_id']."'");
-			redirect(FUSION_SELF.$aidlink."&status=savecu");
-		} else {
+	if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])) && (isset($_GET['t']) && $_GET['t'] == "cat")) {
+		$result = dbquery("UPDATE ".DB_FORUMS." SET forum_name='$cat_name' WHERE forum_id='".$_GET['forum_id']."'");
+		redirect(FUSION_SELF.$aidlink."&status=savecu");
+	} else {
+		if ($cat_name) {
 			$cat_order = isnum($_POST['cat_order']) ? $_POST['cat_order'] : "";
 			if(!$cat_order) $cat_order=dbresult(dbquery("SELECT MAX(forum_order) FROM ".DB_FORUMS." WHERE forum_cat='0'"),0)+1;
 			$result = dbquery("UPDATE ".DB_FORUMS." SET forum_order=forum_order+1 WHERE forum_cat='0' AND forum_order>='$cat_order'");
 			$result = dbquery("INSERT INTO ".DB_FORUMS." (forum_cat, forum_name, forum_order, forum_description, forum_moderators, forum_access, forum_post, forum_reply, forum_poll, forum_vote, forum_attach, forum_lastpost, forum_lastuser) VALUES ('0', '$cat_name', '$cat_order', '', '', '0', '0', '0', '0', '0', '0', '0', '0')");
 			redirect(FUSION_SELF.$aidlink."&status=savecn");
 		}
-	} else {
-		redirect(FUSION_SELF.$aidlink."&status=savect");
 	}
 } elseif (isset($_POST['save_forum'])) {
 	$forum_name = trim(stripinput($_POST['forum_name']));
 	$forum_description = trim(stripinput($_POST['forum_description']));
 	$forum_cat = isnum($_POST['forum_cat']) ? $_POST['forum_cat'] : 0;
-	if ($forum_name != "") {
-		if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])) && (isset($_GET['t']) && $_GET['t'] == "forum")) {
-			$forum_mods = $_POST['forum_mods'];
-			$forum_access = isnum($_POST['forum_access']) ? $_POST['forum_access'] : 0;
-			$forum_post = isnum($_POST['forum_post']) ? $_POST['forum_post'] : 0;
-			$forum_reply = isnum($_POST['forum_reply']) ? $_POST['forum_reply'] : 0;
-			$forum_attach = isnum($_POST['forum_attach']) ? $_POST['forum_attach'] : 0;
-			$forum_attach_download = isnum($_POST['forum_attach_download']) ? $_POST['forum_attach_download'] : 0;
-			$forum_poll = isnum($_POST['forum_poll']) ? $_POST['forum_poll'] : 0;
-			$forum_vote = isnum($_POST['forum_vote']) ? $_POST['forum_vote'] : 0;
-			$forum_merge = (isset($_POST['forum_merge']) && isnum($_POST['forum_merge']) ? $_POST['forum_merge'] : 0);
-			$result = dbquery("UPDATE ".DB_FORUMS." SET forum_name='".$forum_name."', forum_cat='".$forum_cat."', forum_description='".$forum_description."', forum_moderators='".$forum_mods."', forum_access='".$forum_access."', forum_post='".$forum_post."', forum_reply='".$forum_reply."', forum_attach='".$forum_attach."', forum_attach_download='".$forum_attach_download."', forum_poll='".$forum_poll."', forum_vote='".$forum_vote."', forum_merge='".$forum_merge."' WHERE forum_id='".$_GET['forum_id']."'");
-			redirect(FUSION_SELF.$aidlink."&status=savefu");
-		} else {
+	if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])) && (isset($_GET['t']) && $_GET['t'] == "forum")) {
+		$forum_mods = $_POST['forum_mods'];
+		$forum_access = isnum($_POST['forum_access']) ? $_POST['forum_access'] : 0;
+		$forum_post = isnum($_POST['forum_post']) ? $_POST['forum_post'] : 0;
+		$forum_reply = isnum($_POST['forum_reply']) ? $_POST['forum_reply'] : 0;
+		$forum_attach = isnum($_POST['forum_attach']) ? $_POST['forum_attach'] : 0;
+		$forum_poll = isnum($_POST['forum_poll']) ? $_POST['forum_poll'] : 0;
+		$forum_vote = isnum($_POST['forum_vote']) ? $_POST['forum_vote'] : 0;
+		$result = dbquery("UPDATE ".DB_FORUMS." SET forum_name='$forum_name', forum_cat='$forum_cat', forum_description='$forum_description', forum_moderators='$forum_mods', forum_access='$forum_access', forum_post='$forum_post', forum_reply='$forum_reply', forum_attach='$forum_attach', forum_poll='$forum_poll', forum_vote='$forum_vote' WHERE forum_id='".$_GET['forum_id']."'");
+		redirect(FUSION_SELF.$aidlink."&status=savefu");
+	} else {
+		if ($forum_name) {
 			$forum_order = isnum($_POST['forum_order']) ? $_POST['forum_order'] : "";
 			if(!$forum_order) $forum_order=dbresult(dbquery("SELECT MAX(forum_order) FROM ".DB_FORUMS." WHERE forum_cat='$forum_cat'"),0)+1;
 			$result = dbquery("UPDATE ".DB_FORUMS." SET forum_order=forum_order+1 WHERE forum_cat='$forum_cat' AND forum_order>='$forum_order'");
-			$result = dbquery("INSERT INTO ".DB_FORUMS." (forum_cat, forum_name, forum_order, forum_description, forum_moderators, forum_access, forum_post, forum_reply, forum_attach, forum_attach_download, forum_poll, forum_vote, forum_lastpost, forum_lastuser, forum_merge) VALUES ('".$forum_cat."', '".$forum_name."', '".$forum_order."', '".$forum_description."', '103', '101', '101', '101', '0', '0', '0', '0', '0', '0', '0')");
+			$result = dbquery("INSERT INTO ".DB_FORUMS." (forum_cat, forum_name, forum_order, forum_description, forum_moderators, forum_access, forum_post, forum_reply, forum_attach, forum_poll, forum_vote, forum_lastpost, forum_lastuser) VALUES ('$forum_cat', '$forum_name', '$forum_order', '$forum_description', '103', '101', '101', '101', '0', '0', '0', '0', '0')");
 			redirect(FUSION_SELF.$aidlink."&status=savefn");
+		} else {
+			redirect(FUSION_SELF.$aidlink);
 		}
-	} else {
-		redirect(FUSION_SELF.$aidlink."&status=saveft");
 	}
 } elseif ((isset($_GET['action']) && $_GET['action'] == "mu") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])) && (isset($_GET['order']) && isnum($_GET['order']))) {
 	if (isset($_GET['t']) && $_GET['t'] == "cat") {
@@ -152,7 +143,7 @@ if (isset($_POST['save_cat'])) {
 } else {
 	if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['forum_id']) && isnum($_GET['forum_id']))) {
 		if (isset($_GET['t']) && $_GET['t'] == "cat") {
-			$result = dbquery("SELECT forum_id, forum_name FROM ".DB_FORUMS." WHERE forum_id='".$_GET['forum_id']."'");
+			$result = dbquery("SELECT * FROM ".DB_FORUMS." WHERE forum_id='".$_GET['forum_id']."'");
 			if (dbrows($result)) {
 				$data = dbarray($result);
 				$cat_name = $data['forum_name'];
@@ -164,7 +155,7 @@ if (isset($_POST['save_cat'])) {
 				redirect(FUSION_SELF.$aidlink);
 			}
 		} elseif (isset($_GET['t']) && $_GET['t'] == "forum") {
-			$result = dbquery("SELECT forum_name, forum_description, forum_cat, forum_moderators, forum_access, forum_post, forum_reply, forum_attach, forum_attach_download, forum_poll, forum_vote, forum_merge FROM ".DB_FORUMS." WHERE forum_id='".$_GET['forum_id']."'");
+			$result = dbquery("SELECT forum_name, forum_description, forum_cat, forum_moderators, forum_access, forum_post, forum_reply, forum_attach, forum_poll, forum_vote FROM ".DB_FORUMS." WHERE forum_id='".$_GET['forum_id']."'");
 			if (dbrows($result)) {
 				$data = dbarray($result);
 				$forum_name = $data['forum_name'];
@@ -174,10 +165,8 @@ if (isset($_POST['save_cat'])) {
 				$forum_post = $data['forum_post'];
 				$forum_reply = $data['forum_reply'];
 				$forum_attach = $data['forum_attach'];
-				$forum_attach_download = $data['forum_attach_download'];
 				$forum_poll = $data['forum_poll'];
 				$forum_vote = $data['forum_vote'];
-				$forum_merge = $data['forum_merge'];
 				$forum_title = $locale['501'];
 				$forum_action = FUSION_SELF.$aidlink."&amp;action=edit&amp;forum_id=".$_GET['forum_id']."&amp;t=forum";
 				$cat_title = $locale['400'];
@@ -199,10 +188,8 @@ if (isset($_POST['save_cat'])) {
 		$forum_post = 0;
 		$forum_reply = 0;
 		$forum_attach = 0;
-		$forum_attach_download = 0;
 		$forum_poll = 0;
 		$forum_vote = 0;
-		$forum_merge = 0;
 		$forum_title = $locale['500'];
 		$forum_action = FUSION_SELF.$aidlink;
 	}
@@ -278,22 +265,11 @@ if (isset($_POST['save_cat'])) {
 				echo "<td width='1%' class='tbl' style='white-space:nowrap'>".$locale['528']."</td>\n";
 				echo "<td class='tbl'><select name='forum_attach' class='textbox' style='width:150px;'>\n".create_options($forum_attach, array(0), true)."</select></td>\n";
 				echo "</tr>\n<tr>\n";
-				echo "<td width='1%' class='tbl' style='white-space:nowrap'>".$locale['535']."</td>\n";
-				echo "<td class='tbl'><select name='forum_attach_download' class='textbox' style='width:150px;'>\n".create_options($forum_attach_download, array(), false)."</select></td>\n";
-				echo "</tr>\n<tr>\n";
 				echo "<td width='1%' class='tbl' style='white-space:nowrap'>".$locale['529']."</td>\n";
 				echo "<td class='tbl'><select name='forum_poll' class='textbox' style='width:150px;'>\n".create_options($forum_poll, array(0), true)."</select></td>\n";
 				echo "</tr>\n<tr>\n";
 				echo "<td width='1%' class='tbl' style='white-space:nowrap'>".$locale['530']."</td>\n";
 				echo "<td class='tbl'><select name='forum_vote' class='textbox' style='width:150px;'>\n".create_options($forum_vote, array(0), true)."</select></td>\n";
-				echo "</tr>\n<tr>\n";
-				echo "<td class='tbl2' colspan='2' style='font-weight:bold;'>".$locale['540']."</td>\n";
-				echo "</tr>\n<tr>\n";
-				echo "<td width='1%' class='tbl' style='white-space:nowrap'>".$locale['541']."</td>\n";
-				echo "<td class='tbl'><select name='forum_merge' class='textbox' style='width:150px;'>\n";
-				echo "<option value='1'>".$locale['542']."</option>\n";
-				echo "<option value='0' ".($forum_merge == 0 ? "selected='selected'" : "").">".$locale['543']."</option>\n";
-				echo "</select>\n</td>\n";
 				echo "</tr>\n"; //";
 				if (!isset($_GET['action']) || $_GET['action'] != "edit") {
 					echo "<tr>\n<td align='center' colspan='2' class='tbl'>\n";

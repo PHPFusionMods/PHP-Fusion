@@ -32,7 +32,7 @@ if (isset($_GET['error']) && isnum($_GET['error']) && !isset($message)) {
 		$message = $locale['global_182'];
 	}
 	if (isset($message)) {
-		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n";
+		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; 
 	}
 }
 
@@ -54,7 +54,7 @@ if (isset($_POST['save_banners'])) {
 if (isset($_POST['preview_banners'])) {
 	$sitebanner1 = "";
 	$sitebanner2 = "";
-
+	
 	if (check_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")) {
 		$sitebanner1 = stripslash($_POST['sitebanner1']);
 		$sitebanner2 = stripslash($_POST['sitebanner2']);
@@ -98,7 +98,7 @@ if (isset($_POST['preview_banners']) && $sitebanner2) {
 	}
 }
 if (!check_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")) {
-	echo "<td class='tbl'>".$locale['853']." <input type='password' name='admin_password' value='".(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")."' class='textbox' style='width:150px;' autocomplete='off' /></td>\n";
+	echo "<td class='tbl'>".$locale['853']." <input type='password' name='admin_password' value='".(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")."' class='textbox' style='width:150px;' /></td>\n";
 	echo "</tr>\n<tr>\n";
 }
 echo "<td align='center' class='tbl'><br />";

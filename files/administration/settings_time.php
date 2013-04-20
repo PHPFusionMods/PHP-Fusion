@@ -103,20 +103,22 @@ foreach ($offset_array as $key => $offset) {
 	$offsetserver .= "<option".$sel2.">".$key."</option>\n";
 }
 
-$timezones = timezone_abbreviations_list();
-$timezoneArray = array();
-foreach($timezones as $zones) {
-    foreach($zones as $zone) {
-		if (preg_match( '/^(America|Antartica|Arctic|Asia|Atlantic|Europe|Indian|Pacific)\//', $zone['timezone_id'])) {
-			if (!in_array($zone['timezone_id'], $timezoneArray)) {
-				$timezoneArray[] = $zone['timezone_id'];
-			}
-		}
-	}
-}
+if (function_exists("date_default_timezone_set")) {
+    $timezones = timezone_abbreviations_list();
+    $timezoneArray = array();
+    foreach($timezones as $zones) {
+        foreach($zones as $zone) {
+            if (preg_match( '/^(America|Antartica|Arctic|Asia|Atlantic|Europe|Indian|Pacific)\//', $zone['timezone_id'])) {
+                if (!in_array($zone['timezone_id'], $timezoneArray)) {
+                    $timezoneArray[] = $zone['timezone_id'];
+                }
+            }
+        }
+    }
 
-unset($dummy); unset($timezones);
-sort($timezoneArray);
+    unset($dummy); unset($timezones);
+    sort($timezoneArray);
+}
 
 $timezoneOptions = "";
 foreach ($timezoneArray AS $timezone) {
@@ -124,23 +126,41 @@ foreach ($timezoneArray AS $timezone) {
 }
 
 $timestamp = time()+($settings2['timeoffset']*3600);
+
 $date_opts = "<option value=''>".$locale['455']."</option>\n";
-foreach($locale['dateformats'] as $dateformat) {
-	$date_opts .= "<option value='".$dateformat."'>".strftime($dateformat, $timestamp)."</option>\n";
-}
-unset($dateformat);
+$date_opts .= "<option value='%m/%d/%Y'>".strftime("%m/%d/%Y", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d/%m/%Y'>".strftime("%d/%m/%Y", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d-%m-%Y'>".strftime("%d-%m-%Y", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d.%m.%Y'>".strftime("%d.%m.%Y", $timestamp)."</option>\n";
+$date_opts .= "<option value='%m/%d/%Y %H:%M'>".strftime("%m/%d/%Y %H:%M", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d/%m/%Y %H:%M'>".strftime("%d/%m/%Y %H:%M", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d-%m-%Y %H:%M'>".strftime("%d-%m-%Y %H:%M", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d.%m.%Y %H:%M'>".strftime("%d.%m.%Y %H:%M", $timestamp)."</option>\n";
+$date_opts .= "<option value='%m/%d/%Y %H:%M:%S'>".strftime("%m/%d/%Y %H:%M:%S", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d/%m/%Y %H:%M:%S'>".strftime("%d/%m/%Y %H:%M:%S", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d-%m-%Y %H:%M:%S'>".strftime("%d-%m-%Y %H:%M:%S", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d.%m.%Y %H:%M:%S'>".strftime("%d.%m.%Y %H:%M:%S", $timestamp)."</option>\n";
+$date_opts .= "<option value='%B %d %Y'>".strftime("%B %d %Y", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d. %B %Y'>".strftime("%d. %B %Y", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d %B %Y'>".strftime("%d %B %Y", $timestamp)."</option>\n";
+$date_opts .= "<option value='%B %d %Y %H:%M'>".strftime("%B %d %Y %H:%M", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d. %B %Y %H:%M'>".strftime("%d. %B %Y %H:%M", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d %B %Y %H:%M'>".strftime("%d %B %Y %H:%M", $timestamp)."</option>\n";
+$date_opts .= "<option value='%B %d %Y %H:%M:%S'>".strftime("%B %d %Y %H:%M:%S", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d. %B %Y %H:%M:%S'>".strftime("%d. %B %Y %H:%M:%S", $timestamp)."</option>\n";
+$date_opts .= "<option value='%d %B %Y %H:%M:%S'>".strftime("%d %B %Y %H:%M:%S", $timestamp)."</option>\n";
 
 opentable($locale['400']);
 echo "<form name='settingsform' method='post' action='".FUSION_SELF.$aidlink."'>\n";
 echo "<table cellpadding='0' cellspacing='0' width='500' class='center'>\n<tr>\n";
 echo "<td valign='top' width='50%' class='tbl'>".$locale['458']." (".$locale['459']."):</td>\n";
-echo "<td width='50%' class='tbl'>".strftime($settings2['longdate'], (time())+($settings2['serveroffset']*3600))."</td>\n";
+echo "<td width='50%' class='tbl'>".strftime("%B %d %Y %H:%M:%S", (time())+($settings2['serveroffset']*3600))."</td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td valign='top' width='50%' class='tbl'>".$locale['458']." (".$locale['460']."):</td>\n";
-echo "<td width='50%' class='tbl'>".showdate("longdate", time())."</td>\n";
+echo "<td width='50%' class='tbl'>".showdate("%B %d %Y %H:%M:%S", time())."</td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td valign='top' width='50%' class='tbl'>".$locale['458']." (".$locale['461']."):</td>\n";
-echo "<td width='50%' class='tbl'>".strftime($settings2['longdate'], time()+(($settings2['serveroffset']+$settings2['timeoffset'])*3600))."</td>\n";
+echo "<td width='50%' class='tbl'>".strftime("%B %d %Y %H:%M:%S", time()+(($settings2['serveroffset']+$settings2['timeoffset'])*3600))."</td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td class='tbl2' align='center' colspan='2'>".$locale['400']." - ".$locale['450']."</td>";
 echo "</tr>\n<tr>\n";
@@ -175,9 +195,11 @@ echo "</tr>\n<tr>\n";
 echo "<td width='50%' class='tbl'>".$locale['456']."</td>\n";
 echo "<td width='50%' class='tbl'><select name='timeoffset' class='textbox' style='width:201px;'>\n".$offsetsite."</select></td>\n";
 echo "</tr>\n<tr>\n";
-echo "<td width='50%' class='tbl'>".$locale['464']."</td>\n";
-echo "<td width='50%' class='tbl'><select name='default_timezone' class='textbox' style='width:201px;'>\n".$timezoneOptions."</select></td>\n";
-echo "</tr>\n<tr>\n";
+if (function_exists("date_default_timezone_set")) {
+    echo "<td width='50%' class='tbl'>".$locale['464']."</td>\n";
+    echo "<td width='50%' class='tbl'><select name='default_timezone' class='textbox' style='width:201px;'>\n".$timezoneOptions."</select></td>\n";
+    echo "</tr>\n<tr>\n";
+}
 echo "<td align='center' colspan='2' class='tbl'><br />\n";
 echo "<input type='submit' name='savesettings' value='".$locale['750']."' class='button' /></td>\n";
 echo "</tr>\n</table>\n</form>\n";

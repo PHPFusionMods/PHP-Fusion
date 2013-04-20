@@ -39,71 +39,52 @@ while($data = dbarray($result)){
 
 $fusion_images = array(
 	//A
-	"arrow" 		=> IMAGES."arrow.png",
 	//B
-	"blank" 		=> THEME."images/blank.gif",
+	"blank" => THEME."images/blank.gif",
 	//C
-	"calendar" 		=> IMAGES."dl_calendar.png",
 	//D
-	"down" 			=> THEME."images/down.gif",
-	"download"		=> IMAGES."dl_download.png",
-	"downloads"		=> IMAGES."dl_downloads1.png",
+	"down" => THEME."images/down.gif",
 	//E
-	"edit" 			=> IMAGES."edit.png",
+	"edit" => BASEDIR."images/edit.gif",
 	//F
-	"folder" 		=> THEME."forum/folder.gif",
-	"folderlock" 	=> THEME."forum/folderlock.gif",
-	"foldernew" 	=> THEME."forum/foldernew.gif",
-	"forum_edit" 	=> THEME."forum/edit.gif",
+	"folder" => THEME."forum/folder.gif",
+	"folderlock" => THEME."forum/folderlock.gif",
+	"foldernew" => THEME."forum/foldernew.gif",
+	"forum_edit" => THEME."forum/edit.gif",
 	//G
-	"go_first" 		=> IMAGES."go_first.png",
-	"go_last" 		=> IMAGES."go_last.png",
-	"go_next" 		=> IMAGES."go_next.png",
-	"go_previous" 	=> IMAGES."go_previous.png",
 	//H
-	"homepage" 		=> IMAGES."dl_homepage.png",
 	//I
-	"info" 			=> IMAGES."dl_info.png",
 	"imagenotfound" => IMAGES."imagenotfound.jpg",
 	//J
 	//K
 	//L
-	"left" 			=> THEME."images/left.gif",
+	"left" => THEME."images/left.gif",
 	//M
 	//N
-	"newthread" 	=> THEME."forum/newthread.gif",
-	"no" 			=> IMAGES."no.png",
-	"noavatar50" 	=> "noavatar50.png",
-	"noavatar100" 	=> "noavatar100.png",
-	"noavatar150" 	=> "noavatar150.png",
+	"newthread" => THEME."forum/newthread.gif",
 	//O
 	//P
-	"panel_on" 		=> THEME."images/panel_on.gif",
-	"panel_off" 	=> THEME."images/panel_off.gif",
-	"pm" 			=> THEME."forum/pm.gif",
-	"pollbar" 		=> THEME."images/pollbar.gif",
-	"printer" 		=> IMAGES."printer.png",
+	"panel_on" => THEME."images/panel_on.gif",
+	"panel_off" => THEME."images/panel_off.gif",
+	"pm" => THEME."forum/pm.gif",
+	"pollbar" => THEME."images/pollbar.gif",
+	"printer" => THEME."images/printer.gif",
 	//Q
-	"quote" 		=> THEME."forum/quote.gif",
+	"quote" => THEME."forum/quote.gif",
 	//R
-	"reply" 		=> THEME."forum/reply.gif",
-	"right" 		=> THEME."images/right.gif",
+	"reply" => THEME."forum/reply.gif",
+	"right" => THEME."images/right.gif",
 	//S
-	"save"			=> IMAGES."php-save.png",
-	"screenshot"	=> IMAGES."dl_screenshot.png",
-	"star" 			=> IMAGES."star.png",
-	"statistics"	=> IMAGES."dl_stats.png",
-	"stickythread" 	=> THEME."forum/stickythread.gif",
+	"star" => IMAGES."star.gif",
+	"stickythread" => THEME."forum/stickythread.gif",
 	//T
-	"tick" 			=> IMAGES."tick.png",
 	//U
-	"up" 			=> THEME."images/up.gif",
+	"up" => THEME."images/up.gif",
 	//V
 	//W
-	"web" 			=> THEME."forum/web.gif",
+	"web" => THEME."forum/web.gif"
 	//X
 	//Y
-	"yes" 			=> IMAGES."yes.png"
 	//Z
 );
 
@@ -114,7 +95,7 @@ function get_image($image, $alt = "", $style = "", $title = "", $atts = "") {
 	if (isset($fusion_images[$image])) {
 		$url = $fusion_images[$image];
 	} else {
-		$url = IMAGES."not_found.gif";
+		$url = BASEDIR."images/not_found.gif";
 	}
 	if (!$alt && !$style && !$title) {
 		return $url;
@@ -123,12 +104,12 @@ function get_image($image, $alt = "", $style = "", $title = "", $atts = "") {
 	}
 }
 
-function set_image($name, $new_dir) {
+function set_image($name, $new_dir){
 	global $fusion_images;
 	$fusion_images[$name] = $new_dir;
 }
 
-function redirect_img_dir($source, $target) {
+function redirect_img_dir($source, $target){
 	global $fusion_images;
 	$new_images = array();
 	foreach ($fusion_images as $name => $url) {

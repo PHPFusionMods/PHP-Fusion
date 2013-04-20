@@ -38,7 +38,7 @@ if (isset($_POST['btn_create_backup'])) {
 		@ob_implicit_flush(0);
 		echo "#----------------------------------------------------------".$crlf;
 		echo "# PHP-Fusion SQL Data Dump".$crlf;
-		echo "# Database Name: `".$db_name."`".$crlf;
+		echo "# Database Name: `$db_name`".$crlf;
 		echo "# Table Prefix: `".$db_prefix."`".$crlf;
 		echo "# Date: `".date("d/m/Y H:i")."`".$crlf;
 		echo "#----------------------------------------------------------".$crlf;
@@ -244,7 +244,7 @@ if (isset($_POST['btn_do_restore'])) {
 	echo "[<a href=\"javascript:void(0)\" onclick=\"javascript:populateSelectNone()\">".$locale['437']."</a>]</div></td>\n";
 	echo "</tr>\n<tr>\n";
 	echo "<td align='center' colspan='2' class='tbl'><hr />".$locale['460']." <span style='color:#ff0000'>*</span>\n";
-	echo "<input type='password' name='user_admin_password' value='' class='textbox' style='width:150px;' autocomplete='off' /></td>\n";
+	echo "<input type='password' name='user_admin_password' value='' class='textbox' style='width:150px;' /></td>\n";
 	echo "</tr>\n<tr>\n";
 	echo "<td align='center' colspan='2' class='tbl'>\n";
 	echo "<input type='hidden' name='file' value='$file' />\n";
@@ -275,7 +275,7 @@ if (isset($_POST['btn_do_restore'])) {
 	echo "<td colspan='2' class='tbl2' align='left'>".$locale['451']."</td>\n";
 	echo "</tr>\n<tr>\n";
 	echo "<td align='right' class='tbl'>".$locale['414']."</td>\n";
-	echo "<td class='tbl'>".$db_name."</td>\n";
+	echo "<td class='tbl'>$db_name</td>\n";
 	echo "</tr>\n<tr>\n";
 	echo "<td align='right' class='tbl'>".$locale['415']."</td>\n";
 	echo "<td class='tbl'>".$db_prefix."</td>\n";
@@ -300,7 +300,7 @@ if (isset($_POST['btn_do_restore'])) {
 	echo "</select></td>\n";
 	echo "</tr>\n<tr>\n";
 	echo "<td align='right' class='tbl'>".$locale['460']." <span style='color:#ff0000'>*</span></td>\n";
-	echo "<td class='tbl'><input type='password' name='user_admin_password' value='' class='textbox' style='width:150px;' autocomplete='off' /></td>\n";
+	echo "<td class='tbl'><input type='password' name='user_admin_password' value='' class='textbox' style='width:150px;' /></td>\n";
 	echo "</tr>\n<tr>\n";
 	echo "<td align='center' colspan='2' class='tbl'><br /><span style='color:#ff0000'>*</span> ".$locale['461']."</td>\n";
 	echo "</tr>\n</table>\n</td>\n";

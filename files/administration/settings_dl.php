@@ -31,7 +31,7 @@ if (isset($_GET['error']) && isnum($_GET['error']) && !isset($message)) {
 		$message = $locale['global_182'];
 	}
 	if (isset($message)) {
-		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n";
+		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; 
 	}
 }
 
@@ -42,12 +42,7 @@ if (isset($_POST['savesettings'])) {
 		if (!$result) { $error = 1; }
 		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".stripinput($_POST['download_types'])."' WHERE settings_name='download_types'");
 		if (!$result) { $error = 1; }
-		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['download_screen_max_w']) ? $_POST['download_screen_max_w'] : "0")."' WHERE settings_name='download_screen_max_w'");
-		if (!$result) { $error = 1; }
-		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['download_screen_max_h']) ? $_POST['download_screen_max_h'] : "0")."' WHERE settings_name='download_screen_max_h'");
-		if (!$result) { $error = 1; }
-		$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['download_screen_max_b']) ? $_POST['download_screen_max_b'] : "0")."' WHERE settings_name='download_screen_max_b'");
-		if (!$result) { $error = 1; }
+	
 		set_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "");
 		redirect(FUSION_SELF.$aidlink."&error=".$error, true);
 	} else {
@@ -70,16 +65,9 @@ echo "</tr>\n<tr>\n";
 echo "<td width='50%' class='tbl'>".$locale['932']."<br /><span class='small2'>".$locale['933']."</span></td>\n";
 echo "<td width='50%' class='tbl'><input type='text' name='download_types' value='".$settings2['download_types']."' maxlength='150' class='textbox' style='width:200px;' /></td>\n";
 echo "</tr>\n<tr>\n";
-echo "<td width='50%' class='tbl'>".$locale['934']."<br /><span class='small2'>".$locale['935']."</span></td>\n";
-echo "<td width='50%' class='tbl'><input type='text' name='download_screen_max_w' value='".$settings2['download_screen_max_w']."' maxlength='4' class='textbox' style='width:40px;' /> x\n";
-echo "<input type='text' name='download_screen_max_h' value='".$settings2['download_screen_max_h']."' maxlength='4' class='textbox' style='width:40px;' /></td>\n";
-echo "</tr>\n<tr>\n";
-echo "<td width='50%' class='tbl'>".$locale['936']."<br /><span class='small2'>".$locale['931']."</span></td>\n";
-echo "<td width='50%' class='tbl'><input type='text' name='download_screen_max_b' value='".$settings2['download_screen_max_b']."' maxlength='10' class='textbox' style='width:100px;' /></td>\n";
-echo "</tr>\n<tr>\n";
 if (!check_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")) {
 	echo "<td class='tbl'>".$locale['853']."</td>\n";
-	echo "<td class='tbl'><input type='password' name='admin_password' value='".(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")."' class='textbox' style='width:150px;' autocomplete='off' /></td>\n";
+	echo "<td class='tbl'><input type='password' name='admin_password' value='".(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")."' class='textbox' style='width:150px;' /></td>\n";
 	echo "</tr>\n<tr>\n";
 }
 echo "<td align='center' colspan='2' class='tbl'><br />\n";

@@ -16,7 +16,6 @@
 | written permission from the original author(s).
 +--------------------------------------------------------*/
 define("FUSION_SELF", basename($_SERVER['PHP_SELF']));
-define("IN_FUSION", true);
 
 if (isset($_POST['localeset']) && file_exists("locale/".$_POST['localeset']) && is_dir("locale/".$_POST['localeset'])) {
 	include "locale/".$_POST['localeset']."/setup.php";
@@ -37,7 +36,7 @@ echo "<link rel='stylesheet' href='themes/templates/setup_styles.css' type='text
 echo "</head>\n<body>\n";
 
 echo "<table cellpadding='0' cellspacing='0' width='100%'>\n<tr>\n";
-echo "<td class='full-header'><img src='images/php-fusion-logo.png' alt='PHP-Fusion' /></td>\n";
+echo "<td class='full-header'><img src='images/php-fusion-logo.png' /></td>\n";
 echo "</tr>\n</table>\n";
 
 echo "<table cellpadding='0' cellspacing='0' width='100%'>\n<tr>\n";
@@ -52,10 +51,18 @@ echo "<form name='setupform' method='post' action='setup.php'>\n";
 echo "<table align='center' cellpadding='0' cellspacing='1' width='450' class='tbl-border'>\n<tr>\n";
 echo "<td class='tbl2'><strong>";
 
-if (isset($_POST['step']) && preg_match("/^[2-6]$/", $_POST['step'])) {
-	echo $locale['00' . $_POST['step']];
-} else {
+if (!isset($_POST['step']) || $_POST['step'] == "" || $_POST['step'] == "1") {
 	echo $locale['001'];
+} elseif (isset($_POST['step']) && $_POST['step'] == "2") {
+	echo $locale['002'];
+} elseif (isset($_POST['step']) && $_POST['step'] == "3") {
+	echo $locale['003'];
+} elseif (isset($_POST['step']) && $_POST['step'] == "4") {
+	echo $locale['004'];
+} elseif (isset($_POST['step']) && $_POST['step'] == "5") {
+	echo $locale['005'];
+} elseif (isset($_POST['step']) && $_POST['step'] == "6") {
+	echo $locale['006'];
 }
 
 echo "</strong></td>\n</tr>\n<tr>\n<td class='tbl1' style='text-align:center'>\n";
@@ -84,12 +91,6 @@ if (isset($_POST['step']) && $_POST['step'] == "2") {
 
 	$check_arr = array(
 		"administration/db_backups" => false,
-		"forum/attachments" => false,
-		"downloads" => false,
-		"downloads/images" => false,
-		"downloads/submissions/" => false,
-		"downloads/submissions/images" => false,
-		"ftp_upload" => false,
 		"images" => false,
 		"images/imagelist.js" => false,
 		"images/articles" => false,
@@ -99,6 +100,7 @@ if (isset($_POST['step']) && $_POST['step'] == "2") {
 		"images/news_cats" => false,
 		"images/photoalbum" => false,
 		"images/photoalbum/submissions" => false,
+		"forum/attachments" => false,
 		"config.php" => false
 	);
 
@@ -119,7 +121,7 @@ if (isset($_POST['step']) && $_POST['step'] == "2") {
 	}
 
 	echo $locale['020']."<br /><br />\n";
-	echo "<table align='center' cellpadding='0' cellspacing='0' width='100%'>\n".$check_display."\n</table><br /><br />\n";
+	echo "<table align='center' cellpadding='0' cellspacing='0' width='100%'>\n<tr>".$check_display."\n</table><br /><br />\n";
 	if ($write_check) {
 		echo $locale['021']."\n";
 		echo "</td>\n</tr>\n<tr>\n<td class='tbl2' style='text-align:center'>\n";
@@ -136,24 +138,14 @@ if (isset($_POST['step']) && $_POST['step'] == "2") {
 }
 
 if (isset($_POST['step']) && $_POST['step'] == "3") {
-	function createRandomPrefix ($length = 5) {
-		$chars = array("abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ", "123456789");
-		$count = array((strlen($chars[0]) - 1), (strlen($chars[1]) - 1));
-		$prefix = "";
-		for ($i = 0; $i < $length; $i++) {
-			$type = mt_rand(0, 1);
-			$prefix .= substr($chars[$type], mt_rand(0, $count[$type]), 1);
-		}
-		return $prefix;
-	}
-	$db_prefix = "fusion".createRandomPrefix()."_";
-	$cookie_prefix  = "fusion".createRandomPrefix()."_";
+	$db_prefix = "fusion".substr(uniqid("fusion_", false), 15, 5)."_";
+
 	$db_host = (isset($_POST['db_host']) ? stripinput(trim($_POST['db_host'])) : "localhost");
 	$db_user = (isset($_POST['db_user']) ? stripinput(trim($_POST['db_user'])) : "");
 	$db_name = (isset($_POST['db_name']) ? stripinput(trim($_POST['db_name'])) : "");
 	$db_prefix = (isset($_POST['db_prefix']) ? stripinput(trim($_POST['db_prefix'])) : $db_prefix);
-	$cookie_prefix = (isset($_POST['cookie_prefix']) ? stripinput(trim($_POST['cookie_prefix'])) : $cookie_prefix);
 	$db_error = (isset($_POST['db_error']) && isnum($_POST['db_error']) ? $_POST['db_error'] : "0");
+
 	$field_class = array("", "", "", "", "");
 	if ($db_error > "0") {
 		$field_class[2] = " tbl-error";
@@ -184,12 +176,10 @@ if (isset($_POST['step']) && $_POST['step'] == "3") {
 	echo "<td class='tbl1' style='text-align:right'><input type='text' value='".$db_name."' name='db_name' class='textbox".$field_class[3]."' style='width:200px' /></td>\n</tr>\n";
 	echo "<tr>\n<td class='tbl1'>".$locale['035']."</td>\n";
 	echo "<td class='tbl1' style='text-align:right'><input type='text' value='".$db_prefix."' name='db_prefix' class='textbox".$field_class[4]."' style='width:200px' /></td>\n</tr>\n";
-	echo "<tr>\n<td class='tbl1'>".$locale['036']."</td>\n";
-	echo "<td class='tbl1' style='text-align:right'><input type='text' value='".$cookie_prefix."' name='cookie_prefix' class='textbox' style='width:200px' /></td>\n</tr>\n";
 	echo "</table>\n";
 	echo "</td>\n</tr>\n<tr>\n<td class='tbl2' style='text-align:center'>\n";
 	echo "<input type='hidden' name='localeset' value='".stripinput($_POST['localeset'])."' />\n";
-	echo "<input type='hidden' name='step' value='4' />\n";
+	echo "<input type='hidden' name='step' value='4'>\n";
 	echo "<input type='submit' name='next' value='".$locale['007']."' class='button' />\n";
 }
 
@@ -199,14 +189,9 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 	$db_pass = (isset($_POST['db_pass']) ? stripinput(trim($_POST['db_pass'])) : "");
 	$db_name = (isset($_POST['db_name']) ? stripinput(trim($_POST['db_name'])) : "");
 	$db_prefix = (isset($_POST['db_prefix']) ? stripinput(trim($_POST['db_prefix'])) : "");
-	$cookie_prefix = (isset($_POST['cookie_prefix']) ? stripinput(trim($_POST['cookie_prefix'])) : "fusion_");
 	if ($db_prefix != "") {
 		$db_prefix_last = $db_prefix[strlen($db_prefix)-1];
 		if ($db_prefix_last != "_") { $db_prefix = $db_prefix."_"; }
-	}
-	if ($cookie_prefix != "") {
-		$cookie_prefix_last = $cookie_prefix[strlen($cookie_prefix)-1];
-		if ($cookie_prefix_last != "_") { $cookie_prefix = $cookie_prefix."_"; }
 	}
 
 	if ($db_host != "" && $db_user != "" && $db_name != "" && $db_prefix != "") {
@@ -216,20 +201,19 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 			if ($db_select) {
 				if (dbrows(dbquery("SHOW TABLES LIKE '$db_prefix%'")) == "0") {
 					$table_name = uniqid($db_prefix, false); $can_write = true;
-					$result = dbquery("CREATE TABLE ".$table_name." (test_field VARCHAR(10) NOT NULL) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+					$result = dbquery("CREATE TABLE ".$table_name." (test_field VARCHAR(10) NOT NULL) ENGINE=MyISAM;");
 					if (!$result) { $can_write = false; }
 					$result = dbquery("DROP TABLE ".$table_name);
 					if (!$result) { $can_write = false; }
 					if ($can_write) {
 						$config = "<?php\n";
 						$config .= "// database settings\n";
-						$config .= "\$db_host = \"".$db_host."\";\n";
-						$config .= "\$db_user = \"".$db_user."\";\n";
-						$config .= "\$db_pass = \"".$db_pass."\";\n";
-						$config .= "\$db_name = \"".$db_name."\";\n";
-						$config .= "\$db_prefix = \"".$db_prefix."\";\n";
-						$config .= "define(\"DB_PREFIX\", \"".$db_prefix."\");\n";
-						$config .= "define(\"COOKIE_PREFIX\", \"".$cookie_prefix."\");\n";
+						$config .= "$"."db_host = "."\"".$db_host."\";\n";
+						$config .= "$"."db_user = "."\"".$db_user."\";\n";
+						$config .= "$"."db_pass = "."\"".$db_pass."\";\n";
+						$config .= "$"."db_name = "."\"".$db_name."\";\n";
+						$config .= "$"."db_prefix = "."\"".$db_prefix."\";\n";
+						$config .= "define("."\""."DB_PREFIX"."\"".", "."\"".$db_prefix."\");\n";
 						$config .= "?>";
 						$temp = fopen("config.php","w");
 						if (fwrite($temp, $config)) {
@@ -244,21 +228,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							admin_link VARCHAR(100) NOT NULL DEFAULT 'reserved',
 							admin_page TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
 							PRIMARY KEY (admin_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
-
-							if (!$result) { $fail = true; }
-
-							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."admin_resetlog");
-							$result = dbquery("CREATE TABLE ".$db_prefix."admin_resetlog (
-							reset_id mediumint(8) unsigned NOT NULL auto_increment,
-							reset_admin_id mediumint(8) unsigned NOT NULL default '1',
-							reset_timestamp int(10) unsigned NOT NULL default '0',
-							reset_sucess text NOT NULL,
-							reset_failed text NOT NULL,
-							reset_admins varchar(8) NOT NULL default '0',
-							reset_reason varchar(256) NOT NULL,
-							PRIMARY KEY (reset_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -277,10 +247,9 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							article_allow_comments TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
 							article_allow_ratings TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
 							PRIMARY KEY (article_id),
-							KEY article_cat (article_cat),
 							KEY article_datestamp (article_datestamp),
 							KEY article_reads (article_reads)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -291,9 +260,8 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							article_cat_description VARCHAR(200) NOT NULL DEFAULT '',
 							article_cat_sorting VARCHAR(50) NOT NULL DEFAULT 'article_subject ASC',
 							article_cat_access TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
-							PRIMARY KEY (article_cat_id),
-							KEY article_cat_access (article_cat_access)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							PRIMARY KEY (article_cat_id)
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -304,7 +272,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							bbcode_order SMALLINT(5) UNSIGNED NOT NULL,
 							PRIMARY KEY (bbcode_id),
 							KEY bbcode_order (bbcode_order)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -312,26 +280,23 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							$result = dbquery("CREATE TABLE ".$db_prefix."blacklist (
 							blacklist_id MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
 							blacklist_user_id MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
-							blacklist_ip VARCHAR(45) NOT NULL DEFAULT '',
-							blacklist_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
+							blacklist_ip VARCHAR(20) NOT NULL DEFAULT '',
 							blacklist_email VARCHAR(100) NOT NULL DEFAULT '',
 							blacklist_reason TEXT NOT NULL,
 							blacklist_datestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
-							PRIMARY KEY (blacklist_id),
-							KEY blacklist_ip_type (blacklist_ip_type)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							PRIMARY KEY (blacklist_id)
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
 							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."captcha");
 							$result = dbquery("CREATE TABLE ".$db_prefix."captcha (
 							captcha_datestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
-							captcha_ip VARCHAR(45) NOT NULL DEFAULT '',
-							captcha_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
+							captcha_ip VARCHAR(20) NOT NULL,
 							captcha_encode VARCHAR(32) NOT NULL DEFAULT '',
 							captcha_string VARCHAR(15) NOT NULL DEFAULT '',
 							KEY captcha_datestamp (captcha_datestamp)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -343,12 +308,11 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							comment_name VARCHAR(50) NOT NULL DEFAULT '',
 							comment_message TEXT NOT NULL,
 							comment_datestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
-							comment_ip VARCHAR(45) NOT NULL DEFAULT '',
-							comment_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
+							comment_ip VARCHAR(20) NOT NULL DEFAULT '0.0.0.0',
 							comment_hidden TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (comment_id),
 							KEY comment_datestamp (comment_datestamp)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -361,7 +325,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							page_allow_comments TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							page_allow_ratings TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (page_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -373,53 +337,27 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							download_cat_sorting VARCHAR(50) NOT NULL DEFAULT 'download_title ASC',
 							download_cat_access TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (download_cat_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
 							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."downloads");
 							$result = dbquery("CREATE TABLE ".$db_prefix."downloads (
 							download_id MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-							download_user MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
-							download_homepage VARCHAR(100) NOT NULL DEFAULT '',
 							download_title VARCHAR(100) NOT NULL DEFAULT '',
-							download_description_short VARCHAR(500) NOT NULL,
 							download_description TEXT NOT NULL,
-							download_image VARCHAR(100) NOT NULL DEFAULT '',
-							download_image_thumb VARCHAR(100) NOT NULL DEFAULT '',
 							download_url VARCHAR(200) NOT NULL DEFAULT '',
 							download_file VARCHAR(100) NOT NULL DEFAULT '',
 							download_cat MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
 							download_license VARCHAR(50) NOT NULL DEFAULT '',
-							download_copyright VARCHAR(250) NOT NULL DEFAULT '',
 							download_os VARCHAR(50) NOT NULL DEFAULT '',
 							download_version VARCHAR(20) NOT NULL DEFAULT '',
 							download_filesize VARCHAR(20) NOT NULL DEFAULT '',
 							download_datestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
 							download_count INT(10) UNSIGNED NOT NULL DEFAULT '0',
-							download_allow_comments TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
-							download_allow_ratings TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (download_id),
 							KEY download_datestamp (download_datestamp)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
-
-							if (!$result) { $fail = true; }
-
-							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."errors");
-							$result = dbquery("CREATE TABLE ".$db_prefix."errors (
-							error_id mediumint(8) unsigned NOT NULL auto_increment,
-							error_level smallint(5) unsigned NOT NULL,
-							error_message text NOT NULL,
-							error_file varchar(300) NOT NULL,
-							error_line smallint(5) NOT NULL,
-							error_page varchar(200) NOT NULL,
-							error_user_level smallint(3) NOT NULL,
-							error_user_ip varchar(45) NOT NULL default '',
-							error_user_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
-							error_status tinyint(1) NOT NULL default '0',
-							error_timestamp int(10) NOT NULL,
-							PRIMARY KEY (error_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -429,7 +367,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							faq_cat_name VARCHAR(200) NOT NULL DEFAULT '',
 							faq_cat_description VARCHAR(250) NOT NULL DEFAULT '',
 							PRIMARY KEY(faq_cat_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -440,17 +378,16 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							faq_question VARCHAR(200) NOT NULL DEFAULT '',
 							faq_answer TEXT NOT NULL,
 							PRIMARY KEY(faq_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
 							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."flood_control");
 							$result = dbquery("CREATE TABLE ".$db_prefix."flood_control (
-							flood_ip VARCHAR(45) NOT NULL DEFAULT '',
-							flood_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
+							flood_ip VARCHAR(20) NOT NULL DEFAULT '0.0.0.0',
 							flood_timestamp INT(5) UNSIGNED NOT NULL DEFAULT '0',
 							KEY flood_timestamp (flood_timestamp)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -462,9 +399,8 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							attach_name VARCHAR(100) NOT NULL DEFAULT '',
 							attach_ext VARCHAR(5) NOT NULL DEFAULT '',
 							attach_size INT(20) UNSIGNED NOT NULL DEFAULT '0',
-							attach_count INT(10) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (attach_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -474,10 +410,9 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							rank_title VARCHAR(100) NOT NULL DEFAULT '',
 							rank_image VARCHAR(100) NOT NULL DEFAULT '',
 							rank_posts iNT(10) UNSIGNED NOT NULL DEFAULT '0',
-							rank_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							rank_apply SMALLINT(5) UNSIGNED NOT NULL DEFAULT '101',
 							PRIMARY KEY (rank_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -488,7 +423,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							forum_poll_option_text VARCHAR(150) NOT NULL,
 							forum_poll_option_votes SMALLINT(5) UNSIGNED NOT NULL,
 							KEY thread_id (thread_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -496,10 +431,9 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							$result = dbquery("CREATE TABLE ".$db_prefix."forum_poll_voters (
 							thread_id MEDIUMINT(8) UNSIGNED NOT NULL,
 							forum_vote_user_id MEDIUMINT(8) UNSIGNED NOT NULL,
-							forum_vote_user_ip VARCHAR(45) NOT NULL,
-							forum_vote_user_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
+							forum_vote_user_ip VARCHAR(20) NOT NULL,
 							KEY thread_id (thread_id,forum_vote_user_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -511,7 +445,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							forum_poll_length iNT(10) UNSIGNED NOT NULL,
 							forum_poll_votes SMALLINT(5) unsigned NOT NULL,
 							KEY thread_id (thread_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -529,18 +463,16 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							forum_poll SMALLINT(3) UNSIGNED NOT NULL DEFAULT '0',
 							forum_vote SMALLINT(3) UNSIGNED NOT NULL DEFAULT '0',
 							forum_attach SMALLINT(3) UNSIGNED NOT NULL DEFAULT '0',
-							forum_attach_download SMALLINT(3) UNSIGNED NOT NULL DEFAULT'0',
 							forum_lastpost INT(10) UNSIGNED NOT NULL DEFAULT '0',
 							forum_postcount MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
 							forum_threadcount MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
 							forum_lastuser MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
-							forum_merge TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (forum_id),
 							KEY forum_order (forum_order),
 							KEY forum_lastpost (forum_lastpost),
 							KEY forum_postcount (forum_postcount),
 							KEY forum_threadcount (forum_threadcount)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -551,7 +483,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							inf_folder VARCHAR(100) NOT NULL DEFAULT '',
 							inf_version VARCHAR(10) NOT NULL DEFAULT '0',
 							PRIMARY KEY (inf_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -568,7 +500,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							message_folder TINYINT(1) UNSIGNED NOT NULL DEFAULT  '0',
 							PRIMARY KEY (message_id),
 							KEY message_datestamp (message_datestamp)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."messages_options");
 							$result = dbquery("CREATE TABLE ".$db_prefix."messages_options (
@@ -579,7 +511,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							pm_savebox SMALLINT(5) UNSIGNED DEFAULT '0' NOT NULL,
 							pm_sentbox SMALLINT(5) UNSIGNED DEFAULT '0' NOT NULL,
 							PRIMARY KEY (user_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -607,7 +539,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							PRIMARY KEY (news_id),
 							KEY news_datestamp (news_datestamp),
 							KEY news_reads (news_reads)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -617,28 +549,18 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							news_cat_name VARCHAR(100) NOT NULL DEFAULT '',
 							news_cat_image VARCHAR(100) NOT NULL DEFAULT '',
 							PRIMARY KEY (news_cat_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
 							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."new_users");
 							$result = dbquery("CREATE TABLE ".$db_prefix."new_users (
-							user_code VARCHAR(40) NOT NULL,
-							user_name VARCHAR(30) NOT NULL,
+							user_code VARCHAR(32) NOT NULL,
 							user_email VARCHAR(100) NOT NULL,
 							user_datestamp INT(10) UNSIGNED DEFAULT '0' NOT NULL,
 							user_info TEXT NOT NULL,
 							KEY user_datestamp (user_datestamp)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
-
-							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."email_verify");
-							$result = dbquery("CREATE TABLE ".$db_prefix."email_verify (
-							user_id MEDIUMINT(8) NOT NULL,
-							user_code VARCHAR(32) NOT NULL,
-							user_email VARCHAR(100) NOT NULL,
-							user_datestamp INT(10) UNSIGNED DEFAULT '0' NOT NULL,
-							KEY user_datestamp (user_datestamp)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -650,20 +572,18 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							rating_user MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
 							rating_vote TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							rating_datestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
-							rating_ip VARCHAR(45) NOT NULL DEFAULT '',
-							rating_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
+							rating_ip VARCHAR(20) NOT NULL DEFAULT '0.0.0.0',
 							PRIMARY KEY (rating_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
 							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."online");
 							$result = dbquery("CREATE TABLE ".$db_prefix."online (
 							online_user VARCHAR(50) NOT NULL DEFAULT '',
-							online_ip VARCHAR(45) NOT NULL DEFAULT '',
-							online_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
+							online_ip VARCHAR(20) NOT NULL DEFAULT '',
 							online_lastactive INT(10) UNSIGNED NOT NULL DEFAULT '0'
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -679,11 +599,9 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							panel_access TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
 							panel_display TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							panel_status TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
-							panel_url_list TEXT NOT NULL,
-							panel_restriction TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (panel_id),
 							KEY panel_order (panel_order)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -700,7 +618,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							PRIMARY KEY (album_id),
 							KEY album_order (album_order),
 							KEY album_datestamp (album_datestamp)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -722,7 +640,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							PRIMARY KEY (photo_id),
 							KEY photo_order (photo_order),
 							KEY photo_datestamp (photo_datestamp)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -734,7 +652,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							vote_opt SMALLINT(2) UNSIGNED NOT NULL DEFAULT '0',
 							poll_id MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (vote_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -755,7 +673,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							poll_started INT(10) UNSIGNED NOT NULL DEFAULT '0',
 							poll_ended INT(10) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (poll_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -769,17 +687,25 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							post_smileys TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
 							post_author MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
 							post_datestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
-							post_ip VARCHAR(45) NOT NULL DEFAULT '',
-							post_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
+							post_ip VARCHAR(20) NOT NULL DEFAULT '0.0.0.0',
 							post_edituser MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
 							post_edittime INT(10) UNSIGNED NOT NULL DEFAULT '0',
-							post_editreason TEXT NOT NULL,
 							post_hidden TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
-							post_locked TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (post_id),
 							KEY thread_id (thread_id),
 							KEY post_datestamp (post_datestamp)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
+
+							if (!$result) { $fail = true; }
+
+							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."sessions");
+							$result = dbquery("CREATE TABLE ".$db_prefix."sessions (
+							session_id varchar(32) NOT NULL,
+							session_started int(10) unsigned NOT NULL default '0',
+							session_expire int(10) unsigned NOT NULL default '0',
+							session_ip varchar(20) NOT NULL,
+							session_data text NOT NULL
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -788,7 +714,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							settings_name VARCHAR(200) NOT NULL DEFAULT '',
 							settings_value TEXT NOT NULL,
 							PRIMARY KEY (settings_name)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate']."");
+							) ENGINE=MyISAM");
 
 							if (!$result) { $fail = true; }
 
@@ -798,7 +724,21 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							settings_value TEXT NOT NULL,
 							settings_inf VARCHAR(200) NOT NULL DEFAULT '',
 							PRIMARY KEY (settings_name)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate']."");
+							) ENGINE=MyISAM");
+
+							if (!$result) { $fail = true; }
+
+							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."shoutbox");
+							$result = dbquery("CREATE TABLE ".$db_prefix."shoutbox (
+							shout_id MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+							shout_name VARCHAR(50) NOT NULL DEFAULT '',
+							shout_message VARCHAR(200) NOT NULL DEFAULT '',
+							shout_datestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
+							shout_ip VARCHAR(20) NOT NULL DEFAULT '0.0.0.0',
+							shout_hidden TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+							PRIMARY KEY (shout_id),
+							KEY shout_datestamp (shout_datestamp)
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -812,7 +752,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							link_window TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 							link_order SMALLINT(2) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (link_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -823,7 +763,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							smiley_image VARCHAR(100) NOT NULL,
 							smiley_text VARCHAR(100) NOT NULL,
 							PRIMARY KEY (smiley_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -835,7 +775,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							submit_datestamp INT(10) UNSIGNED DEFAULT '0' NOT NULL,
 							submit_criteria TEXT NOT NULL,
 							PRIMARY KEY (submit_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -844,18 +784,16 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							suspend_id MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
 							suspended_user MEDIUMINT(8) UNSIGNED NOT NULL,
 							suspending_admin MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '1',
-							suspend_ip VARCHAR(45) NOT NULL DEFAULT '',
-							suspend_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
+							suspend_ip VARCHAR(20) NOT NULL DEFAULT '0.0.0.0',
 							suspend_date INT(10) NOT NULL DEFAULT '0',
 							suspend_reason TEXT NOT NULL,
 							suspend_type TINYINT(1) NOT NULL DEFAULT '0',
 							reinstating_admin MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '1',
 							reinstate_reason TEXT NOT NULL,
 							reinstate_date INT(10) NOT NULL DEFAULT '0',
-							reinstate_ip VARCHAR(45) NOT NULL DEFAULT '',
-							reinstate_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
+							reinstate_ip VARCHAR(20) NOT NULL DEFAULT '0.0.0.0',
 							PRIMARY KEY (suspend_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -878,7 +816,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							KEY thread_postcount (thread_postcount),
 							KEY thread_lastpost (thread_lastpost),
 							KEY thread_views (thread_views)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -889,7 +827,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							notify_user MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
 							notify_status tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
 							KEY notify_datestamp (notify_datestamp)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -899,7 +837,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							field_cat_name VARCHAR(200) NOT NULL ,
 							field_cat_order SMALLINT(5) UNSIGNED NOT NULL ,
 							PRIMARY KEY (field_cat_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -908,12 +846,10 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							field_id MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
 							field_name VARCHAR(50) NOT NULL,
 							field_cat MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '1',
- 							field_required TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
-							field_log TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
- 							field_order SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+							field_order SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY (field_id),
 							KEY field_order (field_order)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -923,22 +859,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							group_name VARCHAR(100) NOT NULL,
 							group_description VARCHAR(200) NOT NULL,
 							PRIMARY KEY (group_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
-
-							if (!$result) { $fail = true; }
-
-							$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."user_log");
-							$result = dbquery("CREATE TABLE ".$db_prefix."user_log (
-							userlog_id MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-							userlog_user_id MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
-							userlog_field VARCHAR(50) NOT NULL DEFAULT '',
-							userlog_value_new TEXT NOT NULL,
-							userlog_value_old TEXT NOT NULL,
-							userlog_timestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
-							PRIMARY KEY (userlog_id),
-							KEY userlog_user_id (userlog_user_id),
-							KEY userlog_field (userlog_field)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -946,12 +867,8 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							$result = dbquery("CREATE TABLE ".$db_prefix."users (
 							user_id MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
 							user_name VARCHAR(30) NOT NULL DEFAULT '',
-							user_algo VARCHAR(10) NOT NULL DEFAULT 'sha256',
-							user_salt VARCHAR(40) NOT NULL DEFAULT '',
-							user_password VARCHAR(64) NOT NULL DEFAULT '',
-							user_admin_algo VARCHAR(10) NOT NULL DEFAULT 'sha256',
-							user_admin_salt VARCHAR(40) NOT NULL DEFAULT '',
-							user_admin_password VARCHAR(64) NOT NULL DEFAULT '',
+							user_password VARCHAR(32) NOT NULL DEFAULT '',
+							user_admin_password VARCHAR(32) NOT NULL DEFAULT '',
 							user_email VARCHAR(100) NOT NULL DEFAULT '',
 							user_hide_email TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
 							user_offset CHAR(5) NOT NULL DEFAULT '0',
@@ -960,8 +877,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							user_threads TEXT NOT NULL,
 							user_joined INT(10) UNSIGNED NOT NULL DEFAULT '0',
 							user_lastvisit INT(10) UNSIGNED NOT NULL DEFAULT '0',
-							user_ip VARCHAR(45) NOT NULL DEFAULT '0.0.0.0',
-							user_ip_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '4',
+							user_ip VARCHAR(20) NOT NULL DEFAULT '0.0.0.0',
 							user_rights TEXT NOT NULL,
 							user_groups TEXT NOT NULL,
 							user_level TINYINT(3) UNSIGNED NOT NULL DEFAULT '101',
@@ -970,7 +886,6 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							user_theme VARCHAR(100) NOT NULL DEFAULT 'Default',
 							user_location VARCHAR(50) NOT NULL DEFAULT '',
 							user_birthdate DATE NOT NULL DEFAULT '0000-00-00',
-							user_skype VARCHAR(100) NOT NULL DEFAULT '',
 							user_aim VARCHAR(16) NOT NULL DEFAULT '',
 							user_icq VARCHAR(15) NOT NULL DEFAULT '',
 							user_msn VARCHAR(100) NOT NULL DEFAULT '',
@@ -981,7 +896,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							KEY user_name (user_name),
 							KEY user_joined (user_joined),
 							KEY user_lastvisit (user_lastvisit)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -993,7 +908,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							weblink_cat_sorting VARCHAR(50) NOT NULL DEFAULT 'weblink_name ASC',
 							weblink_cat_access TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
 							PRIMARY KEY(weblink_cat_id)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -1009,7 +924,7 @@ if (isset($_POST['step']) && $_POST['step'] == "4") {
 							PRIMARY KEY(weblink_id),
 							KEY weblink_datestamp (weblink_datestamp),
 							KEY weblink_count (weblink_count)
-							) ENGINE=MYISAM CHARACTER SET ".$locale['mysql_charset']." COLLATE ".$locale['mysql_collate'].";");
+							) ENGINE=MyISAM;");
 
 							if (!$result) { $fail = true; }
 
@@ -1119,9 +1034,15 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 	require_once "config.php";
 	$dbconnect = dbconnect($db_host, $db_user, $db_pass, $db_name);
 
-	$error = ""; $error_pass = "0"; $error_name = "0"; $error_mail = "0"; $settings['password_algorithm'] = "sha256";
-
 	$username = (isset($_POST['username']) ? stripinput(trim($_POST['username'])) : "");
+	$password1 = (isset($_POST['password1']) ? stripinput(trim($_POST['password1'])) : "");
+	$password2 = (isset($_POST['password2']) ? stripinput(trim($_POST['password2'])) : "");
+	$admin_password1 = (isset($_POST['admin_password1']) ? stripinput(trim($_POST['admin_password1'])) : "");
+	$admin_password2 = (isset($_POST['admin_password2']) ? stripinput(trim($_POST['admin_password2'])) : "");
+	$email = (isset($_POST['email']) ? stripinput(trim($_POST['email'])) : "");
+
+	$error = ""; $error_pass = "0"; $error_name = "0"; $error_mail = "0";
+
 	if ($username == "") {
 		$error .= $locale['070b']."<br /><br />\n";
 		$error_name = "1";
@@ -1130,44 +1051,32 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 		$error_name = "1";
 	}
 
-	require_once "includes/PasswordAuth.class.php";
-
-	$userPassword = ""; $adminPassword = "";
-
-	$userPass = new PasswordAuth();
-	$userPass->inputNewPassword = (isset($_POST['password1']) ? stripinput(trim($_POST['password1'])) : "");
-	$userPass->inputNewPassword2 = (isset($_POST['password2']) ? stripinput(trim($_POST['password2'])) : "");
-	$returnValue = $userPass->isValidNewPassword();
-	if ($returnValue == 0) {
-		$userPassword = $userPass->getNewHash();
-		$userSalt = $userPass->getNewSalt();
-	} elseif ($returnValue == 2) {
-		$error .= $locale['071']."<br /><br />\n";
+	if ($password1 == "" || $password2 == "") {
+		$error .= $locale['072b']."<br /><br />\n";
 		$error_pass = "1";
-	} elseif ($returnValue == 3) {
+	} elseif (preg_match("/^[0-9A-Z@]{6,20}$/i", $password1)) {
+		if ($password1 != $password2) {
+			$error .= $locale['071']."<br /><br />\n";
+			$error_pass = "1";
+		}
+	} else {
 		$error .= $locale['072']."<br /><br />\n";
 	}
 
-	$adminPass = new PasswordAuth();
-	$adminPass->inputNewPassword = (isset($_POST['admin_password1']) ? stripinput(trim($_POST['admin_password1'])) : "");
-	$adminPass->inputNewPassword2 = (isset($_POST['admin_password2']) ? stripinput(trim($_POST['admin_password2'])) : "");
-	$returnValue = $adminPass->isValidNewPassword();
-	if ($returnValue == 0) {
-		$adminPassword = $adminPass->getNewHash();
-		$adminSalt = $adminPass->getNewSalt();
-	} elseif ($returnValue == 2) {
-		$error .= $locale['073']."<br /><br />\n";
+	if ($admin_password1 == "" || $admin_password2 == "") {
+		$error .= $locale['075b']."<br /><br />\n";
 		$error_pass = "1";
-	} elseif ($returnValue == 3) {
-		$error .= $locale['075']."<br /><br />\n";
-	}
-
-	if ($userPass->inputNewPassword == $adminPass->inputNewPassword) {
+	} elseif (preg_match("/^[0-9A-Z@]{6,20}$/i", $admin_password1)) {
+		if ($admin_password1 != $admin_password2) {
+			$error .= $locale['073']."<br /><br />\n";
+			$error_pass = "1";
+		} elseif ($admin_password1 == $password1) {
 			$error .= $locale['074']."<br /><br />\n";
 			$error_pass = "1";
+		}
+	} else {
+		$error .= $locale['075']."<br /><br />\n";
 	}
-
-	$email = (isset($_POST['email']) ? stripinput(trim($_POST['email'])) : "");
 
  	if ($email == "") {
 		$error .= $locale['076b']."<br /><br />\n";
@@ -1181,25 +1090,19 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 
 	if ($error == "") {
 		if ($rows == 0) {
-			$siteurl = getCurrentURL();
-			$url = parse_url($siteurl);
-
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('sitename', 'PHP-Fusion Powered Website')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('siteurl', '".$siteurl."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('site_protocol', '".$url['scheme']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('site_host', '".$url['host']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('site_port', '".(isset($url['port']) ? $url['port'] : "")."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('site_path', '".(isset($url['path']) ? $url['path'] : "")."')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('siteurl', 'http://www.yourdomain.com/')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('sitebanner', 'images/php-fusion-logo.png')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('sitebanner1', '')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('sitebanner2', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('siteemail', '".$email."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('siteusername', '".$username."')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('siteemail', 'you@yourdomain.com')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('siteusername', '$username')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('siteintro', '<div style=\'text-align:center\'>".$locale['230']."</div>')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('description', '')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('keywords', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('footer', '<div style=\'text-align:center\'>Copyright &copy; ".@date("Y")."</div>')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('footer', '<div style=\'text-align:center\'>Copyright &copy; ".date("Y")."</div>')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('opening_page', 'news.php')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('news_style', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('news_thumb_ratio', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('news_image_link', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('news_thumb_w', '100')");
@@ -1214,23 +1117,20 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('exclude_upper', '')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('exclude_lower', '')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('exclude_right', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('shortdate', '".$locale['shortdate']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('longdate', '".$locale['longdate']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('forumdate', '".$locale['forumdate']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('newsdate', '".$locale['newsdate']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('subheaderdate', '".$locale['subheaderdate']."')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('shortdate', '%d/%m/%Y %H:%M')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('longdate', '%B %d %Y %H:%M:%S')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('forumdate', '%d-%m-%Y %H:%M')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('newsdate', '%B %d %Y')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('subheaderdate', '%B %d %Y %H:%M:%S')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('timeoffset', '0.0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('serveroffset', '0.0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('numofthreads', '15')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('forum_ips', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('attachmax', '150000')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('attachmax_count', '5')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('attachtypes', '.gif,.jpg,.png,.zip,.rar,.tar')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('thread_notify', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('forum_ranks', '1')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('forum_ranks', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('forum_edit_lock', '0')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('forum_edit_timelimit', '0')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('forum_last_posts_reply', '10')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('enable_registration', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('email_verification', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('admin_activation', '0')");
@@ -1238,6 +1138,7 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('enable_deactivation', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('deactivation_period', '365')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('deactivation_response', '14')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('login_method', 'cookies')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('enable_terms', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('license_agreement', '')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('license_lastupdate', '0')");
@@ -1272,18 +1173,17 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('hide_userprofiles', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('userthemes', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('newsperpage', '11')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('numofshouts', '5')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('flood_interval', '15')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('counter', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('version', '7.02.00')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('version', '7.01.06')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('maintenance', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('maintenance_message', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('download_max_b', '512000')");
+			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('download_max_b', '15000')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('download_types', '.pdf,.gif,.jpg,.png,.zip,.rar,.tar,.bz2')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('articles_per_page', '15')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('downloads_per_page', '15')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('links_per_page', '15')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('comments_per_page', '10')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('comments_sorting', 'ASC')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('avatar_width', '100')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('avatar_height', '100')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('avatar_filesize', '15000')");
@@ -1292,7 +1192,6 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('cronjob_hour', '".time()."')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('flood_autoban', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('visitorcounter_enabled', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('rendertime_enabled', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('popular_threads_timeframe', '')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('maintenance_level', '102')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('news_photo_w', '400')");
@@ -1300,78 +1199,56 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('news_image_frontpage', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('news_image_readmore', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('deactivation_action', '0')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('captcha', 'securimage2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('password_algorithm', 'sha256')");
 			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('default_timezone', 'Europe/London')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('userNameChange', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('download_screen_max_b', '150000')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('download_screen_max_w', '1024')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('download_screen_max_h', '768')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('recaptcha_public', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."settings (settings_name, settings_value) VALUES ('recaptcha_private', '')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('AD', 'admins.gif', '".$locale['080']."', 'administrators.php', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('APWR', 'admin_pass.gif', '".$locale['128']."', 'admin_reset.php', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('AC', 'article_cats.gif', '".$locale['081']."', 'article_cats.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('A', 'articles.gif', '".$locale['082']."', 'articles.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('SB', 'banners.gif', '".$locale['083']."', 'banners.php', '3')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('BB', 'bbcodes.gif', '".$locale['084']."', 'bbcodes.php', '3')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('B', 'blacklist.gif', '".$locale['085']."', 'blacklist.php', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('C', '', '".$locale['086']."', 'reserved', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('CP', 'c-pages.gif', '".$locale['087']."', 'custom_pages.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('DB', 'db_backup.gif', '".$locale['088']."', 'db_backup.php', '3')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('DC', 'dl_cats.gif', '".$locale['089']."', 'download_cats.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('D', 'dl.gif', '".$locale['090']."', 'downloads.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('ERRO', 'errors.gif', '".$locale['129']."', 'errors.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('FQ', 'faq.gif', '".$locale['091']."', 'faq.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('F', 'forums.gif', '".$locale['092']."', 'forums.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('IM', 'images.gif', '".$locale['093']."', 'images.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('I', 'infusions.gif', '".$locale['094']."', 'infusions.php', '3')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('IP', '', '".$locale['095']."', 'reserved', '3')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('M', 'members.gif', '".$locale['096']."', 'members.php', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('NC', 'news_cats.gif', '".$locale['097']."', 'news_cats.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('N', 'news.gif', '".$locale['098']."', 'news.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('P', 'panels.gif', '".$locale['099']."', 'panels.php', '3')");
 
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('PH', 'photoalbums.gif', '".$locale['100']."', 'photoalbums.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('PI', 'phpinfo.gif', '".$locale['101']."', 'phpinfo.php', '3')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('PO', 'polls.gif', '".$locale['102']."', 'polls.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('SL', 'site_links.gif', '".$locale['104']."', 'site_links.php', '3')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('SM', 'smileys.gif', '".$locale['105']."', 'smileys.php', '3')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('SU', 'submissions.gif', '".$locale['106']."', 'submissions.php', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('U', 'upgrade.gif', '".$locale['107']."', 'upgrade.php', '3')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('UG', 'user_groups.gif', '".$locale['108']."', 'user_groups.php', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('WC', 'wl_cats.gif', '".$locale['109']."', 'weblink_cats.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('W', 'wl.gif', '".$locale['110']."', 'weblinks.php', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S1', 'settings.gif', '".$locale['111']."', 'settings_main.php', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S2', 'settings_time.gif', '".$locale['112']."', 'settings_time.php', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S3', 'settings_forum.gif', '".$locale['113']."', 'settings_forum.php', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S4', 'registration.gif', '".$locale['114']."', 'settings_registration.php', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S5', 'photoalbums.gif', '".$locale['115']."', 'settings_photo.php', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S6', 'settings_misc.gif', '".$locale['116']."', 'settings_misc.php', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S7', 'settings_pm.gif', '".$locale['117']."', 'settings_messages.php', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S8', 'settings_news.gif', '".$locale['121']."', 'settings_news.php', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S9', 'settings_users.gif', '".$locale['122']."', 'settings_users.php', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S10', 'settings_ipp.gif', '".$locale['124']."', 'settings_ipp.php', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S11', 'settings_dl.gif', '".$locale['123']."', 'settings_dl.php', '4')");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('AD', 'admins.gif', '".$locale['080']."', 'administrators.php', 2)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('AC', 'article_cats.gif', '".$locale['081']."', 'article_cats.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('A', 'articles.gif', '".$locale['082']."', 'articles.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('SB', 'banners.gif', '".$locale['083']."', 'banners.php', 3)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('BB', 'bbcodes.gif', '".$locale['084']."', 'bbcodes.php', 3)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('B', 'blacklist.gif', '".$locale['085']."', 'blacklist.php', 2)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('C', '', '".$locale['086']."', 'reserved', 2)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('CP', 'c-pages.gif', '".$locale['087']."', 'custom_pages.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('DB', 'db_backup.gif', '".$locale['088']."', 'db_backup.php', 3)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('DC', 'dl_cats.gif', '".$locale['089']."', 'download_cats.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('D', 'dl.gif', '".$locale['090']."', 'downloads.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('FQ', 'faq.gif', '".$locale['091']."', 'faq.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('F', 'forums.gif', '".$locale['092']."', 'forums.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('IM', 'images.gif', '".$locale['093']."', 'images.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('I', 'infusions.gif', '".$locale['094']."', 'infusions.php', 3)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('IP', '', '".$locale['095']."', 'reserved', 3)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('M', 'members.gif', '".$locale['096']."', 'members.php', 2)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('NC', 'news_cats.gif', '".$locale['097']."', 'news_cats.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('N', 'news.gif', '".$locale['098']."', 'news.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('P', 'panels.gif', '".$locale['099']."', 'panels.php', 3)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('PH', 'photoalbums.gif', '".$locale['100']."', 'photoalbums.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('PI', 'phpinfo.gif', '".$locale['101']."', 'phpinfo.php', 3)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('PO', 'polls.gif', '".$locale['102']."', 'polls.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S', 'shout.gif', '".$locale['103']."', 'shoutbox.php', 2)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('SL', 'site_links.gif', '".$locale['104']."', 'site_links.php', 3)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('SM', 'smileys.gif', '".$locale['105']."', 'smileys.php', 3)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('SU', 'submissions.gif', '".$locale['106']."', 'submissions.php', 2)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('U', 'upgrade.gif', '".$locale['107']."', 'upgrade.php', 3)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('UG', 'user_groups.gif', '".$locale['108']."', 'user_groups.php', 2)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('WC', 'wl_cats.gif', '".$locale['109']."', 'weblink_cats.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('W', 'wl.gif', '".$locale['110']."', 'weblinks.php', 1)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S1', 'settings.gif', '".$locale['111']."', 'settings_main.php', 4)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S2', 'settings_time.gif', '".$locale['112']."', 'settings_time.php', 4)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S3', 'settings_forum.gif', '".$locale['113']."', 'settings_forum.php', 4)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S4', 'registration.gif', '".$locale['114']."', 'settings_registration.php', 4)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S5', 'photoalbums.gif', '".$locale['115']."', 'settings_photo.php', 4)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S6', 'settings_misc.gif', '".$locale['116']."', 'settings_misc.php', 4)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S7', 'settings_pm.gif', '".$locale['117']."', 'settings_messages.php', 4)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S8', 'settings_news.gif', '".$locale['121']."', 'settings_news.php', 4)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S9', 'settings_users.gif', '".$locale['122']."', 'settings_users.php', 4)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S10', 'settings_ipp.gif', '".$locale['124']."', 'settings_ipp.php', 4)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S11', 'settings_dl.gif', '".$locale['123']."', 'settings_dl.php', 4)");
 			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('S12', 'security.gif', '".$locale['125']."', 'settings_security.php', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('UF', 'user_fields.gif', '".$locale['118']."', 'user_fields.php', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('FR', 'forum_ranks.gif', '".$locale['119']."', 'forum_ranks.php', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('UFC', 'user_fields_cats.gif', '".$locale['120']."', 'user_field_cats.php', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('ROB', 'robots.gif', 'robots.txt', 'robots.php', '3')");
-			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('UL', 'user_fields.gif', '".$locale['129a']."', 'user_log.php', '2')");
-			$result = dbquery(
-				"INSERT INTO ".$db_prefix."users (
-					user_name, user_algo, user_salt, user_password, user_admin_algo, user_admin_salt, user_admin_password, user_email, user_hide_email, user_offset,
-					user_avatar, user_posts, user_threads, user_joined, user_lastvisit, user_ip, user_rights,
-					user_groups, user_level, user_status, user_theme, user_location, user_birthdate, user_aim,
-					user_icq, user_msn, user_yahoo, user_web, user_sig
-				) VALUES (
-					'".$username."', 'sha256', '".$userSalt."', '".$userPassword."', 'sha256', '".$adminSalt."', '".$adminPassword."',
-					'".$email."', '1', '0', '',  '0', '', '".time()."', '0', '0.0.0.0',
-					'A.AC.AD.APWR.B.BB.C.CP.DB.DC.D.ERRO.FQ.F.FR.IM.I.IP.M.N.NC.P.PH.PI.PO.ROB.SL.S1.S2.S3.S4.S5.S6.S7.S8.S9.S10.S11.S12.SB.SM.SU.UF.UFC.UG.UL.U.W.WC',
-					'', '103', '0', 'Default', '', '0000-00-00', '', '', '', '', '', ''
-				)"
-			);
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('UF', 'user_fields.gif', '".$locale['118']."', 'user_fields.php', 2)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('FR', 'forum_ranks.gif', '".$locale['119']."', 'forum_ranks.php', 2)");
+			$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('UFC', 'user_fields_cats.gif', '".$locale['120']."', 'user_field_cats.php', 2)");
+
+			$result = dbquery("INSERT INTO ".$db_prefix."users (user_name, user_password, user_admin_password, user_email, user_hide_email, user_offset, user_avatar, user_posts, user_threads, user_joined, user_lastvisit, user_ip, user_rights, user_groups, user_level, user_status, user_theme, user_location, user_birthdate, user_aim, user_icq, user_msn, user_yahoo, user_web, user_sig) VALUES ('".$username."', '".md5(md5($password1))."', '".md5(md5($admin_password1))."', '".$email."', '1', '0', '', '0', '', '".time()."', '0', '0.0.0.0', 'A.AC.AD.B.BB.C.CP.DB.DC.D.FQ.F.FR.IM.I.IP.M.N.NC.P.PH.PI.PO.S.SL.S1.S2.S3.S4.S5.S6.S7.S8.S9.S10.S11.S12.SB.SM.SU.UF.UFC.UG.U.W.WC', '', '103', '0', 'Default', '', '0000-00-00', '', '', '', '', '', '')");
 
 			$result = dbquery("INSERT INTO ".$db_prefix."messages_options (user_id, pm_email_notify, pm_save_sent, pm_inbox, pm_savebox, pm_sentbox) VALUES ('0', '0', '1', '20', '20', '20')");
 
@@ -1387,15 +1264,15 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."bbcodes (bbcode_name, bbcode_order) VALUES ('code', '10')");
 			$result = dbquery("INSERT INTO ".$db_prefix."bbcodes (bbcode_name, bbcode_order) VALUES ('quote', '11')");
 
-			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':)', 'smile.gif', '".$locale['210']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (';)', 'wink.gif', '".$locale['211']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':(', 'sad.gif', '".$locale['212']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':|', 'frown.gif', '".$locale['213']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':o', 'shock.gif', '".$locale['214']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':P', 'pfft.gif', '".$locale['215']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES ('B)', 'cool.gif', '".$locale['216']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':D', 'grin.gif', '".$locale['217']."')");
-			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':@', 'angry.gif', '".$locale['218']."')");
+			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':)', 'smile.gif', 'Smile')");
+			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (';)', 'wink.gif', 'Wink')");
+			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':(', 'sad.gif', 'Sad')");
+			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':|', 'frown.gif', 'Frown')");
+			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':o', 'shock.gif', 'Shock')");
+			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':P', 'pfft.gif', 'Pfft')");
+			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES ('B)', 'cool.gif', 'Cool')");
+			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':D', 'grin.gif', 'Grin')");
+			$result = dbquery("INSERT INTO ".$db_prefix."smileys (smiley_code, smiley_image, smiley_text) VALUES (':@', 'angry.gif', 'Angry')");
 
 			$result = dbquery("INSERT INTO ".$db_prefix."news_cats (news_cat_name, news_cat_image) VALUES ('".$locale['180']."', 'bugs.gif')");
 			$result = dbquery("INSERT INTO ".$db_prefix."news_cats (news_cat_name, news_cat_image) VALUES ('".$locale['181']."', 'downloads.gif')");
@@ -1414,7 +1291,7 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."news_cats (news_cat_name, news_cat_image) VALUES ('".$locale['194']."', 'themes.gif')");
 			$result = dbquery("INSERT INTO ".$db_prefix."news_cats (news_cat_name, news_cat_image) VALUES ('".$locale['195']."', 'windows.gif')");
 
-			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['160']."', 'css_navigation_panel', '', '1', '1', 'file', '0', '0', '1')");
+			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['160']."', 'navigation_panel', '', '1', '1', 'file', '0', '0', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['161']."', 'online_users_panel', '', '1', '2', 'file', '0', '0', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['162']."', 'forum_threads_panel', '', '1', '3', 'file', '0', '0', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['163']."', 'latest_articles_panel', '', '1', '4', 'file', '0', '0', '0')");
@@ -1422,6 +1299,7 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['165']."', 'forum_threads_list_panel', '', '2', '2', 'file', '0', '0', '0')");
 			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['166']."', 'user_info_panel', '', '4', 1, 'file', '0', '0', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['167']."', 'member_poll_panel', '', '4', '2', 'file', '0', '0', '0')");
+			$result = dbquery("INSERT INTO ".$db_prefix."panels (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('".$locale['168']."', 'shoutbox_panel', '', '4', '3', 'file', '0', '0', '1')");
 
 			$result = dbquery("INSERT INTO ".$db_prefix."site_links (link_name, link_url, link_visibility, link_position, link_window, link_order) VALUES ('".$locale['130']."', 'index.php', '0', '2', '0', '1')");
 			$result = dbquery("INSERT INTO ".$db_prefix."site_links (link_name, link_url, link_visibility, link_position, link_window, link_order) VALUES ('".$locale['131']."', 'articles.php', '0', '2', '0', '2')");
@@ -1438,34 +1316,31 @@ if (isset($_POST['step']) && $_POST['step'] == "6") {
 			$result = dbquery("INSERT INTO ".$db_prefix."site_links (link_name, link_url, link_visibility, link_position, link_window, link_order) VALUES ('".$locale['141']."', 'submit.php?stype=n', '101', '1', '0', '13')");
 			$result = dbquery("INSERT INTO ".$db_prefix."site_links (link_name, link_url, link_visibility, link_position, link_window, link_order) VALUES ('".$locale['142']."', 'submit.php?stype=a', '101', '1', '0', '14')");
 			$result = dbquery("INSERT INTO ".$db_prefix."site_links (link_name, link_url, link_visibility, link_position, link_window, link_order) VALUES ('".$locale['143']."', 'submit.php?stype=p', '101', '1', '0', '15')");
-			$result = dbquery("INSERT INTO ".$db_prefix."site_links (link_name, link_url, link_visibility, link_position, link_window, link_order) VALUES ('".$locale['144']."', 'submit.php?stype=d', '101', '1', '0', '16')");
 
 			$result = dbquery("INSERT INTO ".$db_prefix."user_field_cats (field_cat_id, field_cat_name, field_cat_order) VALUES (1, '".$locale['220']."', 1)");
 			$result = dbquery("INSERT INTO ".$db_prefix."user_field_cats (field_cat_id, field_cat_name, field_cat_order) VALUES (2, '".$locale['221']."', 2)");
 			$result = dbquery("INSERT INTO ".$db_prefix."user_field_cats (field_cat_id, field_cat_name, field_cat_order) VALUES (3, '".$locale['222']."', 3)");
 			$result = dbquery("INSERT INTO ".$db_prefix."user_field_cats (field_cat_id, field_cat_name, field_cat_order) VALUES (4, '".$locale['223']."', 4)");
 
-			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_required, field_order) VALUES ('user_location', '2', '0', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_required, field_order) VALUES ('user_birthdate', '2', '0', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_required, field_order) VALUES ('user_skype', '1', '0', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_required, field_order) VALUES ('user_aim', '1', '0', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_required, field_order) VALUES ('user_icq', '1', '0', '3')");
-			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_required, field_order) VALUES ('user_msn', '1', '0', '4')");
-			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_required, field_order) VALUES ('user_yahoo', '1', '0', '5')");
-			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_required, field_order) VALUES ('user_web', '1', '0', '6')");
-			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_required, field_order) VALUES ('user_offset', '3', '0', '1')");
-			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_required, field_order) VALUES ('user_theme', '3', '0', '2')");
-			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_required, field_order) VALUES ('user_sig', '3', '0', '3')");
+			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_order) VALUES ('user_location', '2', '1')");
+			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_order) VALUES ('user_birthdate', '2', '2')");
+			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_order) VALUES ('user_aim', '1', '3')");
+			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_order) VALUES ('user_icq', '1', '4')");
+			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_order) VALUES ('user_msn', '1', '5')");
+			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_order) VALUES ('user_yahoo', '1', '6')");
+			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_order) VALUES ('user_web', '1', '7')");
+			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_order) VALUES ('user_theme', '3', '8')");
+			$result = dbquery("INSERT INTO ".$db_prefix."user_fields (field_name, field_cat, field_order) VALUES ('user_sig', '3', '9')");
 
-			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (1, '".$locale['200']."', 'rank_super_admin.png', 0, '1', 103)");
-			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (2, '".$locale['201']."', 'rank_admin.png', 0, '1', 102)");
-			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (3, '".$locale['202']."', 'rank_mod.png', 0, '1', 104)");
-			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (4, '".$locale['203']."', 'rank0.png', 0, '0', 101)");
-			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (5, '".$locale['204']."', 'rank1.png', 10, '0', 101)");
-			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (6, '".$locale['205']."', 'rank2.png', 50, '0', 101)");
-			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (7, '".$locale['206']."', 'rank3.png', 200, '0', 101)");
-			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (8, '".$locale['207']."', 'rank4.png', 500, '0', 101)");
-			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (9, '".$locale['208']."', 'rank5.png', 1000, '0', 101)");
+			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (1, '".$locale['200']."', 'rank_super_admin.gif', 0, 103)");
+			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (2, '".$locale['201']."', 'rank_admin.gif', 0, 102)");
+			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (3, '".$locale['202']."', 'rank_mod.gif', 0, 104)");
+			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (4, '".$locale['203']."', 'rank0.gif', 0, 101)");
+			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (5, '".$locale['204']."', 'rank1.gif', 10, 101)");
+			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (6, '".$locale['205']."', 'rank2.gif', 50, 101)");
+			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (7, '".$locale['206']."', 'rank3.gif', 200, 101)");
+			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (8, '".$locale['207']."', 'rank4.gif', 500, 101)");
+			$result = dbquery("INSERT INTO ".$db_prefix."forum_ranks VALUES (9, '".$locale['208']."', 'rank5.gif', 1000, 101)");
 		}
 
 		if (function_exists("chmod")) { @chmod("config.php", 0644); }
@@ -1573,26 +1448,6 @@ function makefileopts($files, $selected = "") {
 		$res .= "<option value='".$files[$i]."'$sel>".$files[$i]."</option>\n";
 	}
 	return $res;
-}
-
-// Clean URL Function, prevents entities in server globals
-function cleanurl($url) {
-	$bad_entities = array("&", "\"", "'", '\"', "\'", "<", ">", "(", ")", "*");
-	$safe_entities = array("&amp;", "", "", "", "", "", "", "", "", "");
-	$url = str_replace($bad_entities, $safe_entities, $url);
-	return $url;
-}
-
-// Get Current URL
-function getCurrentURL() {
-	$s = empty($_SERVER["HTTPS"]) ? "" : ($_SERVER["HTTPS"] == "on") ? "s" : "";
-	$protocol = strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
-	$port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
-	return $protocol."://".$_SERVER['SERVER_NAME'].$port.(str_replace(basename(cleanurl($_SERVER['PHP_SELF'])), "", $_SERVER['REQUEST_URI']));
-}
-
-function strleft($s1, $s2) {
-	return substr($s1, 0, strpos($s1, $s2));
 }
 
 if (isset($db_connect) && $db_connect != false) { mysql_close($db_connect); }

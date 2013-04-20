@@ -249,34 +249,17 @@ a:hover{text-decoration: underline;}
 }
 .poll {height: 1em; border: 1px solid #666;}
 .forum-caption, .poll {background-position: bottom left !important;}
-.comment-name {font-weight: 700;}
-
+.comment-name, .shoutboxname {font-weight: 700;}
+.shoutboxdate {
+	color: #888;
+	font-size: 0.8em;
+}
 .small,.small2,.side-small {font-size: 0.9em;}
 code, pre {
 	font-family: monospace;
 	font-size: 1.1em;
 }
 .alt {color: #444;}
-
-div.emulated-fieldset {
-	position: relative;
-	margin: 20px 0px 10px 0px;
-	border: 1px solid #ccc;
-	width: 320px;
-	background: inherit;
-}
-div.emulated-fieldset span.emulated-legend {
-	display: inline;
-	position: absolute;
-	top: -12px;
-	margin: 0 5px;
-	padding: 4px;
-	background: inherit;
-}
-div.emulated-fieldset div.attachments-list {
-	padding: 10px 3px 3px 3px;
-	width: 320px;
-}
 hr {
 	background: #777;
 	border: solid #777 1pt;

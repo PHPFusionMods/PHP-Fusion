@@ -25,22 +25,22 @@ include LOCALE.LOCALESET."admin/user_fields.php";
 if (isset($_GET['action']) && $_GET['action'] == "refresh") {
 	$i = 1; $k = 1;
 	$result = dbquery(
-		"SELECT field_cat_id FROM ".DB_USER_FIELD_CATS."
+		"SELECT field_cat_id FROM ".DB_USER_FIELD_CATS." 
 		ORDER BY field_cat_order ASC"
 	);
 	while ($data = dbarray($result)) {
 		$result2 = dbquery(
-			"UPDATE ".DB_USER_FIELD_CATS." SET field_cat_order='".$i."'
+			"UPDATE ".DB_USER_FIELD_CATS." SET field_cat_order='".$i."' 
 			WHERE field_cat_id='".$data['field_cat_id']."'"
 		);
 		$result2 = dbquery(
-			"SELECT field_id, field_order FROM ".DB_USER_FIELDS."
-			WHERE field_cat='".$data['field_cat_id']."'
+			"SELECT field_id, field_order FROM ".DB_USER_FIELDS." 
+			WHERE field_cat='".$data['field_cat_id']."' 
 			ORDER BY field_order ASC"
 		);
 		while ($data2 = dbarray($result2)) {
 			$result3 = dbquery(
-				"UPDATE ".DB_USER_FIELDS." SET field_order='".$k."'
+				"UPDATE ".DB_USER_FIELDS." SET field_order='".$k."' 
 				WHERE field_id='".$data2['field_id']."'"
 			);
 			$k++;
@@ -48,103 +48,46 @@ if (isset($_GET['action']) && $_GET['action'] == "refresh") {
 		$i++; $k = 1;
 	}
 	redirect(FUSION_SELF.$aidlink);
-} elseif ((isset($_GET['action']) && $_GET['action'] == "mu")
-	&& (isset($_GET['field_id']) && isnum($_GET['field_id']))
-) {
-	$data2 = dbarray(dbquery(
-		"SELECT field_cat FROM ".DB_USER_FIELDS."
-		WHERE field_id='".$_GET['field_id']." LIMIT 1'"
-	));
-	$data = dbarray(dbquery(
-		"SELECT field_id FROM ".DB_USER_FIELDS."
-		WHERE field_cat='".$data2['field_cat']."'
-			AND field_order='".intval($_GET['order'])."'"
-	));
-	$result = dbquery(
-		"UPDATE ".DB_USER_FIELDS." SET field_order=field_order+1
-		WHERE field_id='".$data['field_id']."'"
-	);
-	$result = dbquery(
-		"UPDATE ".DB_USER_FIELDS." SET field_order=field_order-1
-		WHERE field_id='".$_GET['field_id']."'"
-	);
+} elseif ((isset($_GET['action']) && $_GET['action'] == "mu") && (isset($_GET['field_id']) && isnum($_GET['field_id']))) {
+	$data2 = dbarray(dbquery("SELECT field_cat FROM ".DB_USER_FIELDS." WHERE field_id='".$_GET['field_id']." LIMIT 1'"));
+	$data = dbarray(dbquery("SELECT field_id FROM ".DB_USER_FIELDS." WHERE field_cat='".$data2['field_cat']."' AND field_order='".intval($_GET['order'])."'"));
+	$result = dbquery("UPDATE ".DB_USER_FIELDS." SET field_order=field_order+1 WHERE field_id='".$data['field_id']."'");
+	$result = dbquery("UPDATE ".DB_USER_FIELDS." SET field_order=field_order-1 WHERE field_id='".$_GET['field_id']."'");
 	redirect(FUSION_SELF.$aidlink);
-} elseif ((isset($_GET['action']) && $_GET['action'] == "md")
-	&& (isset($_GET['field_id']) && isnum($_GET['field_id']))
-) {
-	$data2 = dbarray(dbquery(
-		"SELECT field_cat FROM ".DB_USER_FIELDS."
-		WHERE field_id='".$_GET['field_id']." LIMIT 1'"
-	));
-	$data = dbarray(dbquery(
-		"SELECT field_id FROM ".DB_USER_FIELDS."
-		WHERE field_cat='".$data2['field_cat']."'
-			AND field_order='".intval($_GET['order'])."'"
-	));
-	$result = dbquery(
-		"UPDATE ".DB_USER_FIELDS." SET field_order=field_order-1
-		WHERE field_id='".$data['field_id']."'"
-	);
-	$result = dbquery(
-		"UPDATE ".DB_USER_FIELDS." SET field_order=field_order+1
-		WHERE field_id='".$_GET['field_id']."'"
-	);
+} elseif ((isset($_GET['action']) && $_GET['action'] == "md") && (isset($_GET['field_id']) && isnum($_GET['field_id']))) {
+	$data2 = dbarray(dbquery("SELECT field_cat FROM ".DB_USER_FIELDS." WHERE field_id='".$_GET['field_id']." LIMIT 1'"));
+	$data = dbarray(dbquery("SELECT field_id FROM ".DB_USER_FIELDS." WHERE field_cat='".$data2['field_cat']."' AND field_order='".intval($_GET['order'])."'"));
+	$result = dbquery("UPDATE ".DB_USER_FIELDS." SET field_order=field_order-1 WHERE field_id='".$data['field_id']."'");
+	$result = dbquery("UPDATE ".DB_USER_FIELDS." SET field_order=field_order+1 WHERE field_id='".$_GET['field_id']."'");
 	redirect(FUSION_SELF.$aidlink);
-} elseif (isset($_GET['enable'])
-		&& file_exists(INCLUDES."user_fields/".stripinput($_GET['enable'])."_include_var.php")
-		&& file_exists(INCLUDES."user_fields/".stripinput($_GET['enable'])."_include.php")
-) {
-	$user_field_api_version = "1.00.00";
+} elseif (isset($_GET['enable']) && file_exists(INCLUDES."user_fields/".stripinput($_GET['enable'])."_include_var.php") && file_exists(INCLUDES."user_fields/".stripinput($_GET['enable'])."_include.php")) {
 	if (file_exists(LOCALE.LOCALESET."user_fields/".stripinput($_GET['enable']).".php")) {
 		include LOCALE.LOCALESET."user_fields/".stripinput($_GET['enable']).".php";
 	}
 	include INCLUDES."user_fields/".stripinput($_GET['enable'])."_include_var.php";
 	if (isset($_POST['enable'])) {
 		$field_cat = isnum($_POST['field_cat']) ? $_POST['field_cat'] : 0;
-		$field_required = isset($_POST['field_required']) && $_POST['field_required'] == 1 ? 1 : 0;
-		$field_log = isset($_POST['field_log']) && $_POST['field_log'] == 1 ? 1 : 0;
-		$rows = dbcount("(field_id)", DB_USER_FIELDS, "field_name='".stripinput($_GET['enable'])."'");
-		if ($rows > 0) {
-			$result = dbquery(
-				"UPDATE ".DB_USER_FIELDS." SET
-					field_cat='".$field_cat."', field_required='".$field_required."', field_log='".$field_log."'
-				WHERE field_name='".stripinput($_GET['enable'])."'"
-			);
+		$result = dbquery("SELECT field_cat, field_order FROM ".DB_USER_FIELDS." WHERE field_name='".stripinput($_GET['enable'])."'");
+		if (dbrows($result)) {
+			$data = dbarray($result);
+			$field_order = dbresult(dbquery("SELECT MAX(field_order) FROM ".DB_USER_FIELDS." WHERE field_cat='".$field_cat."'"), 0) + 1;
+			$result = dbquery("UPDATE ".DB_USER_FIELDS." SET field_cat='".$field_cat."', field_order='".$field_order."' WHERE field_name='".stripinput($_GET['enable'])."'");
+			$result = dbquery("UPDATE ".DB_USER_FIELDS." SET field_order=field_order-1 WHERE field_cat='".$data['field_cat']."' AND field_order>'".$data['field_order']."'");
 		} else {
-			$field_order = dbresult(dbquery(
-				"SELECT MAX(field_order) FROM ".DB_USER_FIELDS."
-				WHERE field_cat='".$field_cat."'"
-			), 0) + 1;
-			if (!$user_field_dbinfo ||
-				$result = dbquery("ALTER TABLE ".DB_USERS."
-					ADD ".$user_field_dbname." ".$user_field_dbinfo)
-			) {
-				$result = dbquery(
-					"INSERT INTO ".DB_USER_FIELDS." (
-						field_name, field_cat, field_required, field_log, field_order
-					) VALUES (
-						'".$user_field_dbname."', '".$field_cat."', '".$field_required."',
-						'".$field_log."', '".$field_order."'
-					)"
-				);
+			$field_order = dbresult(dbquery("SELECT MAX(field_order) FROM ".DB_USER_FIELDS." WHERE field_cat='".$field_cat."'"), 0) + 1;
+			if (!$user_field_dbinfo || $result = dbquery("ALTER TABLE ".DB_USERS." ADD ".$user_field_dbname." ".$user_field_dbinfo)) {
+				$result = dbquery("INSERT INTO ".DB_USER_FIELDS." (field_name, field_cat, field_order) VALUES ('".$user_field_dbname."', '".$field_cat."', '".$field_order."')");
 			}
 		}
 		redirect(FUSION_SELF.$aidlink);
 	} else {
-		$result = dbquery(
-			"SELECT field_cat, field_required, field_log FROM ".DB_USER_FIELDS."
-			WHERE field_name='".stripinput($_GET['enable'])."'"
-		);
+		$result = dbquery("SELECT field_cat FROM ".DB_USER_FIELDS." WHERE field_name='".stripinput($_GET['enable'])."'");
 		if (dbrows($result)) {
 			$data = dbarray($result);
 			$field_cat = $data['field_cat'];
-			$field_required = $data['field_required'];
-			$field_log = $data['field_log'];
 			$form_title = $locale['420'];
 		} else {
 			$field_cat = "";
-			$field_required = "";
-			$field_log = "";
 			$form_title = $locale['421'];
 		}
 		opentable($form_title);
@@ -152,9 +95,6 @@ if (isset($_GET['action']) && $_GET['action'] == "refresh") {
 		echo "<table cellpadding='0' cellspacing='0' class='center'>\n<tr>\n";
 		echo "<td class='tbl'>".$locale['422']."</td>\n";
 		echo "<td class='tbl'>".$user_field_name."</td>\n";
-		echo "</tr>\n<tr>\n";
-		echo "<td class='tbl'>".$locale['426']."</td>\n";
-		echo "<td class='tbl'>".$user_field_api_version."</td>\n";
 		echo "</tr>\n<tr>\n";
 		echo "<td class='tbl'>".$locale['423']."</td>\n";
 		echo "<td class='tbl'><select name='field_cat' class='textbox'>\n";
@@ -168,28 +108,6 @@ if (isset($_GET['action']) && $_GET['action'] == "refresh") {
 		}
 		echo "</select>\n</td>\n";
 		echo "</tr>\n<tr>\n";
-		if ($user_field_dbinfo != "") {
-			echo "<td class='tbl'>".$locale['427'].":</td>\n<td class='tbl'>";
-			if (version_compare($user_field_api_version, "1.01.00", ">=")) {
-				echo "<label><input type='checkbox' name='field_required' value='1'".($field_required == 1 ? " checked='checked'" : "")." />\n";
-				echo $locale['427']."</label>";
-			} else {
-				echo $Locale['428'];
-			}
-			echo "</td>\n";
-			echo "</tr>\n<tr>\n";
-		}
-		if ($user_field_dbinfo != "") {
-			echo "<td class='tbl'>".$locale['429'].":</td>\n<td class='tbl'>";
-			if (version_compare($user_field_api_version, "1.01.00", ">=")) {
-				echo "<label><input type='checkbox' name='field_log' value='1'".($field_log == 1 ? " checked='checked'" : "")." />\n";
-				echo $locale['429']."</label>";
-			} else {
-				echo $Locale['429a'];
-			}
-			echo "</td>\n";
-			echo "</tr>\n<tr>\n";
-		}
 		echo "<td align='center' colspan='2' class='tbl'>\n";
 		echo "<input type='submit' name='enable' value='".($field_cat ? $locale['424'] : $locale['425'])."' class='button' /></td>\n";
 		echo "</tr>\n</table>\n</form>\n";
@@ -227,15 +145,13 @@ sort($available_fields);
 opentable($locale['400']);
 echo "<table cellpadding='0' cellspacing='1' width='80%' class='tbl-border center'>\n<tr>\n";
 $result = dbquery(
-	"SELECT field_id, field_name, field_cat, field_required, field_log, field_order, field_cat_name FROM ".DB_USER_FIELDS." tuf
+	"SELECT field_id, field_name, field_cat, field_order, field_cat_name FROM ".DB_USER_FIELDS." tuf
 	INNER JOIN ".DB_USER_FIELD_CATS." tufc ON tuf.field_cat = tufc.field_cat_id
 	ORDER BY field_cat_order, field_order"
 );
 if (dbrows($result)) {
 	echo "<td width='1%' class='tbl2' style='white-space:nowrap'><strong>".$locale['401']."</strong></td>\n";
 	echo "<td class='tbl2' style='white-space:nowrap'><strong>".$locale['402']."</strong></td>\n";
-	echo "<td width='1%' class='tbl2' style='white-space:nowrap'><strong>".$locale['427']."</strong></td>\n";
-	echo "<td width='1%' class='tbl2' style='white-space:nowrap'><strong>".$locale['429']."</strong></td>\n";
 	echo "<td width='1%' class='tbl2' style='white-space:nowrap'><strong>".$locale['403']."</strong></td>\n";
 	echo "<td width='1%' class='tbl2' style='white-space:nowrap'><strong>".$locale['404']."</strong></td>\n";
 	echo "</tr>\n";
@@ -245,22 +161,16 @@ if (dbrows($result)) {
 			$rows = dbcount("(field_id)", DB_USER_FIELDS, "field_cat='".$data['field_cat']."'");
 			$cat = $data['field_cat_name'];
 			$i = 1;
-			echo "<tr>\n<td colspan='6' class='tbl2'><strong>".$data['field_cat_name']."</strong></td>\n</tr>\n";
+			echo "<tr>\n<td colspan='4' class='tbl2'><strong>".$data['field_cat_name']."</strong></td>\n</tr>\n";
 		}
+		if (file_exists(LOCALE.LOCALESET."user_fields/".$data['field_name'].".php")) {
+			include LOCALE.LOCALESET."user_fields/".$data['field_name'].".php";
+		}
+		include INCLUDES."user_fields/".$data['field_name']."_include_var.php";
 		$enabled_fields[] = $data['field_name'];
 		echo "<tr>\n";
-		if (!file_exists(INCLUDES."user_fields/".$data['field_name']."_include_var.php") ||
-			!file_exists(LOCALE.LOCALESET."user_fields/".$data['field_name'].".php") ||
-			!file_exists(INCLUDES."user_fields/".$data['field_name']."_include.php")) {
-			echo "<td colspan='2' class='tbl1'><span style='font-weight:bold;'>".$locale['411'].":</span> ".sprintf($locale['412'], $data['field_name'])."</td>\n";
-		} else {
-			include LOCALE.LOCALESET."user_fields/".$data['field_name'].".php";
-			include INCLUDES."user_fields/".$data['field_name']."_include_var.php";
-			echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$user_field_name."</td>\n";
-			echo "<td class='tbl1' style='white-space:nowrap'>".$user_field_desc."</td>\n";
-		}
-		echo "<td width='1%' class='tbl1' style='white-space:nowrap' align='center'><img src='".get_image($data['field_required'] == 1 ? "yes" : "no")."' alt='".$locale['427']."' title='".$locale['427']."' style='border:0px;' /></td>\n";
-		echo "<td width='1%' class='tbl1' style='white-space:nowrap' align='center'><img src='".get_image($data['field_log'] == 1 ? "yes" : "no")."' alt='".$locale['429']."' title='".$locale['429']."' style='border:0px;' /></td>\n";
+		echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$user_field_name."</td>\n";
+		echo "<td class='tbl1' style='white-space:nowrap'>".$user_field_desc."</td>\n";
 		echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$data['field_order'];
 		if ($rows != 1) {
 			$up = $data['field_order'] - 1;
@@ -277,7 +187,7 @@ if (dbrows($result)) {
 		$i++; $k++;
 		echo "</td>\n<td width='1%' class='tbl1' style='white-space:nowrap'>\n";
 		echo "<a href='".FUSION_SELF.$aidlink."&amp;enable=".$data['field_name']."'>".$locale['407']."</a> -\n";
-		echo "<a onclick = \"return confirm('".$locale['410']."');\" href='".FUSION_SELF.$aidlink."&amp;disable=".$data['field_id']."'>".$locale['408']."</a>\n";
+		echo "<a href='".FUSION_SELF.$aidlink."&amp;disable=".$data['field_id']."'>".$locale['408']."</a>\n";
 		echo "</td>\n</tr>\n";
 	}
 } else {

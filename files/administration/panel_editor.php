@@ -6,7 +6,6 @@
 +--------------------------------------------------------+
 | Filename: panel_editor.php
 | Author: Nick Jones (Digitanium)
-| Co Author: WEC
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
@@ -34,12 +33,10 @@ closedir($temp); sort($panel_list); array_unshift($panel_list, "none");
 if (isset($_POST['save'])) {
 	$error = "";
 	$panel_name = stripinput($_POST['panel_name']);
-	$panel_url_list = stripinput($_POST['panel_url_list']);
-	$panel_restriction = isset($_POST['panel_restriction']) && $_POST['panel_restriction'] == 1 ? 1 : 0;
 	if ($panel_name == "") $error .= $locale['470']."<br />";
 	if ($_POST['panel_filename'] == "none") {
 		$panel_filename = "";
-		$panel_content = (isset($_POST['panel_content']) ? addslash($_POST['panel_content']) : "openside(\"name\");\n"."  echo \"content\";\n"."closeside();");
+		$panel_content = addslash($_POST['panel_content']);
 		$panel_type = "php";
 	} else {
 		$panel_filename = stripinput($_POST['panel_filename']);
@@ -57,25 +54,16 @@ if (isset($_POST['save'])) {
 		if ($panel_name) {
 			$data = dbarray(dbquery("SELECT panel_name FROM ".DB_PANELS." WHERE panel_id='".$_GET['panel_id']."'"));
 			if ($panel_name != $data['panel_name']) {
-				$result = dbcount("(panel_id)", DB_PANELS, "panel_name='".$panel_name."'");
+				$result = dbcount("(panel_id)", DB_PANELS, "panel_name='$panel_name'");
 				if (!empty($result)) { $error .= $locale['471']."<br />"; }
 			}
 		}
 		if ($panel_type == "php" && $panel_content == "") { $error .= $locale['472']."<br />"; }
-		if (($panel_side == "2" || $panel_side == "3") && $panel_display == "0" && $panel_url_list !== "") {
-			$error .= $locale['475']."<br />";
-		}
 		if (!check_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")) {
 			$error .= $locale['474']."<br />";
 		}
 		if (!$error) {
-			$result = dbquery(
-				"UPDATE ".DB_PANELS." SET
-					panel_name='".$panel_name."', panel_url_list='".$panel_url_list."', panel_restriction='".$panel_restriction."',
-					panel_type='".$panel_type."', panel_filename='".$panel_filename."', panel_content='".$panel_content."',
-					panel_access='".$panel_access."', panel_display='".$panel_display."'
-				WHERE panel_id='".$_GET['panel_id']."'"
-			);
+			$result = dbquery("UPDATE ".DB_PANELS." SET panel_name='$panel_name', panel_filename='$panel_filename', panel_content='$panel_content', panel_access='$panel_access', panel_display='$panel_display' WHERE panel_id='".$_GET['panel_id']."'");
 		}
 		opentable($locale['480']);
 		echo "<div style='text-align:center'><br />\n";
@@ -91,30 +79,18 @@ if (isset($_POST['save'])) {
 		set_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "");
 	} else {
 		if ($panel_name) {
-			$result = dbcount("(panel_id)", DB_PANELS, "panel_name='".$panel_name."'");
+			$result = dbcount("(panel_id)", DB_PANELS, "panel_name='$panel_name'");
 			if (!empty($result)) { $error .= $locale['471']."<br />"; }
 		}
 		if ($panel_type == "php" && $panel_content == "") { $error .= $locale['472']."<br />"; }
 		if ($panel_type == "file" && $panel_filename == "none") { $error .= $locale['473']."<br />"; }
-		if (($panel_side == "2" || $panel_side == "3") && $panel_display == "0" && $panel_url_list !== "") {
-			$error .= $locale['475']."<br />";
-		}
 		if (!check_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")) {
 			$error .= $locale['474']."<br />";
 		}
 		if (!$error) {
-			$result = dbquery("SELECT panel_order FROM ".DB_PANELS." WHERE panel_side='".$panel_side."' ORDER BY panel_order DESC LIMIT 1");
+			$result = dbquery("SELECT panel_order FROM ".DB_PANELS." WHERE panel_side='$panel_side' ORDER BY panel_order DESC LIMIT 1");
 			if (dbrows($result) != 0) { $data = dbarray($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
-			$result = dbquery(
-				"INSERT INTO ".DB_PANELS." (
-					panel_name, panel_filename, panel_url_list, panel_restriction, panel_content,
-					panel_side, panel_order, panel_type, panel_access, panel_display, panel_status
-				) VALUES (
-					'".$panel_name."', '".$panel_filename."', '".$panel_url_list."', '".$panel_restriction."',
-					'".$panel_content."', '".$panel_side."', '".$neworder."', '".$panel_type."', '".$panel_access."',
-					'".$panel_display."', '0'
-				)"
-			);
+			$result = dbquery("INSERT INTO ".DB_PANELS." (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES ('$panel_name', '$panel_filename', '$panel_content', '$panel_side', '$neworder', '$panel_type', '$panel_access', '$panel_display', '0')");
 		}
 		opentable($locale['483']);
 		echo "<div style='text-align:center'><br />\n";
@@ -132,9 +108,6 @@ if (isset($_POST['save'])) {
 } else {
 	if (isset($_POST['preview'])) {
 		$panel_name = stripinput($_POST['panel_name']);
-		$panel_url_list = stripinput($_POST['panel_url_list']);
-		$exclude_check = $_POST['panel_restriction'] == "1" ? " checked='checked'" : "";
-		$include_check = $_POST['panel_restriction'] == "0" ? " checked='checked'" : "";
 		$panel_filename = $_POST['panel_filename'];
 		$panel_content = isset($_POST['panel_content']) ? stripslash($_POST['panel_content']) : "";
 		$panel_side = $_POST['panel_side'];
@@ -158,17 +131,10 @@ if (isset($_POST['save'])) {
 		}
 	}
 	if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['panel_id']) && isnum($_GET['panel_id']))) {
-		$result = dbquery(
-			"SELECT panel_name, panel_filename, panel_content, panel_type, panel_side,
-				panel_access, panel_display, panel_url_list, panel_restriction
-			FROM ".DB_PANELS." WHERE panel_id='".$_GET['panel_id']."'"
-		);
+		$result = dbquery("SELECT panel_name, panel_filename, panel_content, panel_type, panel_side, panel_access, panel_display FROM ".DB_PANELS." WHERE panel_id='".$_GET['panel_id']."'");
 		if (dbrows($result)) {
 			$data = dbarray($result);
 			$panel_name = $data['panel_name'];
-			$panel_url_list = $data['panel_url_list'];
-			$exclude_check = $data['panel_restriction'] == "1" ? " checked='checked'" : "";
-			$include_check = $data['panel_restriction'] == "0" ? " checked='checked'" : "";
 			$panel_filename = $data['panel_filename'];
 			$panel_content = phpentities(stripslashes($data['panel_content']));
 			$panel_type = $data['panel_type'];
@@ -186,9 +152,6 @@ if (isset($_POST['save'])) {
 	} else {
 		if (!isset($_POST['preview'])) {
 			$panel_name = "";
-			$panel_url_list = "";
-			$exclude_check = " checked='checked'";
-			$include_check = "";
 			$panel_filename = "";
 			$panel_content = "openside(\"name\");\n"."  echo \"content\";\n"."closeside();";
 			$panel_type = "";
@@ -208,12 +171,12 @@ if (isset($_POST['save'])) {
 	echo "<form name='editform' method='post' action='$action'>\n";
 	echo "<table cellpadding='0' cellspacing='0' class='center'>\n<tr>\n";
 	echo "<td class='tbl'>".$locale['452']."</td>\n";
-	echo "<td colspan='2' class='tbl'><input type='text' name='panel_name' value='$panel_name' class='textbox' style='width:200px;' /></td>\n";
+	echo "<td class='tbl'><input type='text' name='panel_name' value='$panel_name' class='textbox' style='width:200px;' /></td>\n";
 	echo "</tr>\n";
 	if (isset($_GET['panel_id']) && isnum($_GET['panel_id'])) {
 		if ($panel_type == "file") {
 			echo "<tr>\n<td class='tbl'>".$locale['453']."</td>\n";
-			echo "<td colspan='2' class='tbl'><select name='panel_filename' class='textbox' style='width:200px;'>\n";
+			echo "<td class='tbl'><select name='panel_filename' class='textbox' style='width:200px;'>\n";
 			for ($i=0;$i < count($panel_list);$i++) {
 				echo "<option".($panel_filename == $panel_list[$i] ? " selected='selected'" : "").">".$panel_list[$i]."</option>\n";
 			}
@@ -221,7 +184,7 @@ if (isset($_POST['save'])) {
 		}
 	} else {
 		echo "<tr>\n<td class='tbl'>".$locale['453']."</td>\n";
-		echo "<td colspan='2' class='tbl'><select name='panel_filename' class='textbox' style='width:200px;'>\n";
+		echo "<td class='tbl'><select name='panel_filename' class='textbox' style='width:200px;'>\n";
 		for ($i=0;$i < count($panel_list);$i++) {
 			echo "<option".($panel_filename == $panel_list[$i] ? " selected='selected'" : "").">".$panel_list[$i]."</option>\n";
 		}
@@ -230,31 +193,22 @@ if (isset($_POST['save'])) {
 	if (isset($_GET['panel_id']) && isnum($_GET['panel_id'])) {
 		if ($panel_type == "php") {
 			echo "<tr>\n<td valign='top' class='tbl'>".$locale['455']."</td>\n";
-			echo "<td colspan='2' class='tbl'><textarea name='panel_content' cols='95' rows='15' class='textbox' style='width:98%'>".$panel_content."</textarea></td>\n";
+			echo "<td class='tbl'><textarea name='panel_content' cols='95' rows='15' class='textbox' style='width:98%'>".$panel_content."</textarea></td>\n";
 			echo "</tr>\n";
 		}
 	} else {
 		echo "<tr>\n<td valign='top' class='tbl'>".$locale['455']."</td>\n";
-		echo "<td colspan='2' class='tbl'><textarea name='panel_content' cols='95' rows='15' class='textbox' style='width:98%'>".$panel_content."</textarea></td>\n";
+		echo "<td class='tbl'><textarea name='panel_content' cols='95' rows='15' class='textbox' style='width:98%'>".$panel_content."</textarea></td>\n";
 		echo "</tr>\n";
 	}
-	echo "<tr>\n";
-	echo "<td valign='top' class='tbl'>".$locale['462']."<br />\n";
-	echo "<span class='small2'><em>".$locale['463']."<br />/news.php<br />/forum/index.php</em></span>";
-	echo "</td>\n<td width='200' valign='top' class='tbl'>";
-	echo "<textarea name='panel_url_list' cols='50' rows='5' class='textbox' style='width:300px;'>".$panel_url_list."</textarea>";
-	echo "</td>\n<td valign='top' class='tbl'>";
-	echo "<label><input type='radio' name='panel_restriction' value='1'".$exclude_check." /> ".$locale['464']."</label><br />\n";
-	echo "<label><input type='radio' name='panel_restriction' value='0'".$include_check." /> ".$locale['465']."</label><br />\n";
-	echo "</td>\n</tr>\n";
 	if (!check_admin_pass(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")) {
 		echo "<tr>\n<td class='tbl'>".$locale['456']."</td>\n";
-		echo "<td colspan='2' class='tbl'><input type='password' name='admin_password' value='".(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")."' class='textbox' style='width:150px;' autocomplete='off' /></td>\n";
+		echo "<td class='tbl'><input type='password' name='admin_password' value='".(isset($_POST['admin_password']) ? stripinput($_POST['admin_password']) : "")."' class='textbox' style='width:150px;' /></td>\n";
 		echo "</tr>\n";
 	}
 	if (!isset($_GET['panel_id']) || !isnum($_GET['panel_id'])) {
 		echo "<tr>\n<td class='tbl'>".$locale['457']."</td>\n";
-		echo "<td colspan='2' class='tbl'><select name='panel_side' class='textbox' style='width:150px;' onchange=\"showopts(this.options[this.selectedIndex].value);\">\n";
+		echo "<td class='tbl'><select name='panel_side' class='textbox' style='width:150px;' onchange=\"showopts(this.options[this.selectedIndex].value);\">\n";
 		echo "<option value='1'".($panel_side == "1" ? " selected='selected'" : "").">".$locale['420']."</option>\n";
 		echo "<option value='2'".($panel_side == "2" ? " selected='selected'" : "").">".$locale['421']."</option>\n";
 		echo "<option value='3'".($panel_side == "3" ? " selected='selected'" : "").">".$locale['425']."</option>\n";
@@ -262,9 +216,9 @@ if (isset($_POST['save'])) {
 		echo "</select></td>\n</tr>\n";
 	}
 	echo "<tr>\n<td class='tbl'>".$locale['458']."</td>\n";
-	echo "<td colspan='2' class='tbl'><select name='panel_access' class='textbox' style='width:150px;'>\n".$access_opts."</select></td>\n";
+	echo "<td class='tbl'><select name='panel_access' class='textbox' style='width:150px;'>\n".$access_opts."</select></td>\n";
 	echo "</tr>\n<tr>\n";
-	echo "<td align='center' colspan='3' class='tbl'>\n";
+	echo "<td align='center' colspan='2' class='tbl'>\n";
 	echo "<div id='panelopts'".$panelopts."><input type='checkbox' id='panel_display' name='panel_display' value='1'".$panelon." /> ".$locale['459']."</div>\n";
 	echo "<br />\n";
 	if (isset($_GET['panel_id']) && isnum($_GET['panel_id'])) {

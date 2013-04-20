@@ -31,13 +31,13 @@ if (isset($_GET['error']) && isnum($_GET['error']) && !isset($message)) {
 		$message = $locale['901'];
 	}
 	if (isset($message)) {
-		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n";
+		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; 
 	}
 }
 
 if (isset($_POST['saveoptions'])) {
 	$error = 0;
-	dbquery("UPDATE ".DB_MESSAGES_OPTIONS." SET
+	dbquery("UPDATE ".DB_MESSAGES_OPTIONS." SET 
 		pm_email_notify = '".$_POST['pm_email_notify']."',
 		pm_save_sent = '".$_POST['pm_save_sent']."',
 		pm_inbox = '".$_POST['pm_inbox']."',

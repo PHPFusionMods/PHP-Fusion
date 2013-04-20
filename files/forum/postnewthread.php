@@ -78,7 +78,7 @@ if (isset($_POST['previewpost']) || isset($_POST['add_poll_option'])) {
 		}
 		echo "<span class='small'>".getuserlevel($userdata['user_level'])."</span><br /><br />\n";
 		echo "<span class='small'><strong>".$locale['423']."</strong> ".$userdata['user_posts']."</span><br />\n";
-		echo "<span class='small'><strong>".$locale['425']."</strong> ".showdate("shortdate", $userdata['user_joined'])."</span><br />\n";
+		echo "<span class='small'><strong>".$locale['425']."</strong> ".showdate("%d.%m.%y", $userdata['user_joined'])."</span><br />\n";
 		echo "<br /></td>\n<td valign='top' class='tbl1 forum_thread_user_post'>".$previewmessage."</td>\n";
 		echo "</tr>\n</table>\n";
 		closetable();
@@ -110,7 +110,7 @@ if (isset($_POST['postnewthread'])) {
 			if (!flood_control("post_datestamp", DB_POSTS, "post_author='".$userdata['user_id']."'")) {
 				$result = dbquery("INSERT INTO ".DB_THREADS." (forum_id, thread_subject, thread_author, thread_views, thread_lastpost, thread_lastpostid, thread_lastuser, thread_postcount, thread_poll, thread_sticky, thread_locked) VALUES('".$_GET['forum_id']."', '$subject', '".$userdata['user_id']."', '0', '".time()."', '0', '".$userdata['user_id']."', '1', '".$thread_poll."', '".$sticky_thread."', '".$lock_thread."')");
 				$thread_id = mysql_insert_id();
-				$result = dbquery("INSERT INTO ".DB_POSTS." (forum_id, thread_id, post_message, post_showsig, post_smileys, post_author, post_datestamp, post_ip, post_ip_type, post_edituser, post_edittime) VALUES ('".$_GET['forum_id']."', '".$thread_id."', '".$message."', '".$sig."', '".$smileys."', '".$userdata['user_id']."', '".time()."', '".USER_IP."', '".USER_IP_TYPE."', '0', '0')");
+				$result = dbquery("INSERT INTO ".DB_POSTS." (forum_id, thread_id, post_message, post_showsig, post_smileys, post_author, post_datestamp, post_ip, post_edituser, post_edittime) VALUES ('".$_GET['forum_id']."', '".$thread_id."', '".$message."', '".$sig."', '".$smileys."', '".$userdata['user_id']."', '".time()."', '".USER_IP."', '0', '0')");
 				$post_id = mysql_insert_id();
 				$result = dbquery("UPDATE ".DB_FORUMS." SET forum_lastpost='".time()."', forum_postcount=forum_postcount+1, forum_threadcount=forum_threadcount+1, forum_lastuser='".$userdata['user_id']."' WHERE forum_id='".$_GET['forum_id']."'");
 				$result = dbquery("UPDATE ".DB_THREADS." SET thread_lastpostid='".$post_id."' WHERE thread_id='".$thread_id."'");
@@ -131,31 +131,28 @@ if (isset($_POST['postnewthread'])) {
 				}
 
 				if ($fdata['forum_attach'] && checkgroup($fdata['forum_attach'])) {
-						// $attach = $_FILES['attach'];
-					foreach($_FILES as $attach){
-						if ($attach['name'] != "" && !empty($attach['name']) && is_uploaded_file($attach['tmp_name'])) {
-							$attachname = stripfilename(substr($attach['name'], 0, strrpos($attach['name'], ".")));
-							$attachext = strtolower(strrchr($attach['name'],"."));
-							if (preg_match("/^[-0-9A-Z_\[\]]+$/i", $attachname) && $attach['size'] <= $settings['attachmax']) {
-								$attachtypes = explode(",", $settings['attachtypes']);
-								if (in_array($attachext, $attachtypes)) {
-									$attachname .= $attachext;
-									$attachname = attach_exists(strtolower($attachname));
-									move_uploaded_file($attach['tmp_name'], FORUM."attachments/".$attachname);
-									chmod(FORUM."attachments/".$attachname,0644);
-									if (in_array($attachext, $imagetypes) && (!@getimagesize(FORUM."attachments/".$attachname) || !@verify_image(FORUM."attachments/".$attachname))) {
-										unlink(FORUM."attachments/".$attachname);
-										$error = 1;
-									}
-									if (!$error) { $result = dbquery("INSERT INTO ".DB_FORUM_ATTACHMENTS." (thread_id, post_id, attach_name, attach_ext, attach_size) VALUES ('".$thread_id."', '".$post_id."', '".$attachname."', '".$attachext."', '".$attach['size']."')"); }
-								} else {
-									@unlink($attach['tmp_name']);
+					$attach = $_FILES['attach'];
+					if ($attach['name'] != "" && !empty($attach['name']) && is_uploaded_file($attach['tmp_name'])) {
+						$attachname = stripfilename(substr($attach['name'], 0, strrpos($attach['name'], ".")));
+						$attachext = strtolower(strrchr($attach['name'],"."));
+						if (preg_match("/^[-0-9A-Z_\[\]]+$/i", $attachname) && $attach['size'] <= $settings['attachmax']) {
+							$attachtypes = explode(",", $settings['attachtypes']);
+							if (in_array($attachext, $attachtypes)) {
+								$attachname .= $attachext;
+								move_uploaded_file($attach['tmp_name'], FORUM."attachments/".$attachname);
+								chmod(FORUM."attachments/".$attachname,0644);
+								if (in_array($attachext, $imagetypes) && (!@getimagesize(FORUM."attachments/".$attachname) || !@verify_image(FORUM."attachments/".$attachname))) {
+									unlink(FORUM."attachments/".$attachname);
 									$error = 1;
 								}
+								if (!$error) { $result = dbquery("INSERT INTO ".DB_FORUM_ATTACHMENTS." (thread_id, post_id, attach_name, attach_ext, attach_size) VALUES ('".$thread_id."', '".$post_id."', '$attachname', '$attachext', '".$attach['size']."')"); }
 							} else {
 								@unlink($attach['tmp_name']);
-								$error = 2;
+								$error = 1;
 							}
+						} else {
+							@unlink($attach['tmp_name']);
+							$error = 2;
 						}
 					}
 				}
@@ -214,20 +211,9 @@ if (isset($_POST['postnewthread'])) {
 	if ($settings['thread_notify']) { echo "<br />\n<label><input type='checkbox' name='notify_me' value='1'".$notify_checked." /> ".$locale['486']."</label>"; }
 	echo "</td>\n</tr>\n";
 	if ($fdata['forum_attach'] && checkgroup($fdata['forum_attach'])) {
-		add_to_head("<script type='text/javascript' src='".INCLUDES."multi_attachment.js'></script>\n");
 		echo "<tr>\n<td width='145' class='tbl2'>".$locale['464']."</td>\n";
-		echo "<td class='tbl1'><input id='my_file_element' type='file' name='file_1' class='textbox' style='width:200px;' /><br />\n";
-		echo "<span class='small2'>".sprintf($locale['466'], parsebytesize($settings['attachmax']), str_replace(',', ' ', $settings['attachtypes']), $settings['attachmax_count'])."</span><br />\n";
-		echo "<div id='files_list'></div>\n";
-		echo "<script>\n";
-		echo "/* <![CDATA[ */\n";
-		echo "<!-- Create an instance of the multiSelector class, pass it the output target and the max number of files -->\n";
-		echo "var multi_selector = new MultiSelector( document.getElementById( \"files_list\" ), ".$settings['attachmax_count']." );\n";
-		echo "<!-- Pass in the file element -->\n";
-		echo "multi_selector.addElement( document.getElementById( \"my_file_element\" ) );\n";
-		echo "/* ]]>*/\n";
-		echo "</script>\n";
-		echo "</td>\n";
+		echo "<td class='tbl1'><input type='file' name='attach' class='textbox' style='width:200px;' /><br />\n";
+		echo "<span class='small2'>".sprintf($locale['466'], parsebytesize($settings['attachmax']), str_replace(',', ' ', $settings['attachtypes']))."</span></td>\n";
 		echo "</tr>\n";
 	}
 	if ($fdata['forum_poll'] && checkgroup($fdata['forum_poll'])) {

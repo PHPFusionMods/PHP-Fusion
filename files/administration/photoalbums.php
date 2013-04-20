@@ -78,7 +78,7 @@ if (function_exists('gd_info')) {
 				opentable($locale['430']);
 				echo "<div style='text-align:center'>\n";
 				echo "<form action='".FUSION_SELF.$aidlink."&amp;action=delete&amp;album_id=".$_GET['album_id']."' method='post'>\n";
-				echo $locale['431']."<br /><br />\n<input class='textbox' type='password' name='admin_passwd' autocomplete='off' /><br /><br />\n";
+				echo $locale['431']."<br /><br />\n<input class='textbox' type='password' name='admin_passwd' /><br /><br />\n";
 				echo "<input class='button' type='submit' name='confirm_password' value='".$locale['432']."' />\n";
 				echo "<input class='button' type='submit' name='cancel' value='".$locale['433']."' />\n";
 				echo "</form>\n</div>\n";
@@ -138,7 +138,7 @@ if (function_exists('gd_info')) {
 		$result = dbquery("UPDATE ".DB_PHOTO_ALBUMS." SET album_order=album_order+1 WHERE album_id='".$_GET['album_id']."'");
 		$rowstart = $_GET['order'] > $settings['thumbs_per_page'] ? ((ceil($_GET['order'] / $settings['thumbs_per_page'])-1)*$settings['thumbs_per_page']) : "0";
 		redirect(FUSION_SELF.$aidlink."&rowstart=$rowstart");
-	} elseif (isset($_POST['save_album']) && isset($_POST['album_title']) && $_POST['album_title'] != "") {
+	} elseif (isset($_POST['save_album'])) {
 		$error = "";
 		$album_title = stripinput($_POST['album_title']);
 		$album_description = stripinput($_POST['album_description']);
@@ -147,14 +147,13 @@ if (function_exists('gd_info')) {
 		if (!SAFEMODE && (!isset($_GET['action']) || $_GET['action'] != "edit")) {
 			$result = dbarray(dbquery("SHOW TABLE STATUS LIKE '".DB_PHOTO_ALBUMS."'"));
 			$album_id = $result['Auto_increment'];
-			@mkdir(PHOTOS."album_".$album_id, 0777);
+			@mkdir(PHOTOS."album_".$album_id, 0755);
 			@copy(IMAGES."index.php", PHOTOS."album_".$album_id."/index.php");
 		}
 		if (is_uploaded_file($_FILES['album_pic_file']['tmp_name'])) {
 			$album_types = array(".gif",".jpg",".jpeg",".png");
 			$album_pic = $_FILES['album_pic_file'];
 			$album_name = stripfilename($album_pic['name']);
-			$album_name = stripfilename(str_replace(" ", "_", strtolower(substr($album_pic['name'], 0, strrpos($album_pic['name'], ".")))));
 			$album_ext = strtolower(strrchr($album_pic['name'],"."));
 			if (!preg_match("/^[-0-9A-Z_\.\[\]\s]+$/i", $album_name)) {
 				$error = 1;
@@ -163,7 +162,7 @@ if (function_exists('gd_info')) {
 			} elseif (!in_array($album_ext, $album_types)) {
 				$error = 3;
 			} else {
-				// @unlink(PHOTOS."temp".$album_ext);
+				@unlink(PHOTOS."temp".$album_ext);
 				move_uploaded_file($album_pic['tmp_name'], PHOTOS."temp".$album_ext);
 				chmod(PHOTOS."temp".$album_ext, 0644);
 				$imagefile = @getimagesize(PHOTOS."temp".$album_ext);
@@ -171,7 +170,7 @@ if (function_exists('gd_info')) {
 					$error = 4;
 					@unlink(PHOTOS."temp".$album_ext);
 				} else {
-					$album_thumb = image_exists(PHOTOS, $album_name.$album_ext);
+					$album_thumb = image_exists(PHOTOS, $album_name);
 					createthumbnail($imagefile[2], PHOTOS."temp".$album_ext, PHOTOS.$album_thumb, $settings['thumb_w'], $settings['thumb_h']);
 					@unlink(PHOTOS."temp".$album_ext);
 				}

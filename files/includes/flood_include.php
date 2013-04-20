@@ -29,7 +29,7 @@ function flood_control($field, $table, $where) {
 			$data = dbarray($result);
 			if ((time() - $data['last_post']) < $settings['flood_interval']) {
 				$flood = true;
-				$result = dbquery("INSERT INTO ".DB_FLOOD_CONTROL." (flood_ip, flood_ip_type, flood_timestamp) VALUES ('".USER_IP."', '".USER_IP_TYPE."', '".time()."')");
+				$result = dbquery("INSERT INTO ".DB_FLOOD_CONTROL." (flood_ip, flood_timestamp) VALUES ('".USER_IP."', '".time()."')");
 				if (dbcount("(flood_ip)", DB_FLOOD_CONTROL, "flood_ip='".USER_IP."'") > 4) {
 					if (iMEMBER && $settings['flood_autoban'] == "1") {
 						require_once INCLUDES."sendmail_include.php";
@@ -40,7 +40,7 @@ function flood_control($field, $table, $where) {
 						$message = str_replace("[USER_NAME]", $userdata['user_name'], $locale['global_442']);
 						sendemail($userdata['user_name'], $userdata['user_email'], $settings['siteusername'], $settings['siteemail'], $locale['global_441'], $message);
 					} elseif (!iMEMBER) {
-						$result = dbquery("INSERT INTO ".DB_BLACKLIST." (blacklist_ip, blacklist_ip_type, blacklist_email, blacklist_reason) VALUES ('".USER_IP."', '".USER_IP_TYPE."', '', '".$locale['global_440']."')");
+						$result = dbquery("INSERT INTO ".DB_BLACKLIST." (blacklist_ip, blacklist_email, blacklist_reason) VALUES ('".USER_IP."', '', '".$locale['global_440']."')");
 					}
 				}
 			}

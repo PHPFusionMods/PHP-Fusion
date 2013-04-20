@@ -20,7 +20,6 @@ $fusion_output_handlers = "";
 $fusion_page_title = $settings['sitename'];
 $fusion_page_meta = array("description" => $settings['description'], "keywords" => $settings['keywords']);
 $fusion_page_head_tags = "";
-$fusion_page_footer_tags = "";
 
 function set_title($title=""){
 	global $fusion_page_title;
@@ -54,14 +53,6 @@ function add_to_head($tag=""){
 	}
 }
 
-function add_to_footer($tag=""){
-	global $fusion_page_footer_tags;
-	
-	if(!stristr($fusion_page_footer_tags, $tag)){
-		$fusion_page_footer_tags .= $tag."\n";
-	}
-}
-
 function replace_in_output($target, $replace, $modifiers=""){
 	global $fusion_page_replacements;
 	
@@ -76,11 +67,8 @@ function add_handler($name){
 }
 
 function handle_output($output){
-	global $fusion_page_head_tags ,$fusion_page_footer_tags, $fusion_page_title, $fusion_page_meta, $fusion_page_replacements, $fusion_output_handlers, $settings;
+	global $fusion_page_head_tags, $fusion_page_title, $fusion_page_meta, $fusion_page_replacements, $fusion_output_handlers, $settings;
 
-	if(!empty($fusion_page_footer_tags)){
-		$output = preg_replace("#</body>#", $fusion_page_footer_tags."</body>", $output, 1);
-	}
 	if(!empty($fusion_page_head_tags)){
 		$output = preg_replace("#</head>#", $fusion_page_head_tags."</head>", $output, 1);
 	}

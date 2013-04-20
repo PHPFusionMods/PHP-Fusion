@@ -18,11 +18,11 @@
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
 function check_panel_status($side) {
-
+	
 	global $settings;
-
+	
 	$exclude_list = "";
-
+	
 	if ($side == "left") {
 		if ($settings['exclude_left'] != "") {
 			$exclude_list = explode("\r\n", $settings['exclude_left']);
@@ -40,7 +40,7 @@ function check_panel_status($side) {
 			$exclude_list = explode("\r\n", $settings['exclude_right']);
 		}
 	}
-
+	
 	if (is_array($exclude_list)) {
 		$script_url = explode("/", $_SERVER['PHP_SELF']);
 		$url_count = count($script_url);
@@ -61,25 +61,19 @@ function check_panel_status($side) {
 	}
 }
 
-function showbanners($display = "") {
+function showbanners() {
 	global $settings;
 	ob_start();
-	if ($display == 2) {
-		if ($settings['sitebanner2']) {
-			eval("?>".stripslashes($settings['sitebanner2'])."<?php ");
-		}
-	} else {
-		if ($display == "" && $settings['sitebanner2']) {
-			eval("?><div style='float: right;'>".stripslashes($settings['sitebanner2'])."</div>\n<?php ");
-		}
-		if ($settings['sitebanner1']) {
-			eval("?>".stripslashes($settings['sitebanner1'])."\n<?php ");
-		} elseif ($settings['sitebanner']) {
-			echo "<a href='".$settings['siteurl']."'><img src='".BASEDIR.$settings['sitebanner']."' alt='".$settings['sitename']."' style='border: 0;' /></a>\n";
-		} else {
-			echo "<a href='".$settings['siteurl']."'>".$settings['sitename']."</a>\n";
-		}
+	if ($settings['sitebanner2']) {
+		eval("?><div style='float: right;'>".stripslashes($settings['sitebanner2'])."</div>\n<?php ");
 	}
+	if ($settings['sitebanner1']) {
+		eval("?>".stripslashes($settings['sitebanner1'])."\n<?php ");
+	} elseif ($settings['sitebanner']) {
+		echo "<a href='".$settings['siteurl']."'><img src='".BASEDIR.$settings['sitebanner']."' alt='".$settings['sitename']."' style='border: 0;' /></a>\n";
+	} else {
+		echo "<a href='".$settings['siteurl']."'>".$settings['sitename']."</a>\n";
+	}	
 	$output = ob_get_contents();
 	ob_end_clean();
 	return $output;
@@ -94,18 +88,15 @@ function showsublinks($sep = "&middot;", $class = "") {
 		$i = 0;
 		$res = "<ul>\n";
 		while ($sdata = dbarray($sres)) {
-			$li_class = $class; $i++;
 			if ($sdata['link_url'] != "---" && checkgroup($sdata['link_visibility'])) {
-				$link_target = ($sdata['link_window'] == "1" ? " target='_blank'" : "");
-				if ($i == 1) { $li_class .= ($li_class ? " " : "")."first-link"; }
-				if (START_PAGE == $sdata['link_url']) { $li_class .= ($li_class ? " " : "")."current-link"; }
+				$link_target = $sdata['link_window'] == "1" ? " target='_blank'" : "";
+				$li_class = ($i == 0 ? " class='first-link".($class ? " $class" : "")."'" : ($class ? " class='$class'" : ""));
 				if (preg_match("!^(ht|f)tp(s)?://!i", $sdata['link_url'])) {
-					$res .= "<li".($li_class ? " class='".$li_class."'" : "").">".$sep."<a href='".$sdata['link_url']."'".$link_target.">\n";
-					$res .= "<span>".parseubb($sdata['link_name'], "b|i|u|color|img")."</span></a></li>\n";
+					$res .= "<li".$li_class.">".$sep."<a href='".$sdata['link_url']."'$link_target><span>".parseubb($sdata['link_name'], "b|i|u|color")."</span></a></li>\n";
 				} else {
-					$res .= "<li".($li_class ? " class='".$li_class."'" : "").">".$sep."<a href='".BASEDIR.$sdata['link_url']."'".$link_target.">\n";
-					$res .= "<span>".parseubb($sdata['link_name'], "b|i|u|color|img")."</span></a></li>\n";
+					$res .= "<li".$li_class.">".$sep."<a href='".BASEDIR.$sdata['link_url']."'$link_target><span>".parseubb($sdata['link_name'], "b|i|u|color")."</span></a></li>\n";
 				}
+				$i++;
 			}
 		}
 		$res .= "</ul>\n";
@@ -189,21 +180,16 @@ function itemoptions($item_type, $item_id) {
 }
 
 function showrendertime($queries = true) {
-	global $locale, $mysql_queries_count, $settings;
+	global $locale, $mysql_queries_count;
 
-	if ($settings['rendertime_enabled'] == 1 || ($settings['rendertime_enabled'] == 2 && iADMIN)) {
-		$res = sprintf($locale['global_172'], substr((get_microtime() - START_TIME),0,4));
-		$res .= ($queries ? " - $mysql_queries_count ".$locale['global_173'] : "");
-		return $res;
-	} else {
-		return "";
-	}
+	$res = sprintf($locale['global_172'], substr((get_microtime() - START_TIME),0,4));
+	$res .= ($queries ? " - $mysql_queries_count ".$locale['global_173'] : "");
+	return $res;
 }
 
-function showcopyright($class = "", $nobreak = false) {
+function showcopyright($class = "") {
 	$link_class = $class ? " class='$class' " : "";
-	$res = "Powered by <a href='http://www.php-fusion.co.uk'".$link_class.">PHP-Fusion</a> copyright &copy; 2002 - ".date("Y")." by Nick Jones.";
-	$res .= ($nobreak ? "&nbsp;" : "<br />\n");
+	$res = "Powered by <a href='http://www.php-fusion.co.uk'".$link_class.">PHP-Fusion</a> copyright &copy; 2002 - ".date("Y")." by Nick Jones.<br />\n";
 	$res .= "Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'".$link_class.">GNU Affero GPL</a> v3.\n";
 	return $res;
 }
@@ -226,7 +212,7 @@ function panelbutton($state, $bname) {
 			$state = "on";
 		}
 	}
-	return "<img src='".get_image("panel_".($state == "on" ? "off" : "on"))."' id='b_".$bname."' class='panelbutton' alt='' onclick=\"javascript:flipBox('".$bname."')\" />";
+	return "<img src='".get_image("panel_".($state == "on" ? "off" : "on"))."' id='b_$bname' class='panelbutton' alt='' onclick=\"javascript:flipBox('$bname')\" />";
 }
 
 function panelstate($state, $bname) {
@@ -238,12 +224,12 @@ function panelstate($state, $bname) {
 			$state = "on";
 		}
 	}
-	return "<div id='box_".$bname."'".($state == "off" ? " style='display:none'" : "").">\n";
+	return "<div id='box_$bname'".($state == "off" ? " style='display:none'" : "").">\n";
 }
 
 // v6 compatibility
 function opensidex($title, $state = "on") {
-
+	
 	openside($title, true, $state);
 
 }

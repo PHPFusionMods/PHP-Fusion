@@ -5,7 +5,7 @@
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: go.php
-| Author: Arda {SoulSmasher}
+| Author: Arda (SoulSmasher)
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
@@ -16,6 +16,7 @@
 | written permission from the original author(s).
 +--------------------------------------------------------*/
 require_once "../maincore.php";
+
 if (!checkrights("SU") || !iADMIN) { redirect("../index.php"); }
 
 include THEME."theme.php";
@@ -63,6 +64,10 @@ echo "</body>\n</html>\n";
 
 if (ob_get_length() !== FALSE){
 	ob_end_flush();
+}
+
+if ($settings['login_method'] == "sessions") {
+	session_write_close();
 }
 
 mysql_close($db_connect);

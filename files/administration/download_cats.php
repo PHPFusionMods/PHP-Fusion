@@ -57,21 +57,16 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat
 		} else {
 			$cat_sorting = "download_title ASC";
 		}
-		$checkCat = dbcount("(download_cat_id)", DB_DOWNLOAD_CATS, "download_cat_name='".$cat_name."'");
-		if ($checkCat == 0) {
-			if ($cat_name) {
-				if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
-					$result = dbquery("UPDATE ".DB_DOWNLOAD_CATS." SET download_cat_name='$cat_name', download_cat_description='$cat_description', download_cat_sorting='$cat_sorting', download_cat_access='$cat_access' WHERE download_cat_id='".$_GET['cat_id']."'");
-					redirect(FUSION_SELF.$aidlink."&status=su");
-				} else {
-					$result = dbquery("INSERT INTO ".DB_DOWNLOAD_CATS." (download_cat_name, download_cat_description, download_cat_sorting, download_cat_access) VALUES('$cat_name', '$cat_description', '$cat_sorting', '$cat_access')");
-					redirect(FUSION_SELF.$aidlink."&status=sn");
-				}
+		if ($cat_name) {
+			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
+				$result = dbquery("UPDATE ".DB_DOWNLOAD_CATS." SET download_cat_name='$cat_name', download_cat_description='$cat_description', download_cat_sorting='$cat_sorting', download_cat_access='$cat_access' WHERE download_cat_id='".$_GET['cat_id']."'");
+				redirect(FUSION_SELF.$aidlink."&status=su");
 			} else {
-				$error = 1;
+				$result = dbquery("INSERT INTO ".DB_DOWNLOAD_CATS." (download_cat_name, download_cat_description, download_cat_sorting, download_cat_access) VALUES('$cat_name', '$cat_description', '$cat_sorting', '$cat_access')");
+				redirect(FUSION_SELF.$aidlink."&status=sn");
 			}
 		} else {
-			$error = 2;
+			redirect(FUSION_SELF.$aidlink);
 		}
 	}
 	if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id']))) {
@@ -87,7 +82,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat
 			$cat_sort_order = $cat_sorting[1];
 			$cat_access = $data['download_cat_access'];
 			$formaction = FUSION_SELF.$aidlink."&amp;action=edit&amp;cat_id=".$data['download_cat_id'];
-			$openTable = $locale['400'];
+			opentable($locale['400']);
 		} else {
 			redirect(FUSION_SELF.$aidlink);
 		}
@@ -98,24 +93,13 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat
 		$cat_sort_order = "ASC";
 		$cat_access = "";
 		$formaction = FUSION_SELF.$aidlink;
-		$openTable = $locale['401'];
+		opentable($locale['401']);
 	}
 	$user_groups = getusergroups(); $access_opts = ""; $sel = "";
 	while(list($key, $user_group) = each($user_groups)){
 		$sel = ($cat_access == $user_group['0'] ? " selected='selected'" : "");
 		$access_opts .= "<option value='".$user_group['0']."'$sel>".$user_group['1']."</option>\n";
 	}
-
-	if (isset($error) && isnum($error)) {
-		if ($error == 1) {
-			$errorMessage = $locale['460'];
-		} elseif ($error == 2) {
-			$errorMessage = $locale['461'];
-		}
-		if ($errorMessage) { echo "<div id='close-message'><div class='admin-message'>".$errorMessage."</div></div>\n"; }
-	}
-
-	opentable($openTable);
 	echo "<form name='addcat' method='post' action='$formaction'>\n";
 	echo "<table cellpadding='0' cellspacing='0' width='400' class='center'>\n<tr>\n";
 	echo "<td width='1%' class='tbl' style='white-space:nowrap'>".$locale['420']."</td>\n";

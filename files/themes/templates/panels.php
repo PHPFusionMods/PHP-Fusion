@@ -5,7 +5,9 @@
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: panels.php
-| Author: PHP-Fusion Development Team
+| Author: Nick Jones (Digitanium)
+| Co Author: Hans Kristian Flaatten (Starefossen)
+| Co Author: bartek124
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
@@ -15,83 +17,114 @@
 | copyright header is strictly prohibited without
 | written permission from the original author(s).
 +--------------------------------------------------------*/
-if (!defined("IN_FUSION")) { die("Access Denied"); }
+if (!defined("IN_FUSION")) { header("Location: ../../index.php"); exit; }
 
-// Add admin message
-$ad_mess = array(); $admin_mess ='';
-if (iADMIN && !defined("ADMIN_PANEL")) {
-	$admin_mess .= "<a id='content' name='content'></a>\n";
-	if (iSUPERADMIN && file_exists(BASEDIR."setup.php")) $ad_mess[] = $locale['global_198'];
-	if ($settings['maintenance']) $ad_mess[] = $locale['global_190'];
-	if (!$userdata['user_admin_password']) $ad_mess[] = $locale['global_199'];
-	if (!empty($ad_mess)) {
-		$admin_mess .= "<div class='admin-message'>";
-			foreach ($ad_mess as $message) {
-				$admin_mess .= $message."<br />\n";
-			}
-		$admin_mess .= "</div>\n";
+// Calculate current true url
+$script_url = explode("/", $_SERVER['PHP_SELF'].(FUSION_QUERY ? "?".FUSION_QUERY : ""));
+$url_count = count($script_url);
+$base_url_count = substr_count(BASEDIR, "/") + 1;
+$start_page = "";
+while ($base_url_count != 0) {
+	$current = $url_count - $base_url_count;
+	$start_page .= "/".$script_url[$current];
+	$base_url_count--;
+}
+
+define("START_PAGE", substr(preg_replace("#(&amp;|\?)(s_action=edit&amp;shout_id=)([0-9]+)#s", "", $start_page), 1));
+
+$p_sql = false; $p_arr = array(1 => false, 2 => false, 3 => false, 4 => false);
+if (!defined("ADMIN_PANEL")) {
+	if (check_panel_status("left")) {
+		$p_sql = "panel_side='1'";
 	}
-}
+	if (check_panel_status("upper")) {
+		$p_sql .= ($p_sql ? " OR " : "");
+		$p_sql .= ($settings['opening_page'] != START_PAGE ? "(panel_side='2' AND panel_display='1')" : "panel_side='2'");
+	}
+	if (check_panel_status("lower")) {
+		$p_sql .= ($p_sql ? " OR " : "");
+		$p_sql .= ($settings['opening_page'] != START_PAGE ? "(panel_side='3' AND panel_display='1')" : "panel_side='3'");
+	}
+	if (check_panel_status("right")) {
+		$p_sql .= ($p_sql ? " OR " : "")."panel_side='4'";
+	}
 
-$admin_mess .= "<noscript><div class='noscript-message admin-message'>".$locale['global_303']."</div>\n</noscript>\n<!--error_handler-->\n";
+	$p_sql = ($p_sql ? " AND (".$p_sql.")" : false);
 
-
-// Declare panels side
-$p_name = array(
-	array('name' => 'LEFT', 'side' => 'left'),
-	array('name' => 'U_CENTER', 'side' => 'upper'),
-	array('name' => 'L_CENTER', 'side' => 'lower'),
-	array('name' => 'RIGHT', 'side' => 'right')
-);
-
-// Get panels data to array
-$panels_cache = array();
-$p_result = dbquery("SELECT * FROM ".DB_PANELS." WHERE panel_status='1' ORDER BY panel_side, panel_order");
-while ($panel_data = dbarray($p_result)) {
-	if (checkgroup($panel_data['panel_access'])) { $panels_cache[$panel_data['panel_side']][] = $panel_data; }
-}
-
-$url_arr = array();
-foreach ($p_name as $p_key => $p_side) {
-	if (isset($panels_cache[$p_key + 1]) || defined("ADMIN_PANEL")) {
-		ob_start();
-		if (!defined("ADMIN_PANEL")) {
-			if (check_panel_status($p_side['side'])) {
-				foreach ($panels_cache[$p_key + 1] as $p_data) {
-				$url_arr = explode("\r\n", $p_data['panel_url_list']);
-					if ($p_data['panel_url_list'] == ""
-						|| ($p_data['panel_restriction'] == 1 && !in_array(TURE_PHP_SELF, $url_arr))
-						|| ($p_data['panel_restriction'] == 0 && in_array(TURE_PHP_SELF, $url_arr)))
-					{
-						if (($p_data['panel_side'] != 2 && $p_data['panel_side'] != 3)
-							|| $p_data['panel_display'] == 1 || $settings['opening_page'] == START_PAGE)
-						{
-							if ($p_data['panel_type'] == "file") {
-								if (file_exists(INFUSIONS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php")) {
-									include INFUSIONS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
-								}
-							} else {
-								eval(stripslashes($p_data['panel_content']));
-							}
-						}
+	if ($p_sql) {
+		$p_res = dbquery(
+			"SELECT panel_side, panel_type, panel_filename, panel_content FROM ".DB_PANELS."
+			WHERE panel_status='1'".$p_sql." AND ".groupaccess('panel_access')."
+			ORDER BY panel_side, panel_order"
+		);
+		if (dbrows($p_res)) {
+			$current_side = 0;
+			while ($p_data = dbarray($p_res)) {
+				if ($current_side == 0) {
+					ob_start();
+					$current_side = $p_data['panel_side'];
+				}
+				if ($current_side > 0 && $current_side != $p_data['panel_side']) {
+					$p_arr[$current_side] = ob_get_contents();
+					ob_end_clean();
+					$current_side = $p_data['panel_side'];
+					ob_start();
+				}
+				if ($p_data['panel_type'] == "file") {
+					if (file_exists(INFUSIONS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php")) {
+						include INFUSIONS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
 					}
+				} else {
+					eval(stripslashes($p_data['panel_content']));
 				}
 			}
-		} else if ($p_key == 0) {
-			require_once ADMIN."navigation.php";
+			$p_arr[$current_side] .= ob_get_contents();
+			ob_end_clean();
 		}
-		define($p_side['name'], ($p_side['name'] === 'U_CENTER' ? $admin_mess : '').ob_get_contents());
-		ob_end_clean();
-	} else {
-		define($p_side['name'], '');
 	}
+} else {
+	ob_start();
+	require_once ADMIN."navigation.php";
+	$p_arr[1] = ob_get_contents();
+	ob_end_clean();
 }
-unset($panels_cache);
 
-if (defined("ADMIN_PANEL") || LEFT && !RIGHT) {
+if (!defined("ADMIN_PANEL")) {
+	$admin_messages = array(); $message_div = "";
+	$p_arr[2] = "<a id='content' name='content'></a>\n".$p_arr[2];
+	if (iADMIN && $settings['maintenance']) {
+		$admin_messages[] = $locale['global_190'];
+	}
+	if (iSUPERADMIN && file_exists(BASEDIR."setup.php")) {
+		$admin_messages[] = $locale['global_198'];
+	}
+	if (iADMIN && !$userdata['user_admin_password']) {
+		$admin_messages[] = $locale['global_199'];
+	}
+	if (!empty($admin_messages)) {
+		$message_div = "<div class='admin-message'>";
+		foreach ($admin_messages as $message) {
+			$message_div .= $message."<br />";
+		}
+		$message_div .= "</div>";
+		$p_arr[2] = $message_div.$p_arr[2];
+	}
+	$p_arr[2] = "<noscript><div class='noscript-message admin-message'>".$locale['global_303']."</div>\n</noscript>\n".$p_arr[2];
+}
+
+define("LEFT", $p_arr[1]);
+define("U_CENTER", $p_arr[2]);
+define("L_CENTER", $p_arr[3]);
+define("RIGHT", $p_arr[4]);
+unset($p_arr);
+
+// Set the require div-width class
+if (defined("ADMIN_PANEL")) {
 	$main_style = "side-left";
 } elseif (LEFT && RIGHT) {
 	$main_style = "side-both";
+} elseif (LEFT && !RIGHT) {
+	$main_style = "side-left";
 } elseif (!LEFT && RIGHT) {
 	$main_style = "side-right";
 } elseif (!LEFT && !RIGHT) {

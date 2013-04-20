@@ -39,10 +39,10 @@ a {text-decoration: none;}
 	padding: 0 0.5em;
 	background: transparent url(images/navtab_l.jpg) no-repeat top left;
 }
-#subheader a:hover, #subheader .active a, #subheader .current-link a{
+#subheader a:hover, #subheader .active a{
 	background: #d1d1d1 url(images/navtab_hbg.jpg) repeat-x top right;
 }
-#subheader a:hover span, #subheader .active span, #subheader .current-link span{
+#subheader a:hover span, #subheader .active span{
 	background-image: url(images/navtab_hl.jpg);
 }
 #links a{
@@ -314,7 +314,11 @@ code, pre {
 	font-size: 1.1em;
 }
 .poll {height: 1em; border: 1px solid #000; background: #333;}
-.comment-name {font-weight: 700;}
+.shoutboxname, .comment-name {font-weight: 700;}
+.shoutboxdate {
+	color: #888;
+	font-size: 0.8em;
+}
 .small,.small2,.side-small {font-size: 0.9em;}
 .tbl-border{
 	background: #f5f2eb;
@@ -329,26 +333,6 @@ code, pre {
 }
 .tbl1 {background: #e6e6e6;}
 .tbl2 {background: #e1e1e1;}
-
-div.emulated-fieldset {
-	position: relative;
-	margin: 20px 0px 10px 0px;
-	border: 1px solid #ccc;
-	width: 320px;
-	background: inherit;
-}
-div.emulated-fieldset span.emulated-legend {
-	display: inline;
-	position: absolute;
-	top: -12px;
-	margin: 0 5px;
-	padding: 4px;
-	background: inherit;
-}
-div.emulated-fieldset div.attachments-list {
-	padding: 10px 3px 3px 3px;
-	width: 320px;
-}
 hr {
 	border: solid #999 1pt;
 	height: 1pt;

@@ -30,7 +30,7 @@ if (isset($_GET['error']) && isnum($_GET['error']) && !isset($message)) {
 		$message = $locale['901'];
 	}
 	if (isset($message)) {
-		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n";
+		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; 
 	}
 }
 
@@ -190,31 +190,29 @@ echo "</tr>\n<tr>\n";
 echo "<td align='center' colspan='2' class='tbl'><br />\n";
 echo "<input type='submit' name='savesettings' value='".$locale['750']."' class='button' /></td>\n";
 echo "</tr>\n</table>\n</form>\n";
-echo "<script type='text/javascript'>\n";
-echo "/* <![CDATA[ */\n";
-echo "function Watermark(phtomrk) {\n";
-echo "if (phtomrk.value == 0) {\n";
-echo "document.forms['settingsform'].photo_watermark_save.value = 0;\n";
-echo "document.forms['settingsform'].photo_watermark_save.disabled = true;\n";
-echo "document.forms['settingsform'].delete_watermarks.disabled = true;\n";
-echo "document.forms['settingsform'].photo_watermark_image.disabled = true;\n";
-echo "document.forms['settingsform'].photo_watermark_text.value = 0;\n";
-echo "document.forms['settingsform'].photo_watermark_text.disabled = true;\n";
-echo "document.forms['settingsform'].photo_watermark_text_color1.disabled = true;\n";
-echo "document.forms['settingsform'].photo_watermark_text_color2.disabled = true;\n";
-echo "document.forms['settingsform'].photo_watermark_text_color3.disabled = true;\n";
-echo "} else {\n";
-echo "document.forms['settingsform'].photo_watermark_save.disabled = false;\n";
-echo "document.forms['settingsform'].delete_watermarks.disabled = false;\n";
-echo "document.forms['settingsform'].photo_watermark_image.disabled = false;\n";
-echo "document.forms['settingsform'].photo_watermark_text.disabled = false;\n";
-echo "document.forms['settingsform'].photo_watermark_text_color1.disabled = false;\n";
-echo "document.forms['settingsform'].photo_watermark_text_color2.disabled = false;\n";
-echo "document.forms['settingsform'].photo_watermark_text_color3.disabled = false;\n";
-echo "}\n";
-echo "}\n";
-echo "/* ]]>*/\n";
-echo "</script>\n";
+echo "<script type='text/javascript'>
+function Watermark(phtomrk) {
+	if (phtomrk.value == 0) {
+		document.forms['settingsform'].photo_watermark_save.value = 0;
+		document.forms['settingsform'].photo_watermark_save.disabled = true;
+		document.forms['settingsform'].delete_watermarks.disabled = true;
+		document.forms['settingsform'].photo_watermark_image.disabled = true;
+		document.forms['settingsform'].photo_watermark_text.value = 0;
+		document.forms['settingsform'].photo_watermark_text.disabled = true;
+		document.forms['settingsform'].photo_watermark_text_color1.disabled = true;
+		document.forms['settingsform'].photo_watermark_text_color2.disabled = true;
+		document.forms['settingsform'].photo_watermark_text_color3.disabled = true;		
+	} else {
+		document.forms['settingsform'].photo_watermark_save.disabled = false;
+		document.forms['settingsform'].delete_watermarks.disabled = false;
+		document.forms['settingsform'].photo_watermark_image.disabled = false;
+		document.forms['settingsform'].photo_watermark_text.disabled = false;
+		document.forms['settingsform'].photo_watermark_text_color1.disabled = false;
+		document.forms['settingsform'].photo_watermark_text_color2.disabled = false;
+		document.forms['settingsform'].photo_watermark_text_color3.disabled = false;		
+	}
+}
+</script>\n";
 closetable();
 
 require_once THEMES."templates/footer.php";

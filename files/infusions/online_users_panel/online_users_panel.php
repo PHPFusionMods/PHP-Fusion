@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
-| Copyright (C) 2002 - 2009 Nick Jones
+| Copyright � 2002 - 2009 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: online_users_panel.php
@@ -17,19 +17,12 @@
 +--------------------------------------------------------*/
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-if (dbcount("(online_user)", DB_ONLINE, "online_user='".(iMEMBER ? $userdata['user_id'] : 0)."'
-										AND online_ip='".USER_IP."'") == 1
-) {
-	$result = dbquery(
-		"UPDATE ".DB_ONLINE." SET online_lastactive='".time()."'
-		WHERE online_user=".($userdata['user_level'] != 0 ? "'".$userdata['user_id']."'" : "'0'
-			AND online_ip='".USER_IP."'").""
-	);
+$user_level = $userdata['user_level'] != 0 ? $userdata['user_id'] : '0';
+$result = dbcount("(online_user)", DB_ONLINE, "online_user=" . $user_level . " AND online_ip='" . USER_IP . "'");
+if (!empty($result)) {
+	$result = dbquery("UPDATE ".DB_ONLINE." SET online_lastactive='".time()."' WHERE online_user=".($userdata['user_level'] != 0 ? "'".$userdata['user_id']."'" : "'0' AND online_ip='".USER_IP."'")."");
 } else {
-	$result = dbquery(
-		"INSERT INTO ".DB_ONLINE." (online_user, online_ip, online_ip_type, online_lastactive)
-		VALUES ('".(iMEMBER ? $userdata['user_id'] : 0)."', '".USER_IP."', '".USER_IP_TYPE."', '".time()."')"
-	);
+	$result = dbquery("INSERT INTO ".DB_ONLINE." (online_user, online_ip, online_lastactive) VALUES ('".($userdata['user_level'] != 0 ? $userdata['user_id'] : "0")."', '".USER_IP."', '".time()."')");
 }
 $result = dbquery("DELETE FROM ".DB_ONLINE." WHERE online_lastactive<".(time()-60)."");
 
@@ -43,7 +36,7 @@ while ($data = dbarray($result)) {
 	if ($data['online_user'] == "0") {
 		$guests++;
 	} else {
-		$members[] = array($data['user_id'], $data['user_name'], $data['user_status']);
+		array_push($members, array($data['user_id'], $data['user_name'], $data['user_status']));
 	}
 }
 echo THEME_BULLET." ".$locale['global_011'].": ".$guests."<br /><br />\n";

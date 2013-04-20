@@ -42,56 +42,47 @@ function attach_exists($file) {
 }
 
 function forum_rank_cache() {
-	global $settings, $forum_mod_rank_cache, $forum_post_rank_cache, $forum_special_rank_cache;
-	$forum_post_rank_cache = array();
+	global $settings, $forum_mod_rank_cache, $forum_rank_cache;
 	$forum_mod_rank_cache = array();
-	$forum_special_rank_cache = array();
+	$forum_rank_cache = array();
 	if ($settings['forum_ranks']) {
-		$result = dbquery("SELECT rank_title, rank_image, rank_type, rank_posts, rank_apply FROM ".DB_FORUM_RANKS." ORDER BY rank_apply DESC, rank_posts ASC");
+		$result = dbquery("SELECT rank_title, rank_image, rank_posts, rank_apply FROM ".DB_FORUM_RANKS." ORDER BY rank_apply DESC, rank_posts ASC");
 		if (dbrows($result)) {
 			while ($data = dbarray($result)) {
-				if ($data['rank_type'] == 0) {
-					$forum_post_rank_cache[] = $data;
-				} elseif ($data['rank_type'] == 1) {
+				if ($data['rank_apply'] > 101) {
 					$forum_mod_rank_cache[] = $data;
 				} else {
-					$forum_special_rank_cache[] = $data;
+					$forum_rank_cache[] = $data;
 				}
 			}
 		}
 	}
 }
 
-function show_forum_rank($posts, $level, $groups) {
-	global $locale, $settings, $forum_mod_rank_cache, $forum_post_rank_cache, $forum_special_rank_cache;
+function show_forum_rank($posts, $level) {
+	global $locale, $forum_mod_rank_cache, $forum_rank_cache, $settings;
 	$res = "";
 	if ($settings['forum_ranks']) {
-		if (!$forum_post_rank_cache) { forum_rank_cache(); }
-		// Moderator ranks
-		if ($level > 101 && is_array($forum_mod_rank_cache) && count($forum_mod_rank_cache)) {
-			for ($i = 0; $i < count($forum_mod_rank_cache) && !$res; $i++) {
-				if ($level == $forum_mod_rank_cache[$i]['rank_apply']) {
-					$res = $forum_mod_rank_cache[$i]['rank_title']."<br />\n<img src='".RANKS.$forum_mod_rank_cache[$i]['rank_image']."' alt='' style='border:0' /><br />";
+		if (!$forum_rank_cache) { forum_rank_cache(); }
+		if ($level > 101) {
+			if (is_array($forum_mod_rank_cache) && count($forum_mod_rank_cache)) {
+				for ($i = 0; $i < count($forum_mod_rank_cache) && !$res; $i++) {
+					if ($level == $forum_mod_rank_cache[$i]['rank_apply']) {
+						$res = $forum_mod_rank_cache[$i]['rank_title']."<br />\n<img src='".RANKS.$forum_mod_rank_cache[$i]['rank_image']."' alt='' style='border:0' />";
+					}
 				}
 			}
-		}
-		// Special ranks
-		if ($groups != "" && is_array($forum_special_rank_cache) && count($forum_special_rank_cache)) {
-			for ($i = 0; $i < count($forum_special_rank_cache); $i++) {
-				if (in_array($forum_special_rank_cache[$i]['rank_apply'], explode(".", $groups))) {
-					$res .= $forum_special_rank_cache[$i]['rank_title']."<br />\n<img src='".RANKS.$forum_special_rank_cache[$i]['rank_image']."' alt='' style='border:0' /><br />";
+		}	
+		if (!$res) {
+			if (is_array($forum_rank_cache) && count($forum_rank_cache)) {
+				for ($i = 0; $i < count($forum_rank_cache); $i++) {
+					if ($posts >= $forum_rank_cache[$i]['rank_posts']) {
+						$res = $forum_rank_cache[$i]['rank_title']."<br />\n<img src='".RANKS.$forum_rank_cache[$i]['rank_image']."' alt='' style='border:0' />";
+					}
 				}
-			}
-		}
-		// Post count ranks
-		if (!$res && is_array($forum_post_rank_cache) && count($forum_post_rank_cache)) {
-			for ($i = 0; $i < count($forum_post_rank_cache); $i++) {
-				if ($posts >= $forum_post_rank_cache[$i]['rank_posts']) {
-					$res = $forum_post_rank_cache[$i]['rank_title']."<br />\n<img src='".RANKS.$forum_post_rank_cache[$i]['rank_image']."' alt='' style='border:0' /><br />";
+				if (!$res) {
+					$res = $forum_rank_cache[0]['rank_title']."<br />\n<img src='".RANKS.$forum_rank_cache[0]['rank_image']."' alt='' style='border:0' />";
 				}
-			}
-			if (!$res) {
-				$res .= $forum_post_rank_cache[0]['rank_title']."<br />\n<img src='".RANKS.$forum_post_rank_cache[0]['rank_image']."' alt='' style='border:0' /><br />";
 			}
 		}
 	}
@@ -126,37 +117,11 @@ function display_image($file) {
 	return $res;
 }
 
-function display_image_attach($file, $width = 50, $height = 50, $rel = "") {
-	$size = @getimagesize(FORUM."attachments/".$file);
-		
-	if ($size [0] > $height || $size [1] > $width) {
-		if ($size [0] < $size [1]) {
-			$img_w = round ( ($size [0] * $width) / $size [1] );
-			$img_h = $width;
-		} elseif ($size [0] > $size [1]) {
-			$img_w = $height;
-			$img_h = round ( ($size [1] * $height) / $size [0] );
-		} else {
-			$img_w = $height;
-			$img_h = $width;
-		}
-	} else {
-		$img_w = $size [0];
-		$img_h = $size [1];
-	}
-	
-	
-	$res = "<a target='_blank' href='".FORUM."attachments/".$file."' rel='attach_".$rel."' title='".$file."'><img src='".FORUM."attachments/".$file."' alt='".$file."' style='border:0px; width:".$img_w."px; height:".$img_h."px;' /></a>\n";
-	
-	return $res;
-}
-
 if (isset($_GET['getfile']) && isnum($_GET['getfile'])) {
-	$result = dbquery("SELECT attach_id, attach_name FROM ".DB_FORUM_ATTACHMENTS." WHERE attach_id='".$_GET['getfile']."'");
+	$result = dbquery("SELECT attach_name FROM ".DB_FORUM_ATTACHMENTS." WHERE post_id='".$_GET['getfile']."'");
 	if (dbrows($result)) {
 		$data = dbarray($result);
 		if (file_exists(FORUM."attachments/".$data['attach_name'])) {
-			$attach_count = dbquery("UPDATE ".DB_FORUM_ATTACHMENTS." SET attach_count=attach_count+1 WHERE attach_id='".$data['attach_id']."'");
 			require_once INCLUDES."class.httpdownload.php";
 			ob_end_clean();
 			$object = new httpdownload;

@@ -29,7 +29,7 @@ if (isset($_GET['error']) && isnum($_GET['error']) && !isset($message)) {
 		$message = $locale['901'];
 	}
 	if (isset($message)) {
-		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n";
+		echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; 
 	}
 }
 
@@ -42,15 +42,15 @@ if (isset($_POST['savesettings'])) {
 	} else {
 		$_POST['newsperpage'] = 11;
 	}
-	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['newsperpage']) && $_POST['newsperpage'] > 0 ? $_POST['newsperpage'] : "11")."' WHERE settings_name='newsperpage'");
+	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['newsperpage']) ? $_POST['newsperpage'] : "11")."' WHERE settings_name='newsperpage'");
 	if (!$result) { $error = 1; }
-	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['articles_per_page']) && $_POST['articles_per_page'] > 0 ? $_POST['articles_per_page'] : "15")."' WHERE settings_name='articles_per_page'");
+	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['articles_per_page']) ? $_POST['articles_per_page'] : "15")."' WHERE settings_name='articles_per_page'");
 	if (!$result) { $error = 1; }
-	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['downloads_per_page']) && $_POST['downloads_per_page'] > 0 ? $_POST['downloads_per_page'] : "15")."' WHERE settings_name='downloads_per_page'");
+	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['downloads_per_page']) ? $_POST['downloads_per_page'] : "15")."' WHERE settings_name='downloads_per_page'");
 	if (!$result) { $error = 1; }
-	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['links_per_page']) && $_POST['links_per_page'] > 0 ? $_POST['links_per_page'] : "15")."' WHERE settings_name='links_per_page'");
+	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['links_per_page']) ? $_POST['links_per_page'] : "15")."' WHERE settings_name='links_per_page'");
 	if (!$result) { $error = 1; }
-	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['comments_per_page']) && $_POST['comments_per_page'] ? $_POST['comments_per_page'] : "10")."' WHERE settings_name='comments_per_page'");
+	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".(isnum($_POST['numofshouts']) ? $_POST['numofshouts'] : "10")."' WHERE settings_name='numofshouts'");
 	if (!$result) { $error = 1; }
 	redirect(FUSION_SELF.$aidlink."&error=".$error);
 }
@@ -76,8 +76,13 @@ echo "</tr>\n<tr>\n";
 echo "<td width='50%' class='tbl'>".$locale['912'].":</td>\n";
 echo "<td width='50%' class='tbl'><input type='text' name='links_per_page' value='".$settings2['links_per_page']."' maxlength='2' class='textbox' style='width:50px;' /></td>\n";
 echo "</tr>\n<tr>\n";
-echo "<td width='50%' class='tbl'>".$locale['913'].":</td>\n";
-echo "<td width='50%' class='tbl'><input type='text' name='comments_per_page' value='".$settings2['comments_per_page']."' maxlength='2' class='textbox' style='width:50px;' /></td>\n";
+echo "<td width='50%' class='tbl'>".$locale['656']."</td>\n";
+echo "<td width='50%' class='tbl'><select name='numofshouts' class='textbox' style='width:50px;'>\n";
+echo "<option".($settings2['numofshouts'] == 5 ? " selected='selected'" : "").">5</option>\n";
+echo "<option".($settings2['numofshouts'] == 10 ? " selected='selected'" : "").">10</option>\n";
+echo "<option".($settings2['numofshouts'] == 15 ? " selected='selected'" : "").">15</option>\n";
+echo "<option".($settings2['numofshouts'] == 20 ? " selected='selected'" : "").">20</option>\n";
+echo "</select></td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td align='center' colspan='2' class='tbl'><br />\n";
 echo "<input type='submit' name='savesettings' value='".$locale['750']."' class='button' />\n</td>\n";

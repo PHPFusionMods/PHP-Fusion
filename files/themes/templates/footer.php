@@ -36,17 +36,16 @@ if ($settings['cronjob_hour'] < (time()-360)) {
 // Cron Job (24 HOUR)
 if ($settings['cronjob_day'] < (time()-86400)) {
 	$new_time = time();
-
+	
 	$result = dbquery("DELETE FROM ".DB_THREAD_NOTIFY." WHERE notify_datestamp < '".(time()-1209600)."'");
 	$result = dbquery("DELETE FROM ".DB_NEW_USERS." WHERE user_datestamp < '".(time()-86400)."'");
-	$result = dbquery("DELETE FROM ".DB_EMAIL_VERIFY." WHERE user_datestamp < '".(time()-86400)."'");
 
 	$usr_inactive = dbcount("(user_id)", DB_USERS, "user_status='3' AND user_actiontime!='0' AND user_actiontime < '".time()."'");
 	if ($usr_inactive) {
 		require_once INCLUDES."sendmail_include.php";
-
+		
 		$result = dbquery(
-			"SELECT user_id, user_name, user_email FROM ".DB_USERS."
+			"SELECT user_id, user_name, user_email FROM ".DB_USERS." 
 			WHERE user_status='3' AND user_actiontime!='0' AND user_actiontime < '".time()."'
 			LIMIT 10"
 		);
@@ -63,7 +62,7 @@ if ($settings['cronjob_day'] < (time()-86400)) {
 	$usr_deactivate = dbcount("(user_id)", DB_USERS, "user_actiontime < '".time()."' AND user_actiontime!='0' AND user_status='7'");
 	if ($usr_deactivate) {
 		$result = dbquery(
-			"SELECT user_id FROM ".DB_USERS."
+			"SELECT user_id FROM ".DB_USERS." 
 			WHERE user_actiontime < '".time()."' AND user_actiontime!='0' AND user_status='0'
 			LIMIT 10"
 		);
@@ -80,6 +79,7 @@ if ($settings['cronjob_day'] < (time()-86400)) {
 				$result = dbquery("DELETE FROM ".DB_NEWS." WHERE news_name='".$data['user_id']."'");
 				$result = dbquery("DELETE FROM ".DB_POLL_VOTES." WHERE vote_user='".$data['user_id']."'");
 				$result = dbquery("DELETE FROM ".DB_RATINGS." WHERE rating_user='".$data['user_id']."'");
+				$result = dbquery("DELETE FROM ".DB_SHOUTBOX." WHERE shout_name='".$data['user_id']."'");
 				$result = dbquery("DELETE FROM ".DB_SUSPENDS." WHERE suspended_user='".$data['user_id']."'");
 				$result = dbquery("DELETE FROM ".DB_THREADS." WHERE thread_author='".$data['user_id']."'");
 				$result = dbquery("DELETE FROM ".DB_POSTS." WHERE post_author='".$data['user_id']."'");
@@ -89,12 +89,7 @@ if ($settings['cronjob_day'] < (time()-86400)) {
 		if ($usr_deactivate > 10) { $new_time = $settings['cronjob_day']; }
 	}
 
-	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='".$new_time."' WHERE settings_name='cronjob_day'");
-}
-
-// Error handling
-if (iADMIN  && count($_errorHandler) > 0) {
-	echo "<div class='admin-message'>".str_replace("[ERROR_LOG_URL]", ADMIN."errors.php".$aidlink, $locale['err_101'])."</div>\n";
+	$result = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='$new_time' WHERE settings_name='cronjob_day'");
 }
 
 $output = ob_get_contents();
@@ -105,6 +100,10 @@ echo handle_output($output);
 
 if (ob_get_length() !== FALSE){
 	ob_end_flush();
+}
+
+if ($settings['login_method'] == "sessions") {
+	session_write_close();
 }
 
 mysql_close($db_connect);

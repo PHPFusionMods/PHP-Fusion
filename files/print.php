@@ -19,7 +19,7 @@ require_once "maincore.php";
 include LOCALE.LOCALESET."print.php";
 
 if ($settings['maintenance'] == "1" && ((iMEMBER && $settings['maintenance_level'] == "1" && $userdata['user_id'] != "1") || ($settings['maintenance_level'] > $userdata['user_level']))) { redirect(BASEDIR."maintenance.php"); }
-if (iMEMBER) { $result = dbquery("UPDATE ".DB_USERS." SET user_lastvisit='".time()."', user_ip='".USER_IP."', user_ip_type='".USER_IP_TYPE."' WHERE user_id='".$userdata['user_id']."'"); }
+if (iMEMBER) { $result = dbquery("UPDATE ".DB_USERS." SET user_lastvisit='".time()."', user_ip='".USER_IP."' WHERE user_id='".$userdata['user_id']."'"); }
 
 echo "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\n";
 echo "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='".$locale['xml_lang']."' lang='".$locale['xml_lang']."'>\n";
@@ -67,8 +67,8 @@ if ((isset($_GET['type']) && $_GET['type'] == "A") && (isset($_GET['item_id']) &
 	if (!$res) { redirect("index.php"); }
 } elseif ((isset($_GET['type']) && $_GET['type'] == "N") && (isset($_GET['item_id']) && isnum($_GET['item_id']))) {
 	$result = dbquery(
-		"SELECT tn.news_subject, tn.news_news, tn.news_extended, tn.news_breaks, tn.news_datestamp, tn.news_visibility,
-		tu.user_id, tu.user_name, tu.user_status
+		"SELECT tn.news_subject, tn.news_news, tn.news_extended, tn.news_breaks, tn.news_datestamp, tn.news_visibility, 
+		tu.user_id, tu.user_name, tu.user_status 
 		FROM ".DB_NEWS." tn
 		LEFT JOIN ".DB_USERS." tu ON tn.news_name=tu.user_id
 		WHERE news_id='".$_GET['item_id']."' AND news_draft='0'"
@@ -96,18 +96,18 @@ if ((isset($_GET['type']) && $_GET['type'] == "A") && (isset($_GET['item_id']) &
 } elseif ((isset($_GET['type']) && $_GET['type'] == "F") && (isset($_GET['thread']) && isnum($_GET['thread'])) && !isset($_GET['post'])) {
 	$posts_per_page = 20;
 	if (!isset($_GET['rowstart']) || !isnum($_GET['rowstart'])) { $_GET['rowstart'] = 0; }
-
+	
 	$result = dbquery(
 		"SELECT fp.post_message, fp.post_datestamp, fp.post_edittime, fp.post_author, fp.post_edituser,
-		fu.user_name AS user_name, fu.user_status AS user_status, fe.user_name AS edit_name, fe.user_status AS edit_status,
-		ft.thread_subject, ff.forum_access
-		FROM ".DB_THREADS." ft
-		INNER JOIN ".DB_POSTS." fp ON ft.thread_id = fp.thread_id
-		INNER JOIN ".DB_FORUMS." ff ON ff.forum_id = ft.forum_id
-		INNER JOIN ".DB_USERS." fu ON fu.user_id = fp.post_author
-		LEFT JOIN ".DB_USERS." fe ON fe.user_id = fp.post_edituser
-		WHERE ft.thread_id=".$_GET['thread']."
-		ORDER BY fp.post_datestamp
+		fu.user_name AS user_name, fu.user_status AS user_status, fe.user_name AS edit_name, fe.user_status AS edit_status, 
+		ft.thread_subject, ff.forum_access 
+		FROM ".DB_THREADS." ft 
+		INNER JOIN ".DB_POSTS." fp ON ft.thread_id = fp.thread_id 
+		INNER JOIN ".DB_FORUMS." ff ON ff.forum_id = ft.forum_id 
+		INNER JOIN ".DB_USERS." fu ON fu.user_id = fp.post_author 
+		LEFT JOIN ".DB_USERS." fe ON fe.user_id = fp.post_edituser 
+		WHERE ft.thread_id=".$_GET['thread']." 
+		ORDER BY fp.post_datestamp 
 		LIMIT ".$_GET['rowstart'].",$posts_per_page"
 	);
 	$res = false; $i = 0;
@@ -128,19 +128,19 @@ if ((isset($_GET['type']) && $_GET['type'] == "A") && (isset($_GET['item_id']) &
 				echo "<br />\n";
 				$i++;
 			}
-		}
+		}		
 	}
 	if (!$res) { redirect("index.php"); }
 } elseif ((isset($_GET['type']) && $_GET['type'] == "F") && (isset($_GET['thread']) && isnum($_GET['thread'])) && (isset($_GET['post']) && isnum($_GET['post'])) && (isset($_GET['nr']) && isnum($_GET['nr']))) {
 	$result = dbquery(
 		"SELECT fp.post_message, fp.post_datestamp, fp.post_edittime, fp.post_author as post_author, fp.post_edituser,
-		fu.user_name AS user_name, fu.user_status AS user_status, fe.user_name AS edit_name, fe.user_status AS edit_status,
-		ft.thread_subject, ff.forum_access
-		FROM ".DB_THREADS." ft
-		INNER JOIN ".DB_POSTS." fp ON ft.thread_id = fp.thread_id
-		INNER JOIN ".DB_FORUMS." ff ON ff.forum_id = ft.forum_id
-		INNER JOIN ".DB_USERS." fu ON fu.user_id = fp.post_author
-		LEFT JOIN ".DB_USERS." fe ON fe.user_id = fp.post_edituser
+		fu.user_name AS user_name, fu.user_status AS user_status, fe.user_name AS edit_name, fe.user_status AS edit_status, 
+		ft.thread_subject, ff.forum_access 
+		FROM ".DB_THREADS." ft 
+		INNER JOIN ".DB_POSTS." fp ON ft.thread_id = fp.thread_id 
+		INNER JOIN ".DB_FORUMS." ff ON ff.forum_id = ft.forum_id 
+		INNER JOIN ".DB_USERS." fu ON fu.user_id = fp.post_author 
+		LEFT JOIN ".DB_USERS." fe ON fe.user_id = fp.post_edituser 
 		WHERE ft.thread_id=".$_GET['thread']." AND fp.post_id = ".$_GET['post']
 	);
 	$res = false;
@@ -170,6 +170,10 @@ if ((isset($_GET['type']) && $_GET['type'] == "A") && (isset($_GET['item_id']) &
 	redirect("index.php");
 }
 echo "</body>\n</html>\n";
+
+if ($settings['login_method'] == "sessions") {
+	session_write_close();
+}
 
 if (ob_get_length() !== FALSE){
 	ob_end_flush();

@@ -91,6 +91,7 @@ form {
 	background-image: url(images/button.gif);
 	height: 20px;
 	border: 1px solid #000;
+	margin-top: 2px;
 }
 
 .bbcode {
@@ -111,35 +112,10 @@ form {
 
 .textbox {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 10px;
 	color: #555;
 	background-color: #f8f8f8;
 	border: 1px solid #ccc;
-}
-
-.textbox:focus {
-	color: #000;
-	background-color: #E1E1E1;
-}
-
-div.emulated-fieldset {
-	position: relative;
-	margin: 20px 0px 10px 0px;
-	border: 1px solid #ccc;
-	width: 320px;
-	background: inherit;
-}
-div.emulated-fieldset span.emulated-legend {
-	display: inline;
-	position: absolute;
-	top: -12px;
-	margin: 0 5px;
-	padding: 4px;
-	background: inherit;
-}
-div.emulated-fieldset div.attachments-list {
-	padding: 10px 3px 3px 3px;
-	width: 320px;
 }
 
 /* Header and footer properties */
@@ -167,8 +143,6 @@ div.emulated-fieldset div.attachments-list {
 	background-image: url(images/subheader-right.gif);
 }
 
-/* Subheader links */
-
 .sub-header ul{
 	margin: 0;
 	padding: 0;
@@ -180,14 +154,6 @@ div.emulated-fieldset div.attachments-list {
 
 .sub-header ul li.first-link .bullet{
 	display: none;
-}
-
-.sub-header ul li.first-link {
-	font-weight: bold;
-}
-
-.sub-header ul li.current-link a span {
-	text-decoration: underline;
 }
 
 .full-header {
@@ -224,7 +190,6 @@ div.emulated-fieldset div.attachments-list {
 
 /* Side-Panel properties */
 
-.ui-sortable { margin: 0; padding: 0; }
 
 .side-left .side-border-right {display: none;}
 .side-right .side-border-left {display: none;}
@@ -250,7 +215,7 @@ div.emulated-fieldset div.attachments-list {
 	color: #fff;
 	background-color: #555;
 	background-image: url(images/side.gif);
-	background-repeat: repeat-x;
+  background-repeat: repeat-x;
 	padding: 6px 4px 6px 4px;
 }
 
@@ -273,7 +238,7 @@ div.emulated-fieldset div.attachments-list {
 	color: #555;
 	background-color: #fff;
 	background-image: url(images/gradient.gif);
-	background-repeat: repeat-x;
+  background-repeat: repeat-x;
 	border: 1px solid #ddd;
 	padding: 4px;
 }
@@ -334,11 +299,11 @@ div.emulated-fieldset div.attachments-list {
 }
 
 .tbl-border {
-	border: 1px solid #eee;
+	border: 1px solid #e1e1e1;
 }
 
 .tbl {
-	font-size: 12px;
+	font-size: 11px;
 	color: #555;
 	background-color: #fff;
 	padding: 4px;
@@ -351,43 +316,12 @@ div.emulated-fieldset div.attachments-list {
 	padding: 4px;
 }
 
-.tbl2  {
+.tbl2 {
 	font-size: 11px;
 	color: #555;
 	background-color: #f1f1f1;
 	padding: 4px;
 }
-
-.tbl-error  {
-	color: #AC260F;
-	font-weight: bold;
-	background-color: #FCCAC2;
-	border:2px solid #EB5339;
-}
-
-/* Profile spesific classes */
-.profile, .profile_category {
-	width: 500px;
-}
-
-.edit-profile {
-	width: 500px;
-}
-
-/*.user_password .textbox:focus, .user_admin_password .textbox:focus {
-	background-color: #ff6666;
-}*/
-
-.profile_user_reason {
-	color: #ff6666;
-	font-weight: bold;
-}
-
-/*.user_name td, .user_name .textbox {
-	font-size: 13px;
-	padding: 4px;
-}*/
-
 
 .forum-caption {
 	font-size: 11px;
@@ -414,6 +348,20 @@ div.emulated-fieldset div.attachments-list {
 .comment-name {
 	font-weight: bold;
 	color: #04688d;
+}
+
+.shoutboxname {
+	font-weight: bold;
+	color: #04688d;
+}
+
+.shoutbox {
+	color: #777;
+}
+
+.shoutboxdate {
+	font-size: 10px;
+	color: #888;
 }
 
 .small {
@@ -449,7 +397,7 @@ div.emulated-fieldset div.attachments-list {
 	margin: 0;
 	padding: 4px;
 }
-
+	
 #navigation ul {
 	margin: 0;
 	padding: 0;
@@ -472,18 +420,8 @@ div.emulated-fieldset div.attachments-list {
 	background-color: #f6a504;
 }
 
-#navigation li.first-link a {
-	font-weight:bold;
-}
-
-#navigation li.current-link a {
-	color: #555;
-	background-color: #eee;
-	border: 1px solid #fff;
-	padding: 1px !important;
-}
-
 /* Page Navigation */
+
 .pagenav {
 	padding: 4px;
 }

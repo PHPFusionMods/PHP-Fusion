@@ -30,8 +30,4 @@ $locale['452'] = "There are no Article Categories defined";
 $locale['453'] = "You must define at least one category before you can add any Articles";
 $locale['454'] = "Click here";
 $locale['455'] = " to go to Article Categories";
-$locale['456'] = "%s are disabled for all items.<br />This setting will only take effect when they are enabled again.";
-$locale['457'] = "Comments";
-$locale['458'] = "Ratings";
-$locale['459'] = $locale['457']." and ".$locale['458'];
 ?>

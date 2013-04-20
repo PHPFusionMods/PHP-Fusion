@@ -69,9 +69,8 @@ if ($_GET['stype'] == "forums" || $_GET['stype']=="all") {
 			$text_frag = search_textfrag($text_all);
 			$subj_c = search_stringscount($data['thread_subject']);
 			$text_c = search_stringscount($data['post_message']);;
-			// $text_frag = highlight_words($swords, $text_frag);
-			$search_result .= ($data['thread_sticky'] == 1 ? "<strong>".$locale['f404']."</strong> " : "")."<a href='".FORUM."viewthread.php?thread_id=".$data['thread_id']."&amp;highlight=".urlencode($_GET['stext'])."&amp;pid=".$data['post_id']."#post_".$data['post_id']."'>".$data['thread_subject']."</a>"."<br  /><br  />\n";
-			// $search_result .= ($data['thread_sticky'] == 1 ? "<strong>".$locale['f404']."</strong> " : "")."<a href='".FORUM."viewthread.php?thread_id=".$data['thread_id']."&amp;highlight=".urlencode($_GET['stext'])."&amp;pid=".$data['post_id']."#post_".$data['post_id']."'>".highlight_words($swords, $data['thread_subject'])."</a>"."<br  /><br  />\n";
+			$text_frag = highlight_words($swords, $text_frag);
+			$search_result .= ($data['thread_sticky'] == 1 ? "<strong>".$locale['f404']."</strong> " : "")."<a href='".FORUM."viewthread.php?thread_id=".$data['thread_id']."&amp;highlight=".urlencode($_GET['stext'])."&amp;pid=".$data['post_id']."#post_".$data['post_id']."'>".highlight_words($swords, $data['thread_subject'])."</a>"."<br  /><br  />\n";
 			$search_result .= "<div class='quote' style='width:auto;height:auto;overflow:auto'>".$text_frag."</div><br  />";
 			$search_result .= "<span class='small2'>".$locale['global_070'].profile_link($data['user_id'], $data['user_name'], $data['user_status'])."\n";
 			$search_result .= $locale['global_071'].showdate("longdate", $data['post_datestamp'])."</span><br  />\n";

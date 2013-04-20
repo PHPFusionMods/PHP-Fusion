@@ -62,7 +62,6 @@ function suspend_log($user_id, $type, $reason = "", $system = false, $time = tru
 			suspended_user, 
 			suspending_admin, 
 			suspend_ip, 
-			suspend_ip_type, 
 			suspend_date, 
 			suspend_reason, 
 			suspend_type
@@ -70,7 +69,6 @@ function suspend_log($user_id, $type, $reason = "", $system = false, $time = tru
 			'$user_id', 
 			'".(!$system ? $userdata['user_id'] : 0)."', 
 			'".(!$system ? USER_IP : 0)."', 
-			'".(!$system ? USER_IP_TYPE : 0)."', 
 			'".($time ? time() : 0)."', 
 			'$reason',
 			'$type'
@@ -93,8 +91,7 @@ function unsuspend_log($user_id, $type, $reason = "", $system = false) {
 			reinstating_admin='".(!$system ? $userdata['user_id'] : 0)."', 
 			reinstate_reason='$reason', 
 			reinstate_date='".time()."', 
-			reinstate_ip='".(!$system ? USER_IP : 0)."',
-			reinstate_ip_type='".(!$system ? USER_IP_TYPE : 0)."'			
+			reinstate_ip='".(!$system ? USER_IP : 0)."' 
 		WHERE 
 			suspended_user='$user_id' AND suspend_type='$type' AND reinstate_date='0'"
 	);
@@ -107,8 +104,8 @@ function display_suspend_log($user_id, $type = "all", $rowstart = 0, $limit = 0)
 	
 	$rows = dbcount("(suspend_id)", DB_SUSPENDS, "suspended_user='$user_id'$db_type");
 	$result = dbquery(
-		"SELECT sp.suspend_id, sp.suspend_ip, sp.suspend_ip_type, sp.suspend_date, sp.suspend_reason,
-		sp.suspend_type, sp.reinstate_date, sp.reinstate_reason, sp.reinstate_ip, sp.reinstate_ip_type,
+		"SELECT sp.suspend_id, sp.suspend_ip, sp.suspend_date, sp.suspend_reason,
+		sp.suspend_type, sp.reinstate_date, sp.reinstate_reason, sp.reinstate_ip,
 		a.user_name AS admin_name, b.user_name AS admin_name_b 
 		FROM ".DB_SUSPENDS." sp 
 		LEFT JOIN ".DB_USERS." a ON sp.suspending_admin=a.user_id 

@@ -19,10 +19,6 @@ $locale['425'] = "Moderators";
 $locale['426'] = "Administrators";
 $locale['427'] = "Super Administrators";
 $locale['428'] = "Save Rank";
-$locale['429'] = "Rank type:";
-$locale['429a'] = "Special";
-$locale['429b'] = "Admin";
-$locale['429c'] = "Post count";
 // Current Forum Ranks
 $locale['430'] = "Title";
 $locale['431'] = "Applies To";
@@ -32,7 +28,6 @@ $locale['434'] = "Options";
 $locale['435'] = "Edit";
 $locale['436'] = "Delete";
 $locale['437'] = "No Forum Ranks defined.";
-$locale['438'] = "Type / Count";
 // Forum Ranks Disabled
 $locale['450'] = "Forum ranks are currently disabled.<br />Please go to the %s Admin Panel to enable.";
 $locale['451'] = "Forum Settings";

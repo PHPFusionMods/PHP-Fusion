@@ -14,7 +14,7 @@ $locale['410'] = "Site keywords:";
 $locale['411'] = "Separate each word with a comma";
 $locale['412'] = "Site footer:";
 $locale['413'] = "Site opening page:";
-$locale['414'] = "";
+$locale['414'] = "News style:";
 $locale['415'] = "Single Column";
 $locale['416'] = "Double Column";
 $locale['417'] = "Site locale:";
@@ -25,14 +25,6 @@ $locale['421'] = "Exclude Upper Panels:";
 $locale['422'] = "Exclude Lower Panels:";
 $locale['423'] = "Exclude Right Panels:";
 $locale['424'] = "<em>Examples:</em><br />/news.php<br />/forum/index.php";
-$locale['425'] = "Site Address";
-$locale['426'] = "Site Protocol:";
-$locale['427'] = "Site Host:";
-$locale['428'] = "Example:";
-$locale['429'] = "Site Path:";
-$locale['430'] = "Site Port:";
-$locale['431'] = "Preview:";
-$locale['432'] = "Other settings";
 // Time & Date Settings
 $locale['450'] = "Time and Date";
 $locale['451'] = "Short date format:";
@@ -75,13 +67,6 @@ $locale['527'] = "1 Week";
 $locale['528'] = "1 Month";
 $locale['529'] = "1 Year";
 $locale['530'] = "Forever";
-$locale['531'] = "Show latest posts below reply form?";
-$locale['532'] = "Latest post + %s";
-$locale['533'] = "Only latest post";
-$locale['534'] = "Attachments max count:";
-$locale['535'] = "Maximum number of attachments";
-$locale['536'] = "Time limit for editing posts:";
-$locale['537'] = "(In minutes, 0 for no limit)";
 // Registration Settings
 $locale['550'] = "Registration";
 $locale['551'] = "Enable registration system?";
@@ -90,6 +75,9 @@ $locale['553'] = "Display validation code?";
 $locale['557'] = "New members activated by admin?";
 $locale['558'] = "Enable terms of agreement?";
 $locale['559'] = "Terms of Agreement";
+$locale['560'] = "Login method:";
+$locale['561'] = "Cookies";
+$locale['562'] = "Sessions";
 // Photo Gallery Settings
 $locale['600'] = "Photo Gallery";
 $locale['601'] = "Thumb size:";
@@ -106,8 +94,8 @@ $locale['611'] = "Enable photos watermark?";
 $locale['612'] = "Specify PNG watermark";
 $locale['613'] = "Enable text description on photos?";
 $locale['614'] = "Album title color";
-$locale['615'] = "Album description colour";
-$locale['616'] = "Photo title colour";
+$locale['615'] = "Album description color";
+$locale['616'] = "Photo title color";
 $locale['617'] = "Save generated watermarks?";
 $locale['618'] = "Reduces server load; occupies more disk space";
 $locale['619'] = "Delete existing watermarks";
@@ -119,7 +107,7 @@ $locale['652'] = "Enter one word per line.";
 $locale['653'] = "Leave empty if not required.";
 $locale['654'] = "Bad word replacement:";
 $locale['655'] = "Allow Guests to post?";
-
+$locale['656'] = "Number of shoutbox posts:";
 $locale['657'] = "Maintenance mode:";
 $locale['658'] = "Maintenance mode message:";
 $locale['659'] = "Bad words filter enabled?";
@@ -147,20 +135,8 @@ $locale['680'] = "Flood Auto Ban:";
 $locale['681'] = "Maintenance";
 $locale['682'] = "Flood Settings";
 $locale['683'] = "Security Settings";
-$locale['684'] = "Comments Sorting";
-$locale['685'] = "Ascending";
-$locale['686'] = "Descending";
-$locale['687'] = "Bad Words";
-$locale['688'] = "Display render time (in footer)?";
-$locale['689'] = "Yes (all visitors)";
-$locale['690'] = "Yes (only admins)";
-$locale['691'] = "Allow users to change user name";
-$locale['692'] = "Captcha Settings";
-$locale['693'] = "Captcha";
-$locale['694'] = "Recaptcha Public Key (<a href='https://www.google.com/recaptcha/admin/create' title='Get your key here'>Get your key</a>)";
-$locale['695'] = "Recaptcha Private Key";
-$locale['696'] = "Please enter your public and private reCAPTCHA key!";
 
+$locale['687'] = "Bad Words";
 // Private Message Settings
 $locale['700'] = "Private Messages";
 $locale['701'] = "Inbox message limit:";
@@ -171,7 +147,7 @@ $locale['707'] = "Private Message Limits";
 $locale['708'] = "Default values for user options";
 $locale['709'] = "Email notification?";
 $locale['710'] = "Save sent PM's?";
-$locale['711'] = "Note: Individual user options take precedence if they're set. If no user option is set, then the global options are applied.";
+$locale['711'] = "Note: Individual user options take precendence if they're set. If no user option is set, then the global options are applied.";
 // Save Settings
 $locale['750'] = "Save Settings";
 // Other Settings
@@ -189,20 +165,15 @@ $locale['855'] = "Preview Banners";
 // Settings Error
 $locale['900'] = "Settings Updated";
 $locale['901'] = "Database update error occurs: Settings were not Updated!";
-$locale['902'] = "Site host can not be left empty!";
 // Item per Page
 $locale['910'] = "Articles per page";
 $locale['911'] = "Downloads per page";
 $locale['912'] = "Links per page";
-$locale['913'] = "Comments per page";
 // Downloads Settings
 $locale['930'] = "Maximum size uploads:";
 $locale['931'] = "Maximum file size in bytes";
 $locale['932'] = "Allowed file types:";
 $locale['933'] = "Separate each type with a comma";
-$locale['934'] = "Maximum screenshot size:";
-$locale['935'] = "Width x Height";
-$locale['936'] = "Maximum screenshot file size (bytes):";
 // News Settings
 $locale['950'] = "Image Upload";
 $locale['951'] = "Image link:";
@@ -229,27 +200,4 @@ $locale['1010'] = "Maximum image size (bytes):";
 $locale['1011'] = "Deactivation Action:";
 $locale['1012'] = "Anonymize Users";
 $locale['1013'] = "Delete Users";
-// Date format options (you can add/delete lines)
-// More info at: http://php.net/manual/en/function.strftime.php
-$locale['dateformats'][] = "%m/%d/%Y";
-$locale['dateformats'][] = "%d/%m/%Y";
-$locale['dateformats'][] = "%d-%m-%Y";
-$locale['dateformats'][] = "%d.%m.%Y";
-$locale['dateformats'][] = "%m/%d/%Y %H:%M";
-$locale['dateformats'][] = "%d/%m/%Y %H:%M";
-$locale['dateformats'][] = "%d-%m-%Y %H:%M";
-$locale['dateformats'][] = "%d.%m.%Y %H:%M";
-$locale['dateformats'][] = "%m/%d/%Y %H:%M:%S";
-$locale['dateformats'][] = "%d/%m/%Y %H:%M:%S";
-$locale['dateformats'][] = "%d-%m-%Y %H:%M:%S";
-$locale['dateformats'][] = "%d.%m.%Y %H:%M:%S";
-$locale['dateformats'][] = "%B %d %Y";
-$locale['dateformats'][] = "%d. %B %Y";
-$locale['dateformats'][] = "%d %B %Y";
-$locale['dateformats'][] = "%B %d %Y %H:%M";
-$locale['dateformats'][] = "%d. %B %Y %H:%M";
-$locale['dateformats'][] = "%d %B %Y %H:%M";
-$locale['dateformats'][] = "%B %d %Y %H:%M:%S";
-$locale['dateformats'][] = "%d. %B %Y %H:%M:%S";
-$locale['dateformats'][] = "%d %B %Y %H:%M:%S";
 ?>

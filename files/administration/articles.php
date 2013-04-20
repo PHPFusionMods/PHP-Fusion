@@ -172,31 +172,9 @@ if (!empty($result)) {
 		echo "<td class='tbl'></td><td class='tbl'>\n";
 		echo "<label><input type='checkbox' name='article_draft' value='yes'".$draft." /> ".$locale['426']."</label><br />\n";
 		if ($settings['tinymce_enabled'] != 1) { echo "<label><input type='checkbox' name='line_breaks' value='yes'".$breaks." /> ".$locale['427']."</label><br />\n"; }
-		echo "<label><input type='checkbox' name='article_comments' value='yes'".$comments." /> ".$locale['428']."</label>";
-		if ($settings['comments_enabled'] == "0") {
-			echo "<span style='color:red;font-weight:bold;margin-left:3px;'>*</span>";
-		}
-		echo "<br />\n";
-		echo "<label><input type='checkbox' name='article_ratings' value='yes'".$ratings." /> ".$locale['429']."</label>";
-		if ($settings['ratings_enabled'] == "0") {
-			echo "<span style='color:red;font-weight:bold;margin-left:3px;'>*</span>";
-		}
-		echo "</td>\n";
-		echo "</tr>\n";
-		if ($settings['comments_enabled'] == "0" || $settings['ratings_enabled'] == "0") {
-			$sys = "";
-			if ($settings['comments_enabled'] == "0" &&  $settings['ratings_enabled'] == "0") {
-				$sys = $locale['459'];
-			} elseif ($settings['comments_enabled'] == "0") {
-				$sys = $locale['457'];
-			} else {
-				$sys = $locale['458'];
-			}
-			echo "<tr>\n<td colspan='2' class='tbl1' style='font-weight:bold;text-align:left; color:black !important; background-color:#FFDBDB;'>";
-			echo "<span style='color:red;font-weight:bold;margin-right:5px;'>*</span>".sprintf($locale['456'], $sys);
-			echo "</td>\n</tr>";
-		}
-		echo "<tr>\n";
+		echo "<label><input type='checkbox' name='article_comments' value='yes'".$comments." /> ".$locale['428']."</label><br />\n";
+		echo "<label><input type='checkbox' name='article_ratings' value='yes'".$ratings." /> ".$locale['429']."</label></td>\n";
+		echo "</tr>\n<tr>\n";
 		echo "<td align='center' colspan='2' class='tbl'><br />\n";
 		if ((isset($_POST['article_id']) && isnum($_POST['article_id'])) || (isset($_GET['article_id']) && isnum($_GET['article_id']))) {
 			echo "<input type='hidden' name='article_id' value='".(isset($_POST['article_id']) ? $_POST['article_id'] : $_GET['article_id'])."' />\n";
@@ -205,14 +183,10 @@ if (!empty($result)) {
 		echo "<input type='submit' name='save' value='".$locale['431']."' class='button' /></td>\n";
 		echo "</tr>\n</table>\n</form>\n";
 		closetable();
-		echo "<script type='text/javascript'>\n";
-		echo "/* <![CDATA[ */\n";
-		echo "function DeleteArticle() {\n";
+		echo "<script type='text/javascript'>"."\n"."function DeleteArticle() {\n";
 		echo "return confirm('".$locale['451']."');\n}\n";
 		echo "function ValidateForm(frm) {"."\n"."if(frm.subject.value=='') {\n";
-		echo "alert('".$locale['450']."');"."\n"."return false;\n}\n}\n";
-		echo "/* ]]>*/\n";
-		echo "</script>\n";
+		echo "alert('".$locale['450']."');"."\n"."return false;\n}\n}\n</script>\n";
 	}
 } else {
 	opentable($locale['403']);
