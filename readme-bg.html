@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=windows-1251'>
+<style type='text/css'>
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.tbl1 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000;
+	background-color:#fefefe;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+.tbl2 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#fff;
+	background-color:#444;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<center><div style='text-align:left;width:600px;'>
+	
+<div align='center' class='tbl1'><img src='files/images/php-fusion-logo.png' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+<b>Версия:</b> 7.00 - <b>Излязла:</b> 21/06/2008</div>
+
+<div class='tbl2'>ВЪВЕДЕНИЕ</div>
+
+<div class='tbl1'>PHP-Fusion е лека open-source система за управление на съдържанието (CMS) написана на  PHP 5 (съвместима с PHP 4).
+Използва MySQL база данни за да запази съдържанието на сайта ви, и има изключително удобна система за управление. PHP-Fusion включва най важните екстри, които можете да очаквате от една CMS система, както и много други, които липсват в другите  CMS пакети.
+
+<p>Тази програма е свободна: можете да я разпространявате и/или редактирате при условията на GNU Affero General Public License (AGPL)така както са публикувани от Free Software Foundation,версич  3 от лиценза, или (по ваше усмотрение) всяка по-късна версия.
+
+<p>Тази програма се разпространява с надеждата, че ще е полезна, но БЕЗ КАКВАТО И ДА БИЛА ГАРАНЦИЯ, дори и без ГАРАНЦИЯ ЗА ИЗПОЛЗВАНЕ ЗА ОПРЕДЕЛЕНИ НУЖДИ .
+За повече информация вижте  Affero General Public License.
+
+<p>С тази програма трябва да получите и копие от GNU Affero General Public License . Ако нямате, вижте <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>www.fsf.org</a>.
+
+<p><b>ВАЖНО</b>: Нямате право да премахвате бележката за запазени права от футъра / долната част / на сайта:
+	
+<p>Powered by <a href='http://www.php-fusion.co.uk'>PHP-Fusion</a> copyright &copy; 2002 - 2008 by Nick Jones.<br>
+Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>GNU Affero GPL</a> v3.
+
+<p>За възможности за премахването на тази бележка - вижте нашата страница 
+<a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>.
+</div>
+
+<div class='tbl2'>ИНСТАЛАЦИЯ</div>
+
+<div class='tbl1'>Преди да инсталирате PHP-Fusion трябва да създадете MySQL база данни. Можете да направите това от контролния панел на хостинга Ви, или със phpMyAdmin. Уверете се, че имате данните за достъп до mysql,включително  hostname, username, password и име на базата, защото ще ви трябват по време на инсталацията.
+
+<p><b>1.</b> Преди да качите файловете на сървъра, преименувайте file _config.php (в папката files) на config.php.
+
+<p><b>2.</b> Качете съдържанието на папката на вашия сървър.
+
+<p><b>3.</b> Освен ако не подкарвате PHP-Fusion на локален сървър, в повечето случаи ще трябва да промените правата с CHMOD на следните файлове и папки на 777:
+
+<ul style='list-style-type:disc'>
+<li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul>
+
+<p><b>4.</b> Отидете на вашия сайт, където setup.php трябва да започне автоматично. Ако това не стане, ще трябва да напишете ръчно пълния адрес на сайта следван от /setup.php . Например: http://www.yourdomain.com/setup.php.
+
+<p><b>5.</b> Довършете инсталацията като следвате изструкциите на екрана.
+
+<p><b>6.</b> Веднага след като завършите инсталацията на PHP-Fusion променете с
+CHMOD config.php обратно на 644 И ИЗТРИЙТЕ setup.php от сървъра.</div>
+
+<div class='tbl2'>Надстройка от V6.01.12+</div>
+
+<div class='tbl1'>Преди да надстроите, ви съветваме да архивирате базата си, тъй като  PHP-Fusion 7 е генерално променен в сравнение с предшествениците си. Следвайте тези инструкции точно.
+
+<p><b>1.</b> Кода на версич 6 не е съвместим с кода на версия 7. Трябва да обновите всички модове, добавки, панели и теми преди да обновите до 7, ИЛИ да изтеглите обновяване съвместимо с версия 7. Въпреки всичко, Ви препоръчваме да спрете всякакви кодове от трети страни преди да започнете.
+
+<p><b>2.</b>Първо трябва да качите скрипта за обновяване от папката 'upgrade v601x' в папката administration на сайта.
+
+<p><b>2.</b> Влезте като Супер Администратор. В секцията Управление на системата, изберете Обновяване и натиснете бутона Upgrade. ЩЕ ТРЯБВА ДА СПАЗВАТЕ ТОЧНИТЕ ИНСТРУКЦИИ КОИТО ИЗЛИЗАТ НА ЕКРАНА. Обновяването завършва когато видите 'Database upgrade complete'.
+
+<p><b>4.</b> ВАЖНО: Понеже това обновяване съдържа много структурни промени, елементите и файловете на сайта ви няма да работят нормално докато не качите всички файлове. ТРЯБВА ДА КАЧИТЕ ВСИЧКИ ФАЙЛОВЕ ОТ ПАПКАТА НА СЪРВЪРА.
+
+<p>Ако имате някакви притеснения, смело питайте който и да е от нашите сайтове за поддръжка, в нашето общество има много потребителисъс знания, които са минали по този път и са запознати с процеса на обновяване.</div>
+
+<div class='tbl2'>МЕРКИ ЗА СИГУРНОСТ</div>
+
+<div class='tbl1'>Няколко идеи за по-голяма сигурност на вашия сайт:
+<ul style='list-style-type:disc'>
+<li>Подсигурете се, че config.php е с права  644.</li>
+<li>Никога не оставяйте setup.php на сървъра след инсталацията.</li>
+<li>Винаги дръжте паролите за FTP и MySQL различни.</li>
+<li>Никога не позволявайте прикачване на файлове като php, html, exe или каквито и да било текстови файлове.</li>
+</ul></div>
+
+<div class='tbl2'>САЙТОВЕ ЗА ПОДДРЪЖКА</div>
+
+<div class='tbl1'>Ако имате въпроси или проблеми свързани с  PHP-Fusion, моля посетете главния сайт за разработка на <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>
+и напишете съобщение във форума. Имаме екип от отдадени на идеята хора, които ще отговорят на въпросите ви до 48 часа.<br><br>
+
+PHP-Fusion може да бъде разширен като се добавят добавки, които са изключителнбо лесни за инсталация. Можете да намерите изключително много добавки на нашия сайт за модове
+<a href='http://www.phpfusion-mods.com'>www.phpfusion-mods.com</a>.<br><br>
+
+Ако темите, включени в основния пакет не са ви достатъчно, можете да посетите сайта за теми<a href='http://themes.php-fusion.co.uk'>themes.php-fusion.co.uk</a> където можете да намерите изключително много качествени теми.<br><br>
+
+PHP-Fusion има и голям брой официални сайтове за подръжка базирани в
+
+<a href='http://www.phpfusion-ar.com'>Арабия</a>, 
+<a href='http://www.phpfusion-nederlands.info'>Белгия</a>, 
+<a href='http://www.phpfusion-br.com'>Бразилия</a>, 
+<a href='http://php-fusion.cms-bg.org'>България</a>, 
+<a href='http://www.php-fusion.dk'>Дания</a>, 
+<a href='http://www.phpfusion.cz'>Чехия</a>, 
+<a href='http://www.phpfusion-fr.com'>Франция</a>, 
+<a href='http://www.phpfusion-support.de'>Германия</a>, 
+<a href='http://www.php-fusion.co.hu'>Унгария</a>, 
+<a href='http://www.fusion.alaviweb.com'>Иран</a>, 
+<a href='http://www.php-fusion.it'>Италия</a>, 
+<a href='http://www.phpfusion-nederlands.info'>Холандия</a>, 
+<a href='http://www.phpfusion-no.com'>Норвегия</a>, 
+<a href='http://www.php-fusion.pl'>Полша</a>, 
+<a href='http://www.phpfusion.ro'>Румъния</a>, 
+<a href='http://netck.ru'>Русия</a>, 
+<a href='http://www.php-fusion.sk'>Словакия</a>, 
+<a href='http://php-fusion.es'>Испания</a>, 
+<a href='http://www.php-fusion.se'>Швеция</a> и
+<a href='http://www.phpfusionturkiye.com'>Турция</a>.</div>
+
+<div class='tbl2'>ЕКИП</div>
+
+<div class='tbl1'>
+	
+<b>Основател и основен разработчик</b><br>
+Nick Jones {Digitanium}
+
+<p><b>Главни разработчици</b><br>
+Max Toball {Matonor}<br>
+Robert Gaudyn {Wooya}<br>
+
+<p><b>Екип по разработка</b><br>
+Christian Damsgaard J&oslash;rgensen {PMM}<br>
+Nicolae Crefelean {Kneekoo}<br>
+Karoly Nagy {Korcsii}<br>
+Patric Forcelini {IceWasp}<br>
+Johan K. Jensen {Josso}<br>
+Hans Kristian Flaatten {Starefossen}
+
+<p><b>Допълнителна поддръжка</b><br>
+Claus Pedersen {Flyingduck}<br>
+Paul Beuk {Muscapaul}
+
+<p><b>Управление</b><br>
+Jan M&oslash;lgaard {Janmol}<br>
+Happy Svensson {KEFF}<br>
+Pam Aylward {Pam}<br>
+Sheldon King {Sheldon}
+
+<p><b>Външни скриптове:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v3.0.9</a> - A HTML WYSIWYG editor by Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer v2.0</a> - A sendmail class with SMTP support by Brent R. Matzelle.<br>
+<a href='http://www.phpclasses.org/browse/package/2221.html'>HTTPDownload v1.3</a> - A download handler class by Nguyen Quoc Bao.<br>
+<a href='http://jquery.com/'>jQuery v1.2.6</a> - Javascript/Ajax toolkit.<br>
+<a href='http://icon-king.com'>Nuvola Icons</a> - Images used in bbcodes, news categories and admin icons by David Vignoni.</div>
+
+</div></center>
+
+</body>
+</html>

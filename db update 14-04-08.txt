@@ -1,0 +1,24 @@
+IMPORTANT DB UPDATE 14/04/2008
+
+ATTENTION: This script changes the database structure and many  values. Consider backing up the database before.
+
+Copy db_update_140408.php to the main PHP-Fusion folder
+
+Access the file in your browser. the script will optimize the database layout and calculate the values of some new fields.
+On large forum databases, the script could hit the maximum execution time. To avoid this, the script will stop and reload
+after 20 seconds and should continue updating th values. This process will be repeated until all threads and forums are
+updated.
+The output should look like this (the number of ... is corresponding to the size of the database):
+
+Updating DB structure ...done
+Counting posts per thread
+......done
+Counting posts per forum
+...done
+Counting threads per forum
+...done
+Calculating IDs of latest posts
+... ... done
+Ok
+
+Delete db_update_140408.php now.

@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.tbl1 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000;
+	background-color:#fefefe;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+.tbl2 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#fff;
+	background-color:#444;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<center><div style='text-align:left;width:600px;'>
+	
+<div align='center' class='tbl1'><img src='files/images/php-fusion-logo.png' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+<b>Version:</b> 7.00 - <b>Frigivet:</b> 21/06/2008</div>
+
+<div class='tbl2'>INTRODUKTION</div>
+
+<div class='tbl1'>
+			<span style="font-size: 8.5pt; font-family: Verdana; color: black">
+			PHP-Fusion er et letvægts content management system (CMS) 
+			distribueret som Open Source og skrevet i 
+			PHP. PHP-Fusion bruger en MySQL-database til at gemme alt 
+			sideindholdet og inkluderer et enkelt men omfattende 
+			administrationssystem. PHP-Fusion rummer de fleste af de almindelige 
+			funktioner, som man kan forvente af en CMS-løsning. </span>
+			
+<p>Dette program er gratis. Du kan distribuere det og eller modificere det i 
+overensstemmelse med reglerne i GNU Affero General Public License (AGPL) således 
+som den er beskrevet af Free Software Foundation,
+enten i version 3 af denne licens eller i overensstemmelse med en senere 
+version.<p>Programmet distribueres i det håb, at det er brugbart men UDEN NOGEN 
+	FORM FOR GARANTI. Ligesom det distribueres uden garanti for ANVENDELIGHED 
+	eller BRUGBARHED TIL NOGET SPECIELT FORMÅL. Se Affero General Public License for 
+	at få mere at vide.
+
+<p>Sammen med din download har du modtaget en kopi af GNU Affero General Public. 
+Hvis det ikke skulle være tilfældet, kan du se mere på <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>www.fsf.org</a>.
+
+<p><b>Vigtig bemærkning</b>: Du har i overensstemmelse med denne licens ikke ret 
+til at fjerne copyright-meddelelsen nederst på siden:
+	
+<p>Powered by <a href='http://www.php-fusion.co.uk'>PHP-Fusion</a> copyright © 2002 - 2008 by Nick Jones.<br>
+Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>GNU Affero GPL</a> v3.
+
+<p>Ønsker du alligevel at fjerne denne meddelelse, kan du se betingelserne enten 
+på <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a> eller på en 
+national støtteside. Den danske nationale støtteside har adressen:
+<a href="http://www.php-fusion.dk">www.php-fusion.dk</a>.&nbsp;
+</div>
+
+<div class='tbl2'>INSTALLATION</div>
+
+<div class='tbl1'>Før du installerer PHP-Fusion er du nødt til at oprette en MySQL database. 
+	Dette kan du gøre via din udbyders kontrolpanel eller via phpMyAdmin. Sørg 
+	for at have dine databaseoplysninger tilgængelige under installationen - 
+	dvs. værtsnavn, brugernavn, kodeord og databasenavn. Du vil få brug for 
+	disse oplysninger under installationen.&nbsp;
+
+<p><b>1.</b> Før du uploader alle filerne, skal du ændre navnet på filen _config.php (som 
+du finder i folderen files) til config.php.
+
+<p><b>2.</b> Upload derefter indholdet af denne folder til din server.
+
+<p><b>3.</b> Medmindre du afvikler PHP-Fusion på en lokal server, vil du i de 
+fleste tilfælde være nødt til at ændre rettigheder (CHMOD ) følgende filer og 
+foldere til 777:
+
+<ul style='list-style-type:disc'>
+<li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul>
+
+<p><b>4.</b> Gå derefter til din side, hvor setup.php herefter starter op 
+automatisk. Hvis den ikke gør det, skal du afvikle den manuelt ved at indskrive 
+den fulde adresse på din side efterfulgt af setup.php.&nbsp; Eksempelvis sådan 
+her: http://www.yourdomain.com/setup.php.
+
+<p><b>5.</b> Gør installationen færdig ved at følge instruktionerne på skærmen. 
+Husk at vælge sprog som det første.
+
+<p><b>6.</b> Umiddelbart efter afslutningen af installationen, skal du sætte 
+rettighederne (CHMOD) for config.php tilbage til 644 OG slette scriptet setup.php fra 
+din server.</div>
+
+<div class='tbl2'>OPGRADERING FRA V6.01.12+</div>
+
+<div class='tbl1'>
+			<span style="font-size: 8.5pt; font-family: Verdana; color: black">
+			Før du opgraderer anbefaler vi meget kraftigt, at du laver en 
+			sikkerhedskopi af din side og af databasen. Bemærk at denne 
+			version indeholder en lang række strukturelle ændringer og at visse 
+			dele af løsningen ikke vil virke korrekt, før du har opdateret dine 
+			filer. </span>
+
+<p><b>1.</b> Koden i version 6 er ikke direkte kompatibel med koden i version 7. 
+Derfor at du enten nødt til at genetablere alle manuelle systemændringer eller 
+opdatere dem - hvis der er tale om infusioner eller lignende. Alternativt må du 
+hente en ny version og installere den forfra. For en sikkerheds skyld anbefaler 
+vi, at du slår alle 3. parts funktioner fra, inden du opgraderer.&nbsp;
+
+<p><b>2.</b> Du skal starte med at uploade opgraderingsscriptet fra folderen med 
+navnet 'upgrade v601x' til administrationsfolderen på din side.
+
+<p><b>3.</b> Log på som superadministrator. I administrationspanelet vælger du 
+herefter &quot;opgradering&quot; og følger derefter de instruktioner, du får på skærmen 
+nøje. Opgraderingen har flere trin. Men når processen er helt færdig, ser du den 
+engelske tekst 'Database upgrade complete' på din skærm.
+
+<p><b>4.</b> MEGET VIGTIGT: Da denne version rummer en lang række af 
+strukturelle ændringer, vil der være ting på din side, som ikke fungerer korrekt 
+efter opgraderingen. Det vil de blive ved med, indtil du har opgraderet alle 
+dine filer. Du er nødt til først at uploade alle filerne fra files-folderen, før 
+opgraderingen er helt færdig. Minus altså filerne setup.php og _config.php.
+
+<p>Hvis der er noget, du er i tvivl om i denne sammenhæng, så er du meget 
+velkommen til at spørge dig for på en af vores supportsider. her finder du 
+masser af dygtige brugere, som hellere end gerne vil hjælpe dig med at få 
+opgraderingen til at lykkes. </div>
+
+<div class='tbl2'>SIKKERHEDSTIPS</div>
+<p><span style="font-size: 8.5pt; font-family: Verdana; color: black">Her har du nogle gode ideer til, hvordan du bedst kan beskytte din side:
+</font> </p>
+<ul>
+	<li><span style="font-size: 8.5pt; font-family: Verdana; color: black">Sørg for at filen 
+	config.php ikke kan ændres (den skal CHMOD&#8217;es til 644).</li>
+	<li>Lad aldrig filen 
+	setup.php blive liggende på din server efter installationen.</li>
+	<li>Sørg for at kodeord 
+	til FTP og MySQL er forskellige.</li>
+	<li>Tillad aldrig 
+	tilføjelsestyperne php, html og exe eller nogen som helst form for 
+	tekst-format.</span></li>
+</ul>
+
+<div class='tbl2'>SUPPORT SIDER</div>
+
+<div class='tbl1'>
+			<p class="MsoNormal">
+			<span style="font-size: 8.5pt; font-family: Verdana; color: black">
+			Hvis du har spørgsmål til eller problemer med anvendelsen af 
+			PHP-Fusion, så kan du altid besøge hovedsiden på adressen:
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.php-fusion.co.uk/">
+			http://www.php-fusion.co.uk/</a> og lægge en besked i debatten. 
+			Alternativt kan du besøge vores chat support på
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="irc://irc.outerweb.org/phpfusion">
+			irc.outerweb.org/phpfusion</a>.<br>
+			<br>
+			Du kan tilføje funktionalitet til PHP-Fusion ved at installere 
+			såkaldte Infusioner. Infusioner er tilføjelser til løsningen, som er meget 
+			lette at installere. Du kan finde en lang række brugbare infusioner 
+			på siden
+			<a target="blank" style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.phpfusion-mods.com/">
+			http://www.phpfusion-mods.com/</a>.<br>
+			<br>
+			Hvis du ikke er tilfreds med de temaer, som følger med 
+			installationspakken, kan du overveje at besøge den officielle 
+			temaside på adressen:
+			<a target="blank" style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://themes.php-fusion.co.uk/">
+			http://themes.php-fusion.co.uk/</a> hvor du kan finde en lang række 
+			andre temaer i høj kvalitet. <br>
+			<br>
+			PHP-Fusion har også et stort antal nationale støttesider på 
+			forskellige sprog &#8211; dem kan du finde her:</span></p>
+			<p class="MsoNormal">
+			<span style="font-size: 8.5pt; font-family: Verdana; color: black">
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.elife.ae/">
+			Arabisk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.phpfusion-nederlands.info/">
+			Belgisk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://php-fusion.cms-bg.org/">
+			Bulgarsk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.phpfusion-bosnia.com/">
+			Bosnisk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.phpfusion-cro.be/">
+			Kroatisk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.phpfusion.dk/">
+			Dansk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.phpfusion-fr.com/">
+			Fransk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.phpfusion-support.de/">
+			Tysk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.php-fusion.co.hu/">
+			Ungarsk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.fusion.alaviweb.com/">
+			Iransk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.php-fusion.it/">
+			Italiensk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.php-fusion.lt/">
+			Litauisk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.phpfusion-nederlands.info/">
+			Hollandsk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.php-fusion.pl/">
+			Polsk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://php-fusion.int.ru/">
+			Russisk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.php-fusion.se/">
+			Svensk</a>,
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.phpfusion-tw.com/">
+			Taiwan</a>-kinesisk og
+			<a style="color: #003D71; text-decoration: none; text-underline: none; text-line-through: none" href="http://www.phpfusionturkiye.com/">
+			Tyrkisk</a></span>&nbsp;</div>
+
+<div class='tbl2'>ACKNOWLEDGEMENTS</div>
+
+<div class='tbl1'>
+	
+<b>Projektejer og ledende udvikler</b><br>
+Nick Jones {Digitanium}
+
+<p><b>Udviklingsledere</b><br>
+Max Toball {Matonor}<br>
+Robert Gaudyn {Wooya}<br>
+
+<p><b>Udviklingsteam</b><br>
+Christian Damsgaard Jørgensen {PMM}<br>
+Nicolae Crefelean {Kneekoo}<br>
+Karoly Nagy {Korcsii}<br>
+Patric Forcelini {IceWasp}<br>
+Johan K. Jensen {Josso}<br>
+Hans Kristian Flaatten {Starefossen}
+
+<p><b>Bidragydere</b><br>
+Claus Pedersen {Flyingduck}<br>
+Paul Beuk {Muscapaul}
+
+<p><b>Styring og administration</b><br>
+Jan Mølgaard {Janmol}<br>
+Happy Svensson {KEFF}<br>
+Pam Aylward {Pam}<br>
+Sheldon King {Sheldon}
+
+<p><b>3. parts scripts:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v3.0.9</a> - En HTML WYSIWYG editor 
+lavet af Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer v2.0</a> - En sendmail class 
+med SMTP support lavet af Brent R. Matzelle.<br>
+<a href='http://www.phpclasses.org/browse/package/2221.html'>HTTPDownload v1.3</a> - 
+En download handler class lavet af Nguyen Quoc Bao.<br>
+<a href='http://jquery.com/'>jQuery v1.2.6</a> - Javascript/Ajax toolkit.<br>
+<a href='http://icon-king.com'>Nuvola Icons</a> - Billedmateriale anvendt i 
+bbkoder, nyhedskategorier og administrationsikoner lavet af David Vignoni.</div>
+
+</div></center>
+
+</body>
+</html>

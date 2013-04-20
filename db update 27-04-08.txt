@@ -1,0 +1,7 @@
+IMPORTANT DB UPDATE 27/04/2008
+
+If you're updating your v7 setup, please preview the following code in custom pages admin
+
+<?php
+$result = dbquery("ALTER TABLE ".DB_SETTINGS." ADD default_search VARCHAR(100) NOT NULL DEFAULT 'forums' AFTER theme");
+?>

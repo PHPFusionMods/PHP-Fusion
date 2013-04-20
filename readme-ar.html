@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir='rtl' lang='ar-sa'>
+<head>
+<title>تعليمات تركيب برنامج PHP-Fusion باللغة العربية</title>
+<meta http-equiv='Content-Type' content='text/html; charset=windows-1256'>
+<style type='text/css'>
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.tbl1 {
+	font:bold 12pt Arial;
+	color:#000;
+	background-color:#fefefe;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+.tbl2 {
+	font:bold 12pt Arial;
+	color:#fff;
+	background-color:#444;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+.num {
+	font: nromal 10pt arial
+}
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<center><div style='text-align:right;width:80%;'>
+	
+<div align='center' class='tbl1'><img src='files/images/php-fusion-logo.png' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+<span style='font:normal 10pt arial'>
+Copyright &copy; 2002 - 2008 Nick Jones<br></span>
+<b>الإصدار:</b>7.00 - <b>التاريخ:</b> 21/06/2008</div>
+
+<div class='tbl2'>مقدمة</div>
+
+<div class='tbl1'>
+برنامج Php-Fusion عبارة عن نظام مفتوح المصدر وخفيف لإدارة محتويات المواقع مكتوب بلغة PHP 5 (ومتوافق مع PHP 4). ويستخدم البرنامج قاعدة بيانات mySQL لحفظ جميع محتويات موقعك، بما في ذلك نظام مبسط وشامل للإدارة. ويشمل البرنامج على الخيارات الشائعة والتي تتوقع رؤيتها في العديد من برامج إدارة المحتويات.
+<p>
+برنامج Php-Fusion  مجاني: يمكنك إعادة توزيعه و/أو تعديل شفراته تحت شروط الترخيص للعامة وفقاً لـ GNU Affero  كما نشرت من موقع Free Software Foundation أما الإصدار الثالث أو أي إصدار أحدث.
+<p>
+يتم توزيع هذا البرنامج بأمل أن يكون مفيداً لك ولكن دون أي ضمان؛ ودون أي ضمان ضمني للتسويق أو ملائمة أي غرض محدد. راجع تفاصيل شروط   GNU Affero.
+من المفترض أن تكون حصلت على نسخة من GNU Affero مع البرنامج. يمكنك مراجعة www.fsf.org.
+<p><span style='color:#cc3300'>ملاحظة هامة</span>: لا يحق لك إزالة الإشارة لحقوق البرنامج من حاشية الصفحات:
+<p dir='ltr' style='text-align:center;font-size:11pt'>
+Powered by PHP-Fusion copyright &copy; 2002 - 2008 by Nick Jones.<br>
+Released as free software without warranties under GNU Affero GPL v3.
+<p>
+إذا أردت إزالة حقوق البرنامج، يمكنك الإطلاع على الخيارات في موقع البرنامج <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>.
+
+</div>
+
+<div class='tbl2'>التركيب</div>
+
+<div class='tbl1'>
+حتى تتمكن من تركيب PHP-Fusion، تحتاج إلى تأسيس قاعدة بيانات MySQL.  يمكنك عمل ذلك من خلال لوحة تحكم موقعك أو برنامج phpMyAdmin.  تأكد أن معلومات الوصول إلى قاعدة البيانات الخاصة بك متوفرة لديك، بما في ذلك اسم المستضيف، واسم المستخدم، وكلمة السر، واسم قاعدة البيانات، وذلك لأنك ستحتاج إلى هذه المعلومات لإتمام عملية التركيب.
+<p>
+1. قبل رفع الملفات إلى موقعك، اعد تسمية الملف <span dir='ltr'>_config.php</span> الموجود في مجلد files إلى config.php.
+2. ارفع محتويات مجلد php-files إلى موقعك.
+3. إذا كان تركيب برنامج PHP-Fusion على غير جهازك الشخصي (أي في موقعك)، فستحتاج في الغالب إلى تغيير تراخيص الملفات والمجلدات التالية إلى 777:</li></ol>
+	<div dir="ltr" style='font:normal 11px tahoma;text-align:left'>
+<ul style='list-style-type:disc'>
+<li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul>
+</div></li>
+4. اذهب إلى موقعك لتجد ملف التثبيت setup.php يبدأ تلقائياً؛ أو قم باستدعائه يدوياً بكتابة عنوان الموقع متبوعاً بـ <span dir='ltr'>/setup.php</span>. مثال <span dir='ltr'>http://www.yourdmonain.com/setup.php.</span><br>
+5. أكمل إجراءات التركيب بإتباع التعليمات التي تظهر لك على الشاشة.<br>
+6. 	بعد إكمال عملية التركيب مباشرة، يجب عليك تغيير ترخيص ملف config.php إلى 644 وحذف ملف setup.php من موقعك.
+
+
+<div class='tbl2'>التحديث من الإصدار V6.01.12+</div>
+
+<div class='tbl1'>
+	قبل الشروع في عملية التحديث، نقترح عليك الاحتفاظ بنسخة احتياطية من ملفاتك وقاعدة بيانات موقعك؛ حيث أن الترقية إلى الإصدار 7 من البرنامج يشمل تحديث شامل للنسخ السابقة؛ كما يجب إتباع التعليمات التالية بدقة:
+
+<p><b>1.</b>	شفرات الإصدار 6 غير متوافقة تماماً مع الإصدار 7. يجب عليك إما تحديث الملاحق (الإضافات) والتعديلات والجوانب والتصاميم (الثيمات) قبل التحديث أو طلب نسخة متوافقة مع الإصدار 7. ويقترح عليك في أية حال تعطيل جميع الإضافات والتعديلات التي لم تدرج مع البرنامج الرئيسي لتلافي أية  مشاكل.
+<p><b>2.</b>	يجب عليك أولاً رفع ملف التحديث من المجلد المسمى بـ upgrade v601x إلى مجلد administration في موقعك.
+<p><b>3.</b>	سجل دخولك إلى موقعك كمدير عام. ثم من إدارة النظام في لوحة التحكم، اضغط على تحديث. يجب عليك التحديث بإتباع عدد من الخطوات، وسيتم إكمال التحديث فقط عندما ترى ’تم إنجاز تحديث قاعدة البيانات’.
+<p><b>4.</b>	هام جداً: نظراً لأن هذا الإصدار يحتوي على عدد من التعديلات على هيكل البرنامج، فأن بعض العناصر لن تعمل بشكل صحيح حتى تقوم بتحديث جميع الملفات.  يجب رفع جميع الملفات من مجلد files.
+
+إذا كان لديك بعض القلق أو الشك، نرجو عدم التردد في السؤال في أحد مواقع الدعم حيث يوجد العديد من الأعضاء اللذين لديهم خبرة جيدة ومستعدين للمساعدة أو تقديم النصيحة فيما يتعلق بعملية الترقية.
+</div>
+
+<div class='tbl2'>نصائح أمنية</div>
+
+<div class='tbl1'>
+	فيما يلي بعض النصائح الأمنية النافعة التي تساعد على جعل موقعك أمناً: 
+<ul style='list-style-type:disc'>
+<li>تأكد من ملف config.php غير قابل للكتابة (الترخيص عند 644).</li>
+<li>لا تترك ملف setup.php أبداً في موقعك بعد تركيب PHP-Fusion.</li>
+<li>تأكد دائماً أن كلمتي سر برنامج رفع الملفات FTP وقاعدة البيانات MySQL مختلفتان.</li>
+<li>لا تسمح أبداً بمرفقات المنتديات لملفات على هيئة php ،html ،exe أو txt.</li>
+</ul></div>
+
+<div class='tbl2'>مواقع الدعم</div>
+<div class='tbl1'>
+	إذا واجهتك أية مشكلة أو كان لديك استفسار يتعلق بـ PHP-Fusion، نرجو زيارة الموقع الرئيسي لتطوير البرنامج في www.php-fusion.co.uk والمشاركة برسالة في المنتدى.  يتوفر في المموقع فريق دعم متخصص يمكنه مساعدتك في غضون 48 ساعة.<p>
+يمكن توسيع نطاق PHP-Fusion عن طريق استخدام الإضافات (المدرجات) وهي عبارة عن إضافات سهلة التركيب. ستجد العديد من الإضافات المفيدة في www.phpfusion-mods.com. <p>
+إذا لم تكن راضياً تماماً عن التصاميم الواردة مع برنامج PHP-Fusion فقد ترغب في زيارة الموقع الرسمي لتصاميم البرنامج themes.php-fusion.co.uk حيث ستجد العديد من التصاميم ذات الجودة العالية.<p>
+هناك العديد من مواقع الدعم الفني باللغات الأجنبية في 
+<a href='http://www.phpfusion-ar.com'>العربية</a>، 
+<a href='http://www.phpfusion-nederlands.info'>بلجيكا</a>، 
+<a href='http://www.phpfusion-br.com'>البرازيل</a>، 
+<a href='http://php-fusion.cms-bg.org'>بلغاريا</a>، 
+<a href='http://www.php-fusion.dk'>الدنمرك</a>، 
+<a href='http://www.phpfusion.cz'>التشيك</a>، 
+<a href='http://www.phpfusion-fr.com'>فرنسا</a>، 
+<a href='http://www.phpfusion-support.de'>ألمانيا</a>، 
+<a href='http://www.php-fusion.co.hu'>هنغاريا</a>، 
+<a href='http://www.fusion.alaviweb.com'>إيران</a>، 
+<a href='http://www.php-fusion.it'>إيطاليا</a>، 
+<a href='http://www.phpfusion-nederlands.info'>هولندا</a>، 
+<a href='http://www.phpfusion-no.com'>النرويج</a>، 
+<a href='http://www.php-fusion.pl'>بولندا</a>، 
+<a href='http://www.phpfusion.ro'>رومانيا</a>، 
+<a href='http://netck.ru'>روسيا</a>، 
+<a href='http://www.php-fusion.sk'>سلوفاكيا</a>، 
+<a href='http://php-fusion.es'>اسبانيا</a>، 
+<a href='http://www.php-fusion.se'>السويد</a> و
+<a href='http://www.phpfusionturkiye.com'>تركيا</a>.</div>
+<div class='tbl2'>شكر وتقدير</div>
+
+<div class='tbl1'>
+	
+<b>مؤسس المشروع والمطور الرئيسي</b><br><span dir='ltr'>
+Nick Jones {Digitanium}</span>
+
+<p><b>الموطورون الرئيسيون</b><br><span  dir='ltr'>
+Max Toball {Matonor}<br>
+Robert Gaudyn {Wooya}<br></span>
+
+<p><b>فريق التطوير</b><br><span  dir='ltr'>
+Christian Damsgaard J&oslash;rgensen {PMM}<br>
+Nicolae Crefelean {Kneekoo}<br>
+Karoly Nagy {Korcsii}<br>
+Patric Forcelini {IceWasp}<br>
+Johan K. Jensen {Josso}<br>
+Hans Kristian Flaatten {Starefossen}</span>
+
+<p><b>المساهمات الإضافية</b><br><span  dir='ltr'>
+Claus Pedersen {Flyingduck}<br>
+Paul Beuk {Muscapaul}</span>
+
+<p><b>الإدارة</b><br><span  dir='ltr'>
+Jan M&oslash;lgaard {Janmol}<br>
+Happy Svensson {KEFF}<br>
+Pam Aylward {Pam}<br>
+Sheldon King {Sheldon}</span>
+
+<p><b>نصوص برمجية من أطراف أخرى:</b><br>
+
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v3.0.9</a> -  معالج نصوص HTML متقدم.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer v2.0</a> - كائن إرسال بريد يدعم SMTP من Brent R. Matzelle.<br>
+<a href='http://www.phpclasses.org/browse/package/2221.html'>HTTPDownload v1.3</a> - كائن تنزيل ملفات من Nguyen Quoc Bao.<br>
+<a href='http://jquery.com/'>jQuery v1.2.6</a> - جافا /أجاكس <br>
+<a href='http://icon-king.com'>Nuvola Icons</a> - صور وأيقونات مختصرات الشفرات من David Vignoni.</div>
+
+</div></center>
+
+</body>
+</html>

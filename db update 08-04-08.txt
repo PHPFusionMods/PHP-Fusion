@@ -1,0 +1,8 @@
+IMPORTANT DB UPDATE 08/04/2008
+
+If you're updating your v7 setup, please preview the following code in custom pages admin
+
+<?php
+$result = dbquery("ALTER TABLE ".DB_ARTICLES." ADD article_draft TINYINT(1) UNSIGNED DEFAULT '0' NOT NULL AFTER article_article");
+$result = dbquery("ALTER TABLE ".DB_NEWS." ADD news_draft TINYINT(1) UNSIGNED DEFAULT '0' NOT NULL AFTER news_reads");
+?>

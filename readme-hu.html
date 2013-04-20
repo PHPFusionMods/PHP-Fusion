@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-2'>
+<style type='text/css'>
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.tbl1 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000;
+	background-color:#fefefe;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+	text-align: justify;
+}
+.tbl2 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#fff;
+	background-color:#444;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<center><div style='text-align:left;width:600px;'>
+	
+<div class='tbl1' align='center' style='text-align:center;'><img src='files/images/php-fusion-logo.png' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+<b>Verzió:</b> 7.00 - <b>Megjelent:</b> 2008.06.21</div>
+
+<div class='tbl2'>BEMUTATÁS</div>
+
+<div class='tbl1'>A PHP-Fusion egy nyílt forráskódú tartalomkezelő rendszer (CMS), amely PHP nyelven íródott, 
+és MySQL adatbázist használ az oldal tartalmának tárolására. Az oldal könnyű kezelhetőségét egy egyszerű, 
+de mindenre kierjedő adminisztrációs rendszer biztosítja.
+
+<p>A PHP-Fusion egy ingyenes program: 
+a Free Software Foundation (FSF) által kiadott GNU Affero General Public License (AGPL) 3. verziójának feltételei alapján 
+a programot továbbadhatod és/vagy módosíthatod, amíg az eredeti példány forrását feltünteted.
+
+<p>
+Ezt a programot annak reményében tettük közzé, hogy hasznosnak fog bizonyulni, 
+de semmilyen garanciát nem vállalunk vele kapcsolatban és azt sem szavatoljuk, hogy eredeti céljának megfelelően fog működni.
+További információt a Affero General Public License-ben találhatsz.
+
+<p>A csomag tartalmazza a GNU Affero General Public License egy másolatát, ha mégsem találod, 
+akkor a <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>www.fsf.org</a> oldalon is elolvashatod.
+
+<p><b>Fontos megjegyzés</b>: Nincs jogod törölni a lábjegyzetből az alábbi copyright megjegyzést:
+	
+<p align='center'>Powered by <a href='http://www.php-fusion.co.uk'>PHP-Fusion</a> copyright &copy; 2002 - 2008 by Nick Jones.<br>
+Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>GNU Affero GPL</a> v3.
+
+<p>Copyright eltávolítási lehetőségekért látogass el a 
+<a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a> licenc oldalára.
+</div>
+
+<div class='tbl2'>ÚJ RENDSZER TELEPÍTÉSE</div>
+
+<div class='tbl1'>A PHP-Fusion telepítése előtt létre kell hoznod egy MySQL adatbázist. 
+Ezt a tárhelyszolgáltatód adminisztrációs oldalán, vagy a phpMyAdmin-ban teheted meg.
+Bizonyosodj meg róla, hogy ismered a mysql hozzáférésed adatait, azaz a hostnevet, 
+a felhasználónevet, a jelszót és az adatbázis nevét, amiket a telepítés során majd meg kell adnod.
+
+<p><b>1.</b> Mielőtt feltöltöd a fájlokat a szerverre, nevezd át a (files mappában található)
+_config.php fájlt config.php-re (csak ha új oldalt telepítesz, frissítésnél ne).
+
+<p><b>2.</b> Töltsd fel a <i>files</i> mappa tartalmát a szerverre.
+
+<p><b>3.</b> Ha nem a saját gépeden szeretnéd futtatni a PHP-Fusion-t, akkor a legtöbb esetben
+az alábbi fájlok jogosultságait át kell állítanod 777-re (CHMOD):
+
+<ul style='list-style-type:disc'>
+<li>administration/db_backups/</li>
+<li>forum/attachments/</li>
+<li>images/</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>images/imagelist.js</li>
+<li>config.php</li>
+</ul>
+
+<p><b>4.</b> A böngésződben nyisd meg a weboldaladat, amely automatikusan elindítja a telepítést.
+Ha mégsem így történik, akkor írd oldalad címének végére hogy /setup.php <i>(pl: http://www.valami.hu/setup.php)</i>.
+
+
+<p><b>5.</b> A telepítés közben megjelenő utasítások alapján töltsd ki az űrlapokat.
+
+<p><b>6.</b> A telepítés végeztével biztonsági okokból a config.php jogosultságait állítsd vissza 644-re (CHMOD) 
+ÉS töröld a setup.php fájlt a szerverről.</div>
+
+<div class='tbl2'>FRISSÍTÉS A V6.01.12+ VERZIÓRÓL</div>
+
+<div class='tbl1'>Frissítés előtt erősen ajánlott biztonsági mentést készíteni az adatbázisról, 
+és a szerveren található fájlokról, mivel a PHP-Fusion 7 sok szempontból gyökeresen átalakult elődjéhez képest. 
+Frissítés során figyelj az alábbi utasításokra, és pontosan kövesd őket!
+
+<p><b>0.</b> Hogy az adatok ne változzanak időközben, és a felhasználók ne kapjanak temérdek hibaüzenetet miközben frissítesz, 
+ajánlott bekapcsolni a Karbantartás módot az adminisztrációs oldal Rendszer lapfülének További beállítások menüpontja alatt.
+
+<p><b>1.</b> A 6. verzió kódolása közvetlenül nem kompatibilis a 7. verzióval. 
+A frissítés előtt minden infusion-t és theme-t frissítened kell a 7. verzióval kompatibilis verziójára. 
+Esetleg távolíts el minden kiegészítőt, csak vigyázz, mert az infusion-ok többsége az adatbázisban tárolt adatait is törli maga után.
+
+<p><b>2.</b> Először töltsd fel az "upgrade v601x" mappában található upgrade.php fájlt a szervered administration mappájába.
+
+<p><b>3.</b> Jelentkezz be az oldaladra főadminisztrátorként. 
+Az adminisztrációs oldal Rendszer lapfülén kattints a Frissítés menüpontra. 
+A megjelenő oldalon kattints előbb a "Frissítés", majd a "Tovább" gombra. 
+Nagyon fontos, hogy minden lépést hajts végre. 
+A frissítésnek csak akkor van vége, ha azt látod, hogy "Az adatbázis frissítése kész".
+
+<p><b>4.</b> NAGYON FONTOS: Az új verzióban sok a strukturális változtatás, 
+ezért valószínűleg nem fog megfelelően működni az oldal, 
+amíg nem töltesz fel a szerverre minden fájlt a "files" mappából (felülírva a régieket).
+
+<p>Ha bármilyen kérdésed van, nyugodtan kérdezd meg a fórumunkban, 
+lehetőleg még a frissítés megkezdése előtt, hogy nehogy valami félresikerüljön a frissítés során. </div>
+
+<div class='tbl2'>BIZTONSÁGI JAVASLATOK</div>
+
+<div class='tbl1'>Néhány hasznos javaslat, oldalad biztonsága érdekében:
+<ul style='list-style-type:disc'>
+<li>Ellenőrizd hogy a config.php nem írható (jogosultsága 644)(CHMOD).</li>
+<li>Ne hagyd a szerveren a setup.php ha már telepítetted a PHP-Fusion-t.</li>
+<li>Mindig különböző legyen az FTP és MySQL jelszó.</li>
+<li>Soha ne engedélyezz a fórumban csatolmányként php, html, exe, vagy egyéb text fájlt.</li>
+</ul></div>
+
+<div class='tbl2'>SUPPORT OLDALAK</div>
+
+<div class='tbl1'>Ha bármi kérdésed vagy problémád adódik a PHP-Fusion használata közben, 
+látogass el a fő angol (<a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>) 
+vagy magyar (<a href='http://www.php-fusion.co.hu'>www.php-fusion.co.hu</a>) háttéroldalra, 
+és írj egy üzenetet a fórumba, vagy használd a keresőt, hátha hamarabb választ találsz kérdésedre. 
+Support csapatunk megpróbál minden alapcsomaggal kapcsolatos kérdésre 48 órán belül megoldást találni.<br><br>
+
+A PHP-Fusion bővíthető úgynevezett "Infusion"-ok hozzáadásával, 
+amelyek olyan bővítmények amiket egyszerűen lehet telepíteni és használni.
+Központi angol MOD gyűjtőoldal:
+<a href='http://www.phpfusion-mods.com'>www.phpfusion-mods.com</a>.<br><br>
+
+Ha nem elégszel meg a PHP-Fusion alap felületeivel (theme), akkor látogass el a központi angol theme gyűjtőoldalra,
+ahol rengeteg magas minőségű felületet találhatsz: <a href='http://themes.php-fusion.co.uk'>themes.php-fusion.co.uk</a>.<br><br>
+
+A PHP-Fusion számos hivatalos nyelvi háttéroldallal is rendelkezik világszerte:<br>
+
+<a href='http://www.phpfusion-ar.com'>Arábia</a>, 
+<a href='http://www.phpfusion-nederlands.info'>Belgium</a>, 
+<a href='http://www.phpfusion-br.com'>Brazília</a>, 
+<a href='http://php-fusion.cms-bg.org'>Bulgária</a>, 
+<a href='http://www.phpfusion.cz'>Csehország</a>, 
+<a href='http://www.php-fusion.dk'>Dánia</a>, 
+<a href='http://www.phpfusion-fr.com'>Franciaország</a>, 
+<a href='http://www.phpfusion-nederlands.info'>Hollandia</a>, 
+<a href='http://www.fusion.alaviweb.com'>Irán</a>, 
+<a href='http://www.php-fusion.pl'>Lengyelország</a>, 
+<a href='http://www.php-fusion.co.hu'><b>Magyarország</b></a>, 
+<a href='http://www.phpfusion-support.de'>Németország</a>, 
+<a href='http://www.phpfusion-no.com'>Norvégia</a>, 
+<a href='http://www.php-fusion.it'>Olaszország</a>, 
+<a href='http://netck.ru'>Oroszország</a>, 
+<a href='http://www.phpfusion.ro'>Románia</a>, 
+<a href='http://php-fusion.es'>Spanyolország</a>, 
+<a href='http://www.php-fusion.se'>Svédország</a>, 
+<a href='http://www.php-fusion.sk'>Szlovákia</a> és
+<a href='http://www.phpfusionturkiye.com'>Törökország</a>.</div>
+
+<div class='tbl2'>KÖSZÖNETNYÍLVÁNYÍTÁS</div>
+
+<div class='tbl1'>
+	
+<b>Projekt alapító és vezető fejlesztő</b><br>
+Nick Jones {Digitanium}
+
+<p><b>Fő fejlesztők</b><br>
+Max Toball {Matonor}<br>
+Robert Gaudyn {Wooya}<br>
+
+<p><b>Fejlesztői csapat</b><br>
+Christian Damsgaard J&oslash;rgensen {PMM}<br>
+Nicolae Crefelean {Kneekoo}<br>
+Nagy Károly {Korcsii}<br>
+Patric Forcelini {IceWasp}<br>
+Johan K. Jensen {Josso}<br>
+Hans Kristian Flaatten {Starefossen}
+
+<p><b>További közreműködők</b><br>
+Claus Pedersen {Flyingduck}<br>
+Paul Beuk {Muscapaul}
+
+<p><b>Vezetőség</b><br>
+Jan M&oslash;lgaard {Janmol}<br>
+Happy Svensson {KEFF}<br>
+Pam Aylward {Pam}<br>
+Sheldon King {Sheldon}
+
+<p><b>Scriptek kívülállóktól:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v3.0.9</a> - Egy HTML WYSIWYG szerkesztő - Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer v2.0</a> - Egy levélküldő alrendszer SMTP támogatással - Brent R. Matzelle.<br>
+<a href='http://www.phpclasses.org/browse/package/2221.html'>HTTPDownload v1.3</a> - Egy letöltés kezelő alrendszer - Nguyen Quoc Bao.<br>
+<a href='http://jquery.com/'>jQuery v1.2.6</a> - Javascript/Ajax toolkit.<br>
+<a href='http://icon-king.com'>Nuvola Icons</a> - BBkódokban, hírkategóriákban, és admin ikonokban használt képek - David Vignoni.</div>
+
+</div></center>
+
+</body>
+</html>

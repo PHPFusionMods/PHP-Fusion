@@ -1,0 +1,20 @@
+1. Unzip the registretion_terms.zip archive
+
+
+2. Upload all files to correct folders on your server
+
+
+3. Preview this code in a custom page, do not save it.
+
+<?php
+
+$result = dbquery("ALTER TABLE ".DB_SETTINGS." ADD enable_terms TINYINT(1) UNSIGNED DEFAULT '0' AFTER validation_method");
+$result = dbquery("ALTER TABLE ".DB_SETTINGS." ADD license_agreement TEXT NOT NULL AFTER enable_terms");
+
+$result = dbquery("ALTER TABLE ".DB_SETTINGS." ADD license_lastupdate INT(10) UNSIGNED DEFAULT '0' AFTER license_agreement");
+
+?>
+
+
+
+4. Enable and edit the registration terms of agreement

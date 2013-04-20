@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Läs mig</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.tbl1 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000;
+	background-color:#fefefe;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+.tbl2 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#fff;
+	background-color:#444;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<center><div style='text-align:left;width:600px;'>
+	
+<div align='center' class='tbl1'><img src='files/images/php-fusion-logo.png' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+<b>Version:</b> 7.00 - <b>Publicerad:</b> 21/06/2008</div>
+
+<div class='tbl2'>INTRODUKTION</div>
+
+<div class='tbl1'>PHP-Fusion är ett kompakt Content Management System, CMS, kodat i PHP 5 (kompatibelt med PHP 4). Det lagrar all data på sidan i en MySQL-databas, som administreras via ett enkelt, kraftfullt och säkert administrationssystem. PHP-Fusion har dom flesta funktioner man kan förvänta sig att finna i ett CMS, såsom artikelsystem, nyhetspublicering, debattforum, användaromröstningar, Klotterplank, möjligheter att kommentera nyheter osv.
+
+<p>Den här mjukvaran tillhandahålls kostnadsfritt: det är tillåtet att man omdistribuerar och/eller modifierar den enligt gällande licensavtal, GNU Affero General Public License (AGPL) som publicerats av Free Software Foundation, antingen enligt licensens 3:e version, eller en valfri senare version.
+
+<p>Den här mjukvaran distribueras under förhoppningen att den kommer vara användbar, men HELT UTAN GARANTIER;  det finns inga garantier för programvarans funktionalitet, vare sig för kommersiella eller andra särskilda ändamål. Se Affero General Public License för fler detaljer.
+
+<p>Du skall ha erhållit en kopia av GNU Affero General Public License tillsammans med programmet. Om inte, gå till <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>www.fsf.org</a>.
+
+<p><b>VIKTIGT:</b>: Det är inte tillåtet att ta bort sidfotens copyrightmeddelande:
+	
+<p>Powered by <a href='http://www.php-fusion.co.uk'>PHP-Fusion</a> copyright &copy; 2002 - 2008 by Nick Jones.<br>
+Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>GNU Affero GPL</a> v3.
+
+<p>För information om hur du kan få tillåtelse att ta bort copyright informationen, vänligen läs licensinformationen på:
+<a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>.
+</div>
+
+<div class='tbl2'>NYINSTALLATION</div>
+
+<div class='tbl1'>Innan du installerar PHP-fusion måste du skapa en MySQLdatabas. Du kan göra detta via ditt webhotells kontrollpanel eller phpMyAdmin. Se till att ha inloggningsinformation för MySQL tillgängliga, vilket inkluderar värdnamn, användarnamn, lösenord och databasnamn, då du måste ange dessa under installationen.
+
+<p><b>1.</b> Innan du kopierar över filerna, ändra namn på filen _config.php (den finns i mappen files) till config.php.
+
+<p><b>2.</b> Kopiera över/ladda upp innehållet i mapparna till din webserver.
+
+<p><b>3.</b> Ändra fil och mapprättighetter via CHMOD till 777 för följande filer och mappar:
+
+<ul style='list-style-type:disc'>
+<li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul>
+
+<p><b>4.</b> Gå till din domän och kör setup.php, exempelvis http://www.dindomän.se/setup.php.
+
+<p><b>5.</b> Slutför installationen genom att följa anvisningarna på skärmen.
+
+<p><b>6.</b> Ändra filrättigheterna via CHMOD på filen config.php till 644 samt ta bort setup.php från din webserver.</div>
+
+<div class='tbl2'>UPPGRADERING FRÅN V6.01.12+</div>
+
+<div class='tbl1'>Innan uppgradering rekommenderas säkerhetskopiering av hela hemsidan samt databasen då PHP-Fusion 7 är en större uppdatering jämfört med sin föregångare. Du måste följa de här instruktionerna noggrannt.
+
+<p><b>1.</b> Koden till version 6 är inte direkt kompatibel med version 7. Du måste antingen uppdatera alla modifierade filer, Infusions, paneler eller teman innan du uppgraderar eller installerar en version som är kompatibel med version 7. Vi rekommenderar att du inaktiverar alla koder, modifieringar och Infusions från tredje part för att undgå problem om du är osäker på kompatibiliteten.
+
+<p><b>2.</b> Ladda upp uppgraderingsskriptet "upgrade v601x'" till mappen "administration" i din PHP Fusion - installation på din server.
+
+<p><b>3.</b> Logga in på din webserver som Superadministratör. Under Systemadministration, klicka på 'Uppgradera' och klicka sedan på knappen som är markerad 'Uppgradera'. Du MÅSTE följa de anvisningar för de olika steg som presenteras på skärmen, uppgraderingen är färdig när du ser 'Uppgradering av databasen fullständig'.
+
+<p><b>4.</b> MYCKET VIKTIGT: Då den här versionen innehåller ett antal strukturförändringar, så kommer en del av ditt innehåll inte att fungera förrän alla dina filer är uppdaterade. DU MÅSTE ladda upp ALLT innehåll från mappen 'files'.
+
+<p>Vid problem, vänligen kontakta en av våra supportsidor, det finns många kunniga användare i där som kan hjälpa dig med uppgraderingsprocessen.</div>
+
+<div class='tbl2'>SÄKERHETSÅTGÄRDER</div>
+
+<div class='tbl1'>Ett par generella råd för att göra din hemsida så säker som möjligt:
+<ul style='list-style-type:disc'>
+<li>Försäkra dig om att filen config.php är skrivskyddad efter genomförd installation (rättigheterna skall ställas till 644).</li>
+<li>Försäkra dig alltid om att filen setup.php tas bort från din server så fort PHP-Fusion är installerat.</li>
+<li>Använd alltid olika lösenord för FTP och MySQL - databaser.</li>
+<li>Tillåt aldrig filtillägg i forumen med filtilläggen php, html, exe, eller någon form av textfiler.</li>
+</ul></div>
+
+<div class='tbl2'>SUPPORTSIDOR</div>
+
+<div class='tbl1'>Om du har frågor eller problem rörande PHP-Fusion, besök huvudsidan för utvecklingen på <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a> och posta dina frågor i något av våra forum. Vi har ett dedikerat support team som försöker att lösa de problem som kan uppstå, inom 48 timmar.<br><br>
+
+PHP-Fusion expanderas genom s k Infusions, ett plug - insystem som är extremt enkelt att använda. Du kan finna en uppsjö av Infusions på <a href='http://www.phpfusion-mods.com'>www.phpfusion-mods.com</a>.<br><br>
+
+Om du inte är nöjd med dom teman som kommer med installationen av PHP-Fusion, så kan du besöka vår officiella temasida på <a href='http://themes.php-fusion.co.uk'>themes.php-fusion.co.uk</a> där du kommer att finna många ytterligare teman med hög kvalitet.<br><br>
+
+PHP-Fusion har också ett växande antal officiella supportsidor i bland annat följande länder:
+
+<a href='http://www.phpfusion-ar.com'>Arabia</a>,  
+<a href='http://www.phpfusion-nederlands.info'>Belgium</a>, 
+<a href='http://www.phpfusion-br.com'>Brazil</a>, 
+<a href='http://php-fusion.cms-bg.org'>Bulgaria</a>, 
+<a href='http://www.php-fusion.dk'>Denmark</a>, 
+<a href='http://www.phpfusion.cz'>Czech Republic</a>, 
+<a href='http://www.phpfusion-fr.com'>France</a>, 
+<a href='http://www.phpfusion-support.de'>Germany</a>, 
+<a href='http://www.php-fusion.co.hu'>Hungary</a>, 
+<a href='http://www.fusion.alaviweb.com'>Iran</a>, 
+<a href='http://www.php-fusion.it'>Italy</a>, 
+<a href='http://www.phpfusion-nederlands.info'>Netherlands</a>, 
+<a href='http://www.phpfusion-no.com'>Norway</a>, 
+<a href='http://www.php-fusion.pl'>Poland</a>, 
+<a href='http://www.phpfusion.ro'>Romania</a>, 
+<a href='http://netck.ru'>Russia</a>, 
+<a href='http://www.php-fusion.sk'>Slovakia</a>, 
+<a href='http://php-fusion.es'>Spain</a>, 
+<a href='http://www.php-fusion.se'>Sweden</a> and
+<a href='http://www.phpfusionturkiye.com'>Turkey</a>.</div>
+
+<div class='tbl2'>TACK TILL...</div>
+
+<div class='tbl1'>
+	
+<b>Projektledare</b><br>
+Nick Jones {Digitanium}
+
+<p><b>Projektledare</b><br>
+Max Toball {Matonor}<br>
+Robert Gaudyn {Wooya}<br>
+
+<p><b>Utvecklare</b><br>
+Christian Damsgaard J&oslash;rgensen {PMM}<br>
+Nicolae Crefelean {Kneekoo}<br>
+Karoly Nagy {Korcsii}<br>
+Patric Forcelini {IceWasp}<br>
+Johan K. Jensen {Josso}<br>
+Hans Kristian Flaatten {Starefossen}
+
+<p><b>Övriga medverkande</b><br>
+Claus Pedersen {Flyingduck}<br>
+Paul Beuk {Muscapaul}
+
+<p><b>Management</b><br>
+Jan M&oslash;lgaard {Janmol}<br>
+Happy Svensson {KEFF}<br>
+Pam Aylward {Pam}<br>
+Sheldon King {Sheldon}
+
+<p><b>3e parts lösningar:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v3.0.9</a> - En HTML WYSIWYG redigerare från Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer v2.0</a> - 'Sendmail' class med SMTP support från Brent R. Matzelle.<br>
+<a href='http://www.phpclasses.org/browse/package/2221.html'>HTTPDownload v1.3</a> - En nedladdningshanterare från Nguyen Quoc Bao.<br>
+<a href='http://jquery.com/'>jQuery v1.2.6</a> - Javascript/Ajax verktygslåda.<br>
+<a href='http://icon-king.com'>Nuvola Icons</a> - Bilder använda i bbkoder, nyhetskategorier samt adminikoner från David Vignoni.</div>
+
+</div></center>
+
+</body>
+</html>

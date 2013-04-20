@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=windows-1257'>
+<style type='text/css'>
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.tbl1 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000;
+	background-color:#fefefe;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+.tbl2 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#fff;
+	background-color:#444;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<center><div style='text-align:left;width:600px;'>
+	
+<div align='center' class='tbl1'><img src='files/images/php-fusion-logo.png' alt='PHP-Fusion' title='PHP-Fusion'><br /><br />
+Copyright &copy; 2002 - 2008 Nick Jones<br />
+<strong>Versija:</strong> 7.00 - <strong>Išleista:</strong> 2008-06-21</div>
+
+<div class='tbl2'>INFORMACIJA</div>
+
+<div class='tbl1'>PHP-Fusion yra nedidelės apimties atviro kodo turinio valdymo sistema(TVS)
+parašyta PHP 5 pagrindu (taip pat yra suderinama ir su PHP 4).
+Php-Fusion sistema naudoja MySQL duomenų bazę saugoti Jūsų internetinio tinklalapio turinį,
+bei turi paprastą, lengvai įvaldomą ir išsamią administravimo sistemą. Į Php-Fusion turinio valdymo sistemą
+yra įtraukta dauguma funkcijų, kurias Jūs galite tikėtis pamatyti daugelyje kitų TVS paketų.
+
+<p>Ši programinė įranga yra nemokama: Jūs galite keisti, papildyti ar modifikuoti ją, paisydami
+GNU Affero General Public License (AGPL) licencijos terminų, išleistų "Free Software Foundation",
+aprašytų 3 ar naujesnėse licencijos versijose(pagal Jūsų pasirinkimą).
+
+<p>Ši sistema yra sukurta su viltimi, kad bus naudinga, tačiau BE JOKIŲ GARANTIJŲ;
+netgi be jokių galimybių PARDAVINĖJIMUI ar TINKAMUMUI KONKRETIEMS TIKSLAMS.
+Taip pat žiūrėkite "Affero General Public License" licencija, norėdami sužinoti daugiau informacijos.
+
+<p>Jūs turėjote gauti "GNU Affero General Public License" licencijos kopiją kartu su šia programa.
+Jeigu jos negavote, aplankykite <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>www.fsf.org</a>.
+
+<p><strong>Pastaba</strong>: Draudžiama pašalinti autorinių teisinių įrašą portalo apačioje:
+	
+<p>Powered by <a href='http://www.php-fusion.co.uk'>PHP-Fusion</a> copyright &copy; 2002 - 2008 by Nick Jones.<br />
+Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>GNU Affero GPL</a> v3.
+
+<p>Norėdami pašalinti autorinių teisių įrašą, kreipkitės šiuo klausimu oficialiame puslapyje, adresu
+<a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>.
+</div>
+
+<div class='tbl2'>INSTALIAVIMAS</div>
+
+<div class='tbl1'>Prieš instaliuojami PHP-Fusion, pirmiausia turėsite susikurti MySQL duomenų bazę.
+Tai padaryti galite pasinaudoję savo hostingo administracijos panele, arba PHPMyAdmin duom. bazių valdymo įrankiu.
+Prisiminkite savo MySQL duomenų bazės duomenis (prisijungimo vardą, slaptažodį, duom. bazės pavadinimą bei
+duom. bazės serverio adresą), kadangi jie bus būtini vykdant instaliaciją.
+
+<p><strong>1.</strong> Prieš keldami failus į FTP serverį, pervadinkite failą _config.php (aplankas: php-files) į config.php.
+
+<p><strong>2.</strong> Įkelkite failus į savo FTP serverį.
+
+<p><strong>3.</strong> Suteikite CHMOD 777 atžymas šiems failams:
+
+<ul style='list-style-type:disc'>
+<li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul>
+
+<p><strong>4.</strong> Eikite į savo puslapį, setup.php failas turėtų atsiverti automatiškai. Jeigu taip neįvyks,
+turite suvesti adresą iki setup.php failo, pvz.: http://www.Jūsų-Tinklapis.lt/setup.php.
+
+<p><strong>5.</strong> Suveskite MySQL duomenų bazės prisijungimo duomenis.
+
+<p><strong>6.</strong> Instaliavę Php-Fusion turinio valdymo sistemą, suteikite CHMOD 644 atžymas failui
+config.php, bei ištrinkite setup.php failą iš serverio.</div>
+
+<div class='tbl2'>ATNAUJINIMAS IŠ V6.01.12+</div>
+
+<div class='tbl1'>Prieš atnaujinant, rekomenduojame pasidaryti savo duomenų bazės kopiją.
+Tuomet įdėmiai sekite šias instrukcijas.
+
+<p><strong>1.</strong> V6 kodas nesuderinamas su v7 kodu. Privalote atnaujinti visus modulius(MODS),
+papildinius(INFUSIONS) bei dizaino šablonus(THEMES). Rekomenduojame pašalinti visą trečiųjų šalių kodą iš Jūsų tinklapio.
+
+<p><strong>2.</strong> Pirmiausia įkelkite į FTP failus iš aplanko 'upgrade v601x',
+į administracijos aplanką serveryje.
+
+<p><strong>3.</strong> Prisijunkite savo svetainėje kaip Super Administratorius.
+Administracijos panelėje renkamės "Sistemos administracija", spaudžiame "Atnaujinimas",
+tada spaudžiame ant mygtuko "Atnaujinti". Atidžiai sekite visus atnaujinimo žingsnius,procesas bus
+pilnai atliktas tokiu atveju, kai jūs pamatysite "Duomenų bazė atnaujinta", ar kažką panašaus.
+
+<p><strong>4.</strong> SVARBU: Šio leidimo struktūra kitokia, todėl turėsite atnaujinti visus failus,
+antraip sistema gali veikti nesklandžiai. PRIVALOTE įkelti VISUS failus iš failų aplanko.
+
+<p><strong>5.</strong> Jei viską atlikote, suteikite CHMOD 777 atžymas Jūsų FTP direktorijai 
+images/photoalbums/submissions.
+
+<p>Jeigu nepavyko, prašome klausti patarimo viename iš mūsų pagalbos tinklapių, administratoriai,
+bei kiti vartotojai mielai jums padės atnaujinti versiją.</div>
+
+<div class='tbl2'>SAUGUMO PATARIMAI</div>
+
+<div class='tbl1'>Keli naudingi patarimai kaip Jums išlaikyti savo tinklapį saugų:
+<ul style='list-style-type:disc'>
+<li>Įsitikinkite kad config.php failas nėra įrašomas (jam turėtų būti suteiktos 644 CHMOD atžymos).</li>
+<li>Niekada nepalikite setup.php failo serveryje po PHP-Fusion instaliacijos.</li>
+<li>Visada įsitikinkite kad Jūsų FTP bei MySQL duom. bazės prisijungimo slaptažodžiai yra skirtingi.</li>
+<li>Niekada neleiskite forume prisegti nesaugių tipų failus, pvz. *.php, *.html, *.exe, ar pan. paskirties failų.</li>
+</ul></div>
+
+<div class='tbl2'>PALAIKYMO TINKLAPIAI</div>
+
+<div class='tbl1'>Jeigu turite klausimų ar problemų susijusių su Php-Fusion sistema,
+apsilankykite tarptautiniame Php-Fusion kūrėjų tinklapyje <strong>anglų kalba</strong>
+<a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a> ir apibūdinkite iškilusią problemą ar klausimą
+palaikymo forumuose. Palaikymo komanda turėtų padėti jums išspręsti problemą per 48 valandas.<br />
+Taip pat galite apsilankyti oficialiame Php-Fusion palaikymo tinklapyje <strong>lietuvių kalba</strong>,
+kur kvalifikuotą pagalbą teikia patyrę Lietuvos Php-Fusion specialistai. Daugeliu atvejų pagalbą rūpimais klausimais
+turėtumėte gauti jau kelių valandų bėgyje.<br /><br />
+
+PHP-Fusion turinio valdymo sistema gali būti išplėsta, naudojant "Infusions" sistemos papildinius, kuriuos yra labai
+paprasta ir lengva įdiegti. Papildinių Php-Fusion turinio valdymo sistemai galite rasti pagrindiniame tarptautiniame
+Php-Fusion modifikacijų tinklalapyje, adresu <a href='http://www.phpfusion-mods.com'>www.phpfusion-mods.com</a>.<br />
+Taip pat papildinių šiai sistemai galite rasti ir oficialiame Lietuvos Php-Fusion modifikacijų tinklapyje, adresu
+<a href='http://modai.phpfusion-lt.com'>modai.phpfusion-lt.com</a>.<br /><br />
+
+Jeigu Jūsų netenkina pridedami prie Php-Fusion sistemos dizaino šablonai, galite apsilankyti oficialiame
+tarptautiniame Php-Fusion dizainų tinklalapyje, adresu
+<a href='http://themes.php-fusion.co.uk'>themes.php-fusion.co.uk</a>.<br />
+Taip pat galite apsilankyti ir oficialiame Lietuvos Php-Fusion dizainų tinklalapyje, adresu
+<a href='http://themes.phpfusion-lt.com'>themes.phpfusion-lt.com</a>.<br /><br />
+
+PHP-Fusion taip pat turi oficialius palaikymo tinklapius šiose šalyse:
+
+<a href='http://www.phpfusion-ar.com'>Arabijoje</a>, 
+<a href='http://www.phpfusion-nederlands.info'>Belgijoje</a>, 
+<a href='http://www.phpfusion-br.com'>Brazilijoje</a>, 
+<a href='http://www.php-fusion.cms-bg.org'>Bulgarijoje</a>,
+<a href='http://www.phpfusion.cz'>Čekijos Respublikoje</a>,  
+<a href='http://www.php-fusion.dk'>Danijoje</a>, 
+<a href='http://www.php-fusion.co.uk'>Didžiojoje Britanioje</a>, 
+<a href='http://www.fusion.alaviweb.com'>Irane</a>, 
+<a href='http://www.php-fusion.es'>Ispanijoje</a>,
+<a href='http://www.php-fusion.it'>Italijoje</a>, 
+<a href='http://www.php-fusion.pl'>Lenkijoje</a>, 
+<a href='http://www.phpfusion-nederlands.info'>Olandijoje</a>, 
+<a href='http://www.phpfusion-no.com'>Norvegijoje</a>, 
+<a href='http://www.phpfusion-fr.com'>Prancūzijoje</a>, 
+<a href='http://www.phpfusion.ro'>Rumunijoje</a>, 
+<a href='http://www.netck.ru'>Rusijoje</a>, 
+<a href='http://www.php-fusion.sk'>Slovakijoje</a>,
+<a href='http://www.php-fusion.se'>Švedijoje</a>,
+<a href='http://www.phpfusionturkiye.com'>Turkijoje</a>
+<a href='http://www.php-fusion.co.hu'>Vengrijoje</a> ir
+<a href='http://www.phpfusion-support.de>Vokietijoje</a>.</div>
+
+<div class='tbl2'>PADĖKA VYKDŽIUSIEMS PROJEKTĄ</div>
+
+<div class='tbl1'>
+	
+<strong>Projekto įkūrėjas ir pagrindinis programuotojas</strong><br />
+Nick Jones {Digitanium}
+
+<p><strong>Vyr. programuotojai</strong><br />
+Max Toball {Matonor}<br />
+Robert Gaudyn {Wooya}<br />
+
+<p><strong>Programuotojų komanda</strong><br />
+Christian Damsgaard J&oslash;rgensen {PMM}<br />
+Nicolae Crefelean {Kneekoo}<br />
+Karoly Nagy {Korcsii}<br />
+Patric Forcelini {IceWasp}<br />
+Johan K. Jensen {Josso}<br />
+Hans Kristian Flaatten {Starefossen}
+
+<p><strong>Papildomi pagalbininkai</strong><br />
+Claus Pedersen {Flyingduck}<br />
+Paul Beuk {Muscapaul}
+
+<p><strong>Valdybos komanda</strong><br />
+Jan M&oslash;lgaard {Janmol}<br />
+Happy Svensson {KEFF}<br />
+Pam Aylward {Pam}<br />
+Sheldon King {Sheldon}
+
+<p><strong>3-ių šalių skriptai:</strong><br />
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v3.0.9</a> - Moxiecode WYSIWYG HTML redaktorius.<br />
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer v2.0</a> - Brent R. Matzelle sendmail sistema
+su SMTP palaikymu.<br />
+<a href='http://www.phpclasses.org/browse/package/2221.html'>HTTPDownload v1.3</a> - Nguyen Quoc Bao failų
+ parsiuntimo sistema.<br />
+<a href='http://jquery.com/'>jQuery v1.2.6</a> - Javascript/Ajax įrankių komplektas.<br />
+<a href='http://icon-king.com'>Nuvola ikonos</a> - David Vignoni paveikslėliai, naudoti bb koduose,
+naujienų kategorijose bei administracijos panelėje.</div>
+
+</div></center>
+
+</body>
+</html> 

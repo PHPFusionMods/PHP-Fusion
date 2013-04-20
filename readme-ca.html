@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion - Català</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.tbl1 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000;
+	background-color:#fefefe;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+.tbl2 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#fff;
+	background-color:#444;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<center><div style='text-align:left;width:600px;'>
+	
+<div align='center' class='tbl1'><img src='files/images/php-fusion-logo.png' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+<strong>Versió:</strong> 7.00 - <strong>Distribució:</strong> 21/06/2008</div>
+
+<div class='tbl2'><strong>INTRODUCCIÓ</strong></div>
+
+<div class='tbl1'>PHP-Fusion és un sistema de gestió de continguts (CMS) de codi obert, lleuger i escrit en PHP 5 (compatible amb PHP 4). Utilitza una base de dades MySQL per a emmagatzemar el contingut del teu lloc web i inclou un sistema d'administració simple i comprensible. PHP-Fusion inclou les característiques més comunes que pots trobar a molts altres paquets CMS.
+
+<p>Aquest programa és de programari lliure: pots redistribuir-lo i/o modificar-lo sota els termes de la Llicència Pública General GNU Affero (AGPL), publicada per la "Free Software Foundation", en la seva versió 3 o (depenent de la teva elecció) qualsevol versió posterior.
+
+<p>Aquest programa es distribueix amb l'esperança que serà útil, però SENSE CAP GARANTIA, fins i tot sense les garanties implícites MERCANTILS o de CONVENIÈNCIA PER A UN PROPÒSIT CONCRET. Per a més informació, llegeix la Llicència Pública General Affero.
+
+<p>Junt amb aquest programa, has hagut de rebre una còpia de la Llicència Pública General GNU Affero. Si no és així, pots visitar <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>fsf.org</a>.
+
+<p><strong>Nota Important</strong>: No estàs autoritzat a eliminar del peu del teu lloc web l'avís de copyright:
+	
+<p>Powered by <a href='http://www.php-fusion.co.uk'>PHP-Fusion</a> copyright &copy; 2002 - 2008 by Nick Jones.<br>
+Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>GNU Affero GPL</a> v3.
+
+<p>Per a veure les opcions d'eliminació de l'avís de copyright, pots visitar la nostra pàgina d'informació sobre la llicència a <a href='http://www.php-fusion.co.uk'>php-fusion.co.uk</a>.
+</div>
+
+<div class='tbl2'><strong>INSTAL·LACIÓ</strong></div>
+
+<div class='tbl1'>Abans d'instal·lar PHP-Fusion, has de crear una base de dades MySQL. Pots fer-ho a través del tauler de control del teu servidor web o a través de phpMyAdmin. Assegura't de tenir a mà les teves dades d'accés a MySQL, incloent el nom del servidor, el nom d'usuari, la contrasenya i el nom de la base de dades, ja que hauràs d'indicar-los durant la configuració.
+
+<p><strong>1.</strong> Abans de transferir els arxius, has de canviar el nom de l'arxiu "_config.php" (localitzat a la carpeta anomenada "files") i reanomenar-lo com a "config.php".
+
+<p><strong>2.</strong> Transfereix al servidor web el contingut de la carpeta "files".
+
+<p><strong>3.</strong> A menys que estiguis executant PHP-Fusion en un servidor local, en la majoria dels casos, hauràs d'assignar els permisos CHMOD 777 als següents arxius i directoris:
+
+<ul style='list-style-type:disc'>
+<li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul>
+
+<p><strong>4.</strong> Vés al teu lloc web i l'arxiu "setup.php" haurà d'iniciar-se automàticament. Si no és així, hauràs d'executar l'arxiu "setup.php" manualment introduint a la barra de direcció del teu navegador la direcció URL completa del teu lloc web seguida de " /setup.php" (Exemple: http://www.elteudomini.com/setup.php).
+
+<p><strong>5.</strong> Completa el procés de configuració seguint totes les indicacions mostrades a la pantalla.
+
+<p><strong>6.</strong> Immediatament després de completar la instal·lació de PHP-Fusion, has de canviar els permisos de l'arxiu "config.php" a CHMOD 644 i esborrar del servidor web l'arxiu "setup.php".</div>
+
+<div class='tbl2'><strong>ACTUALIZACIÓ DES DE V6.01.12+</strong></div>
+
+<div class='tbl1'>Abans d'actualitzar, et recomanem fervorosament que facis una còpia de seguretat dels arxius i de la base de dades, ja que PHP-Fusion 7 és una actualització major comparada amb les seves predecessores. Has de seguir aquestes instruccions amb precisió.
+
+<p><strong>1.</strong> El codi de la versió 6 no és directament compatible amb el de la versió 7. Abans de dur a terme l'actualització, hauràs d'actualitzar també les modificacions, infusions, taulers o temes que disposis o obtenir actualitzacions compatibles amb la versió 7. Tanmateix, és recomanable que desactivis tots els codis de tercers per a evitar qualsevol problema.
+
+<p><strong>2.</strong> En primer lloc, has de transferir l'arxiu d'actualització de la carpeta anomenada "upgrade v601x" al directori d'administració del teu lloc web.
+
+<p><strong>3.</strong> Inicia sessió al teu lloc com a Super Administrador. A "Administració", dins de l'apartat "Sistema", entra a "Actualització" i, després, clica el botó "Actualitzar". HAS de realitzar l'actualització a través d'una sèrie de passos i el procés d'actualització només serà complet quan vegis "Actualització de la base de dades completada".
+
+<p><strong>4.</strong> MOLT IMPORTANT: Ja que aquesta distribució conté una sèrie de canvis estructurals, alguns elements del teu lloc no funcionaran adequadament fins que no hagis actualitzat tots els teus arxius. HAS de transferir TOTS els arxius de la carpeta "files".
+
+<p>Si, malgrat tot, tens qualsevol dubte, si us plau, sol·licita ajuda en un dels nostres llocs de suport, ja que en la nostra comunitat hi ha molts usuaris amb els coneixements necessaris per a ajudar-te o aconsellar-te sobre el procés d'actualització.</div>
+
+<div class='tbl2'><strong>SUGGERIMENTS DE SEGURETAT</strong></div>
+
+<div class='tbl1'>Aquí tens alguns consells útils per a ajudar-te a mantenir el teu lloc segur:
+<ul style='list-style-type:disc'>
+<li>Assegura't que no es pot escriure a l'arxiu "config.php" (els seus permisos haurien de ser CHMOD 644).</li>
+<li>Una vegada que PHP-Fusion estigui instal·lat, mai no deixis al servidor l'arxiu "setup.php".</li>
+<li>Assegura't sempre que les contrasenyes de FTP i MySQL són diferents.</li>
+<li>Mai no permetis adjuntar als fòrums arxius PHP, HTML, EXE o qualsevol tipus d'arxiu de text.</li>
+</ul></div>
+
+<div class='tbl2'><strong>LLOCS DE SUPORT</strong></div>
+
+<div class='tbl1'>Si tens qualsevol pregunta o problema relacionat amb PHP-Fusion, si us plau, visita el lloc principal de desenvolupament a <a href='http://www.php-fusion.co.uk'>php-fusion.co.uk</a> o el lloc oficial de suport en Castellà a <a href='http://php-fusion.es'>php-fusion.es</a> i publica un missatge als nostres fòrums de suport. Tenim un equip de suport especialitzat que intentarà resoldre qualsevol problema que puguis tenir en un termini de 48 hores.<br><br>
+
+PHP-Fusion pot ser ampliat afegint-li Infusions, que són complements extremadament senzills d'instal·lar. Pots trobar una varietat d'Infusions útils al nostre lloc de modificacions a
+<a href='http://www.phpfusion-mods.com'>phpfusion-mods.com</a>.<br><br>
+
+Si no estàs satisfet amb els dissenys inclosos a PHP-Fusion, potser vulguis visitar el nostre lloc oficial de "Themes" en <a href='http://themes.php-fusion.co.uk'>themes.php-fusion.co.uk</a>, en el qual trobaràs una varietat de dissenys de gran qualitat.<br><br>
+
+PHP-Fusion també té un bon nombre de llocs oficials de suport en altres idiomes, localitzats a:
+
+<a href='http://www.phpfusion-support.de'>Alemanya</a>, 
+<a href='http://www.phpfusion-ar.com'>Aràbia Saudita</a>, 
+<a href='http://www.phpfusion-nederlands.info'>Bèlgica</a>, 
+<a href='http://www.phpfusion-br.com/'>Brasil</a>, 
+<a href='http://php-fusion.cms-bg.org/'>Bulgària</a>, 
+<a href='http://www.php-fusion.cz'>Txèquia</a>, 
+<a href='http://www.php-fusion.dk'>Dinamarca</a>, 
+<a href='http://www.php-fusion.sk'>Eslovàquia</a>, 
+<a href='http://php-fusion.es'><strong>Espanya</strong></a>, 
+<a href='http://www.phpfusion-fr.com/'>França</a>, 
+<a href='http://www.phpfusion-nederlands.info'>Holanda</a>, 
+<a href='http://www.php-fusion.co.hu'>Hongria</a>, 
+<a href='http://www.fusion.alaviweb.com'>Irán</a>, 
+<a href='http://www.php-fusion.it'>Itàlia</a>, 
+<a href='http://www.phpfusion-no.com/'>Noruega</a>, 
+<a href='http://www.php-fusion.pl'>Polònia</a>, 
+<a href='http://www.phpfusion.ro/'>Rumanía</a>, 
+<a href='http://netck.ru'>Rússia</a>, 
+<a href='http://www.php-fusion.se'>Suècia</a> i 
+<a href='http://www.phpfusionturkiye.com'>Turquía</a>.</div>
+
+<div class='tbl2'><strong>AGRAÏMENTS</strong></div>
+
+<div class='tbl1'>
+	
+<strong>Fundador del Projecte i Director de Desenvolupament</strong><br>
+Nick Jones {Digitanium}
+
+<p><strong>Encarregats de Desenvolupament</strong><br>
+Max Toball {Matonor}<br>
+Robert Gaudyn {Wooya}<br>
+
+<p><strong>Equip de Desenvolupament</strong><br>
+Christian Damsgaard J&oslash;rgensen {PMM}<br>
+Nicolae Crefelean {Kneekoo}<br>
+Karoly Nagy {Korcsii}<br>
+Patric Forcelini {IceWasp}<br>
+Johan K. Jensen {Josso}<br>
+Hans Kristian Flaatten {Starefossen}
+
+<p><strong>Col·laboradors Addicionals</strong><br>
+Claus Pedersen {Flyingduck}<br>
+Paul Beuk {Muscapaul}
+
+<p><strong>Administració</strong><br>
+Jan M&oslash;lgaard {Janmol}<br>
+Happy Svensson {KEFF}<br>
+Pam Aylward {Pam}<br>
+Sheldon King {Sheldon}
+
+<p><strong>Programes de Tercers</strong><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v3.0.9</a> - Editor HTML WYSIWYG de Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer v2.0</a> - Gestor de tramesa de correu amb suport SMTP de Brent R. Matzelle.<br>
+<a href='http://www.phpclasses.org/browse/package/2221.html'>HTTPDownload v1.3</a> - Gestor de descàrregues de Nguyen Quoc Bao.<br>
+<a href='http://jquery.com/'>jQuery v1.2.6</a> - Eines Javascript/Ajax.<br>
+<a href='http://icon-king.com'>Icones Nuvola</a> - Imatges de codis BB, categories de notícies i administració de David Vignoni.
+
+</div>
+
+</div></center>
+
+</body>
+</html>

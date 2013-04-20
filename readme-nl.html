@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Leesme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.tbl1 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000;
+	background-color:#fefefe;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+.tbl2 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#fff;
+	background-color:#444;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<center><div style='text-align:left;width:600px;'>
+	
+<div align='center' class='tbl1'><img src='files/images/php-fusion-logo.png' alt='PHP-Fusion' title='PHP-Fusion'><br /><br />
+Copyright &copy; 2002 - 2008 Nick Jones<br />
+<b>Versie:</b> 7.00 - <b>Vrijgegeven:</b> 21/06/2008</div>
+
+<div class='tbl2'>INLEIDING</div>
+
+<div class='tbl1'>PHP-Fusion is een lichtgewicht open-source content management system (CMS) geschreven in PHP 5 (compatibel met PHP 4). Het gebruikt een MySQL-database om de inhoud van de site op te slaan een bevat een eenvoudig maar veelomvattend beheerssysteem. PHP-Fusion bevat de meest gewone functies zoals die ook in andere CMS-pakketten te vinden zijn.
+
+<p>Deze software is vrije software: U kunt het redistribueren en aanpassen onder de voorwaarden van de GNU Affero General Public License (AGPL) zoals gebpubliceerd door de Free Software Foundation, versie 3 van deze Licentie, of (indien tot beschikking) enige latere versie.
+
+<p>Deze software wordt verspreid in de hoop dat deze bruikbaarblijk, maar ZONDER GARANTIE; zonder zelfs de impliciete garantie van VERHANDELBAARHEID of GESCHIKTHEID VOOR EEN BEPAALD DOEL. Zie de Affero General Public License (in het Engels) voor meer details.
+
+<p>U zou een kopie van de GNU Affero General Public License samen met deze software ontvangen moeten hebben. Zo niet, zie <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>www.fsf.org</a>.
+
+<p><b>Belangrijke opmerking</b>: Het is niet toegestaan de volgende copyrightvermelding in de voettekst te verwijderen:
+<p>Powered by <a href='http://www.php-fusion.co.uk'>PHP-Fusion</a> copyright &copy; 2002 - 2008 by Nick Jones.<br />
+Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>GNU Affero GPL</a> v3.
+
+<p>Voor mogelijkheden om de copyrightvermelding te verwijderen wordt u verzocht de licentie-informatie te raadplegen zoals vermeld op <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a> (in het Engels).
+</div>
+
+<div class='tbl2'>INSTALLATIE</div>
+
+<div class='tbl1'>Voor dat u PHP-Fusion kunt installeren dient u een MySQL-database aan te maken. U kunt dit doen via het controlepaneel van uw webhost, via phpMyAdmin (of vergelijkbaar) of door uw webhost te verzoeken deze aan te maken (noodzakelijk bij sommige webhostingpakketten). Verzeker u dat u de toegangsgegevens voor MySQL (naam, server, gebruikersnaam en wachtwoord van de database) bij de hand hebt wanneer u met de installatie begint, omdat u deze gegevens tijdens de installatie nodig heeft.
+
+<p><b>1.</b> Hernoem het bestand _config.php in de map files naar config.php voordat u met het uploaden van bestanden begint.
+
+<p><b>2.</b> Upload de inhoud van de map files naar uw webserver.
+
+<p><b>3.</b> Tenzij u PHP-Fusion draait op een lokale server, dient u in de meeste gevallen de volgende bestanden en mappen te CHMODden naar 777:
+
+<ul style='list-style-type:disc'>
+<li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul>
+
+<p><b>4.</b> Ga naar uw website waar setup.php automatisch zou moeten starten. Als dit niet het geval is, dan kunt u het script zelf starten door de volledige URL van uw website in de adresbalk in te typen, gevolgd door /setup.php. Bijvoorbeeld: http://www.uwdomein.nl/setup.php.
+
+<p><b>5.</b> Vervolg het installatieproces door de aanwijzingen op het scherm te volgen.
+
+<p><b>6.</b> Onmiddelijk nadat het installatieproces van PHP-Fusion is afgelopen dient u config.php terug te CHMODden naar 644 EN dient u setup.php van uw webserver te verwijderen.</div>
+
+<div class='tbl2'>UPGRADE VANAF V6.01.12+</div>
+
+<div class='tbl1'>Voordat u de upgrade uitvoert, adviseren we u ten sterkste een backup te maken van alle bestanden en de database van uw site, omdat PHP-Fusion 7 een grote update ten opzichte van zijn voorgangers betreft. U dient de instructies precies op te volgen!
+
+<p><b>1.</b> De code van version 6 is niet direct compatibel met die van versie 7. Voor u de upgrade uitvoert dient u alle mods, infusions, panelen en/of thema's te updaten of u dient een update te bemachtigen die compatibel is met versie 7. Desondanks wordt het nog steeds aangeraden om code van derden uit te schakelen om eventuele problemen te vooromen.
+
+<p><b>2.</b> Als eerste dient u het upgradescript uit de map 'upgrade v601x' naar de administration map van uw site te uploaden.
+
+<p><b>3.</b> Login op uw site als superbeheerder. Op Beheerder Paneel -> Systeem Beheer klikt u op Upgrade en daarna op de knop Upgrade. U MOET de upgrade vervolgen via een aantal stappen en het upgradeproces is pas afgelopen wanneer u de tekst 'Database upgrade complete' ziet.
+
+<p><b>4.</b> ZEER BELANGRIJK: Aangezien deze versie een aantal structurele veranderingen bevat zullen sommige delen van uw site niet goed werken tot u alle bestanden heeft bijgewerkt. U MOET ALLE bestanden uit de files map uploaden.
+
+<p>Indien u enige twijfel heeft over de upgrade, voel u vrij om hulp te vragen op één van onze supportsites. Er zijn genoeg mensen met kennis binnen de gemeenschap die u kunnen helpen bij of adviseren over het upgradeproces.</div>
+
+<div class='tbl2'>BEVEILIGINGSTIPS</div>
+
+<div class='tbl1'>Hier volgen enkele bruikbare tips die helpen uw site veilig te houden:
+<ul style='list-style-type:disc'>
+<li>Verzeker u dat config.php niet beschrijfbaar is (de CHMODed moet 644 zijn).</li>
+<li>Laat setup.php nooit staan op de server als PHP-Fusion is geïnstalleerd.</li>
+<li>Verzeker u ervan dat uw FTP- en MySQL-wachtoorden verschillend zijn.</li>
+<li>Sta nooit forum bijlagen met extensies als  php, html, exe, of enig type van tekstbestand toe.</li>
+</ul></div>
+
+<div class='tbl2'>SUPPORTSITES</div>
+
+<div class='tbl1'>Indien u vragen heeft over of problemen met PHP-Fusion, bezoekt u dan a.u.b. de ontwikkelingssite op <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a> en plaats een bericht in het ondersteuningsforum. Er is een toegewijd team van mensen wiens doel het is uw probleem binnen 48 op te lossen.<br /><br />
+
+PHP-Fusion kan worden uitgebreid door Infusions toe te voegen. Dit zijn kleine invoegtoepassingen die heel eenvoudig kunnen worden toegevoegd. U kunt een scala aan bruikbare Infusions terugvinden op de zogenaamde mod site op <a href='http://www.phpfusion-mods.com'>www.phpfusion-mods.com</a>.<br /><br />
+
+Indien u niet tevreden bent met de thema's die standaard met PHP-Fusion worden geleverd, dan zou u onze officiële thema site op <a href='http://themes.php-fusion.co.uk'>themes.php-fusion.co.uk</a> kunnen bezoeken, waar u een variatie aan thema's met hoge kwalitit kunt vinden.<br /><br />
+
+PHP-Fusion heeft ook een aantal officiële supportsites voor andere talen in
+<a href='http://www.phpfusion-ar.com'>Arabië</a>, 
+<a href='http://www.phpfusion-nederlands.info'>België</a>, 
+<a href='http://www.phpfusion-br.com'>Brazilië</a>, 
+<a href='http://php-fusion.cms-bg.org'>Bulgarije</a>, 
+<a href='http://www.php-fusion.dk'>Denemarken</a>, 
+<a href='http://www.phpfusion-support.de'>Duitsland</a>, 
+<a href='http://www.phpfusion-fr.com'>Frankrijk</a>, 
+<a href='http://www.php-fusion.co.hu'>Hongarije</a>, 
+<a href='http://www.fusion.alaviweb.com'>Iran</a>, 
+<a href='http://www.php-fusion.it'>Italië</a>, 
+<a href='http://www.phpfusion-nederlands.info'>Nederland</a>, 
+<a href='http://www.phpfusion-no.com'>Noorwegen</a>, 
+<a href='http://www.php-fusion.pl'>Polen</a>, 
+<a href='http://www.phpfusion.ro'>Roemenië</a>, 
+<a href='http://netck.ru'>Rusland</a>, 
+<a href='http://www.php-fusion.sk'>Slowakije</a>, 
+<a href='http://php-fusion.es'>Spanje</a>, 
+<a href='http://www.phpfusion.cz'>de Tsjechische Republiek</a>, 
+<a href='http://www.phpfusionturkiye.com'>Turkije</a> en 
+<a href='http://www.php-fusion.se'>Zweden</a>..</div>
+
+<div class='tbl2'>DANKZEGGING</div>
+
+<div class='tbl1'>
+	
+<b>Starter van het project en hoofdontwikkelaar</b><br />
+Nick Jones {Digitanium}
+
+<p><b>Hoofdontwikkelaars</b><br />
+Max Toball {Matonor}<br />
+Robert Gaudyn {Wooya}<br />
+
+<p><b>Ontwikkelteam</b><br />
+Christian Damsgaard J&oslash;rgensen {PMM}<br />
+Nicolae Crefelean {Kneekoo}<br />
+Karoly Nagy {Korcsii}<br />
+Patric Forcelini {IceWasp}<br />
+Johan K. Jensen {Josso}<br />
+Hans Kristian Flaatten {Starefossen}<br />
+
+<p><b>Aanvullende bijdragen</b><br/>
+Claus Pedersen {Flyingduck}<br />
+Paul Beuk {Muscapaul}<br />
+
+<p><b>Management</b><br />
+Jan M&oslash;lgaard {Janmol}<br />
+Happy Svensson {KEFF}<br />
+Pam Aylward {Pam}<br />
+Sheldon King {Sheldon}<br />
+
+<p><b>Scripts van derden:</b><br />
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v3.0.9</a> - Een HTML WYSIWYG editor door Moxiecode.<br />
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer v2.0</a> - Een sendmail class met SMTPondersteuning door Brent R. Matzelle.<br />
+<a href='http://www.phpclasses.org/browse/package/2221.html'>HTTPDownload v1.3</a> - Een download handler class door Nguyen Quoc Bao.<br />
+<a href='http://jquery.com/'>jQuery v1.2.6</a> - Javascript/Ajax toolkit.<br />
+<a href='http://icon-king.com'>Nuvola Icons</a> - Afbeeldingen gebruikt in bbcodes, nieuwscategorieën en beheerdersikonen door David Vignoni.</div>
+
+</div></center>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+IMPORTANT DB UPDATE 08/06/2008
+
+If you're updating your v7 setup, please preview the following code in custom pages admin
+
+<?php
+$result = dbquery("ALTER TABLE ".$db_prefix."settings ADD userthemes TINYINT(1) UNSIGNED NOT NULL  DEFAULT '1' AFTER guestposts");
+$result = dbquery("ALTER TABLE ".$db_prefix."settings ADD newsperpage TINYINT(2) UNSIGNED NOT NULL DEFAULT '11' AFTER userthemes");
+?>

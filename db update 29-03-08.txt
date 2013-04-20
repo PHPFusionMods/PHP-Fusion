@@ -1,0 +1,39 @@
+IMPORTANT DB UPDATE 29/03/2008
+
+If you're updating your v7 setup, please preview the following code in custom pages admin
+
+<?php
+// create forum_ranks table
+$result = dbquery("DROP TABLE IF EXISTS ".$db_prefix."forum_ranks");
+$result = dbquery("CREATE TABLE ".$db_prefix."forum_ranks (
+rank_id MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+rank_title VARCHAR(100) NOT NULL DEFAULT '',
+rank_image VARCHAR(100) NOT NULL DEFAULT '',
+rank_posts iNT(10) UNSIGNED NOT NULL DEFAULT '0',
+rank_apply SMALLINT(5) UNSIGNED NOT NULL DEFAULT '101',
+PRIMARY KEY (rank_id)
+) ENGINE=MyISAM");
+
+// add forum_ranks setting
+$result = dbquery("ALTER TABLE ".$db_prefix."settings ADD forum_ranks TINYINT(1) UNSIGNED DEFAULT '0' AFTER thread_notify");
+
+// add forum ranks admin
+$result = dbquery("INSERT INTO ".$db_prefix."admin (admin_rights, admin_image, admin_title, admin_link, admin_page) VALUES ('FR', 'forum_ranks.gif', 'Forum Ranks', 'forum_ranks.php', 2)");
+
+// add FR to user rights
+$result = dbquery("SELECT * FROM ".$db_prefix."users WHERE user_level='103'");
+while ($data = dbarray($result)) {
+	$result2 = dbquery("UPDATE ".$db_prefix."users SET user_rights='".$data['user_rights'].".FR' WHERE user_id='".$data['user_id']."'");
+}
+
+// sample ranks
+$result = dbquery("INSERT INTO fusion_forum_ranks VALUES (1, 'Super Admin', 'rank_super_admin.gif', 0, 103)");
+$result = dbquery("INSERT INTO fusion_forum_ranks VALUES (2, 'Admin', 'rank_admin.gif', 0, 102)");
+$result = dbquery("INSERT INTO fusion_forum_ranks VALUES (3, 'Moderator', 'rank_mod.gif', 0, 104)");
+$result = dbquery("INSERT INTO fusion_forum_ranks VALUES (4, 'Newbie', 'rank0.gif', 0, 101)");
+$result = dbquery("INSERT INTO fusion_forum_ranks VALUES (5, 'Junior Member', 'rank1.gif', 10, 101)");
+$result = dbquery("INSERT INTO fusion_forum_ranks VALUES (6, 'Member', 'rank2.gif', 50, 101)");
+$result = dbquery("INSERT INTO fusion_forum_ranks VALUES (7, 'Senior Member', 'rank3.gif', 200, 101)");
+$result = dbquery("INSERT INTO fusion_forum_ranks VALUES (8, 'Veteran Member', 'rank4.gif', 500, 101)");
+$result = dbquery("INSERT INTO fusion_forum_ranks VALUES (9, 'Fusioneer', 'rank5.gif', 1000, 101)");
+?>

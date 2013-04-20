@@ -1,0 +1,9 @@
+IMPORTANT DB UPDATE 13/05/2008
+
+If you're updating your v7 setup, please preview the following code in custom pages admin
+
+<?php
+
+$result = dbquery("ALTER TABLE ".$db_prefix."settings ADD exclude_upper TEXT NOT NULL AFTER exclude_left");
+$result = dbquery("ALTER TABLE ".$db_prefix."settings ADD exclude_lower TEXT NOT NULL AFTER exclude_upper");
+?>

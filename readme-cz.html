@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<title>PHP-Fusion Readme</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.tbl1 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000;
+	background-color:#fefefe;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+.tbl2 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#fff;
+	background-color:#444;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+</style></head>
+
+<body bgcolor="#ffffff">
+
+<center><div style="text-align: left; width: 600px;">
+	
+<div class="tbl1" align="center"><img src="files/images/php-fusion-logo.png" alt="PHP-Fusion" title="PHP-Fusion"><br><br>
+Copyright © 2002 - 2008 Nick Jones<br>
+  <strong>Verze:</strong> 7.00 - <strong>Vydaná:</strong>  xx/06/2008
+  <br><strong>Přeložil:</strong> perteus (PHP-Fusion Czech)</div>
+
+<div class="tbl2">ÚVOD</div>
+
+<div class="tbl1">
+<p >PHP-Fusion je svěží open-source
+redakční systém (CMS), který je napsaný v jazyce PHP. Pro
+uchování obsahu stránek využívá databáze MySQL a obsahuje
+komplexní, ale jednoduchý systém administrace. PHP-Fusion
+vymoženosti, které by jste očekávali v mnoha redakčních
+systémech.</p>
+<p>Tento program je volně šiřitelným
+softwarem: můžete ho redistribuovat a nebo upravovat pod podmínkou
+GNU Affero General Public License (AGPL) jako publikovaný Free
+Software Foundation verze 3 a nebo některé předešlé verze. 
+</p>
+
+<p>Tento program je distribuovaný v
+naději, že bude užitečný ale BEZ ŽÁDNÉ ZÁRKY; dokonce bez
+zahrnuté záruky PRODEJNOSTI a VHODNOSTI PRO SPECIÁLNÍ ÚČELY.
+Pro více detailů si přečtěte Affero General Public License.</p>
+<p>
+<p >Každý je povinen mít kopii GNU
+Affero General Public License, která je dodávana k programu. Pokud
+jí nemáte, najdete jí na stránce <a href="http://www.fsf.org/">www.fsf.org</a>
+.</p>
+<p><strong>Důležitá poznámka:</strong>
+Nesmíte smazat a nebo prejmenovat paticku copyrightu:</p>
+
+	
+</p>
+</p>
+
+<p>Powered by <a href="http://www.php-fusion.co.uk">PHP-Fusion</a> copyright &copy; 2002 - 2008 by Nick Jones.<br>
+Released as free software without warranties under <a href="http://www.fsf.org/licensing/licenses/agpl-3.0.html">GNU Affero GPL</a> v3.
+
+</p><p>Copyright musí obsahovat odkaz na naší informační stránku <a href="http://www.php-fusion.co.uk">www.php-fusion.co.uk</a>.
+</p></div>
+
+<div class="tbl2">INSTALACE</div>
+
+<div class="tbl1">
+
+
+<p>Ještě
+před instalací systému PHP-Fusion musíte vytvořit MySQL
+databázi. Toto můžete provést přes webhostingový panel, nebo
+pomocí phpMyAdmin. Ujistěte se, že máte správné údaje k
+přístupu do databáze: adresu mysql, jméno uživatele, heslo a
+název databáze. Tyto údaje budete potřebovat k instalac</p>
+<p><strong>1.</strong>Před
+nahráním souborů přejmenujte soubor _config.php (je umístěný
+v files s ostatními soubory) na config.php</p>
+<p><strong>2.</strong> Nahrajte
+	obsah složky files na váš web server.</p>
+<p><strong>3.</strong>Nyní
+	je zapotřebí nastavit atributy k souborům a složkám. Zde jsou
+	vyjmenované složky a soubory, kterým je zapotřebí nastavit
+	atribut (CHMOD) na 777
+
+
+</p><ul>
+<li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul>
+
+<p><strong>4.</strong>
+Zadejte
+adresu vaší stránky. Měl by se vám spustit automaticky
+setup.php, ale pokud se tak nestane, musíte zadat adresu ručně.
+Tedy adresa by měla vypadat například takto:
+<a href="http://www.mojedomena.cz/setup.php">http://www.mojedomena.cz/setup.php</a>
+
+
+</p><p><strong>5.</strong>
+Instalaci
+dokončíte pomocí průvodců, kteří vás navedou. Musíte vyplnit
+všechny požadované položk
+.
+
+</p><p><strong>6.</strong>
+Ihned
+	po dokončení instalace systému PHP-Fusion musíte nastavit
+	atributy (CHMOD) souboru config.php na 644 a smazat z webu soubor
+	setup.php
+</p></div>
+
+<div class="tbl2">AKTUALIZACE Z V6.01.12+</div>
+
+<div class="tbl1">
+<p>Před
+aktualizací doporučujeme zálohovat všechny soubory a databázi.
+PHP-Fusion 7 je totiž v porovnání s předcházejícími verzemi
+velmi velkou aktualizací. Proto musíte následovat tyto instrukce
+velmi pečlivě.</p>
+<p><strong>1.</strong>
+Kódverze 6 NENÍ plně kompatibilní s kódem verze 7. Před aktualizací
+si spravte aktualizaci všech módů, panelů, infusions aby byly
+kompatibilní s verzí 7. Pokud máte módy z třetí ruky a nevíte,
+jak je aktualizovat, odinstalujte je. Vyhnete se tím problémům,které
+můžou nastat po uprage.
+</p>
+<p><strong>2.</strong>
+Nejprve
+nahrajte aktualizační skript ze složky pojmenované 'uprage v601x'
+do složky s administrací vašeho systému (administration).</span>
+</p>
+<p><strong>3.</strong>
+Přihlaste
+se na vaší stránku jako Hlavní Administrátor. Pod záložkou
+administrace systému v administraci, klikněte na Aktualizaci
+(Uugrade) a potom na tlačítko označené Upgrade, popřípadě
+Aktualizovat. MUSÍTE projít všemi kroky aktualaizace, upgrade bude
+úspěšně dokončený, pokud se vám zobrazí 'Database upgrade
+complete'.
+</p>
+<p><strong>4.</strong>&nbsp;
+
+VELMI
+DŮLEŽITÉ: Toto vydání obsahuje mnoho změn ve struktůze
+souborů. Některé části vaší stránky nebudou správně
+fungovat, pokud neaktualizujete všechny soubory. MUSÍTE nahrát
+všechny soubory ze složky files
+</p>
+<p>Pokud
+máte jakékoliv pochybnosti, prosím neváhejte a zeptejte se na
+stránkách podpory. Na nich se nachází mnoho zkušených uživatelů
+naší komunity, kteří vám můžou pomoci a nebo poradí nejenom
+ve věcech aktualizace</p></div>
+
+<div class="tbl2">BEZPEČNOSTNÉ TIPY</div>
+
+<div class="tbl1">Pár bezpečnostních rad:
+<ul>
+<li>Zajistěte aby config.php nebyl zapisovatelný (atributy CHMOD nastavte
+  na 644).</li>
+<li>Nikdy nenechávejte setup.php na serveru po instalaci systému PHP-Fusion.</li>
+<li>Vždy se ujistěte aby hesla k FTP a k MySQL boly rozdílné.</li>
+<li>Nikdy nepovolujte tyto typy souborův ve fóru: php, html, exe, a nebo jakýkoliv typ textového souboru.</li>
+</ul></div>
+
+<div class="tbl2">STRÁNKY PODPORY</div>
+
+<div class="tbl1">Pokud máte k systému PHP-Fusion nějaké otázky, navštivte stránku vývojářů <a href="http://www.php-fusion.co.uk">www.php-fusion.co.uk</a> napište svůj dotaz do fóra. Náš tým dokáže vyřešit váš problém během 48 hodin.<br><br>
+PHP-Fusion může být rozšířený o mhoho nových funkcí, které jsou snadno
+instalovatelné. Spoustu rozšíření můžete nalézt na oficiální stránce
+pro módy
+<a href="http://www.phpfusion-mods.com">www.phpfusion-mods.com</a>.<br><br>Pokud nejste spokojeni se základními vzhledy, které jsou dodávany sPHP-Fusion, můžete navštívit oficiální podporu pro vzhledy <a href="http://themes.php-fusion.co.uk">themes.php-fusion.co.uk</a> 
+  kde najdete mnoho kvalitních vzhledů.<br><br>
+
+PHP-Fusion je výcejazičný systém a má tedy i podpory v mnoha zemích: 
+<a href="http://www.phpfusion-nederlands.info">Belgicko</a>, 
+<a href="http://www.phpfusion-br.com">Brazília</a>, 
+<a href="http://php-fusion.cms-bg.org">Bulharsko</a>, 
+<a href="http://www.phpfusion.cz">Česká Republika</a>, 
+<a href="http://www.php-fusion.dk">Dánsko</a>,
+<a href="http://www.phpfusion-fr.com">Francie</a>, 
+<a href="http://www.phpfusion-nederlands.info">Holandsko</a>,
+<a href="http://www.fusion.alaviweb.com">Irán</a>,
+<a href="http://www.php-fusion.co.hu">Maďarsko</a>, 
+<a href="http://www.phpfusion-support.de">Německo</a>, 
+<a href="http://www.phpfusion-no.com">Nórsko</a>,
+<a href="http://www.php-fusion.pl">Polsko</a>, 
+<a href="http://www.phpfusion.ro">Rumunsko</a>, 
+<a href="http://netck.ru">Rusko</a>, 
+<a href="http://www.phpfusion-ar.com">Saudská Arábie</a>,
+<a href="http://www.php-fusion.sk">Slovensko</a>,
+<a href="http://php-fusion.es">Španělsko</a>,
+<a href="http://www.php-fusion.se">Švédsko</a>,
+<a href="http://www.php-fusion.it">Itálie</a>,
+<a href="http://www.phpfusionturkiye.com">Turecko.</a></div>
+
+<div class="tbl2">PODĚKOVÁNÍ</div>
+
+<div class="tbl1">
+	
+<strong>ZakladateL projektu a hlavnÍ vývojář</strong><br>
+Nick Jones {Digitanium}
+
+<p><strong>Hlavní vývojáři</strong><br>
+Max Toball {Matonor}<br>
+Robert Gaudyn {Wooya}<br>
+
+</p><p><strong>Tým vývojářů</strong><br>
+Christian Damsgaard J&oslah;rgensen {PMM}<br>
+Nicolae Crefelean {Kneekoo}<br>
+Karoly Nagy {Korcsii}<br>
+Patric Forcelini {IceWasp}<br>
+Johan K. Jensen {Josso}<br>
+Hans Kristian Flaatten {Starefossen}
+
+</p><p><strong>Další přispěvovatelé </strong><br>
+Claus Pedersen {Flyingduck}<br>
+Paul Beuk {Muscapaul}</p>
+
+<p><strong>Managment</strong><br>
+Jan M&oslash;lgaard {Janmol}<br>
+Happy Svensson {KEFF}<br>
+Pam Aylward {Pam}<br>
+Sheldon King {Sheldon}
+
+</p><p><strong>Skripty z třetí ruky:</strong><br>
+<a href="http://tinymce.moxiecode.com/">TinyMCE v3.0.9</a> - A HTML WYSIWYG editor
+od Moxiecode.<br>
+<a href="http://phpmailer.sourceforge.net/">PHPMailer v2.0</a> - Skript na
+posílaní e-mailů s podporou SMTP od Brent R. Matzelle.<br>
+<a href="http://www.phpclasses.org/browse/package/2221.html">HTTPDownload v1.3</a> -
+Ovladač downloadov od Nguyen Quoc Bao.<br>
+<a href="http://jquery.com/">jQuery v1.2.6</a> - Souborový nástroj Javascript/Ajax.<br>
+<a href="http://icon-king.com">Nuvola Icons</a> - Obrázky použité v bbkódech,
+kategorie noviniek a admin ikony od David Vignoni.</p></div>
+
+</div></center>
+
+</body></html>

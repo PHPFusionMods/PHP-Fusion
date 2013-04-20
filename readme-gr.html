@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-7'>
+<style type='text/css'>
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.tbl1 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000;
+	background-color:#fefefe;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+.tbl2 {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#fff;
+	background-color:#444;
+	border: 1px #ddd solid;
+	padding:4px;
+	margin-bottom: 5px;
+}
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<center><div style='text-align:left;width:600px;'>
+	
+<div align='center' class='tbl1'><img src='files/images/php-fusion-logo.png' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+<b>Έκδοση:</b> 7.00 - <b>Κυκλοφόρησε:</b> 21/06/2008</div>
+
+<div class='tbl2'>Εισαγωγή</div>
+
+<div class='tbl1'>Το PHP-Fusion είναι ένα
+ελαφρύ, ανοικτού πηγαίου κώδικα, σύστημα διαχείρισης περιεχομένου (CMS) γραμμένο σε γλώσσα PHP 5 (συμβατό με PHP 4).
+Χρησιμοποιεί MySQL βάση δεδομένων για την αποθήκευση των περιεχομένων του δικτυακού σας τόπου και περιλαμβάνει ένα απλό, κατανοητό
+σύστημα διαχείρισης. Το PHP-Fusion περιλαμβάνει τα περισσότερα από τα κοινά χαρακτηριστικά που αναμένει κανείς σε πολλά άλλα
+CMS.
+
+<p>Η παρούσα σύνθεση του προγράμματος είναι ελεύθερο λογισμικό: μπορείτε να το αναδιανείμετε και/ή να το τροποποιήσετε υπό τους όρους της
+άδειας GNU Affero General Public License (AGPL), έτσι όπως δημοσιεύθηκε από το Ίδρυμα Ελεύθερου Λογισμικού,
+είτε της έκδοσης 3 of the License, ή (κατ' επιλογήν σας) οποιασδήποτε μεταγενέστερης έκδοσης.
+
+<p>Η παρούσα σύνθεση του προγράμματος διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΟΙΑΝΔΗΠΟΤΕ ΕΓΓΥΗΣΗ.
+Χωρίς, επίσης, οποιαδήποτε εγγύηση ΕΜΠΟΡΙΚΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΟΙΟΝΔΗΠΟΤΕ ΙΔΙΑΙΤΕΡΟ ΣΚΟΠΟ.
+Παρακαλούμε δείτε την Affero General Public License για περισσότερες λεπτομέρειες.
+
+<p>Θα πρέπει να έχετε λάβει αντίγραφο της GNU Affero General Public License μαζί με το πρόγραμμα.
+Αν όχι, δείτε το <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>www.fsf.org</a>.
+
+<p><b>Σημαντική σημείωση</b>: Δεν επιτρέπεται να αφαιρέσετε τη σημείωση περί πνευματικών δικαιωμάτων (copyright) στο υποσέλιδο:
+	
+<p>Powered by <a href='http://www.php-fusion.co.uk'>PHP-Fusion</a> copyright &copy; 2002 - 2008 by Nick Jones.<br>
+Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'>GNU Affero GPL</a> v3.
+
+<p>Αν, ωστόσο, επιθυμείτε να αφαιρέσετε τη σημείωση περί πνευματικών δικαιωμάτων, παρακαλούμε διαβάστε προσεκτικά τις επιλογές σας στην ανάλογη σελίδα για τις άδειες στο
+<a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a> (PHP-Fusion Licensing).
+</div>
+
+<div class='tbl2'>ΕΓΚΑΤΑΣΤΑΣΗ</div>
+
+<div class='tbl1'>Πριν εγκαταστήσετε το PHP-Fusion, χρειάζεται να δημιουργήσετε μία βάση δεδομένων MySQL. Αυτό
+μπορείτε να το κάνετε είτε μέσω του πάνελ ελέγχου του διακομιστή (server) που φιλοξενεί τον δικτυακό σας τόπο είτε μέσω του phpMyAdmin. Βεβαιωθείτε ότι έχετε
+πρόχειρες όλες τις λεπτομέρειες πρόσβασης της mysql. Σε αυτές περιλαμβάνεται το όνομα του διακομιστή που σας φιλοξενεί (hostname), το username, το password
+και το όνομα της βάσης δεδομένων, καθώς θα τα χρειαστείτε να τα ορίσετε κατά τη διάρκεια της εγκατάστασης.
+
+
+<p><b>1.</b> Πριν επιφορτώσετε τους φακέλους με τα αρχεία σας στο FTP, μετονομάστε το αρχείο _config.php (βρίσκεται στο φάκελο files) σε config.php.
+
+<p><b>2.</b> Μεταφορτώστε τους φακέλους και τα αρχεία σας στον διαδικτυακό διακομιστή (web server).
+
+<p><b>3.</b> Εκτός και αν λειτουργείτε το PHP-Fusion σε τοπικό διακομιστή, στις περισσότερες περιπτώσεις
+θα χρειαστεί να αλλάξετε επίπεδο αδειών (CHMOD) στα παρακάτω αρχεία και φακέλους σε 777:
+
+<ul style='list-style-type:disc'>
+<li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul>
+
+<p><b>4.</b> Πηγαίνετε στο δικτυακό σας τόπο και η setup.php θα πρέπει να ξεκινήσει αυτόματα.
+Αν όχι, θα πρέπει να τρέξετε τη σελίδα setup.php χειροκίνητα εισάγοντας την πλήρη διεύθυνση του
+δικτυακού σας τόπου ακολουθούμενη από τη /setup.php. Παράδειγμα: http://www.yourdomain.com/setup.php.
+
+<p><b>5.</b> Ακολουθήστε τη διαδικασία της εγκατάστασης ακολουθώντας όλες τις οδηγίες.
+
+<p><b>6.</b> Αμέσως μετά την ολοκλήρωση της εγκατάστασης του PHP-Fusion να επαναφέρετε το επίπεδο αδείας
+(CHMOD) του config.php πίσω στο 644 ΚΑΙ να διαγράψετε τη setup.php από τον διακομιστή σας.</div>
+
+<div class='tbl2'>ΑΝΑΒΑΘΜΙΣΗ ΑΠΟ V6.01.12+</div>
+
+<div class='tbl1'>Πριν αναβαθμίσετε στην έκδοση V7, σας συμβουλεύουμε εμφατικά να αποθηκεύσετε (backup)
+τα αρχεία και τη βάση δεδομένων σας, καθώς το PHP-Fusion 7 είναι μείζων αλλαγή συγκρινόμενο με τα προηγούμενα.
+Χρειάζεται λοιπόν να ακολουθήσετε τις παρακάτω οδηγίες επακριβώς.
+
+<p><b>1.</b> Ο κώδικας της έκδοσης 6 δεν είναι άμεσα συμβατός με εκείνον της έκδοσης 7. Θα πρέπει είτε να αναβαθμίσετε
+οποιαδήποτε mod, πρόσθετα, πάνελ ή οπτικά θέματα χρησιμοποιείτε <b>πριν αναβαθμίσετε</b> Ή να αποκτήσετε
+συμβατές με την έκδοση 7 αναβαθμίσεις των παραπάνω. Συστήνεται, ωστόσο, να απενεργοποποιήσετε κώδικα γραμμένο από τρίτους,
+για να αποφύγετε οποιαδήποτε προβλήματα.
+
+<p><b>2.</b> Πρώτα χρειάζεται να επιφορτώσετε το script της αναβάθμισης από τον φάκελο που ονομάζεται
+'upgrade v601x' στον φάκελο διαχείρισης του δικτυακού σας τόπου.
+
+<p><b>3.</b> Συνδεθείτε με τον δικτυακό σας τόπο ως Υπερδιαχειριστής. Στις σελίδες διαχείρισης συστήματος
+πατήστε την κεφαλίδα Αναβάθμιση (Upgrade) και κατόπιν το κουμπί Αναβάθμιση (Upgrade).
+ΠΡΕΠΕΙ ΝΑ ακολουθήσετε την αναβάθμιση μέσω ενός συγκεκριμένου αριθμού βημάτων. Η διαδικασία αναβάθμισης
+θα έχει ολοκληρωθεί όταν δείτε το μήνυμα 'Η αναβάθμιση της βάσης δεδομένων ολοκληρώθηκε' ή 'Database upgrade complete'.
+
+<p><b>4.</b> ΠΟΛΥ ΣΗΜΑΝΤΙΚΟ: Επειδή αυτή η έκδοση περιέχει δομικές αλλαγές, ορισμένα στοιχεία του δικτυακού σας τόπου
+δε θα λειτουργούν σωστά έως ότου αναβαθμίσετε όλα τα αρχεία σας. ΠΡΕΠΕΙ ΛΟΙΠΟΝ να επιφορτώσετε ΟΛΑ τα αρχεία που
+περιέχονται στον φάκελο 'files'.
+folder.
+
+<p><b>5.</b> Αφού ολοκληρώσετε τα παραπάνω βήματα, χρειάζεται να αλλάξετε το επίπεδο αδειών (chmod) του φακέλου
+images/photoalbums/submissions σε 777.
+
+<p>Εάν παρόλα αυτά έχετε αμφιβολίες, μη διστάσετε να ρωτήσετε και να ζητήσετε βοήθεια σε έναν από τους δικτυακούς
+τόπους υποστήριξης. Υπάρχουν αρκετοί χρήστες στην κοινότητα με ιδιαίτερες γνώσεις και θα σας βοηθήσουν ή θα σας
+συμβουλεύσουν σε θέματα σχετικά με τη διαδικασία αναβάθμισης.</div>
+
+<div class='tbl2'>ΣΥΜΒΟΥΛΕΣ ΑΣΦΑΛΕΙΑΣ</div>
+
+<div class='tbl1'>Ορισμένες χρήσιμες συμβουλές που θα σας βοηθήσουν να διατηρήσετε τον δικτυακό σας τόπο ασφαλή:
+<ul style='list-style-type:disc'>
+<li>Βεβαιωθείτε ότι η σελίδα config.php δεν είναι εγγράψιμη (επίπεδο αδειών [CHMOD] 644).</li>
+<li>Ποτέ μην αφήνετε τη σελίδα setup.php στον διακομιστή σας από τη στιγμή που έχει ολοκληρωθεί η
+η εγκατάσταση του PHP-Fusion.</li>
+<li>Διασφαλίστε ότι οι κωδικοί σας, FTP password και MySQL password είναι διαφορετικοί.</li>
+<li>Μην επιτρέπετε ποτέ στις Δ. Συζητήσεις (Forum) επισυνάψεις php, html, exe, ή οποιονδήποτε τύπο αρχείου κειμένου.</li>
+</ul></div>
+
+<div class='tbl2'>ΔΙΚΤΥΑΚΟΙ ΤΟΠΟΙ ΥΠΟΣΤΗΡΙΞΗΣ</div>
+
+<div class='tbl1'>Εάν έχετε ερωτήματα ή απορίες σχετικά με το PHP-Fusion, παρακαλούμε επισκεφθείτε
+τον δικτυακό τόπο όπου γίνεται η κύρια ανάπτυξη του λογισμικού στη διεύθυνση <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>
+και δημοσιεύστε ανάλογο μήνυμα στις Δ. Συζητήσεις υποστήριξης. Υπάρχει εξειδικευμένη ομάδα υποστήριξης που στοχεύει στην επίλυση οποιωνδήποτε
+ζητημάτων θέσετε μέσα σε 48 ώρες.<br><br>
+
+Το λογισμικό PHP-Fusion μπορεί να διευρυνθεί με τη χρήση Προσθέτων (Infusions), που είναι εξαιρετικά εύκολο να εγκατασταθούν.
+Μπορείτε να βρείτε ποικιλία χρήσιμων Πρόσθετων για εγκατάσταση στο <a href='http://www.phpfusion-mods.com'>www.phpfusion-mods.com</a>.<br><br>
+
+Αν δεν είστε ικανοποιημένος με τα οπτικά θέματα του PHP-Fusion μπορείτε να επισκεφθείτε τον επίσημο δικτυακό τόπο
+στο <a href='http://themes.php-fusion.co.uk'>themes.php-fusion.co.uk</a>, όπου θα βρείτε ποικιλία οπτικών θεμάτων υψηλής ποιότητας.<br><br>
+
+Το PHP-Fusion έχει επίσης έναν αριθμό αλλόγλωσσων επίσημων δικτυακών τόπων υποστήριξης σε άλλες χώρες:
+
+<a href='http://www.phpfusion-ar.com'>Αραβία</a>,
+<a href='http://www.phpfusion-nederlands.info'>Βέλγιο</a>,
+<a href='http://www.phpfusion-br.com'>Βραζιλία</a>,
+<a href='http://php-fusion.cms-bg.org'>Βουλγαρία</a>,
+<a href='http://www.php-fusion.dk'>Δανία</a>,
+<a href='http://www.phpfusion.cz'>Δημοκρατία της Τσεχίας</a>,
+<a href='http://www.phpfusion-fr.com'>Γαλλία</a>,
+<a href='http://www.phpfusion-support.de'>Γερμανία</a>,
+<a href='http://www.php-fusion.co.hu'>Ουγγαρία</a>,
+<a href='http://www.fusion.alaviweb.com'>Ιράν</a>,
+<a href='http://www.php-fusion.it'>Ιταλία</a>,
+<a href='http://www.phpfusion-nederlands.info'>Ολλανδία</a>,
+<a href='http://www.phpfusion-no.com'>Νορβηγία</a>,
+<a href='http://www.php-fusion.pl'>Πολωνία</a>,
+<a href='http://www.phpfusion.ro'>Ρουμανία</a>,
+<a href='http://netck.ru'>Ρωσσία</a>,
+<a href='http://www.php-fusion.sk'>Σλοβακία</a>,
+<a href='http://php-fusion.es'>Ισπανία</a>,
+<a href='http://www.php-fusion.se'>Σουηδία</a> και
+<a href='http://www.phpfusionturkiye.com'>Τουρκία</a>.</div>
+
+<div class='tbl2'>ΑΝΑΓΝΩΡΙΣΕΙΣ</div>
+
+<div class='tbl1'>
+	
+<b>Ιδρυτής του Εγχειρήματος και  Επικεφαλής Προγραμματιστής</b><br>
+Nick Jones {Digitanium}
+
+<p><b>Κύριοι Προγραμματιστές</b><br>
+Max Toball {Matonor}<br>
+Robert Gaudyn {Wooya}<br>
+
+<p><b>Ομάδα Ανάπτυξης</b><br>
+Christian Damsgaard J&oslash;rgensen {PMM}<br>
+Nicolae Crefelean {Kneekoo}<br>
+Karoly Nagy {Korcsii}<br>
+Patric Forcelini {IceWasp}<br>
+Johan K. Jensen {Josso}<br>
+Hans Kristian Flaatten {Starefossen}
+
+<p><b>Συνεισφορές</b><br>
+Claus Pedersen {Flyingduck}<br>
+Paul Beuk {Muscapaul}
+
+<p><b>Διαχείριση</b><br>
+Jan M&oslash;lgaard {Janmol}<br>
+Happy Svensson {KEFF}<br>
+Pam Aylward {Pam}<br>
+Sheldon King {Sheldon}
+
+<p><b>Στοιχεία 3ων Συμβαλλομένων:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v3.0.9</a> - HTML WYSIWYG editor από τον Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer v2.0</a> - Κλάση αποστολής mail με υποστήριξη SMTP από τον Brent R. Matzelle.<br>
+<a href='http://www.phpclasses.org/browse/package/2221.html'>HTTPDownload v1.3</a> - Κλάση διαχείρισης ανακτήσεων από τον Nguyen Quoc Bao.<br>
+<a href='http://jquery.com/'>jQuery v1.2.6</a> - Javascript/Ajax εργαλεία.<br>
+<a href='http://icon-king.com'>Nuvola Icons</a> - Εικόνες που χρησιμοποιούνται στους bb κώδικες, στις κατηγορίες Νέων και εικονίδια διαχείρισης από τον David Vignoni.</div>
+
+</div></center>
+
+</body>
+</html>
