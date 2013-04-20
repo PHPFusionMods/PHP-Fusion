@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Läs mig</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+<b>Version:</b> 6.01.19 - <b>Publicerad:</b> April 2008</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>1. Presentation</b></td>
+</tr>
+<tr>
+<td class='tbl1'>PHP-Fusion är ett kompakt Content Management System, CMS, kodat i PHP4. 
+Det lagrar alla data på sidan i en databas, som administreras via ett enkelt, 
+kraftfullt och säkert administrationssystem. PHP-Fusion har dom flesta funktioner 
+man förväntar sig att finna i ett CMS, såsom artikelsystem, nyhetspublicering, 
+debattforum, användaromröstningar, Klotterplank,möjligheter att kommentera nyheter osv.
+
+<p>PHP-Fusion är publicerat under version 2 av GNU General Public License. 
+För ytterligare information, besök visit www.gnu.org eller läs den gpl.txt - fil som inkluderas i detta installationspaket. 
+Du får ändra koden och redistribuera den innehållande dina egna modifieringar.
+
+<p>Vi uppskattar om du behåller copyrightinformationen på sidfoten. Vi tycker att detta är en rimlig begäran med tanke på dom tusentals timmar av hårt arbete som har investerats i denna produkt. Om du däremot beslutar att ändå ta bort informationen, var vänlig att överväga att göra en donation t ex via Paypal.</td>
+</tr>
+<tr>
+<td class='tbl2'><b>2. Nyinstallation</b></td>
+</tr>
+<tr>
+<td class='tbl1'><ol>
+<li>Ladda upp innehållet i mappen php-files till din server.</li>
+<li>Ändra namnet på filen blank_ config.php till config.php.</li>
+<li>Ändra fil och mapprättighetter via CHMOD till 777 för följande filer och mappar:
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul></li>
+<li>Gå till din domän och kör setup.php, exempelvis http://www.dindomän.se/setup.php.</li>
+<li>Slutför installationen genom att följa anvisningarna på skärmen.</li>
+<li>Ändra filrättigheterna via CHMOD på filen config.php till 644 samt ta bort setup.php från din server.</li>
+</ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Uppgradering från v6.00.1xx, v6.00.2xx eller v6.00.3xx</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Innan uppgradering rekommenderas säkerhetskopiering av hela hemsidan samt databasen. Under uppgraderingen kommer tabellen för fotogalleriet att döpas om. Du kan importera dina gamla fotoalbum och foton till det nya fotogalleriet genom att använda vår fotokonverteringsinfusion, som du hämtar på <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>.
+<ol>
+<li>Ladda upp filen upgrade.php från relevant mapp för din version till administrationsmappen på din server.</li>
+<li>Logga in som Superadministratör och klicka Upgrade via administrationspanelen.</li>
+<li>Följ samtliga uppmaningar på skärmen tills du ser: "Database upgrade complete". .</li>
+<li>Ladda upp php-filesmappen till din server.</li>
+<li>Försäkra dig om att följande mappar och filer har rättigheterna 777: 
+<ul style='list-style-type:disc'><li>images/photoalbum/submissions/</li>
+<li>images/news_cats/ ( endast v6.00.1x)</li>
+<li>images/imagelist.js ( endast v6.00.1x)</li>
+</ul></li></ol></td>
+</tr>
+<tr>
+<td class='tbl2'><b>4. Säkerhetsåtgärder</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Ett par generella råd för att göra din hemsida så säker som möjligt:
+<ul style='list-style-type:disc'>
+<li>Försäkra dig om att filen config.php är skrivskyddad efter genomförd installation (rättigheterna skall ställas till 644).</li>
+<li>Försäkra dig alltid om att filen setup.php tas bort från din server så fort PHP-Fusion är installerat.</li>
+<li>Använd alltid olika lösenord för FTP och MySQL - databaser.</li>
+<li>Tillåt aldrig filtillägg i forumen med filtilläggen  php, html, exe, eller någon form av textfiler.</li>
+</ul></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>6. Supportsidor</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Om du har frågor eller problem rörande PHP-Fusion, besök huvudsidan för utvecklingen på
+<a href='http://www.php-fusion.co.uk' target='_blank'>www.php-fusion.co.uk</a>
+och posta dina frågor i något av våra forum. Alternativelt kan du besöka vår IRC chat supportkanal på
+<a href='irc://irc.cad-net.org/phpfusion'>irc.cad-net.org/phpfusion</a>.<br><br>
+PHP-Fusion expanderas genom s k Infusions, ett plug - insystem som är extremt enkelt att använda. 
+Du kan finna en uppsjö av Infusions på <a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a>.<br><br>
+Om du inte är nöjd med dom teman som kommer med installationen av PHP-Fusion, så kan du besöka vår officiella temasida på
+ <a href='http://www.phpfusion-themes.com' target='blank'>http://www.phpfusion-themes.com</a> 
+där du kommer att finna många ytterligare teman med hög kvalitet.<br><br>
+PHP-Fusion har också ett växande antal officiella supportsidor i bland annat följande länder:
+<li><a href='http://www.elife.ae' class='side'>Arabisk support</a></li>
+<li><a href='http://www.phpfusion.be' target='blank'>Belgien</a></li>
+<li><a href='http://php-fusion.cms-bg.org' class='side'>Bulgarien</a></li>
+<li><a href='http://www.phpfusion-bosnia.com/' class='side'>Bosnien</a></li>
+<li><a href='http://www.phpfusion.dk' target='blank'>Danmark</a></li>
+<li><a href='http://www.phpfusion.fr.com' target='blank'>Frankrike</a></li> 
+<li><a href='http://www.php-fusion.de' target='blank'>Tyskland</a></li>
+<li><a href='http://www.fusion.alaviweb.com' target='blank'>Iran</a></li>
+<li><a href='http://www.php-fusion.it' class='side'>Italien</a></li>
+<li><a href='http://www.php-fusion.lt' target='blank'>Litauen</a></li>
+<li><a href='http://www.phpfusion.nl' target='blank'>Nederländerna</a></li>
+<li><a href='http://www.php-fusion.pl' target='blank'>Polen</a></li>
+<li><a href='http://php-fusion.int.ru' class='side'>Ryssland</a></li>
+<li><a href='http://www.php-fusion.sw' target='blank'>Sverige</a></li>
+<li><a href='http://www.phpfusion-tw.com' target='blank'>Taiwan</a></li>
+<li><a href='http://www.phpfusion-tr.com' target='blank'>Turkiet.</li></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>7. Tack till...</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Tack till nedanstående personer för deras medverkan:<br><br>
+Shedrock - Officiell grafisk designer<br>
+Janmol - Marknadsundersökning & ytterligare designlösningar<br>
+KEFF - För tokiga idéer som inte var så tokiga!<br>
+Rayxen - Tillägg till koden och modifieringar<br>
+Sheldon - Teknisk support och hjälp med hosting<br>
+<br>
+<b>Tredjepartslösningar:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v2.0.6.1</a> - En HTML WYSIWYG editor av Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer</a> - En sendmail class med stöd för SMTP, av Brent R. Matzelle.<br>
+<a href='http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload'>HTTPDownload</a> - En nerladdningshanteringsklass av Nguyen Quoc Bao.</td>
+</tr>
+</table>
+
+</body>
+</html>

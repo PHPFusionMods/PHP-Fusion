@@ -1,0 +1,174 @@
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-2'>
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+<b>Verzió:</b> 6.01.19 - <b>Közzététel:</b> April 2008<br>
+<b>Magyar változat</b>: Ephyx & Korcsii</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>1. Bemutatás</b></td>
+</tr>
+<tr>
+<td class='tbl1'>A PHP-Fusion egy nyílt forráskódú tartalom kezelő rendszer (CMS) ami PHP-ben íródott.
+Az oldal tartalmát mySQL adatbázisban tárolja, és tartalmaz egy egyszerű, mindenre kiterjedő adminisztrációs rendszert.
+A  PHP-Fusion tartalmaz minden olyan dolgot, amit más CMS rendszerekben látni lehet.
+<p>
+A PHP-Fusion a GNU General Public License 2. verziója alatt került ki a fejlesztők keze alól.
+Bővebb információkért látogass el a <a href='http://www.gnu.org/'>www.gnu.org</a> 
+oldalra, vagy tekintsd meg a csomagban mellékelt gpl.txt-t.
+Ez azt jelenti, hogy teljesen ingyenes, és a fájlokat saját elképzeléseid szerint változtathatod meg, 
+de minden féleképen tüntesd fel, hogy az a saját változatod.
+Az oldal aljáról a "Powered by PHP-Fusion" copyright megjegyzést is ki szabad törölni. 
+Szerintünk viszont ezt illik ott hagyni, elismervén a több száz óra kemény munkát, 
+amit a fejlesztők az PHP-Fusion jobbá illetve biztonságosabbá tételével töltöttek.
+Ha mégis leszeded a copyright-ot, legalább támogasd anyagilag is Paypal-on keresztül a fejlesztőket a főoldalon.</td>
+</tr>
+<tr>
+<td class='tbl2'><b>2. Telepítés</b></td>
+</tr>
+<tr>
+<td class='tbl1'><ol>
+<li>Töltsd fel a php-files mappa tartalmát a szerverre.</li>
+<li>Nevezd át a blank_config.php fájlt config.php-ra.</li>
+<li>A következő fájlok és mappák jogosultságát állítsd 777-re (CHMOD):
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul></li>
+<li>A böngésződben nyisd meg a setup.php-t pl.: http://www.yourdomain.com/setup.php.</li>
+<li>Az utasítások szerint töltsd ki az űrlapokat.</li>
+<li>A config.php jogosultságait állítsd vissza 644-re ÉS töröld a setup.php-t a szerverről.</li>
+</ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Frissítés a 6.00.1xx, 6.00.2xx vagy 6.00.3xx verziókról</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Frissítés előtt erősen ajánljuk, hogy csinálj egy biztonsági másolatot az oldalról és az adatbázisról.<br>
+A frissítés során a galéria táblái átnevezésre kerülnek. A fotó konverterrel importálni tudod a régi fotó albumaidat és fotóidat az új fotógalériába. 
+Az ehhez szükséges konverter infusion-t megtalálhatod a <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a> angol oldalon 
+vagy a magyar support oldalon: <a href='http://www.php-fusion.co.hu'>www.php-fusion.co.hu</a>.<br>
+Ez a verzió számos strukturális változást tartalmaz és néhány elem nem fog működni amíg nem frissíted az összes fájl.</b>
+<ol>
+<li>Töltsd fel az upgrade.php-t a megfelelő verzió mappájából a szerver administraton mappájába.</li>
+<li>Jelentkezz be az oldalra Fő adminisztrátorként és menj az administráció/rendszer/frissítésre.</li>
+<li>Kövesd az utasításokat, amíg azt nem látod, hogy "Database upgrade complete".</li>
+<li>Töltsd fel a fájlokat a php-files könyvtárból a szerverre.</li>
+<li>Elleőritd, hogy a következő fájlok jogosultsága 777 (CHMOD):
+<ul style='list-style-type:disc'><li>images/photoalbum/submissions/</li>
+<li>images/news_cats/ (csak v6.00.1x)</li>
+<li>images/imagelist.js (csak v6.00.1x)</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>4. Biztonsági tippek</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Néhány hasznos javaslat, oldalad biztonsága érdekében:
+<ul style='list-style-type:disc'>
+<li>Ellenőrizd hogy a config.php nem írható (jogosultsága 644)(CHMOD).</li>
+<li>Ne hagyd a szerveren a setup.php ha már telepítetted a PHP-Fusion-t.</li>
+<li>Mindig különböző legyen az FTP és MySQL jelszó.</li>
+<li>Soha ne engedélyezz a fórumban csatolásként php, html, exe, vagy egyéb text fájlt.</li>
+</ul></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>5. Support oldalak</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Ha bármi kérdésed vagy problémád adódik a PHP-Fusion használata közben, látogass el a fő fejlesztői háttéroldalra: 
+<a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a> 
+- és írj egy üzenetet a fórumba. Esetleg meglátogathatod az IRC chat support channel-t: 
+<a href='irc://irc.outerweb.org/phpfusion'>irc.outerweb.org/phpfusion</a>.<br><br>
+A PHP-Fusion bővithető Infusion-ok hozzáadásával. Ezek plugin-ok amiket egyszerűen lehet telepíteni.
+Rengeteg hasznos Infusion-t találhatsz MOD oldalunkon: 
+<a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a>.<br><br>
+Ha nem elégszel meg a PHP-Fusion alap felületeivel (theme) látogass el a hivatalos theme oldalunkra, 
+ahol rengeteg magas minőségű felületet találhatsz: 
+<a href='http://www.phpfusion-themes.com' target='blank'>www.phpfusion-themes.com</a> 
+<br><br>
+A PHP-Fusion több nyelvi háttéroldallal rendelkezik világszerte:<br>
+<a href='http://www.elife.ae' class='side'>Arábia</a>,
+<a href='http://www.phpfusion-au.com' class='side'>Ausztrália</a>,
+<a href='http://www.phpfusion.be' class='side'>Belgium</a>,
+<a href='http://www.phpfusion-bosnia.com/' class='side'>Bosznia</a>,
+<a href='http://php-fusion.cms-bg.org' class='side'>Bulgária</a>,
+<a href='http://www.phpfusion.dk' class='side'>Dánia</a>,
+<a href='http://www.phpfusion-fr.com/' class='side'>Franciaország</a>,
+<a href='http://www.phpfusion.nl' class='side'>Hollandia</a>,
+<a href='http://www.phpfusion-cro.be/' class='side'>Horvátország</a>,
+<a href='http://www.fusion.alaviweb.com' class='side'>Irán</a>,
+<a href='http://www.php-fusion.pl' class='side'>Lengyelország</a>,
+<a href='http://www.php-fusion.lt' class='side'>Litvánia</a>,
+<a href='http://www.php-fusion.co.hu'  class='side'><b>Magyarország</b></a>,
+<a href='http://www.php-fusion.de' class='side'>Németország</a>,
+<a href='http://www.php-fusion.it' class='side'>Olaszország</a>,
+<a href='http://php-fusion.int.ru' class='side'>Oroszország</a>,
+<a href='http://www.php-fusion.se' class='side'>Svédország</a>,
+<a href='http://www.phpfusion-tw.com' class='side'>Taiwan</a>,
+és <a href='http://www.phpfusion-tr.com' class='side'>Törökország</a></tr>
+<tr>
+<td class='tbl2'><b>6. Köszönet</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Köszönjük az alábbiak segítségét:<br><br>
+Shedrock - Felületek és az adminisztráció ikonai<br>
+Janmol - Piac kutatás & design koncepció<br>
+KEFF - Az őrült ötletekért, persze ő nem őrült!<br>
+Rayxen - Kódok & MODok<br>
+Sheldon - Technikai támogatás & hosting<br>
+<br>
+<b>Harmadik személy:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v2.0.5.1</a> - HTML WYSIWYG szerkesztő: Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer</a> - sendmail class with SMTP támogatás: Brent R. Matzelle.<br>
+<a href='http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload'>HTTPDownload</a> - Letöltéseket kezelő osztály: Nguyen Quoc Bao.
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+<b>Version:</b> 6.01.19 - <b>Released:</b> April 2008</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>1. Introduction</b></td>
+</tr>
+<tr>
+<td class='tbl1'>PHP-Fusion is a
+light-weight open-source content management system (CMS) written in PHP. It utilises a
+mySQL database to store your site content and includes a simple, comprehensive adminstration
+system. PHP-Fusion includes the most common features you would expect to see in many other
+CMS packages.
+
+<p>PHP-Fusion is released under the terms and conditions of version 2 of the GNU
+General Public License. For further information please visit
+<a href='http://www.gnu.org/'>www.gnu.org</a> or refer to the gpl.txt file included in the
+distribution package. You may alter the code in any way you wish and redistribute it either
+as is or containing your own modifications. We would appreciate it if you retained the
+"Powered by PHP-Fusion" footer copyright notice. We feel this is fair when you consider the
+many hundreds of hours of work that continues to go into the development of this project.
+However, if you do remove the footer copyright notice please consider making a donation
+via Paypal.</td>
+</tr>
+<tr>
+<td class='tbl2'><b>2. Installation</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Before installing PHP-Fusion you need to create a mysql database. You
+can do this via your web-hosting control panel or phpMyAdmin. Make sure you have your
+mysql access details at hand including the hostname, username, password and database
+name as you will need to specify these during setup.
+
+<p><b>1.</b> Before you upload the files, rename the file blank_config.php (located
+in the folder entitled php-files) to config.php.
+
+<p><b>2.</b> Upload the contents of the php-files folder to your web-server.
+
+<p><b>3.</b> Unless you are running PHP-Fusion on a local server, in most cases you
+will need to CHMOD the following files & folders to 777:
+
+<ul style='list-style-type:disc'>
+<li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul>
+
+<p><b>4.</b> Goto your website, setup.php should start automatically, if it does not
+appear you should run setup.php manually by entering your full site url followed by
+/setup.php. Example: http://www.yourdomain.com/setup.php.
+
+<p><b>5.</b> Complete the setup process by following all on-screen prompts.
+
+<p><b>6.</b> Immediately after completing the installation of PHP-Fusion you must
+CHMOD config.php back to 644 AND delete setup.php from your web-server.</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Upgrade from v6.00.1xx, v6.00.2xx or v6.00.3xx</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Before you upgrade we strongly recommend that you backup your
+files and your database as PHP-Fusion 6.01 is a major update compared to its
+predecessors. You need to follow these instructions precisely.
+
+<p><b>1.</b> First you must upload the correct upgrade script from the folder
+named 'upgrade v6.00.xxx' to the administration folder of your site.
+
+<p><b>2.</b> Login to your site as the Super Administrator. Under the System
+Admin tab of the Admin Panel, click on Upgrade then click the button marked
+Upgrade. MAKE SURE the page reloads stating 'Database upgrade complete', failure
+to do so may cause problems later on.
+
+<p><b>3.</b> VERY IMPORTANT: Since this release contains a number of structural
+changes, some elements of your site will not work properly until you have
+updated all of your files. YOU MUST upload ALL of the files from the php-files
+folder. Failing to upload all of the files will cause one or more of the
+following problems: no admin access, lower-center and right side panels mixed up,
+new gallery not working and more.
+
+<p><b>4.</b> The photo gallery in v6.01 has been completely rewritten. We have
+created an infusion called 'Photo Converter' which will import your albums and
+photos into the new database tables. You should ONLY use the Photo Converter
+Infusion AFTER completing the above steps. It is designed to run under specific
+conditions which are created by the upgrade script and therefore will not work
+prior to upgrading. Be sure to verify the new Photo Settings under System admin
+before running the Photo Converter.
+
+<p><b>5.</b> After completing the above steps, you need to chmod the folder
+images/photoalbums/submissions to 777. You may also want to add a link under
+System Admin -> Site Links entitled 'Submit Photo' with the url set to
+'submit.php?stype=p'.
+
+<p>If at all you are any doubt please feel free to ask one of our support
+sites for help, there are plenty of knowledgeable users in our community
+who can help or advise you regarding the upgrade process.</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>4. Security tips</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Here are some useful tips to help keep your site secure:
+<ul style='list-style-type:disc'>
+<li>Ensure config.php is not writable (should be CHMODed to 644).</li>
+<li>Never leave setup.php on your server once PHP-Fusion is installed.</li>
+<li>Always ensure your FTP and MySQL passwords are different.</li>
+<li>Never allow forum attachments such as php, html, exe, or any type of text file.</li>
+</ul></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>5. Support sites</b></td>
+</tr>
+<tr>
+<td class='tbl1'>If you have any questions or problems regarding PHP-Fusion, please visit
+the main development site at <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>
+and post a message on our forums. Alternatively you can visit our IRC chat support channel at
+<a href='irc://irc.outerweb.org/phpfusion'>irc.outerweb.org/phpfusion</a>.<br><br>
+PHP-Fusion can be expanded by adding Infusions, these are plugins which are extremely easy
+to install. You can find a variety of useful Infusions on our mod site at
+<a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a>.<br><br>
+If you are not satisfied with PHP-Fusion's bundled themes you may want to visit our
+official theme site at <a href='http://www.phpfusion-themes.com' target='blank'>www.phpfusion-themes.com</a> where
+you will find a variety of high quality themes.<br><br>
+PHP-Fusion also has a number of official foreign language support sites based in
+<a href='http://www.elife.ae' class='side'>Arabia</a>,
+<a href='http://www.phpfusion.be' class='side'>Belgium</a>,
+<a href='http://php-fusion.cms-bg.org' class='side'>Bulgaria</a>,
+<a href='http://www.phpfusion-bosnia.com/' class='side'>Bosnia</a>,
+<a href='http://www.phpfusion-cro.be/' class='side'>Croatia</a>,
+<a href='http://www.phpfusion.dk' class='side'>Denmark</a>,
+<a href='http://www.phpfusion-fr.com/' class='side'>France</a>,
+<a href='http://www.php-fusion.de' class='side'>Germany</a>,
+<a href='http://www.php-fusion.co.hu'  class='side'>Hungary</a>,
+<a href='http://www.fusion.alaviweb.com' class='side'>Iran</a>,
+<a href='http://www.php-fusion.it' class='side'>Italy</a>,
+<a href='http://www.php-fusion.lt' class='side'>Lithuania</a>,
+<a href='http://www.phpfusion.nl' class='side'>Netherlands</a>,
+<a href='http://www.php-fusion.pl' class='side'>Poland</a>,
+<a href='http://php-fusion.int.ru' class='side'>Russia</a>,
+<a href='http://www.php-fusion.se' class='side'>Sweden</a>,
+<a href='http://www.phpfusion-tw.com' class='side'>Taiwan</a>,
+and <a href='http://www.phpfusion-tr.com' class='side'>Turkey</a></tr>
+<tr>
+<td class='tbl2'><b>6. Acknowledgements</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Thanks to the following for their additional work:<br><br>
+Shedrock - Additional Themes and administration icons<br>
+Janmol - Market research & additional design concepts<br>
+KEFF - For silly ideas that aren't actually silly!<br>
+Rayxen - Additional code & mods<br>
+Sheldon - Tech support & additional hosting<br>
+<br>
+<b>3rd Party Scripts:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v2.0.6.1</a> - A HTML WYSIWYG editor by Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer</a> - A sendmail class with SMTP support by Brent R. Matzelle.<br>
+<a href='http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload'>HTTPDownload</a> - A download handler class by Nguyen Quoc Bao.</td>
+</tr>
+</table>
+
+</body>
+</html>

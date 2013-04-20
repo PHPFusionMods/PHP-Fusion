@@ -1,0 +1,56 @@
+<?php
+// Admin Links
+$locale['200'] = $settings['sitename']." Administrasjonsside";
+$locale['ac01'] = "Innholdsadministrasjon";
+$locale['ac02'] = "Brukeradministrasjon";
+$locale['ac03'] = "Systemadministrasjon";
+$locale['ac04'] = "Infusioner";
+$locale['201'] = "Administratorer";
+$locale['202'] = "Artikelkategorier";
+$locale['203'] = "Artikler";
+$locale['204'] = "Utestengelse";
+$locale['205'] = "Kommentarer";
+$locale['206'] = "Brukeropprettede sider";
+$locale['207'] = "Sikkerhetskopiering";
+$locale['208'] = "Filkategorier";
+$locale['209'] = "Filer";
+$locale['210'] = "OSS's";
+$locale['211'] = "Debatt";
+$locale['212'] = "Bilder";
+$locale['213'] = "Infusioner";
+$locale['214'] = "Installerte infusioner";
+$locale['215'] = "Brukere";
+$locale['216'] = "Nyheter";
+$locale['217'] = "Elementadministrasjon";
+$locale['218'] = "Fotoalbum";
+$locale['219'] = "PHP Info";
+$locale['220'] = "Avstemninger";
+$locale['221'] = "Skrabbleblokk";
+$locale['222'] = "Interne linker";
+$locale['223'] = "Brukerforslag";
+$locale['224'] = "Oppgradering";
+$locale['225'] = "Brukergrupper";
+$locale['226'] = "Linkkategorier";
+$locale['227'] = "Linker";
+$locale['228'] = "Hovedinnstillinger";
+$locale['229'] = "Dato og klokkeslett";
+$locale['230'] = "Debatinnstillinger";
+$locale['231'] = "Brukerregistrering";
+$locale['232'] = "Fotoalbum";
+$locale['233'] = "Diverse innstillinger";
+$locale['234'] = "Private beskjeder";
+$locale['235'] = "Nyhetskategorier";
+// Site Information
+$locale['250'] = "Informasjon";
+$locale['251'] = "Registrerte medlemmer:";
+$locale['252'] = "Ikke aktiverte medlemmer:";
+$locale['253'] = "Utestengte medlemmer:";
+$locale['254'] = "Nyhetsforslag:";
+$locale['255'] = "Artikelforslag:";
+$locale['256'] = "Linkforslag:";
+$locale['257'] = "Kommentarer:";
+$locale['258'] = "Replikker skrabbleblokk:";
+$locale['259'] = "Debatinnlegg:";
+$locale['260'] = "Bilde-Forslag:";
+$locale['261'] = "Bilde-Galleri:";
+?>

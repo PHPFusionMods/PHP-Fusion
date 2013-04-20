@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=windows-1253'>
+<meta http-equiv="Content-Language" content="el">
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright © 2002 - 2008 Nick Jones<br>
+<b>Έκδοση:</b> 6.01.19 - <b>Δημοσιεύτηκε:</b> April 2008</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>1. Εισαγωγή</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Το PHP-Fusion είναι ένα όλα<span lang="de">-</span>σε<span lang="de">-</span>ένα 
+open-source content management σύστημα (CMS) που γράφτηκε με <span lang="de">PHP</span>. 
+Χρησιμοποιεί μια βάση δεδομένων mySQL για να αποθηκεύσει τα δεδομένα της σελίδας 
+και περιλαμβάνει ένα απλό περιεκτικό σύστημα adminstration. Το PHP-Fusion 
+περιλαμβάνει τα πιο κοινά χαρακτηριστικά που θα αναμένατε να δείτε σε πολλά άλλα 
+συστήματα <span lang="de">C</span>MS.
+
+<p><span lang="de">To </span>PHP-Fusion εκδόθηκε υπό τους όρους της Έκδοσης 2 
+GNU General Public License. Για περισσότερες πληροφορίες παρακαλώ επισκεφτείτε
+<a href='http://www.gnu.org/'>www.gnu.org</a> ή πηγαίνετε στο αρχείο gpl.txt το 
+οποίο υπάρχει στον Φάκελο του <span lang="de">PHP-Fusion</span>. Έχετε το 
+δικαίωμα να αλλάξετε τον Κώδικα όμως δεν σας επιτρέπεται να το μεταδώσετε ως 
+δικό σας προϊών. Θα εκτιμούσαμε εάν διατηρούσατε το &quot;Powered by PHP-Fusion&quot; στο 
+Τέλος της σελίδας. Αισθανόμαστε ότι αυτό είναι δίκαιο διότι αν σκεφτείτε το 
+πόσες εκατοντάδες ώρες εργασίας χρειάστηκαν για την ανάπτυξη αυτού του 
+προγράμματος. Εντούτοις, εάν αφαιρέσετε την σημείωση πνευματικών δικαιωμάτων θα 
+σας παρακαλούσα να στείλετε μια Δωρεά μέσω Paypal.</td>
+</tr>
+<tr>
+<td class='tbl2'><b>2. Εγκατάσταση</b></td>
+</tr>
+<tr>
+<td class='tbl1'><ol>
+<li>Ανεβάστε το περιεχόμενο του Φακέλου php-files στον κεντρικό Υπολογιστή σας.</li>
+<li>Μετονομάστε το blank_config.php σε config.php.</li>
+<li>Δώστε δικαιώματα 777 στους παρακάτω φακέλους και αρχεία:
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul></li>
+<li>Πηγαίνετε στην σελίδα σας και τρέξτε το setup.php π.χ. http://www.ονομα.<span lang="de">gr</span>/setup.php.</li>
+<li>Ολοκληρώστε την Εγκατάσταση Βήμα <span lang="de">- </span>Βήμα όπως σας 
+ζητείται.</li>
+<li>Δώστε δικαίωμα 644 στο config.php ΚΑΙ διαγράψτε το setup.php από τον 
+κεντρικό Υπολογιστή σας.</li>
+</ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Αναβάθμιση από v6.00.1xx, v6.00.2xx ή v6.00.3xx</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Πριν ξεκινήσετε την αναβάθμιση προτείνουμε να σώσετε τα αρχεία 
+και την Βάση Δεδομένων σας. Κατα την διάρκεια της αναβάθμισης, οι πίνακες της 
+Βάσης Δεδομένων που βρίσκεται το περιεχόμενο του Άλμπουμ Φωτογραφιών σας θα 
+μετονομαστεί. Μπορείτε να εισάγετε τα παλιά Φώτο<span lang="de">-</span>Άλμπουμ 
+σας και Φωτογραφίες αν χρησιμοποιήσετε το Εργαλείο με όνομα photo converter και 
+είναι διαθέσιμο στο<br><a href='http://www.php-fusion.co.uk'>
+www.php-fusion.co.uk</a>. Παρακαλώ σημειώστε ότι αυτή η Έκδοση διάφορες δομικές 
+αλλαγές και ως αποτέλεσμα μερικά στοιχεία στην Σελίδα σας να μην λειτουργήσουν 
+σωστά μέχρι που να ενημερώσετε όλα τα αρχεία σας ολοκληρωτικά.
+<ol>
+<li>Ανεβάστε το upgrade.php από τον Φάκελο upgrade παράλληλα στην τρέχουσα 
+Έκδοση στον Φάκελο administration.</li>
+<li>Συνδεθείτε στην σελίδα σας ως Κύριος Διαχειριστής και πατήστε Αναβάθμιση ή 
+Upgrade μέσω της Επιτροπής Διαχειριστών.</li>
+<li>Ακολουθείστε όλες τις κινήσεις που σας ζητείται μέχρι να ολοκληρωθεί η 
+Αναβάθμιση&quot;.</li>
+<li>Ανεβάστε όλο το περιεχόμενο του Φάκελου php-files στον κεντρικό Υπολογιστή 
+σας.</li>
+<li>Βεβαιωθείτε ότι οι ακόλουθοι Φάκελοι και αρχεία έχουν δικαίωμα 777:
+<ul style='list-style-type:disc'><li>images/photoalbum/submissions/</li>
+<li>images/news_cats/ (v6.00.1x μόνο)</li>
+<li>images/imagelist.js (v6.00.1x μόνο)</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>4. Συμβουλές ασφαλείας</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Παρακάτω θα δείτε μερικές χρήσιμες συμβουλές για να διατηρήσετε 
+την Σελίδα σας ασφαλές:
+<ul style='list-style-type:disc'>
+<li>Βεβαιωθείτε ότι το config.php δεν έχει δικαιώματα πρόσβασης για το κοινό 
+(δώστε 644 για δικαίωμα πρόσβασης).</li>
+<li>Μην αφήνετε ποτέ το setup.php στον κεντρικό Υπολογιστή σας όταν το PHP-Fusion 
+είναι εγκατεστημένο.</li>
+<li>Σιγουρευτείτε ότι οι κωδικοί του FTP&nbsp; και του MySQL σας είναι 
+διαφορετικοί.</li>
+<li>Μην επιτρέπεται ποτέ συνάψεις όπως php, html, exe, ή κάτι παρόμοιο που έχει 
+σχέση με αρχείο κειμένου.</li>
+</ul></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>5. Σελίδες υποστήριξης</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Αν έχετε ερωτήσεις ή προβλήματα περί του PHP-Fusion, παρακαλώ 
+επισκεφτείτε την κεντρική σελίδα στο <a href='http://www.php-fusion.co.uk'>
+www.php-fusion.co.uk</a>
+<span lang="de">( </span>για ελληνική υποστήριξη στο <span lang="de">
+<a href="http://www.php-fusion.gr">www.php-fusion.gr</a> ) </span>και στείλτε 
+ένα μήνυμα στο Φόρουμ. Διαφορετικά μπορείτε να μπείτε και στο κανάλι υποστήριξης 
+του <span lang="de">IRC Chat</span> στο
+<a href='irc://irc.outerweb.org/phpfusion'>irc.outerweb.org/phpfusion</a>.<br><br>
+Το PHP-Fusion μπορεί να επεκταθεί με πρόσθετες τις λεγόμενες Επεκτάσεις, τα 
+οποία είναι <span lang="de">Plugins </span>που μπορείτε πολύ εύκολα να τα 
+εγκαταστήσετε. Μπορείτε να βρείτε μια μεγάλη συλλογή Επεκτάσεων στην σελίδα
+<a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a> 
+και για ελληνικά στο <span lang="de"><a href="http://www.php-fusion.gr">
+www.php-fusion.gr</a>.</span><br><br>
+Αν δεν είστε ικανοποιημένοι με τα που υπάρχουν ίδει στο PHP-Fusion τότε 
+επιστεφτείτε την σελίδα&nbsp; <a href='http://www.phpfusion-themes.com' target='blank'>
+www.phpfusion-themes.com</a> όπου θα βρείτε μια μεγάλη συλλογή από
+<span lang="de">Themes </span>υψηλής ποιότητας.<br><br>
+Το PHP-Fusion έχει έναν ικανοποιητικό αριθμό Ιστοσελίδων υποστήριξης για πολλές 
+Γλώσσες με Βάση την <a href="http://www.elife.ae">Αραβία</a>,
+<a href='http://www.phpfusion.be' class='side'>Βέλγιο</a>,
+<a href='http://php-fusion.cms-bg.org' class='side'>Βουλγαρία</a>,
+<a href='http://www.phpfusion-bosnia.com/' class='side'>Βοσνία</a>,
+<a href='http://www.phpfusion-cro.be/' class='side'>Κροατία</a>,
+<a href='http://www.phpfusion.dk' class='side'>Δανία</a>,
+<a href='http://www.phpfusion-fr.com/' class='side'>Γαλλία</a>,
+<a href='http://www.php-fusion.de' class='side'>Γερμανία</a>,
+<a href="http://www.php-fusion.gr/">Ελλάδα</a>,
+<a href='http://www.php-fusion.co.hu'  class='side'>Ουγγαρία</a>,
+<a href='http://www.fusion.alaviweb.com' class='side'>Ιράν</a>,
+<a href='http://www.php-fusion.it' class='side'>Ιταλία</a>,
+<a href='http://www.php-fusion.lt' class='side'>Λιθουανία</a>,
+<a href='http://www.phpfusion.nl' class='side'>Ολλανδία</a>,
+<a href='http://www.php-fusion.pl' class='side'>Πολωνία</a>,
+<a href="http://php-fusion.int.ru">Ρωσία</a>,
+<a href='http://www.php-fusion.se' class='side'>Σουηδία</a>,
+<a href="http://www.phpfusion-tw.com">Ταιβάν</a>, και
+<a href="http://www.phpfusion-tr.com">Τουρκία</a></tr>
+<tr>
+<td class='tbl2'><b>6. Αναγνώριση</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Ευχαριστούμε στους ακόλουθους για την βοήθειά τους:<br><br>
+Shedrock - Πρόσθετα Themes και Εικόνες Διαχειριστών<br>
+Janmol - Έρευνα αγοράς &amp; πρόσθετες ιδέες σχεδίου<br>
+KEFF - Για τις ανόητες ιδέες που δεν είναι πραγματικά ανόητες!<br>
+Rayxen - Πρόσθετος κώδικας &amp; εργαλεία<br>
+Sheldon - Τεχνική υποστήριξη &amp; πρόσθετη φιλοξενία<br>
+<span lang="de">Bill - </span>Μετάφραση στα ελληνικά <span lang="de">(
+<a href="http://www.php-fusion.gr">www.php-fusion.gr</a> )</span><br>
+<br>
+<b>Κώδικες 3ης παρτίδας:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v2.0.6.1</a> - Ο HTML WYSIWYG 
+editor από τον Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer</a> - Το sendmail class με 
+SMTP υποστίρηξη από τον Brent R. Matzelle.<br>
+<a href='http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload'>HTTPDownload</a> 
+- Ένα download handler class από τον Nguyen Quoc Bao.</td>
+</tr>
+</table>
+
+</body>
+</html>

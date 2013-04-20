@@ -1,0 +1,257 @@
+a {
+	color : #666;
+	text-decoration : none;
+}
+
+a:hover {
+	color : #888;
+	text-decoration : underline;
+}
+
+a.side {
+	color : #666;
+	text-decoration : none;
+}
+
+a:hover.side {
+	color : #888;
+	text-decoration : underline;
+}
+
+a.white {
+	color : #e1e1e1;
+	text-decoration : none;
+}
+
+a:hover.white {
+	color : #e1e1e1;
+	text-decoration : underline;
+}
+
+body {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	margin : 0px;
+}
+
+form {
+	margin : 0px;
+}
+
+hr {
+	height : 2px;
+	border-bottom : 1px solid #fff;
+	border-top : 1px solid #efeff4;
+}
+
+hr.side-hr {
+	height : 2px;
+	border-bottom : 1px solid #fffff4;
+	border-top : 1px solid #cfcfd4;
+}
+
+td {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+}
+
+pre {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+}
+
+.alt {
+	color : #555;
+}
+
+.white-header {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	color : #fff;
+	background-color : #444;
+	padding : 4px 10px 4px 10px;
+}
+
+.full-header {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	color : #000;
+	background-color : #fff;
+	padding : 5px 10px 5px 10px;
+}
+
+.footer {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	color : #666;
+	background-color : #efeff4;
+	padding : 4px 10px 4px 10px;
+}
+
+.button {
+	font-family : "trebuchet ms", Tahoma, Arial, Verdana, Sans-Serif;
+	font-size : 10px;
+	color : #fff;
+	background-color : #444;
+	height : 20px;
+	border : 1px solid #fff;
+	margin-top : 2px;
+}
+
+.textbox {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	color : #444;
+	background-color : #fff;
+	border : 1px solid #444;
+}
+
+.main-body {
+	font-size : 11px;
+	color : #444;
+	background-color : #fff;
+	padding : 4px 4px 5px 4px;
+}
+
+.side-body {
+	font-size : 10px;
+	color : #444;
+	background-color : #efeff4;
+	padding : 4px;
+}
+
+.main-bg {
+	color : #444;
+	background-color : #fff;
+	padding : 0px 0px 5px 0px;
+}
+
+.border {
+	border : 1px solid #666;
+}
+
+.side-border-left {
+	padding : 0px 10px 0px 10px;
+}
+
+.side-border-right {
+	padding : 0px 10px 0px 10px;
+}
+
+.news-footer {
+	font-size : 10px;
+	color : #555;
+	background-color : #efeff4;
+	padding : 3px 4px 4px 4px;
+}
+
+.capmain {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	font-weight : bold;
+	color : #fff;
+	background-color : #444;
+	padding : 2px 4px 4px 4px;
+}
+
+.scapmain {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	font-weight : bold;
+	color : #444;
+	background-color : #fff;
+	padding : 4px;
+}
+
+.tbl-border {
+	color : #444;
+	background-color : #ddd;
+}
+
+.tbl {
+	font-size : 11px;
+	padding : 4px;
+	color : #444;
+	background-color : #fff;
+}
+
+.tbl1 {
+	font-size : 11px;
+	color : #444;
+	background-color : #fff;
+	padding : 4px;
+}
+
+.tbl2 {
+	font-size : 11px;
+	color : #444;
+	background-color : #eee;
+	padding : 4px;
+}
+
+.forum-caption {
+	font-size : 11px;
+	font-weight : bold;
+	color : #fff;
+	background-color : #444;
+	padding : 2px 4px 4px 4px;
+}
+
+.quote {
+	color : #000;
+	background-color : #efeff4;
+	padding : 4px;
+	margin : 0 20px;
+	border : 1px solid #444;
+}
+
+.poll {
+	height : 12px;
+	border : 1px solid #000;
+}
+
+.comment-name {
+	font-weight : bold;
+	color : #666;
+}
+
+.shoutboxname {
+	font-weight : bold;
+	color : #666;
+	background-color : #efeff4;
+}
+
+.shoutbox {
+	color : #666;
+	background-color : #efeff4;
+}
+
+.shoutboxdate {
+	font-size : 9px;
+	color : #888;
+	background-color : #efeff4;
+}
+
+.small {
+	font-size : 10px;
+	font-weight : normal;
+}
+
+.small2 {
+	font-size : 10px;
+	font-weight : normal;
+	color : #666;
+}
+
+.side-small {
+	font-size : 10px;
+	font-weight : normal;
+	color : #444;
+	background-color : #efeff4;
+}
+
+.side-label {
+	color : #444;
+	background-color : #efeff4;
+	padding : 2px;
+}

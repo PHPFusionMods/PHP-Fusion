@@ -1,0 +1,41 @@
+<?php
+$locale['u001'] = "Felhasználónév:";
+$locale['u002'] = "Jelszó:";
+$locale['u003'] = "Új jelszó:";
+$locale['u004'] = "Jelszó ismét:";
+$locale['u005'] = "E-mail:";
+$locale['u006'] = "E-mail elrejtése?";
+$locale['u007'] = " Igen ";
+$locale['u008'] = " Nem";
+$locale['u009'] = "Lakóhely:";
+$locale['u010'] = "Születésnap:";
+$locale['u011'] = "ICQ:";
+$locale['u012'] = "MSN:";
+$locale['u013'] = "Yahoo:";
+$locale['u014'] = "Honlap URL:";
+$locale['u015'] = "Felület:";
+$locale['u016'] = "Idõeltolódás:";
+$locale['u017'] = "Avatar";
+$locale['u018'] = "Kép feltöltéséhez kattints a 'Tallózás' gombra";
+$locale['u019'] = "Törlés";
+$locale['u020'] = "Aláírás:";
+$locale['u021'] = "AIM:";
+$locale['u022'] = "Max méret: %s / %ux%u pixel";
+// Profilban mutatott adatok
+$locale['u040'] = "Regisztrált:";
+$locale['u041'] = "Üzenõfal hozzászólások:";
+$locale['u042'] = "Hozzászólások:";
+$locale['u043'] = "Fórum hozzászólások:";
+$locale['u044'] = "Utolsó látogatás:";
+$locale['u045'] = "Rang:";
+$locale['u046'] = "Nincs Avatar";
+$locale['u047'] = "Kérésre elrejtve";
+$locale['u048'] = " - ";
+$locale['u049'] = "Soha";
+$locale['u050'] = "IP cím:";
+$locale['u051'] = "E-mail";
+$locale['u052'] = "Honlap";
+$locale['u053'] = "P.Ü.";
+// Profil beállítások
+$locale['u060'] = "Privát üzenet küldése";
+?>

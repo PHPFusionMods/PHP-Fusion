@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion - Informa&#355;ii</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-2'>
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+.hl { font-size:11px; color: navy; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+<b>Versiune:</b> 6.01.19 - <b>Lansat:</b> April 2008</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>1. Introducere</b></td>
+</tr>
+<tr>
+<td class='tbl1'>PHP-Fusion este un sistem integrat de management al con&#355;inutului (CMS) open-source (surs&#259;-deschis&#259;) de categorie u&#351;oar&#259;, scris &#238;n PHP.
+Folose&#351;te o baz&#259; de date mySQL pentru stocarea &#238;ntregului con&#355;inut al site-ului t&#259;u &#351;i include un sistem de administrare u&#351;or &#351;i clar.
+PHP-Fusion include cele mai &#238;nt&#226;lnite facilit&#259;&#355;i pe care v-a&#355;i a&#351;tepta s&#259; le vede&#355;i &#238;n multe alte pachete CMS.
+
+<p>PHP-Fusion este publicat sub termenii &#351;i condi&#355;iile versiunii 2 a
+Licen&#355;ei Publice Generale GNU. Pentru mai multe informa&#355;ii viziteaz&#259; <a href='http://www.gnu.org/'>www.gnu.org</a>
+sau cite&#351;te fi&#351;ierul <span class="hl">gpl.txt</span> inclus &#238;n pachetul de distribu&#355;ie. Po&#355;i modifica
+&#238;n orice fel codul &#351;i s&#259; &#238;l redistribui fie a&#351;a cum este, fie cu modific&#259;rile tale.
+Am aprecia dac&#259; ai re&#355;ine nota de copyright din subsol - <span class="hl">"Powered by PHP-Fusion"</span>.
+Consider&#259;m c&#259; acest lucru este corect, dac&#259; iei &#238;n calcul multele sute de ore de lucru care continu&#259;
+s&#259; intre &#238;n dezvoltarea acestui proiect. Oricum, dac&#259; elimini nota de copyright din subsol, te rug&#259;m
+g&#226;nde&#351;te-te s&#259; ne faci o dona&#355;ie prin Paypal.</td>
+</tr>
+<tr>
+<td class='tbl2'><b>2. Instalarea</b></td>
+</tr>
+<tr>
+<td class='tbl1'><ol>
+<li>&#206;ncarc&#259; con&#355;inutul folderului <span class="hl">php-files</span> pe serverul t&#259;u.</li>
+<li>Redenume&#351;te <span class="hl">blank_config.php</span> &#238;n <span class="hl">config.php</span></li>
+<li>Execut&#259; CHMOD pe urm&#259;toarele fi&#351;iere &#351;i foldere, cu 777:
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul></li>
+<li>Mergi pe site-ul t&#259;u &#351;i ruleaz&#259; <span class="hl">setup.php</span> <em>ex.</em> <span class="hl">http://www.domeniultau.com/setup.php</span>.</li>
+<li>Finalizeaz&#259; procesul de instalare urm&#226;nd to&#355;i pa&#351;ii de pe ecran.</li>
+<li>Schimb&#259; &#238;napoi CHMOD 644 la <span class="hl">config.php</span> &#350;I &#351;terge <span class="hl">setup.php</span> de pe serverul t&#259;u.</li>
+</ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Upgrade de la v6.00.1xx, v6.00.2xx sau v6.00.3xx</b></td>
+</tr>
+<tr>
+<td class='tbl1'>&#206;nainte de upgrade, &#238;&#355;i recomand&#259;m<strong>(!)</strong> s&#259; &#238;&#355;i faci o copie de siguran&#355;&#259; a site-ului &#351;i a bazei de date.
+Pe durata procesului de upgrade, tabelele galeriei foto din baza de date vor fi redenumite. &#206;&#355;i po&#355;i importa fotografiile
+&#351;i albumele de fotografii &#238;n noua galerie, folosind infuzia noastr&#259; de conversie foto, disponibil&#259; la adresa <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>.
+Te rog ia aminte c&#259; aceast&#259; versiune con&#355;ine un num&#259;r de modific&#259;ri structurale &#351;i este posibil ca unele elemente s&#259; nu func&#355;ioneze corect p&#226;n&#259; &#236;&#355;i actualizezi toate fi&#351;ierele.
+<ol>
+<li>&#206;ncarc&#259; <span class="hl">upgrade.php</span> din folderul <span class="hl">upgrade</span> relevant versiunii tale curente &#238;n folderul <span class="hl">administration</span> de pe serverul t&#259;u.</li>
+<li>Conecteaz&#259;-te pe site-ul t&#259;u ca <span class="hl">Super Administrator</span> &#351;i apas&#259; butonul <span class="hl">Upgrade</span> din zona de administrare.</li>
+<li>Urmeaz&#259; to&#355;i pa&#351;ii de pe ecran, p&#226;n&#259; c&#226;nd vezi mesajul <span class="hl">"Database upgrade complete"</span>.</li>
+<li>&#206;ncarc&#259; con&#355;inutul folderului <span class="hl">php-files</span> pe serverul t&#259;u.</li>
+<li>Asigur&#259;-te c&#259; urm&#259;toarele fi&#351;iere &#351;i foldere au CHMOD 777:
+<ul style='list-style-type:disc'><li>images/photoalbum/submissions/</li>
+<li>images/news_cats/ (doar v6.00.1x)</li>
+<li>images/imagelist.js (doar v6.00.1x)</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>4. Sfaturi de securitate</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Aici sunt c&#226;teva sfaturi utile pentru a-&#355;i p&#259;stra site-ul siguran&#355;&#259;.
+<ul>
+<li>Asigur&#259;-te c&#259; fi&#351;ierul <span class="hl">config.php</span> nu poate fi scris (ar trebui s&#259;-i faci CHMOD 644).</li>
+<li>Nu l&#259;sa niciodat&#259; fi&#351;ierul <span class="hl">setup.php</span> pe server, odat&#259; ce PHP-Fusion este instalat.</li>
+<li>&#206;ntotdeauna asigur&#259;-te c&#259; parolele de FTP &#351;i MySQL sunt diferite.</li>
+<li>Niciodat&#259; nu permite ata&#351;amente ca php, html, exe, sau oricare tip de fi&#351;ier text.</li>
+</ul></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>5. Site-uri cu suport tehnic</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Dac&#259; ai &#238;ntreb&#259;ri sau probleme legate de PHP-Fusion, te rug&#259;m viziteaz&#259;
+site-ul principal de dezvoltare la <a href='http://www.php-fusion.co.uk' target='_blank'>www.php-fusion.co.uk</a>
+&#351;i posteaz&#259; un mesaj pe forumul nostru. Alternativ, po&#355;i vizita canalul nostru de chat IRC pentru suport tehnic, la
+<a href='irc://irc.outerweb.org/phpfusion'>irc.outerweb.org/phpfusion</a>.<br><br>
+PHP-Fusion poate fi extins prin ad&#259;ugarea de <b>Infuzii</b>. Acestea sunt plugin-uri extrem de u&#351;or
+de instalat. Po&#355;i g&#259;si o varietate de Infuzii folositoare pe site-ul nostru de modific&#259;ri la
+<a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a>.<br><br>
+Dac&#259; nu e&#351;ti mul&#355;umit cu tematicile incluse &#238;n PHP-Fusion, poate &#238;&#355;i dore&#351;ti s&#259; vizitezi site-ul
+oficial de tematici, la <a href='http://www.phpfusion-themes.com' target='blank'>www.phpfusion-themes.com</a>, unde
+vei g&#259;si o varietate de tematici de &#238;nalt&#259; calitate.<br><br>
+PHP-Fusion are, de asemenea, un num&#259;r de site-uri oficiale de suport tehnic &#238;n limbi str&#259;ine, &#238;n
+<a href='http://www.elife.ae/' class='side'>Arabia</a>,
+<a href='http://www.phpfusion.be/' target='blank'>Belgia</a>,
+<a href='http://php-fusion.cms-bg.org/' class='side'>Bulgaria</a>,
+<a href='http://www.phpfusion-bosnia.com/' class='side'>Bosnia</a>,
+<a href='http://www.phpfusion-cro.be/' class='side'>Croa&#355;ia</a>,
+<a href='http://www.phpfusion.dk/' target='blank'>Danemarca</a>,
+<a href='http://www.phpfusion.fr.com/' target='blank'>Fran&#355;a</a>, 
+<a href='http://www.php-fusion.de/' target='blank'>Germania</a>,
+<a href='http://www.php-fusion.co.hu/'  class='side'>Ungaria</a>,
+<a href='http://www.fusion.alaviweb.com/' target='blank'>Iran</a>,
+<a href='http://www.php-fusion.it/' class='side'>Italia</a>,
+<a href='http://www.php-fusion.lt/' target='blank'>Lituania</a>,
+<a href='http://www.phpfusion.nl/' target='blank'>Olanda</a>,
+<a href='http://www.php-fusion.pl/' target='blank'>Polonia</a>,
+<a href='http://php-fusion.int.ru/' class='side'>Rusia</a>,
+<a href='http://www.php-fusion.sw/' target='blank'>Suedia</a>,
+<a href='http://www.phpfusion-tw.com/' target='blank'>Taiwan</a>
+&#351;i <a href='http://www.phpfusion-tr.com/' target='blank'>Turcia.</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>6. Recunoa&#351;teri</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Mul&#355;umim celor care urmeaz&#259; pentru munca suplimentar&#259;:<br><br>
+Shedrock - Teme adi&#355;ionale &#351;i iconi&#355;e administrare<br>
+Janmol - Cercetare de pia&#355;&#259; & concepte adi&#355;ionale de design<br>
+KEFF - Pentru idei tr&#259;znite care nu sunt tocmai tr&#259;znite!<br>
+Rayxen - Cod &#351;i modific&#259;ri adi&#355;ionale<br>
+Sheldon - Suport tehnic & g&#259;zduire adi&#355;ional&#259;<br>
+<br>
+<b>3rd Party Scripts:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v0.2.5.1</a> - Un editor HTML WYSIWYG, de Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer</a> - O clas&#259; sendmail cu suport SMTP, de Brent R. Matzelle.<br>
+<a href='http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload'>HTTPDownload</a> - O clas&#259; de gestiune a desc&#259;rc&#259;rilor, de Nguyen Quoc Bao.</td>
+</tr>
+</table>
+
+</body>
+</html>

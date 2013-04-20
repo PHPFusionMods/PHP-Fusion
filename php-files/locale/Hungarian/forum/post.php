@@ -1,0 +1,73 @@
+<?php
+// Post Titles
+$locale['400'] = "Fórumtéma elõnézet";
+$locale['401'] = "Új téma létrehozása";
+$locale['402'] = "Válasz elõnézete";
+$locale['403'] = "Válasz küldése";
+$locale['404'] = "Válasz";
+$locale['405'] = "Változások megtekintése";
+$locale['407'] = "Hozzászólás törlése";
+$locale['408'] = "Hozzászólás szerkesztése";
+$locale['409'] = "Változások mentése";
+// Hsz elõnézet
+$locale['420'] = "Nincs tárgy";
+$locale['421'] = "Nincs üzenet, a hozzászólás nem fog megjelenni, ha nincs üzenet!";
+$locale['422'] = "Szerzõ:";
+$locale['423'] = "Hozzászólások:";
+$locale['424'] = "Lakóhely:";
+$locale['425'] = "Regisztrált:";
+$locale['426'] = "Elküldve: ";
+$locale['427'] = "Szerkesztette: ";
+$locale['428'] = " - ";
+$locale['429'] = " írta:";
+// Post Error/Success
+$locale['440a'] = "A csatolmány fájltípusa nem engedélyezett.";
+$locale['440b'] = "Rossz a csatolmány fájltípusa vagy mérete.";
+$locale['441'] = "Hiba: nem írtál témát vagy üzenetet";
+$locale['442'] = "Új téma létrehozva";
+$locale['443'] = "Hozzászólás elküldve";
+$locale['444'] = "A téma törölve lett";
+$locale['445'] = "A hozzászólás törölve lett";
+$locale['446'] = "Hozzászólás szerkesztve";
+$locale['447'] = "Vissza a témához";
+$locale['448'] = "Vissza a fórumtémához";
+$locale['449'] = "Vissza a fórum fõoldalára";
+$locale['450'] = "Hiba: a sütid (cookie) ideje lejárt. Kérlek jelentkezz be újra.";
+$locale['451'] = "Téma nyomon követése";
+$locale['452'] = "Mostantól nyomon követed ezt a témát";
+$locale['453'] = "Mostantól nem folytatod a téma nyomon követését";
+// Post Form
+$locale['460'] = "Tárgy";
+$locale['461'] = "Üzenet";
+$locale['462'] = "Betûszín: ";
+$locale['463'] = "Opciók";
+$locale['464'] = "Csatolmány";
+$locale['465'] = " (Opcionálisan)";
+$locale['466'] = "Max. fájlméret: %s / Engedélyezett fájltípusok: %s";
+// Post Form Options
+$locale['480'] = " Téma kiemelése";
+$locale['481'] = " Aláírás csatolása ehhez a hozzászóláshoz";
+$locale['482'] = " Hozzászólás törlése";
+$locale['483'] = " Smiley-ek kikapcsolása";
+$locale['484'] = " Csatolmány törlése -";
+$locale['485'] = " Figyelmeztessen válasz érkezésekor";
+// Post Access Violation
+$locale['500'] = "Nem szerkesztheted ezt a hozzászólást.";
+// Keresés
+$locale['530'] = "Keresés a fórumban";
+$locale['531'] = "Kulcsszó";
+$locale['532'] = "Keresés";
+// Forum Notification Email
+$locale['550'] = "Új hozzászólás - {THREAD_SUBJECT}";
+$locale['551'] = "Üdv {USERNAME},
+
+Új hozzászólás érkezett a(z) '{THREAD_SUBJECT}' témában amit megjelöltél oldalunkon - ".$settings['sitename'].". 
+A következõ linken érhetõ el a hozzászólás:
+
+{THREAD_URL}
+
+Ha nem szeretnél legközelebb ilyen levelet kapni, a 'Téma nyomon követésének kikapcsolása' linkre kattintva kapcsolhatod ki.
+
+Üdvözlettel,
+".$settings['siteusername'].".";
+?>

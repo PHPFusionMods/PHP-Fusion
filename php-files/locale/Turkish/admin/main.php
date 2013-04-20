@@ -1,0 +1,56 @@
+<?php
+// Admin Links
+$locale['200'] = $settings['sitename']." Yönetim Paneli";
+$locale['ac01'] = "Ýçerik Yönetimi";
+$locale['ac02'] = "Kullanýcý Yönetimi";
+$locale['ac03'] = "Sistem Yönetimi";
+$locale['ac04'] = "Modüller";
+$locale['201'] = "Site Yöneticileri";
+$locale['202'] = "Ýnceleme Kategorileri";
+$locale['203'] = "Ýncelemeler";
+$locale['204'] = "Kara Liste";
+$locale['205'] = "Yorumlar";
+$locale['206'] = "Özel Sayfalar";
+$locale['207'] = "Veritabaný Yedekleme";
+$locale['208'] = "Dosya Kategorileri";
+$locale['209'] = "Dosyalar";
+$locale['210'] = "S.S.S. Kategorileri";
+$locale['211'] = "Forumlar";
+$locale['212'] = "Resimler";
+$locale['213'] = "Modüller";
+$locale['214'] = "Modül Panelleri";
+$locale['215'] = "Üyeler";
+$locale['216'] = "Haberler";
+$locale['217'] = "Bloklar";
+$locale['218'] = "Resim Albümleri";
+$locale['219'] = "PHP Bilgisi";
+$locale['220'] = "Anketler";
+$locale['221'] = "Kýsa Mesajlar";
+$locale['222'] = "Site Linkleri";
+$locale['223'] = "Öneriler";
+$locale['224'] = "Yükseltme";
+$locale['225'] = "Kullanýcý Gruplarý";
+$locale['226'] = "Web Link Kategorileri";
+$locale['227'] = "Web Linkleri";
+$locale['228'] = "Ana Ayarlar";
+$locale['229'] = "Zaman & Tarih Ayarlarý";
+$locale['230'] = "Forum Ayarlarý";
+$locale['231'] = "Üye Kaydý Ayarlarý";
+$locale['232'] = "Resim Galerisi Ayarlarý";
+$locale['233'] = "Çeþitli Ayarlar";
+$locale['234'] = "Özel Mesaj Seçenekleri";
+$locale['235'] = "Haber Kategorileri";
+// Site Information
+$locale['250'] = "Bilgilendirme";
+$locale['251'] = "Kayýtlý Üyeler:";
+$locale['252'] = "Aktif Edilmeyen Üyeler:";
+$locale['253'] = "Banlanan Üyeler:";
+$locale['254'] = "Haber Önerileri:";
+$locale['255'] = "Ýnceleme Önerileri:";
+$locale['256'] = "Link Önerileri:";
+$locale['257'] = "Yorumlar:";
+$locale['258'] = "Kýsa Mesajlar:";
+$locale['259'] = "Forum Mesajlarý:";
+$locale['260'] = "Resim Önerileri:";
+$locale['261'] = "Resim Galerisi:";
+?>

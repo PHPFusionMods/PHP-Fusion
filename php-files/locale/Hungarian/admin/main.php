@@ -1,0 +1,56 @@
+<?php
+// Admin Linkek
+$locale['200'] = $settings['sitename']." - Adminisztráció";
+$locale['ac01'] = "Tartalom";
+$locale['ac02'] = "Felhasználók";
+$locale['ac03'] = "Rendszer";
+$locale['ac04'] = "Infusions";
+$locale['201'] = "Adminisztrátorok";
+$locale['202'] = "Cikk kategóriák";
+$locale['203'] = "Cikkek";
+$locale['204'] = "Feketelista";
+$locale['205'] = "Hozzászólások";
+$locale['206'] = "Információs oldalak";
+$locale['207'] = "Adatbázis";
+$locale['208'] = "Letöltési kategóriák";
+$locale['209'] = "Letöltések";
+$locale['210'] = "FAQ";
+$locale['211'] = "Fórum";
+$locale['212'] = "Képek";
+$locale['213'] = "Infusions";
+$locale['214'] = "Infusion panelek";
+$locale['215'] = "Felhasználók";
+$locale['216'] = "Hírek";
+$locale['217'] = "Panelek";
+$locale['218'] = "Galéria";
+$locale['219'] = "PHP Info";
+$locale['220'] = "Szavazások";
+$locale['221'] = "Üzenõfal";
+$locale['222'] = "Navigáció";
+$locale['223'] = "Beküldött anyagok";
+$locale['224'] = "Frissítés";
+$locale['225'] = "Felhasználói csoportok";
+$locale['226'] = "Link kategóriák";
+$locale['227'] = "Linkek";
+$locale['228'] = "Alap beállítások";
+$locale['229'] = "Dátum és idõ";
+$locale['230'] = "Fórum beállítások";
+$locale['231'] = "Regisztrációs beállítások";
+$locale['232'] = "Galéria beállításai";
+$locale['233'] = "További beállítások";
+$locale['234'] = "Privát üzenet beállítások";
+$locale['235'] = "Hírkategóriák";
+// Oldal információ
+$locale['250'] = "Információ";
+$locale['251'] = "Regisztráltak:";
+$locale['252'] = "Nem aktiváltak:";
+$locale['253'] = "Kitiltottak:";
+$locale['254'] = "Beküldött hírek:";
+$locale['255'] = "Beküldött cikkek:";
+$locale['256'] = "Beküldött linkek:";
+$locale['257'] = "Hozzászólások:";
+$locale['258'] = "Üzenõfal hozzászólások:";
+$locale['259'] = "Fórum hozzászólások:";
+$locale['260'] = "Beküldött képek:";
+$locale['261'] = "Galéria képei:";
+?>

@@ -1,0 +1,56 @@
+<?php
+// Admin Links
+$locale['200'] = $settings['sitename']." - Panneau d'administration";
+$locale['ac01'] = "Contenu";
+$locale['ac02'] = "Administrateurs";
+$locale['ac03'] = "Configuration du Site";
+$locale['ac04'] = "Infusions";
+$locale['201'] = "Administrateurs";
+$locale['202'] = "Article (Catégories)";
+$locale['203'] = "Articles";
+$locale['204'] = "Liste Noire";
+$locale['205'] = "Commentaires";
+$locale['206'] = "Pages Personnelles";
+$locale['207'] = "Sauvegarde de la Base de Données";
+$locale['208'] = "Téléchargements (Catégories)";
+$locale['209'] = "Téléchargements";
+$locale['210'] = "FAQs";
+$locale['211'] = "Forums";
+$locale['212'] = "Images";
+$locale['213'] = "Infusions";
+$locale['214'] = "Panneau d'administration";
+$locale['215'] = "Membres";
+$locale['216'] = "News";
+$locale['217'] = "Panneaux";
+$locale['218'] = "Albums Photos";
+$locale['219'] = "PHP Info";
+$locale['220'] = "Sondages";
+$locale['221'] = "Boîte de dialogue";
+$locale['222'] = "Liens du site";
+$locale['223'] = "Propositions";
+$locale['224'] = "Upgrade";
+$locale['225'] = "Groupes d'utilisateurs";
+$locale['226'] = "Liens Web (Catégories)";
+$locale['227'] = "Liens Web";
+$locale['228'] = "Configuration du Site";
+$locale['229'] = "Configuration Date et Heure";
+$locale['230'] = "Configuration des Forums";
+$locale['231'] = "Configuration Enregistrement";
+$locale['232'] = "Configuration de la Galerie Photos";
+$locale['233'] = "Autre Configuration";
+$locale['234'] = "Options des Messages Privés";
+$locale['235'] = "Catégories de Nouvelles";
+// Site Information
+$locale['250'] = "Information";
+$locale['251'] = "Membres enregistrés:";
+$locale['252'] = "Membres inactifs:";
+$locale['253'] = "Membres Bannis:";
+$locale['254'] = "Propositions d'Informations en attente:";
+$locale['255'] = "Propositions d'Articles en attente:";
+$locale['256'] = "Propositions de Liens en attente:";
+$locale['257'] = "Commentaires:";
+$locale['258'] = "Messages de la boîte de dialogue:";
+$locale['259'] = "Messages des Forums:";
+$locale['260'] = "Propositions de Photos en attente:";
+$locale['261'] = "Album Photos:";
+?>

@@ -1,0 +1,56 @@
+<?php
+// Admin Links
+$locale['200'] = $settings['sitename']." Panel de Administración";
+$locale['ac01'] = "Administrar Contenidos";
+$locale['ac02'] = "Administrar Usuarios";
+$locale['ac03'] = "Administrar Sistema";
+$locale['ac04'] = "Infusions";
+$locale['201'] = "Administradores";
+$locale['202'] = "Categorías de Artículos";
+$locale['203'] = "Artículos";
+$locale['204'] = "Lista Negra";
+$locale['205'] = "Comentarios";
+$locale['206'] = "Páginas de Contenido";
+$locale['207'] = "Respaldo Base de Datos";
+$locale['208'] = "Categorías de Descargas";
+$locale['209'] = "Descargas";
+$locale['210'] = "FAQs";
+$locale['211'] = "Foros";
+$locale['212'] = "Imágenes";
+$locale['213'] = "Infusions";
+$locale['214'] = "Infusion Paneles";
+$locale['215'] = "Usuarios";
+$locale['216'] = "Noticias";
+$locale['217'] = "Paneles";
+$locale['218'] = "Galerías de Imágenes";
+$locale['219'] = "PHP Info";
+$locale['220'] = "Encuestas";
+$locale['221'] = "Shoutbox";
+$locale['222'] = "Enlaces del Sitio";
+$locale['223'] = "Aportes";
+$locale['224'] = "Actualizar";
+$locale['225'] = "Grupos de Usuarios";
+$locale['226'] = "Categorías de Enlaces";
+$locale['227'] = "Enlaces Web";
+$locale['228'] = "Principal";
+$locale['229'] = "Fecha y Hora";
+$locale['230'] = "Foro";
+$locale['231'] = "Registro";
+$locale['232'] = "Galería de Imágenes";
+$locale['233'] = "Misceláneos";
+$locale['234'] = "Mensajes Privados";
+$locale['235'] = "Categorías de Noticias";
+// Site Information
+$locale['250'] = "Información";
+$locale['251'] = "Usuarios Registrados:";
+$locale['252'] = "Usuarios Inactivos:";
+$locale['253'] = "Usuarios Baneados:";
+$locale['254'] = "Noticias Enviadas:";
+$locale['255'] = "Artículos Enviados:";
+$locale['256'] = "Enlaces Enviados:";
+$locale['257'] = "Comentarios:";
+$locale['258'] = "Envíos a Shoutbox:";
+$locale['259'] = "Envíos a Foros:";
+$locale['260'] = "Fotos Enviadas:";
+$locale['261'] = "Galería de Fotos:"; 
+?>

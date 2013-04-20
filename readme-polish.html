@@ -1,0 +1,852 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-2">
+	<TITLE>PHP-Fusion - Opis Instalacji</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.0  (Linux)">
+	<META NAME="CREATED" CONTENT="20060501;20183500">
+	<META NAME="CHANGEDBY" CONTENT="Pieka">
+	<META NAME="CHANGED" CONTENT="20060613;14523100">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { font-family: "Verdana", "Tahoma", "Arial", Sans-Serif; font-size: 8pt }
+		A:link { color: #003d71; text-decoration: none }
+		A:visited { color: #003d71 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" LINK="#003d71" VLINK="#003d71" BGCOLOR="#ffffff" DIR="LTR">
+<DL>
+	<DL>
+		<DL>
+			<DD>
+			<TABLE WIDTH=599 BORDER=0 CELLPADDING=0 CELLSPACING=0 BGCOLOR="#d1d8dd" STYLE="page-break-before: always">
+				<COL WIDTH=76>
+				<COL WIDTH=149>
+				<COL WIDTH=149>
+				<COL WIDTH=148>
+				<COL WIDTH=77>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" ALIGN=CENTER STYLE="border: none; padding: 0cm">
+						<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><BR><IMG SRC="http://php-fusion.pl/4all/images/banner.gif" NAME="Grafika1" ALT="PHP-Fusion" ALIGN=BOTTOM WIDTH=360 HEIGHT=60 BORDER=0><BR><BR>Copyright
+						&copy; 2002 - 2008 Nick Jones<BR><B>Wersja:</B> 6.01.19 - <B>Data
+						Wydania:</B> April 2008</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#e1e1e1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><B>1.
+						Wprowadzenie</B></FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">PHP-Fusion
+						jest stale rozwijającym się systemem zarządzania witryną (CMS),
+						opartym na PHP i mySQL. Zaopatrzony jest w prosty w instalacji
+						system z intucyjnym w obsłudze pakietem przyrząd&oacute;w
+						administracyjnych. Stanowi kompletny zestaw aplikacji i
+						narzędzi do budowy dowolnej wielkości serwisu internetowego,
+						portalu czy vortalu. Dzięki temu w łatwy spos&oacute;b możesz
+						tworzyć interaktywne witryny internetowe bez posiadania wiedzy
+						o programowaniu, a intuicyjność projektu i gotowe panele
+						pozwalają tworzyć nowe rozwiązania jednym kliknęciem myszki. </FONT></FONT>
+						</P>
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">PHP-Fusion
+						zostało wydane na licencji GNU/GPL2. Więcej informacji
+						znajdziesz na stronie www.gnu.org. Nieoficjalne tłumaczenie tej
+						licencji na język polski znajdziesz pod adresem
+						http://www.gnu.org.pl/text/licencja-gnu.html. Możesz dowolnie
+						modyfikować kod i rozpowszechniać PHP-Fusion w wersji obecnej
+						lub zawierającej Twoje modyfikacje. </FONT></FONT>
+						</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#e1e1e1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><B>2.
+						Instalacja</B></FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#f1f1f1">
+						<OL>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Umieść
+							zawartość folderu php-files na serwerze. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Zmień
+							blank_config.php na config.php.</FONT></FONT></P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Nadaj
+							poniższym plikom i folderom CHMODY 777: </FONT></FONT>
+							</P>
+						</OL>
+						<OL>
+							<UL>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/imagelist.js
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/articles/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/avatars/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/news/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/news_cats/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/photoalbum/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/photoalbum/submissions/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">forum/attachments/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">config.php
+								</FONT></FONT>
+								</P>
+							</UL>
+						</OL>
+						<OL START=4>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Wpisz
+							w przeglądarce adres pliku setup.php Twojej strony (np.
+							http://www.twojastrona.pl/setup.php) i naciśnij Enter. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Postępuj
+							według pojawiających się na ekranie wskaz&oacute;wek. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Po
+							ukończeniu instalacji usuń z serwera plik setup.php oraz nadaj
+							plikowi config.php CHMOD 644. </FONT></FONT>
+							</P>
+						</OL>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#e1e1e1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><B>3.
+						Aktualizacja z wersji 6.00.1xx, v6.00.2xx oraz v6.00.3xx</B></FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Przed
+						dokonaniem aktualizacji zaleca się wykonanie kopii zapasowej
+						wszystkich plik&oacute;w oraz bazy danych. </FONT></FONT>
+						</P>
+						<OL>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><B>Z
+							folderu php-files znajdującego się w archiwum instalacyjnym
+							usuń pliki config.php i setup.php.</B> </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Umieść
+							plik upgrade.php, znajdujący się w folderze v6.00.xxx, w
+							katalogu administration na serwerze. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Zaloguj
+							się jako Super Administrator i wejdź do zakładki Aktualizacja
+							w Panelu Admina. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Postępuj
+							zgodnie z komunikatami na ekranie, dop&oacute;ki nie otrzymasz
+							informacji &quot;Database upgrade complete&quot;. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Umieść
+							zawartość folderu php-files na serwerze nadpisując poprzednio
+							istniejące pliki. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Folderowi
+							administration nadaj CHMOD 755. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Nadaj
+							CHMODy 777 poniższym folderom: </FONT></FONT>
+							</P>
+						</OL>
+						<OL>
+							<UL>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/photoalbum/submissions/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/news_cats/
+								(tylko v6.00.1xx) </FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/imagelist.js
+								(tylko v6.00.1xx) </FONT></FONT>
+								</P>
+							</UL>
+						</OL>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#e1e1e1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><B>4.
+						Aktualizacja z wersji 4.01, 5.00 lub 5.01</B></FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Przed
+						dokonaniem aktualizacji zaleca się wykonanie kopii zapasowej
+						wszystkich plik&oacute;w oraz bazy danych. </FONT></FONT>
+						</P>
+						<OL>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Z
+							poziomu Panelu Admina usuń wszystkie infusions (dotyczy to
+							tylko wersji v5.00 lub v5.01). </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Poprzez
+							Zarządzanie Panelami usuń wszystkie bloki opr&oacute;cz tym
+							wymienionych poniżej: </FONT></FONT>
+							</P>
+							<UL>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Navigation
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Online
+								Users </FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Forum
+								Threads </FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Latest
+								Articles </FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Welcome
+								Message </FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Forum
+								Threads List </FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">User
+								Info </FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Members
+								Poll </FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Shoutbox
+								</FONT></FONT>
+								</P>
+							</UL>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Umieść
+							plik config.php z katalogu php-files z folderze gł&oacute;wnym
+							na serwerze. </FONT></FONT>
+							</P>
+							<UL>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><B>Zanim
+								przejdziesz dalej, usuń plik config.php z katalogu php-files
+								na dysku Twojego komputera.</B> </FONT></FONT>
+								</P>
+							</UL>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Umieść
+							plik upgrade.php (znajduje się on w archiwum instalacyjnym w
+							katalogu odpowiadającym wersji PHP-Fusion, z kt&oacute;ej
+							chcesz dokonać aktualizacji - np. v4.01) w folderze admin/ na
+							serwerze. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Nadaj
+							plikowi config.php CHMOD 777. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Zaloguj
+							się jako Super Administrator i wybierz Aktualizację poprzez
+							Panel Admina. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Postępuj
+							zgodnie z komunikatami na ekranie, dop&oacute;ki nie otrzymasz
+							informacji &quot;Database upgrade complete&quot;. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Ze
+							swojego serwera usuń poniższe foldery: </FONT></FONT>
+							</P>
+							<UL>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_admin
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_core
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_forum
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_languages
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_panels
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_themes
+								</FONT></FONT>
+								</P>
+							</UL>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Zmień
+							nazwy poniższych folder&oacute;w: </FONT></FONT>
+							</P>
+							<UL>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_images
+								=&gt; images </FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_public
+								=&gt; forum </FONT></FONT>
+								</P>
+							</UL>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Przenieś
+							katalog avatars z folderu forum do folderu images. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Umieść
+							zawartość folderu php-files na serwerze. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Zmień
+							CHMODy pliku config.php na 644. </FONT></FONT>
+							</P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Upewnij
+							się, że poniższe foldery mają CHMOD ustawione na 777: </FONT></FONT>
+							</P>
+							<UL>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">administration/db_backups/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/articles/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/avatars/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/news/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+								<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">images/photoalbum/
+								</FONT></FONT>
+								</P>
+								<LI><P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">forum/attachments/
+								</FONT></FONT>
+								</P>
+							</UL>
+						</OL>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#e1e1e1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><B>5.
+						Nowe stałe...</B></FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Uwaga:
+						struktura stałych w PHP-Fusion została w v6.00.2xx znacznie
+						zmodyfikowana - niekt&oacute;rym z nich zmieniono nazwy,
+						niekt&oacute;re wog&oacute;le usunięto. Dlatego zachęcam, żeby
+						zapoznać się z poniższą tabelką przedstawiającą stałe zar&oacute;wno
+						w v6.00.2xx, jak i w poprzednich wersjach:</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD ROWSPAN=30 WIDTH=76 VALIGN=TOP BGCOLOR="#f1f1f1"></TD>
+					<TD WIDTH=149 BGCOLOR="#e1e1e1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">v4x</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#e1e1e1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">v5x</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#e1e1e1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">v6x</FONT></FONT></P>
+					</TD>
+					<TD ROWSPAN=30 WIDTH=77 VALIGN=TOP BGCOLOR="#f1f1f1"></TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_root</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_ROOT</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_base</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_BASE</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">BASEDIR</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_ADMIN</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">ADMIN</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_IMAGES</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">IMAGES</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_IMAGES_A</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">IMAGES_A</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_IMAGES_N</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">IMAGES_N</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_INCLUDES</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">INCLUDES</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_langdir</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_LANGUAGES</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">LOCALE</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_LAN</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">LOCALESET</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_FORUM</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FORUM</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_INFUSIONS</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">INFUSIONS</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_PHOTOS</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">PHOTOS</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_PUBLIC</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">PUBLIC</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">fusion_themedir</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_THEMES</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">THEMES
+						</FONT></FONT>
+						</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_THEME</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">THEME</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">$user_ip</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_IP</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">USER_IP</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_QUERY</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_QUERY</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">$PHP_SELF</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">$PHP_SELF/FUSION_SELF</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_SELF</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">FUSION_PREFIX</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">DB_PREFIX</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">$fusion_prefix</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">$fusion_prefix</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">$db_prefix</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=3 WIDTH=446 BGCOLOR="#e1e1e1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">User
+						Definitions</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Guest()</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">iGUEST</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">iGUEST</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Member()</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">iMEMBER</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">iMEMBER</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Moderator()</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">iMOD</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Admin()</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">iADMIN</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">iADMIN</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">SuperAdmin()</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">iSUPERADMIN</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">iSUPERADMIN</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">UserLevel()</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">iUSER</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">iUSER</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">USER_RIGHTS</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">USER_RIGHTS</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">-</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=149 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">USER_GROUP</FONT></FONT></P>
+					</TD>
+					<TD WIDTH=148 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">USER_GROUP</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><BR>Jeśli
+						używasz jakichś mod&oacute;w, musisz się upewnić, że powyższe
+						stałe zostały zaktualizowane. Dodatkowo, system infusions
+						został w v6 znacznie przebudowany, przez co infusions
+						przystosowane do wersji 5.xx nie będą działać poprawnie.</FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#e1e1e1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><B>6.
+						Bezpieczeństwo!</B></FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#f1f1f1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Kilka
+						porad, kt&oacute;re mogą uratować Tw&oacute;j serwis: </FONT></FONT>
+						</P>
+						<UL>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Upewnij
+							się, że plik config.php ma prawa tylko do odczytu(maksymalny
+							CHMOD 644).</FONT></FONT></P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Nigdy
+							nie pozw&oacute;l by po instalacji PHP-Fusion plik setup.php
+							pozostał na serwerze.</FONT></FONT></P>
+							<LI><P LANG="pl-PL" STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+							<FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Zapewniaj
+							bezpieczeństwo twoim hasłom do FTP i MySQL, zadbaj o to by
+							były r&oacute;żne.</FONT></FONT></P>
+							<LI><P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt">Nigdy
+							nie pozwalaj by załączniki na forum miały rozszerzenia .php
+							.html .exe lub jakikolwiek inne rozszerzenie plik&oacute;w
+							tekstowych.</FONT></FONT></P>
+						</UL>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#e1e1e1">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><B>7.
+						Oficjalne Supporty</B></FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#f1f1f1">
+						<P STYLE="border: none; padding: 0cm"><SPAN LANG="pl-PL"><FONT COLOR="#000000">Jeśli
+						masz jakieś problemy dotyczące użytkowania PHP-Fusion, odwiedź
+						jego stronę domową - <A HREF="http://www.php-fusion.co.uk/" TARGET="_blank">www.php-fusion.co.uk</A>
+						i zgłoś sw&oacute;j problem na forum. Strona ta posiada r&oacute;wnież
+						anglojęzyczny Chat IRC, kt&oacute;ry znajduje się pod adresem
+						<FONT COLOR="#000000"><A HREF="./irc://irc.outerweb.org/phpfusion">irc.outerweb.org/phpfusion</A>.</FONT><BR><BR>Możesz
+						znacznie zwiększyć możliwości swojej strony poprzez r&oacute;żne
+						moduły dodatkowe - Infusions. Są one niezwykle proste w
+						instalacji - znajdziesz je na stronie <A HREF="http://www.phpfusion-mods.com/" TARGET="blank">www.phpfusion-mods.com</A>.
+						Jeśli interesują Cię mody polskojęzyczne, wejdź na stronę
+						<A HREF="http://mods.php-fusion.pl/" TARGET="_blank">Laboratorium
+						Moduł&oacute;w</A><BR><BR>Jeśli nie satysfakcjonują Cię
+						standardowe, dołączone do PHP-Fusion sk&oacute;rki, odwiedź
+						oficjalną stronę ze sk&oacute;rami do PHP-Fusion:
+						<A HREF="http://www.phpfusion-themes.com/" TARGET="blank">www.phpfusion-themes.com</A>
+						- znajdziesz tam mn&oacute;stwo wysokiej jakości
+						sk&oacute;rek.<BR><BR>PHP-Fusion ma r&oacute;wnież szereg stron
+						zajmujących się pomocom userom w ich ojczystym języku: <A HREF="http://www.elife.ae/">Arabski</A>,
+						<A HREF="http://www.phpfusion.be/">Belgijski</A>, <A HREF="http://php-fusion.cms-bg.org/">Bułgarski</A>,
+						<A HREF="http://www.phpfusion-bosnia.com/">Bośni</A>,
+						<A HREF="http://www.phpfusion-cro.be/">Chorwacki</A>, <A HREF="http://www.phpfusion.dk/">Duński</A>,
+						<A HREF="http://www.phpfusion-fr.com/">Francuski</A>,
+						<A HREF="http://www.php-fusion.de/">Niemiecki</A>, <A HREF="http://www.php-fusion.co.hu/">Węgierski</A>,
+						<A HREF="http://www.fusion.alaviweb.com/">Irański</A>, <A HREF="http://www.php-fusion.it/">Włoski</A>,
+						<A HREF="http://www.php-fusion.lt/">Litewski</A>, <A HREF="http://www.phpfusion.nl/">Holenderski</A>,
+						<A HREF="http://www.php-fusion.pl/"><B><FONT COLOR="#000000">Support
+						Polski</FONT></B></A>, <A HREF="http://php-fusion.int.ru/">Rosyjski</A>,
+						<A HREF="http://www.php-fusion.se/">Szwedzki</A>, , oraz
+						<A HREF="http://www.phpfusion-tr.com/">Turecki</A></FONT></SPAN></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#e6e6e6">
+						<P LANG="pl-PL" STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><FONT SIZE=1 STYLE="font-size: 8pt"><B>8.
+						Podziękowania</B></FONT></FONT></P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=5 WIDTH=599 BGCOLOR="#f1f1f1">
+						<P STYLE="border: none; padding: 0cm"><SPAN LANG="pl-PL"><FONT COLOR="#000000">Wszystkim
+						wymienionym poniżej dziękuję za ich wkład w tworzenie i
+						udoskonalanie PHP-Fusion:<BR><BR>Shedrock - Sk&oacute;rki i
+						ikony w Panelu Admina<BR>Janmol - </FONT>za promocję PHP-Fusion
+						oraz mn&oacute;stwo dodatkowych pomysł&oacute;w<FONT COLOR="#000000"><BR>KEFF
+						- </FONT>za głupie pomysły, kt&oacute;re wcale nie są takie
+						głupie!<FONT COLOR="#000000"><BR>Rayxen - </FONT>za dodatkowe
+						skrypty i mody<FONT COLOR="#000000"><BR>Sheldon - </FONT>techniczny
+						support i pomoc w znalezieniu hostingu<FONT COLOR="#000000"><BR><BR><B>Dodatkowe
+						skrypty zi</B></FONT><B>ntegrowane z PHP-Fusion:</B><BR><A HREF="http://tinymce.moxiecode.com/">TinyMCE</A>
+						- edytor WYSWIG autorstwa Moxiecode.<BR><A HREF="http://phpmailer.sourceforge.net/">PHPMailer</A>
+						- sendmail autorstwa Brent'a R. Matzelle.<BR><A HREF="http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload">HTTPDownload</A>
+						- system downloadu autorstwa Nguyen'a Quoc Bao.</SPAN></P>
+					</TD>
+				</TR>
+			</TABLE>
+		</DL>
+	</DL>
+</DL>
+<P ALIGN=CENTER><BR><BR>
+</P>
+</BODY>
+</HTML>

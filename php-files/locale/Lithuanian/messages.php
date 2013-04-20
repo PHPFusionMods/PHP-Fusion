@@ -1,0 +1,108 @@
+<?php
+// Standard
+$locale['400'] = "Asmeninës þinutës";
+$locale['401'] = "Raðyti naujà þinutæ";
+$locale['402'] = "Gavimas";
+$locale['403'] = "Siuntimas";
+$locale['404'] = "Archyvas";
+$locale['405'] = "Pavadinimas";
+$locale['406'] = "Nuo";
+$locale['407'] = "Data";
+$locale['408'] = "Tinklapio savininkas";
+$locale['409'] = "Veiksmai:";
+$locale['410'] = "Paþymëti viskà";
+$locale['411'] = "Nuimti nuo visø";
+$locale['412'] = "Iðsaugoti";
+$locale['413'] = "Nesaugoti";
+$locale['414'] = "Skaityti";
+$locale['415'] = "Neskaityti";
+$locale['416'] = "Trinti";
+$locale['417'] = "Rodyti siuntëjà pagal raides:";
+$locale['418'] = "Visi";
+$locale['419'] = "Jûs neturite asmeniniø þinuèiø";
+$locale['420'] = "Siøsti asmeninæ þinutæ";
+$locale['421'] = "Kam";
+$locale['422'] = "Þinutë";
+$locale['423'] = "BB kodas";
+$locale['424'] = "Ðypsenëlës";
+$locale['425'] = "Pasirinkimai";
+$locale['426'] = "Siøsti";
+$locale['427'] = "Iðjungti ðypsenëles";
+$locale['428'] = "Rodyti paraðà þinutëje";
+$locale['429'] = "Perþiûra";
+$locale['430'] = "Siøsti";
+$locale['431'] = "Skaityti asmeninæ þinutæ";
+$locale['432'] = "Uþdaryti";
+$locale['433'] = "Atsakyti";
+$locale['434'] = "Siøsti visiems";
+$locale['435'] = "Nutraukti";
+$locale['436'] = "Perþiûrëti atsakymà";
+$locale['437'] = "Siøsti";
+$locale['438'] = "Perþiûrëti þinutæ";
+$locale['439'] = "Atsakymas";
+$locale['440'] = "(gautos %s)";
+$locale['441'] = "Raðyti kaip tinklapio savininkas";
+$locale['442'] = "Vartotojø lygiai";
+$locale['443'] = "Grupës";
+
+// Search Options
+$locale['450'] = "Paieðkos ir rûðiavimo pasirinkimai";
+$locale['451'] = "Ieðkoti / Rûðiuoti";
+$locale['452'] = "Iðvalyti";
+$locale['453'] = "Paieðkos metu nieko nerasta";
+$locale['454'] = "Ieðkoti";
+$locale['455'] = "";
+$locale['456'] = "Rûðiuoti pagal";
+$locale['457'] = "(Naudoti ? ir * )";
+$locale['458'] = "Rodyti narius su '%s'  '%s' ";
+$locale['459'] = "Siuntëjas prasideda '%s' ";
+$locale['460'] = "Rûðiuoti pagal '%s'";
+$locale['461'] = "Ði þinuèiø dëþutë yra tuðèia";
+$locale['462'] = "Pavadinimas";
+$locale['463'] = "Þinutë";
+$locale['464'] = "Siuntëjas";
+$locale['465'] = "Gavimo laikas ir data";
+
+// Error Messages
+$locale['480'] = "Klaida";
+$locale['481'] = "Neteisingas þinutës ID";
+$locale['482'] = "Neteisingas nario ID";
+$locale['483'] = "Tik nariams";
+$locale['484'] = "Jûsø asmeniniø þinuèiø áranga iðjungta todël, kad nenaudojama.";
+$locale['485'] = "Praðom pasirinkti nors vienà þinutæ";
+$locale['486'] = "Jûs privalote uþpildyti ðiuos laukus: Pavadinimas ir Þinutë";
+
+// Tooltips
+$locale['500'] = "Paspausk naujos þinutës raðymui";
+$locale['501'] = "Paspausk gautø þinuèiø perþiûrai";
+$locale['502'] = "Paspausk siøstø þinuèiø perþiûrai";
+$locale['503'] = "Paspausk iðsaugotø þinuèiø perþiûrai";
+$locale['504'] = "Paspausk paþymëti þinutei";
+$locale['505'] = "Paspausk ðios þinutës perþiûrai";
+$locale['506'] = "Paspausk siuntëjo apraðymo perþiûrai";
+$locale['507'] = "Paspausk paþymëti visoms þinutëms";
+$locale['508'] = "Paspausk nuimti þymas nuo visø þinuèiø";
+$locale['509'] = "Paspausk þinuèiø perþiûrai nuo visø siuntëjø";
+$locale['510'] = "Paspausk þinuèiø perþiûrai nuo siuntëjø, kurie prasideda ið %s";
+$locale['511'] = "Paspausk þymëtø þinuèiø nusiuntimui á saugyklà";
+$locale['512'] = "Paspausk, kad þymëtas þinutes nusiøstum á gavimo dëþutæ";
+$locale['513'] = "Paspausk, kad paþymëtum þinutes kaip skaitytas";
+$locale['514'] = "Paspausk, kad þymëtos þinutës bûtø kaip neskaitytos";
+$locale['515'] = "Paspausk paþymëtø þinuèiø iðtrynimui";
+$locale['516'] = "Paspausk konfigûracijos pakeitimui";
+
+// Options
+$locale['620'] = "Pasirinkimai";
+$locale['621'] = "Perpëti e-paðtu, kai ateis nauja asmeninë þinutë:";
+$locale['622'] = "Automatiðkai iðsaugoti siøstas þinutes:";
+$locale['623'] = "Iðsaugoti pasirinkimus";
+$locale['624'] = "Pasirinkimai iðsaugoti";
+$locale['625'] = "Jûs turite naujà asmeninæ þinutæ nuo ".$settings['sitename'];
+$locale['626'] = ",\r\nJûs gavote naujà asmeninæ asmeninæ þinutæ ið ".$settings['sitename'].". Galite jà perskaityti ".$settings['siteurl']."messages.php\r\n\r\nBe to, jûs galite atsisakyti e-paðto áspëjimø apie gautas þinutes asmeniniø þinuèiø puslapyje, pasirinkimuose, jei nenorite daugiau bûti áspëjamas apie naujai gautas þinutes.";
+$locale['627'] = "Klaida";
+$locale['628'] = "Neámanoma pasiøsti asmeninës þinutës. Vartotojo gavimo dëþutë pilna.";
+$locale['629'] = "Jûs negalite perkelti pasirinktø þinuèiø á direktorijø, kadangi pasiektas leistinas limitas.";
+$locale['630'] = " Þinuèiø limitas";
+$locale['631'] = "Taip";
+$locale['632'] = "Ne";
+?>

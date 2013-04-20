@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+      <b>Versie:</b> 6.01.19 - <b>Vrijgegeven:</b> April 2008</td>
+</tr>
+
+<tr>
+    <td class='tbl2'><b>1. Overzicht</b></td>
+</tr>
+<tr>
+    <td class='tbl1'>PHP-Fusion is a lichtgewicht open-source content
+      management system (CMS) geschreven in PHP.<br>
+      Het gebruikt een MySQL-database om de inhoud ('content') 
+      van uw website op te slaan, een bevat een eenvoudig maar uitgebreid
+      beheerssysteem. PHP-Fusion bevat de meest algemene functies die ook
+      in andere CMS-pakketten gevonden kunnen worden.
+	  
+      <p>PHP-Fusion is vrijgegeven onder de voorwaarden van versie 
+      2 van de GNU General Public License. Voor verdere informatie 
+      hierover kunt u naar <a href='http://www.gnu.org/'>www.gnu.org</a> gaan
+      of het bestand gpl.txt in dit pakket raadplegen. U mag de code op elke 
+      willekeurige manier aanpassen en verder verspreiden, zoals h
+	  die nu is of met uw eigen aanpassingen. We zouden het erg waarderen
+      indien u de copyriht mededeling "Powered by PHP-Fusion" zou willen
+      handhaven. Gezien de honderden uren werk die in de ontwikkeling
+      van product zijn gestoken, vinden we dit billijk. Indien u deze mededeling
+      wilt verwijderen, dan vragen we u te overwegen een donatie via Paypal te doen.</td>
+</tr>
+<tr>
+    <td class='tbl2'><b>2. Installatie</b></td>
+</tr>
+<tr>
+    <td class='tbl1'> 
+      <ol>
+        <li>Upload de inhoud van de map php-files naar uw server.</li>
+        <li>Hernoem het bestand blank_config.php naar config.php.</li>
+        <li>CHMOD de volgende bestanden en mappen naar 777: 
+          <ul style='list-style-type:disc'><li>administration/db_backups/</li>
+            <li>images/</li>
+            <li>images/imagelist.js</li>
+            <li>images/articles/</li>
+            <li>images/avatars/</li>
+            <li>images/news/</li>
+            <li>images/news_cats/</li>
+            <li>images/photoalbum/</li>
+            <li>images/photoalbum/submissions/</li>
+            <li>forum/attachments/</li>
+            <li>config.php</li>
+          </ul>
+        </li>
+        <li>Ga naar uw website en voer setup.php uit, bijvoorbeeld 
+          door het intoetsen van http://www.uwdomain.com/setup.php.</li>
+        <li>Completeer de setup-procedure door alle instructies 
+          op het beeldscherm op te volgen.</li>
+        <li>CHMOD config.php terug naar 644 EN verwijder setup.php 
+          van uw server.</li>
+      </ol>
+    </td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Upgrade vanaf v6.00.1xx, v6.00.2xx of v6.00.3xx</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Voordat u de upgrade uuitvoert raden we u ten sterkste aan een complete backup van uw site en van uw databse te maken. Tijdens het upgradeproces worden de databasetabellen van uw fotogallerij hernoemd. U kunt uw oude fotoalbums en foto's importeren naar de nieuwe fotogallerij door gebruik te maken van onze photo converter infusion die beschikbaar is vanaf <br><a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>. Houdt er a.u.b. rekening mee dat deze versie een aantal structurele veranderingen bevat en dat sommige elementen op uw site niet naar behorend zullen werken tot dat u al uw bestanden zijn geupdate.
+<ol>
+        <li>Upload upgrade.php van uit map upgrade van de versie die voor
+          uw installatie van toepassing is naar de map administration op
+          uw server.</li>
+        <li>Log op uw site in als Superbeheerder (Super Admin) en 
+          klik in het Beheerder Paneel (Admin Paneel) op Upgrade.</li>
+        <li>Volg alle instructies op het beeldscherm op tot u 
+          "Database upgrade complete" ziet.</li>
+        <li>Upload de inhoud uit de map php-files naar uw server.</li>
+        <li>Verzeker u ervan dat de volgende mappen zijn ge-CHMOD 
+          naar 777: 
+          <ul style='list-style-type:disc'>
+       <li>images/photoalbum/submissions/</li>
+       <li>images/news_cats/ (alleen bij upgrade van v6.00.1xx)</li>
+       <li>images/imagelist.js (alleen bij upgrade van v6.00.1xx)</li>
+          </ul>
+        </li>
+      </ol>
+    </td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>4. Veiligheidstips</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Hier volgen enkele tips om uw site veilg te houden:
+<ul style='list-style-type:disc'>
+<li>Verzeker u ervan dat config.php niet schrijfbaar is (moet zijn geCHMOD naar 644).</li>
+<li>Laat nooit setup.php op uw serverstaan nadat PHP-Fusion is geïnstalleerd.</li>
+<li>Verzeker u ervan dat u verschillende wachtwoorden heeft voor FTP en MySQL.</li>
+<li>Sta nooit forumbijlagen toe met php, html, exe als bijlage en ook geen enkel soort tekstbestanden.</li>
+</ul></td></tr>
+<tr>
+<td class='tbl2'><b>5. Support sites</b></td>
+</tr>
+<tr>
+    <td class='tbl1'>Indien vragen of problemen heeft betreffende 
+      PHP-Fusion, bezoek dan a.u.b. de hoofd-ontwikkelsite op 
+      <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a> 
+      en plaats een bericht in onze forums. Als alternatief kun 
+      u ons IRC-chat support-kanaal op <a href='irc://irc.outerweb.org/phpfusion'>irc.outerweb.org/phpfusion</a>. 
+      bezoeken <br>
+      <br>
+      PHP-Fusion kan worden uitgebreid door Infusions toe te voegen. 
+      Dit zijn plugins die zeer eenvoudig te installeren zijn. 
+      U kunt een scala aan bruikbare Infusions op onze mod-site 
+      vinden op <a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a>.<br>
+      <br>
+      Indien u niet tevreden bent met de meegeleverde PHP-Fusion's 
+      thema's, dan zou u onze offici&euml;le thema-site op <a href='http://www.phpfusion-themes.com' target='blank'>www.phpfusion-themes.com</a> 
+      kunnen bezoeken, waar u een scala aan thema's van hoge kwaliteit 
+      vindt.<br>
+      <br>
+      PHP-Fusion heeft ook een aantal offici&euml;le support sites 
+      voor andere talen:
+<a href='http://www.elife.ae' class='side'>Arabisch</a>,
+<a href='http://www.phpfusion.be' class='side'>België</a>,
+<a href='http://php-fusion.cms-bg.org' class='side'>Bulgarije</a>,
+<a href='http://www.phpfusion-bosnia.com/' class='side'>Bosnië</a>,
+<a href='http://www.phpfusion-cro.be/' class='side'>Kroatië</a>,
+<a href='http://www.phpfusion.dk' class='side'>Denemarken</a>,
+<a href='http://www.phpfusion-fr.com/' class='side'>Frankrijk</a>,
+<a href='http://www.php-fusion.de' class='side'>Duitsland</a>,
+<a href='http://www.php-fusion.co.hu'  class='side'>Hongarije</a>,
+<a href='http://www.fusion.alaviweb.com' class='side'>Iran</a>,
+<a href='http://www.php-fusion.it' class='side'>Italië</a>,
+<a href='http://www.php-fusion.lt' class='side'>Litouwen</a>,
+<a href='http://www.phpfusion.nl' class='side'>Nederland</a>,
+<a href='http://www.php-fusion.pl' class='side'>Polen</a>,
+<a href='http://php-fusion.int.ru' class='side'>Rusland</a>,
+<a href='http://www.php-fusion.se' class='side'>Zweden</a>,
+<a href='http://www.phpfusion-tw.com' class='side'>Taiwan</a>,
+en <a href='http://www.phpfusion-tr.com' class='side'>Turkije</a></tr></tr>
+
+<tr>
+    <td class='tbl2'><b>6. Dankwoord</b></td>
+</tr>
+<tr>
+    <td class='tbl1'>De volgende personen worden bedankt voor hun 
+      aanvullende werk:<br>
+      <br>
+      Shedrock - Aanvullende thema's en beheerder-paneel-ikonen<br>
+      Janmol - Marktonderzoek &amp; aanvullende ontwerpconcepten<br>
+      KEFF - Voor idiote idee&euml;n die eigenlijk helemaal nog niet 
+      zo idioot zijn!<br>
+      Rayxen - Aanvullende code & mods<br>
+      Sheldon - Technische ondersteuning &amp; aanvullende hosting<br>
+<br>
+      <b>Scripts van derden:</b><br>
+      <a href='http://tinymce.moxiecode.com/'>TinyMCE v2.0.6.1</a> - Een 
+      HTML WYSIWYG editor door Moxiecode.<br>
+      <a href='http://phpmailer.sourceforge.net/'>PHPMailer</a> 
+      - Een sendmail klasse met SMTP-ondersteuning door Brent 
+      R. Matzelle.<br>
+      <a href='http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload'>HTTPDownload</a> 
+      - Een download handler klasse door Nguyen Quoc Bao.</td>
+</tr>
+</table>
+
+</body>
+</html>

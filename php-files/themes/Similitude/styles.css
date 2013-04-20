@@ -1,0 +1,267 @@
+a {
+	color : #005599;
+	text-decoration : none;
+}
+
+a:hover {
+	color : #005599;
+	text-decoration : underline;
+}
+
+a.side {
+	color : #005599;
+	text-decoration : none;
+}
+
+a:hover.side {
+	color : #005599;
+	text-decoration : underline;
+}
+
+a.white {
+	color : #ddd;
+	text-decoration : none;
+}
+
+a:hover.white {
+	color : #ddd;
+	text-decoration : underline;
+}
+
+body {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+}
+
+form {
+	margin : 0px;
+}
+
+hr {
+	height : 1px;
+	border : 1px solid #eee;
+}
+
+hr.side-hr {
+	height : 1px;
+	border : 1px solid #eee;
+}
+
+td {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+}
+
+pre {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+}
+
+.alt {
+	color : #005599;
+}
+ 
+.white-header {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	color : #555;
+	background-color : #fff;
+	border-top : 1px solid #ccc;
+	border-bottom : 1px solid #e1e1e1;
+	padding : 5px;
+}
+
+.full-header {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	color : #aaa;
+	background-color : #006699;
+	padding : 5px;
+}
+
+.footer {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	color : #aaa;
+	background-color : #006699;
+	border-top : 1px solid #e1e1e1;
+	padding : 5px;
+}
+
+.button {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	color : #555;
+	background-color : #f1f1f1;
+	height : 20px;
+	border : 1px solid #ccc;
+	margin-top : 2px;
+}
+
+.textbox {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	color : #555;
+	background-color : #f8f8f8;
+	border : 1px solid #ccc;
+}
+
+.main-body {
+	font-size : 11px;
+	color : #555;
+	background-color : #fff;
+	padding : 4px 4px 5px 4px;
+}
+
+.side-body {
+	font-size : 10px;
+	color : #777;
+	background-color : #fff;
+	padding : 4px;
+}
+
+.main-bg {
+	color : #555;
+	background-color : #fff;
+	padding : 5px;
+}
+
+.outer-border {
+	border : 1px solid #ccc;
+}
+
+.border {
+	border : 1px solid #e1e1e1;
+}
+
+.side-border-left {
+	border-right : 1px solid #e1e1e1;
+	padding : 5px;
+}
+
+.side-border-right {
+	border-left : 1px solid #e1e1e1;
+	padding : 5px;
+}
+
+.news-footer {
+	font-size : 10px;
+	color : #555;
+	background-color : #f1f1f1;
+	border-top : 1px solid #e1e1e1;
+	padding : 3px 4px 4px 4px;
+}
+
+.capmain {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	font-weight : bold;
+	color : #888;
+	background-color : #f1f1f1;
+	border-bottom : 1px solid #e1e1e1;
+	padding : 2px 4px 4px 4px;
+}
+
+.scapmain {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10px;
+	font-weight : bold;
+	color : #888;
+	background-color : #f1f1f1;
+	border-bottom : 1px solid #e1e1e1;
+	padding : 4px;
+}
+
+.tbl-border {
+	color : #555;
+	background-color : #e1e1e1;
+}
+
+.tbl {
+	font-size : 11px;
+	color : #555;
+	background-color : #fff;
+	padding : 4px;
+}
+
+.tbl1 {
+	font-size : 11px;
+	color : #555;
+	background-color : #fff;
+	padding : 4px;
+}
+
+.tbl2 {
+	font-size : 11px;
+	color : #555;
+	background-color : #f1f1f1;
+	padding : 4px;
+}
+
+.forum-caption {
+	font-size : 11px;
+	font-weight : bold;
+	color : #888;
+	background-color : #f1f1f1;
+	padding : 2px 4px 4px 4px;
+}
+
+.quote {
+	font-size : 11px;
+	color : #555;
+	background-color : #f8f8f8;
+	padding : 4px;
+	margin : 0px 20px 0px 20px;
+	border : 1px solid #bbb;
+}
+
+.poll {
+	height : 12px;
+	border : 1px solid #000;
+}
+
+.comment-name {
+	font-weight : bold;
+	color : #005599;
+}
+
+.shoutboxname {
+	font-weight : bold;
+	color : #005599;
+	background-color : #fff;
+}
+
+.shoutbox {
+	color : #777;
+	background-color : #fff;
+}
+
+.shoutboxdate {
+	font-size : 10px;
+	color : #888;
+	background-color : #fff;
+}
+
+.small {
+	font-size : 10px;
+	font-weight : normal;
+}
+
+.small2 {
+	font-size : 10px;
+	font-weight : normal;
+	color : #555;
+}
+
+.side-small {
+	font-size : 10px;
+	font-weight : normal;
+	color : #555;
+	background-color : #fff;
+}
+
+.side-label {
+	color : #555;
+	background-color : #f1f1f1;
+	padding : 2px 2px 3px 2px;
+}

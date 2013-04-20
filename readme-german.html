@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+<b>Version:</b> 6.01.19 - <b>Erschienen:</b> April 2008</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>1. Einleitung</b></td>
+</tr>
+<tr>
+<td class='tbl1'>PHP-Fusion ist ein simples open-source content management system (CMS), 
+geschrieben in PHP. Es benutzt eine mySQL Datenbank um den Inhalt einer Homepage zu speichern 
+und beinhaltet ein einfaches aber umfangreiches Administrations-System. 
+PHP-Fusion enthält alle wichtigen Funktionen die auch in anderen CMS zu finden sind.
+
+<p>PHP-Fusion unterliegt den Bedingungen der Version 2 der GNU General Public License. Für weitere Informationen siehe
+<a href='http://www.gnu.org/'>www.gnu.org</a> oder die gpl.txt, welche dem CMS-Paket beigefügt ist.
+Es steht ihnen frei den Code zu ändern und anschließend zu verbreiten, entweder im Originalzustand oder zusammen mit Modifikationen.
+ Wir würden es begrüßen wenn Sie den Copyrighthinweis
+"Powered by PHP-Fusion" nicht löschen. Wir finden es nur fair wenn man die vielen hundert Stunden Arbeit bedenkt die in dieses Projekt investiert wurden.
+Es steht ihnen trotzdem frei den Hinweis zu entfernen, in diesem Fall bitten wir Sie nur über eine Spende via PayPal nachzudenken.</td>
+</tr>
+<tr>
+<td class='tbl2'><b>2. Installation</b></td>
+</tr>
+<tr>
+<td class='tbl1'><ol>
+<li>Lade den Inhalt des "php-files"-Ordner auf deinen Server.</li>
+<li>Benenne blank_config.php zu config.php um.</li>
+<li>CHMOD die folgenden Dateien und Ordner auf 777:
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>images/photoalbum/submissions/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul></li>
+<liGeh auf deine Homepage und führe setup.php aus  z.B. http://www.deinehomepage.com/setup.php.</li>
+<li>Beende den Setupprozess indem du den Anweisungen folgst.</li>
+<li>CHMOD config.php wieder zu 644 und lösche setup.php von deinem Server.</li>
+</ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Upgrade von v6.00.1xx, v6.00.2xx oder v6.00.3xx</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Bevor sie ein Update auf die neue Version tätigen, empfehlen wir 
+ihnen ein vollständiges Backup ihrer Seite anzulegen (Dateien und Datenbank).
+Während des Upgrade-Prozesses werden die Fotogallerydaten in der Datenbank umbenannt.
+ Du kannst deine alten Fotos und Fotoalben mithilfe der "Photo Converter"-Infusion,
+ erhältlich auf <a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a>,
+ in die neue Gallery importieren.
+<br>Sie sollten zur Kenntnis nehmen das dieses Release einige strukturelle Änderungen
+ einführt und einige Funktionen nicht einwandfrei ihren Dienst erfüllen könnten solange nicht 
+ alle Teile von PHP-Fusion auf den neusten Stand gebracht wurden.
+<ol>
+<li>Lade upgrade.php aus dem "upgrade"-Ordner in den "administration"-Ordner auf deinen Server.</li>
+<li>Logge dich auf deiner Seite als Super Administrator ein und drücke "Upgrade" im Adminbereich.</li>
+<li>Folge den Anweisungen bis "Database upgrade complete" erscheint.</li>
+<li>Lade den Inhalt des "php-files"-Ordner auf deinen Server.</li>
+<li>Vergewissere dich das folgende Ordner und Dateien auf CHMOD 777 stehen:
+<ul style='list-style-type:disc'><li>images/photoalbum/submissions/</li>
+<li>images/news_cats/ (v6.00.1x only)</li>
+<li>images/imagelist.js (v6.00.1x only)</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>4. Security tips</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Hier sind einige nützliche Tips um deine Seite sicher zu halten:
+<ul style='list-style-type:disc'>
+<li>Vergewissere dich das die config.php schreibgeschützt ist (sollte CHMODed auf 644 sein).</li>
+<li>Lasse niemals die setup.php auf dem Server wenn PHP-Fusion fertig installiert ist.</li>
+<li>Stelle sicher das FTP und MySQL Passwörter verschieden sind.</li>
+<li>Lasse niemals Forum-Anhänge folgender Typen zu: php, html, exe, oder irgendeines Textformates.</li>
+</ul></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>5. Support sites</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Sollten Fragen oder Probleme bestehen kannst du die Hauptseite von PHP-Fusion unter
+<a href='http://www.php-fusion.co.uk'>www.php-fusion.co.uk</a> aufsuchen und eine Nachricht im Forum hinterlassen.
+ Außerdem kannst du einen IRC Chat unter
+<a href='irc://irc.outerweb.org/phpfusion'>irc.outerweb.org/phpfusion</a> aufsuchen.<br><br>
+PHP-Fusion kann durch sogenannte Infusions erweitert werden. Dies sind Plugins welche sich sehr einfach installieren lassen.
+ Eine große Anzahl Infusions gibt es auf 
+<a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a>.<br><br>
+Wenn dir die mitgelieferten Themes nicht gefallen kannst du unter
+ <a href='http://www.phpfusion-themes.com' target='blank'>www.phpfusion-themes.com</a> neue Themes suchen und downloaden.<br><br>
+PHP-Fusion hat außerdem Supportseiten in verschiedenen Sprachen z.B.
+<a href='http://www.elife.ae' class='side'>Arabia</a>,
+<a href='http://www.phpfusion.be' class='side'>Belgium</a>,
+<a href='http://php-fusion.cms-bg.org' class='side'>Bulgaria</a>,
+<a href='http://www.phpfusion-bosnia.com/' class='side'>Bosnia</a>,
+<a href='http://www.phpfusion-cro.be/' class='side'>Croatia</a>,
+<a href='http://www.phpfusion.dk' class='side'>Denmark</a>,
+<a href='http://www.phpfusion-fr.com/' class='side'>France</a>,
+<a href='http://www.php-fusion.de' class='side'>Germany</a>,
+<a href='http://www.php-fusion.co.hu'  class='side'>Hungary</a>,
+<a href='http://www.fusion.alaviweb.com' class='side'>Iran</a>,
+<a href='http://www.php-fusion.it' class='side'>Italy</a>,
+<a href='http://www.php-fusion.lt' class='side'>Lithuania</a>,
+<a href='http://www.phpfusion.nl' class='side'>Netherlands</a>,
+<a href='http://www.php-fusion.pl' class='side'>Poland</a>,
+<a href='http://php-fusion.int.ru' class='side'>Russia</a>,
+<a href='http://www.php-fusion.se' class='side'>Sweden</a>,
+<a href='http://www.phpfusion-tw.com' class='side'>Taiwan</a>,
+and <a href='http://www.phpfusion-tr.com' class='side'>Turkey</a></tr>
+<tr>
+<td class='tbl2'><b>6. Danksagungen</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Thanks to the following for their additional work:<br><br>
+Shedrock - Additional Themes and administration icons<br>
+Janmol - Market research & additional design concepts<br>
+KEFF - For silly ideas that aren't actually silly!<br>
+Rayxen - Additional code & mods<br>
+Sheldon - Tech support & additional hosting<br>
+<br>
+<b>3rd Party Scripts:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE v2.0.6.1</a> - A HTML WYSIWYG editor by Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer</a> - A sendmail class with SMTP support by Brent R. Matzelle.<br>
+<a href='http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload'>HTTPDownload</a> - A download handler class by Nguyen Quoc Bao.</td>
+</tr>
+</table>
+
+</body>
+</html>

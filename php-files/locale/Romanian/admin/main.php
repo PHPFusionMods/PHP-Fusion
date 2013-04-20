@@ -1,0 +1,56 @@
+<?php
+// Admin Links
+$locale['200'] = "Panoul de Administrare ".$settings['sitename'];
+$locale['ac01'] = "Administrare con&#355;inut";
+$locale['ac02'] = "Administrare utilizatori";
+$locale['ac03'] = "Administrare sistem";
+$locale['ac04'] = "Infuzii";
+$locale['201'] = "Administratori";
+$locale['202'] = "Categorii articole";
+$locale['203'] = "Articole";
+$locale['204'] = "Lista neagr&#259;";
+$locale['205'] = "Comentarii";
+$locale['206'] = "Pagini personalizate";
+$locale['207'] = "Salvare baz&#259; de date";
+$locale['208'] = "Categorii desc&#259;rc&#259;ri";
+$locale['209'] = "Desc&#259;rc&#259;ri";
+$locale['210'] = "&#206;ntreb&#259;ri frecvente";
+$locale['211'] = "Forum";
+$locale['212'] = "Imagini";
+$locale['213'] = "Infuzii";
+$locale['214'] = "Panouri infuzii";
+$locale['215'] = "Membri";
+$locale['216'] = "&#350;tiri";
+$locale['217'] = "Panouri";
+$locale['218'] = "Albume foto";
+$locale['219'] = "PHP Info";
+$locale['220'] = "Sondaje";
+$locale['221'] = "Shoutbox";
+$locale['222'] = "Leg&#259;turi site";
+$locale['223'] = "Submisii";
+$locale['224'] = "Upgrade";
+$locale['225'] = "Grupuri utilizatori";
+$locale['226'] = "Categorii leg&#259;turi pe internet";
+$locale['227'] = "Leg&#259;turi pe internet";
+$locale['228'] = "Set&#259;ri principale";
+$locale['229'] = "Set&#259;ri de timp &#351;i dat&#259;";
+$locale['230'] = "Set&#259;ri forum";
+$locale['231'] = "Set&#259;ri &#238;nregistrare";
+$locale['232'] = "Set&#259;ri galerie foto";
+$locale['233'] = "Alte set&#259;ri";
+$locale['234'] = "Op&#355;iuni mesaje private";
+$locale['235'] = "Categorii &#351;tiri";
+// Site Information
+$locale['250'] = "Informa&#355;ii";
+$locale['251'] = "Membri &#238;nregistra&#355;i:";
+$locale['252'] = "Membri dezactiva&#355;i:";
+$locale['253'] = "Membri bloca&#355;i:";
+$locale['254'] = "Submisii de &#351;tiri:";
+$locale['255'] = "Submisii de articole:";
+$locale['256'] = "Submisii de leg&#259;turi:";
+$locale['257'] = "Comentarii:";
+$locale['258'] = "Post&#259;ri shoutbox:";
+$locale['259'] = "Post&#259;ri forum:";
+$locale['260'] = "Submisii de imagini:";
+$locale['261'] = "Imagini galerie:";
+?>

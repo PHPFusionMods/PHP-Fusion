@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>PHP-Fusion Readme</title>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <style type="text/css">
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+  </style>
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<table class="tbl-border" align="center" cellpadding="0" cellspacing="1"
+ width="600">
+  <tbody>
+    <tr>
+      <td class="tbl1" align="center"><br>
+      <img src="banner.gif" alt="PHP-Fusion" title="PHP-Fusion"><br>
+      <br>
+Copyright &copy; 2002 - 2008 Nick Jones<br>
+      <b>Version:</b> 6.01.19 - <b>Released:</b> April 2008<br>
+-------------------------------------<br>
+Vertimas &#303; lietuvi&#371; kalb&#261;: Artexas<br>
+artexas@gmail.com<br>
+http://www.php-fusion.lt<br>
+http://www.phpfusion-modai.co.nr<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="tbl2"><b>1. Pristatymas</b></td>
+    </tr>
+    <tr>
+      <td class="tbl1">PHP-Fusion yra lengva atvirojo kodo Turinio
+Valdymo Sistema (TVS), para&#353;yta PHP kodu. Ji naudoja MySQL duomen&#371;
+baz&#281;, J&#363;s&#371; tinklapio turinio laikymui ir turi paprast&#261; administracijos
+sistem&#261;. PHP-Fusion savyje turi daugel&#303; &#303;vairi&#371; modifikacij&#371;, kurias
+naudoja kitos, j&#363;s&#371; matytos turinio valdymo sistemos.
+      <p>PHP-Fusion realizuota pagal GNU
+General Public Licenzijos 2-osios versijos s&#261;lygas. Daugiau
+informacijos rasite &#269;ia: <a href="http://www.gnu.org/">www.gnu.org</a>
+arba paskaitykite
+gpl.txt fail&#261;, kuris yra &#303;d&#279;tas &#353;iame distribucijos pakete. J&#363;s galite
+tobulinti kod&#261; kaip tik norite arba redistributuoti savo sukurtas
+modifikacijas. Mes b&#363;sime labai d&#279;kingi, jei J&#363;s neliesite
+"Powered by PHP-Fusion" esan&#269;io apa&#269;ioje autorini&#371; teisi&#371; &#303;sp&#279;jimo.
+Mums bus labai nemalonu, jei j&#363;s ne&#303;vertinsite &#353;imt&#371; valand&#371; m&#363;s&#371;
+sunkaus darbo, ra&#353;ant &#353;i&#261; turinio valdymo sistem&#261;. Kitu atveju, jei J&#363;s
+visd&#279;lto nor&#279;site nuimti autorini&#371; teisi&#371; &#303;sp&#279;jim&#261;, pra&#353;ome paremti mus
+oficialiame tinklapyje per PayPal.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="tbl2"><b>2. Instaliacija</b></td>
+    </tr>
+    <tr>
+      <td class="tbl1">
+      <ol>
+        <li>&#302;kelkite php-files direktorijaus turin&#303; &#303; savo server&#303;.</li>
+        <li>Pervadinkite blank_config.php &#303; config.php.</li>
+        <li>SuCHMODinkite &#353;iuos failus ir direktorijus &#303; 777:
+	<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+	    <li>images/</li>
+            <li>images/imagelist.js</li>
+            <li>images/articles/</li>
+            <li>images/avatars/</li>
+            <li>images/news/</li>
+            <li>images/news_cats/</li>
+            <li>images/photoalbum/</li>
+            <li>images/photoalbum/submissions/</li>
+            <li>forum/attachments/</li>
+            <li>config.php</li>
+          </ul>
+        </li>
+        <li>Eikite &#303; savo tinklap&#303; ir paleiskite setup.php, pvz:
+http://www.yourdomain.com/setup.php.</li>
+        <li>Baikite instaliavimo proces&#261;, sekdami nurodymus.</li>
+        <li>SuCHMODinkite config.php atgal &#303; 644 ir i&#353;trinkite
+setup.php i&#353; serverio.</li>
+      </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class="tbl2"><b>3. Atnaujinimas i&#353; v6.00.1xx, v6.00.2xx arba
+v6.00.3xx</b></td>
+    </tr>
+    <tr>
+      <td class="tbl1">Prie&#353; atnaujinim&#261; b&#363;tinai pasidarykite tinklapio
+fail&#371; ir duomen&#371; baz&#279;s kopijas.
+Atnaujinimo metu&nbsp; j&#363;s&#371; fotogalerijos duomen&#371; baz&#279;s lentel&#279;s bus
+pervardintos. J&#363;s gal&#279;site importuoti savo senus albumus ir foto &#303;
+nauj&#261; fotogalerij&#261;, naudodami foto konverterio modifikacij&#261;, kuri&#261;
+rasite &#269;ia:<br>
+      <a href="http://www.php-fusion.co.uk">www.php-fusion.co.uk</a>.
+Atminkite, kad &#353;is relyzas turi nema&#382;ai strukt&#363;rini&#371; pakeitim&#371;, tod&#279;l
+kai kurie elementai gali veikti nekorekti&#353;kai, kol j&#363;s neatnaujinsite
+vis&#371; fail&#371;.
+      <ol>
+        <li>&#302;kelkite upgrade.php i&#353; upgrade direktorijaus, pagal j&#363;s&#371;
+esam&#261; PHP-Fusion versij&#261;, &#303; admininistration direktorij&#371; j&#363;s&#371; serveryje.</li>
+        <li>Prisijunkite prie savo tinklapio kaip Super
+Administratorius ir Administracijos panel&#279;je paspauskite "Atnaujinimas".</li>
+        <li>Sekite visus nurodymus, kol neatsiras u&#382;ra&#353;as: "Duomen&#371;
+baz&#279; atnaujinta".</li>
+        <li>&#302;kelkite php-files direktorijaus turin&#303; &#303; server&#303;.</li>
+         <li>&#302;sitikinkite, ar &#353;ie direktorijai ir failai suCHMODinti &#303;
+777:
+          <ul style="list-style-type: disc;">
+            <li>images/photoalbum/submissions/</li>
+            <li>images/news_cats/ (tik v6.00.1x)</li>
+            <li>images/imagelist.js (tik v6.00.1x)</li>
+          </ul>
+        </li>
+      </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class="tbl2"><b>4. Tinklapio apsaugos patarimai<br>
+      </b></td>
+    </tr>
+    <tr>
+      <td class="tbl1">&#352;tai keletas patarim&#371;, kaip palaikyti saugum&#261;
+j&#363;s&#371; tinklapyje:
+      <ul style="list-style-type: disc;">
+        <li>&#302;sitikinkite, ar config.php yra ne&#303;ra&#353;omas (turi b&#363;ti
+suCHMODintas &#303; 644).</li>
+        <li>Niekada nepalikite setup.php j&#363;s&#371; serveryje po to, kai
+suinstaliavote PHP-Fusion.</li>
+        <li>Visada &#303;sitikinkite, kad skiriasi j&#363;s&#371; FTP ir MySQL
+slapta&#382;od&#382;iai.</li>
+        <li>Niekada neleiskite forumo prisegim&#371; php, html, exe, ar
+kitokiu tekstiniu failo formatu.</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="tbl2"><b>5. Palaikymo tinklapiai<br>
+      </b></td>
+    </tr>
+    <tr>
+      <td class="tbl1">Jei turite klausim&#371; ar problem&#371;, kas lie&#269;ia
+PHP-Fusion, pra&#353;ome aplankyti <a href="http://www.php-fusion.co.uk">www.php-fusion.co.uk</a>
+ir para&#353;ykite m&#363;s&#371; forumuose. Taip pat galite aplankyti m&#363;s&#371; IRC kanal&#261;
+      <a href="irc://irc.outerweb.org/phpfusion">irc.outerweb.org/phpfusion</a>.<br>
+      <br>
+PHP-Fusion gali b&#363;ti ple&#269;iama, &#303;diegiant modifikacijas. J&#371; j&#363;s rasite
+&#269;ia: <a href="http://www.phpfusion-mods.com" target="blank">www.phpfusion-mods.com</a>.<br>
+      <br>
+Jei norite pakeisti temas (tinklapio dizain&#261;), &#269;ia gal&#279;site rasti
+kr&#363;vas &#303;vairi&#371; tem&#371;: <a href="http://www.phpfusion-themes.com"
+ target="blank">www.phpfusion-themes.com</a> .<br>
+      <br>
+PHP-Fusion taip pat turi eil&#281; oficiali&#371; tinklapi&#371; kitomis kalbomis
+visame pasaulyje: <a href="http://www.elife.ae" class="side">Arabija</a>,
+      <a href="http://www.phpfusion.be" class="side">Belgija</a>, <a
+ href="http://php-fusion.cms-bg.org" class="side">Bulgarija</a>, <a
+ href="http://www.phpfusion-bosnia.com/" class="side">Bosnija</a>, <a
+ href="http://www.phpfusion-cro.be/" class="side">Kroatija</a>, <a
+ href="http://www.phpfusion.dk" class="side">Danija</a>, <a
+ href="http://www.phpfusion-fr.com/" class="side">Pranc&#363;zija</a>, <a
+ href="http://www.php-fusion.de" class="side">Vokietija</a>, <a
+ href="http://www.php-fusion.co.hu" class="side">Vengrija</a>, <a
+ href="http://www.fusion.alaviweb.com" class="side">Iranas</a>, <a
+ href="http://www.php-fusion.it" class="side">Italija</a>, <a
+ href="http://www.phpfusion.nl" class="side">Nyderlandai</a>, <a
+ href="http://www.php-fusion.pl" class="side">Lenkija</a>, <a
+ href="http://php-fusion.int.ru" class="side">Rusija</a>, <a
+ href="http://www.php-fusion.se" class="side">&#352;vedija</a>, <a
+ href="http://www.phpfusion-tw.com" class="side">Taivanis</a>, ir <a
+ href="http://www.phpfusion-tr.com" class="side">Turkija</a><br>
+----------------------------------------------------------------------------------------------------------<br>
+Lietuvi&#353;ki palaikymo tinklapiai:<br>
+Oficialusis Lietuvos palaikymo tinklapis: <a
+ href="http://www.php-fusion.lt" class="side">PHP-Fusion Lietuva</a>,<br>
+Lietuvos modifikacij&#371; tinklapis: <a
+ href="http://www.phpfusion-modai.co.nr" class="side">Lietuvi&#353;kos
+Modifikacijos</a>,<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="tbl2"><b>6. Pad&#279;kos</b></td>
+    </tr>
+    <tr>
+      <td class="tbl1">Nor&#279;&#269;iau pad&#279;koti u&#382; pasiaukojam&#261; darb&#261;:<br>
+      <br>
+Shedrock - u&#382; Tem&#371; k&#363;rim&#261; ir Administracijos ikonas<br>
+Janmol - Marketingas ir dizaino koncepcijos <br>
+KEFF - u&#382; beproti&#353;kas id&#279;jas, kurios nepasirod&#279; jau tokios beproti&#353;kos!<br>
+Rayxen - kodavimas ir modifikacijos<br>
+Sheldon - Techninis palaikymas ir hostingas <br>
+      <br>
+      <b>3-ios &#353;alies skriptai:</b><br>
+      <a href="http://tinymce.moxiecode.com/">TinyMCE v2.0.6.1</a> -
+HTML WYSIWYG redaktorius, sukurtas Moxiecode.<br>
+      <a href="http://phpmailer.sourceforge.net/">PHPMailer</a> - pa&#353;to
+programa su SMTP palaikymu, pagal Brent R. Matzelle.<br>
+      <a href="http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload">HTTPDownload</a>
+- siuntimai pagal Nguyen Quoc Bao.</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

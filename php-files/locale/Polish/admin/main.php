@@ -1,0 +1,56 @@
+<?php
+// Admin Links
+$locale['200'] = $settings['sitename']." - Panel Admina";
+$locale['ac01'] = "Zarz±dzanie Tre¶ci±";
+$locale['ac02'] = "Zarz±dzanie U¿ytkownikami";
+$locale['ac03'] = "Zarz±dzanie Stron±";
+$locale['ac04'] = "Wtyczki";
+$locale['201'] = "Administratorzy";
+$locale['202'] = "Kategorie Artyku³ów";
+$locale['203'] = "Artyku³y";
+$locale['204'] = "Czarna Lista";
+$locale['205'] = "Komentarze";
+$locale['206'] = "Dodatkowe Strony";
+$locale['207'] = "Kopie Bazy Danych";
+$locale['208'] = "Kategorie Downloadu";
+$locale['209'] = "Download";
+$locale['210'] = "FAQ";
+$locale['211'] = "Forum";
+$locale['212'] = "Obrazy";
+$locale['213'] = "Wtyczki";
+$locale['214'] = "Panele Wtyczek";
+$locale['215'] = "U¿ytkownicy";
+$locale['216'] = "News'y";
+$locale['217'] = "Panele";
+$locale['218'] = "Galeria";
+$locale['219'] = "PHP Info";
+$locale['220'] = "Ankiety";
+$locale['221'] = "Shoutbox";
+$locale['222'] = "Menu Strony";
+$locale['223'] = "Nades³ane Materia³y";
+$locale['224'] = "Aktualizacja Portalu";
+$locale['225'] = "Grupy U¿ytkowników";
+$locale['226'] = "Kategorie Linków WWW";
+$locale['227'] = "Linki WWW";
+$locale['228'] = "G³ówne Ustawienia";
+$locale['229'] = "Ustawienia Czasu i Daty";
+$locale['230'] = "Ustawienia Forum";
+$locale['231'] = "Ustawienia Rejestracji";
+$locale['232'] = "Ustawienia Galerii";
+$locale['233'] = "Pozosta³e Ustawienia";
+$locale['234'] = "Ustawienia Prywatnych Wiadomo¶ci";
+$locale['235'] = "Kategorie Newsów";
+// Site Information
+$locale['250'] = "Informacje";
+$locale['251'] = "Zarejestrowanych U¿ytkowników:";
+$locale['252'] = "Nieaktywnych U¿ytkowników:";
+$locale['253'] = "U¿ytkownicy na Czarnej Li¶cie:";
+$locale['254'] = "Nades³ane News'y:";
+$locale['255'] = "Nades³ane Artyku³y:";
+$locale['256'] = "Nades³ane Linki:";
+$locale['257'] = "Komentarze:";
+$locale['258'] = "Postów w Shoutbox'ie:";
+$locale['259'] = "Postów na Forach:";
+$locale['260'] = "Nades³ane Zdjêcia:";
+$locale['261'] = "Fotografie w Galerii:";
+?>

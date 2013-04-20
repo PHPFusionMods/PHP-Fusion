@@ -1,0 +1,56 @@
+<?php
+// Admin Links
+$locale['200'] = $settings['sitename']." Administracijos Panelë";
+$locale['ac01'] = "Turinio administracija";
+$locale['ac02'] = "Vartotojø administracija";
+$locale['ac03'] = "Sistemos administracija";
+$locale['ac04'] = "Modifikacijos";
+$locale['201'] = "Administratoriai";
+$locale['202'] = "Straipsniø kategorijos";
+$locale['203'] = "Straipsniai";
+$locale['204'] = "Juodasis sàraðas";
+$locale['205'] = "Komentarai";
+$locale['206'] = "Pridëtiniai puslapiai";
+$locale['207'] = "Duomenø bazës atsarginës kopijos";
+$locale['208'] = "Siuntimø kategorijos";
+$locale['209'] = "Siuntimai";
+$locale['210'] = "DUK <br> (<i>Daþnausiai uþduodami klausimai</i>)";
+$locale['211'] = "Forumai";
+$locale['212'] = "Paveiksliukai";
+$locale['213'] = "Modifikacijos";
+$locale['214'] = "Modifikacijø panelës";
+$locale['215'] = "Vartotojai";
+$locale['216'] = "Naujienos";
+$locale['217'] = "Panelës";
+$locale['218'] = "Foto albumai";
+$locale['219'] = "PHP info";
+$locale['220'] = "Apklausos";
+$locale['221'] = "Ðaukykla";
+$locale['222'] = "Tinklapio nuorodos";
+$locale['223'] = "Pateikimai";
+$locale['224'] = "Tinklapio atnaujinimas";
+$locale['225'] = "Vartotojø grupës";
+$locale['226'] = "Web nuorodø kategorijos";
+$locale['227'] = "Web nuorodos";
+$locale['228'] = "PAGRINDINIAI TINKLAPIO NUSTATYMAI";
+$locale['229'] = "Datos ir laiko nustatymai";
+$locale['230'] = "Forumo nustatymai";
+$locale['231'] = "Registracijos nustatymai";
+$locale['232'] = "Foto galerijos nustatymai";
+$locale['233'] = "Ávairûs nustatymai";
+$locale['234'] = "Asmeniniø þinuèiø savybës";
+$locale['235'] = "Naujienø kategorijos";
+// Site Information
+$locale['250'] = " Informacija";
+$locale['251'] = "Registruoti nariai:";
+$locale['252'] = "Neaktyvûs nariai:";
+$locale['253'] = "Uþdrausti nariai:";
+$locale['254'] = "Naujienø pateikimai:";
+$locale['255'] = "Straipsniø pateikimai:";
+$locale['256'] = "Nuorodø pateikimai:";
+$locale['257'] = "Komentarai:";
+$locale['258'] = "Ðaukyklos praneðimai:";
+$locale['259'] = "Forumo praneðimai:";
+$locale['260'] = "Foto pateikimai:";
+$locale['261'] = "Fotogalerija:";
+?>

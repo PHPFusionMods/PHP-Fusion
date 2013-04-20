@@ -1,0 +1,56 @@
+<?php
+// Beheerder Links
+$locale['200'] = $settings['sitename']." Beheerder Paneel";
+$locale['ac01'] = "Content Beheer";
+$locale['ac02'] = "Gebruiker Beheer";
+$locale['ac03'] = "Systeem Beheer";
+$locale['ac04'] = "Infusions";
+$locale['201'] = "Beheerders";
+$locale['202'] = "Artikelcategorieën";
+$locale['203'] = "Artikelen";
+$locale['204'] = "Zwarte Lijst";
+$locale['205'] = "Reacties";
+$locale['206'] = "Eigen Pagina\'s";
+$locale['207'] = "Database Backup";
+$locale['208'] = "Downloadcategorieën";
+$locale['209'] = "Downloads";
+$locale['210'] = "FAQ\'s";
+$locale['211'] = "Forums";
+$locale['212'] = "Afbeeldingen Beheer";
+$locale['213'] = "Infusion Beheer";
+$locale['214'] = "Infusion Panelen";
+$locale['215'] = "Leden Beheer";
+$locale['216'] = "Nieuws Beheer";
+$locale['217'] = "Paneel Beheer";
+$locale['218'] = "Fotoalbum Beheer";
+$locale['219'] = "PHP Info";
+$locale['220'] = "Enquête Beheer";
+$locale['221'] = "Shoutbox Beheer";
+$locale['222'] = "Site Links Beheer";
+$locale['223'] = "Inzendingen Beheer";
+$locale['224'] = "Upgrade";
+$locale['225'] = "Gebruikergroepen";
+$locale['226'] = "Weblink-categorieën";
+$locale['227'] = "Weblink Beheer";
+$locale['228'] = "Algemene Instellingen";
+$locale['229'] = "Tijd en Datum Instellingen";
+$locale['230'] = "Forum Instellingen";
+$locale['231'] = "Aanmeldingsinstellingen";
+$locale['232'] = "Fotogallerij Instellingen";
+$locale['233'] = "Diverse Instellingen";
+$locale['234'] = "Opties Privé Berichten";
+$locale['235'] = "Nieuwscategorieën";
+// Site Gegevens
+$locale['250'] = "Informatie";
+$locale['251'] = "Aangemelde leden:";
+$locale['252'] = "Niet-geactiveerde leden:";
+$locale['253'] = "Verbannen leden:";
+$locale['254'] = "Nieuws-inzendingen:";
+$locale['255'] = "Artikel-inzendingen:";
+$locale['256'] = "Link-inzendingen:";
+$locale['257'] = "Reacties:";
+$locale['258'] = "Shoutbox-berichten:";
+$locale['259'] = "Forumberichten:";
+$locale['260'] = "Foto-inzendingen:";
+$locale['261'] = "Gallerij Foto's:";
+?>

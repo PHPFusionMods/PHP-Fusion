@@ -1,0 +1,13 @@
+/*
++------------------------------------------------------+
+||Hungarian Language set for PHP-Fusion v6.00.4
+|
+|Translator: Nagy Károly (Korcsii)
+|Translator: Kapronczay László (Ephyx)
+|
+|Hungarian PHP-Fusion Support Site
+|web: http://www.php-fusion.co.hu
+|email: fus_adm@php-fusion.co.hu
+|date: 2006 may 01|
++------------------------------------------------------+
+*/
