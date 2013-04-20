@@ -1,0 +1,3 @@
+<?php
+$result = dbquery("INSERT INTO ".DB_PREFIX."settings (settings_name, settings_value) VALUES ('userNameChange', '1')");
+?>

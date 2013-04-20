@@ -1,0 +1,10 @@
+<?php
+$result = dbquery("ALTER TABLE ".DB_DOWNLOADS." ADD download_user MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '1' AFTER download_id");
+$result = dbquery("ALTER TABLE ".DB_DOWNLOADS." ADD download_homepage VARCHAR(100) NOT NULL DEFAULT '' AFTER download_user");
+$result = dbquery("ALTER TABLE ".DB_DOWNLOADS." ADD download_description_short VARCHAR(500) NOT NULL AFTER download_title");
+$result = dbquery("ALTER TABLE ".DB_DOWNLOADS." ADD download_image VARCHAR(100) NOT NULL DEFAULT '' AFTER download_description");
+$result = dbquery("ALTER TABLE ".DB_DOWNLOADS." ADD download_image_thumb VARCHAR(100) NOT NULL DEFAULT '' AFTER download_image");
+$result = dbquery("ALTER TABLE ".DB_DOWNLOADS." ADD download_copyright VARCHAR(250) NOT NULL DEFAULT '' AFTER download_license");
+$result = dbquery("ALTER TABLE ".DB_DOWNLOADS." ADD download_allow_comments TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' AFTER download_count");
+$result = dbquery("ALTER TABLE ".DB_DOWNLOADS." ADD download_allow_ratings TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' AFTER download_allow_comments");
+?>

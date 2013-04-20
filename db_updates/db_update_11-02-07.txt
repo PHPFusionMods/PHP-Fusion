@@ -1,0 +1,21 @@
+<?php
+$result = dbquery("CREATE TABLE ".DB_PREFIX."user_log (
+  userlog_id MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  userlog_user_id MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0',
+  userlog_field VARCHAR(50) NOT NULL DEFAULT '',
+  userlog_value_new TEXT NOT NULL DEFAULT '',
+  userlog_value_old TEXT NOT NULL DEFAULT '',
+  userlog_timestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  PRIMARY KEY (userlog_id),
+  KEY userlog_user_id (userlog_user_id),
+  KEY userlog_field (userlog_field)
+  );");
+
+$result = dbquery("ALTER TABLE ".DB_USER_FIELDS." ADD field_log TINYINT(1) UNSIGNED NOT NULL DEFAULT '0'");
+$result = dbquery("INSERT INTO ".DB_ADMIN." SET admin_rights='UL', admin_image='user_fields.gif', admin_title='User Log', admin_link='user_log.php', admin_page='2'");
+
+$result = dbquery("SELECT * FROM ".DB_USERS." WHERE user_level='103'");
+while ($data = dbarray($result)) {
+		$result2 = dbquery("UPDATE ".DB_USERS." SET user_rights='".$data['user_rights'].".UL' WHERE user_id='".$data['user_id']."'");
+}
+?>

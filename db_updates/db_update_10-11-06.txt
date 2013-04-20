@@ -1,0 +1,8 @@
+<?php
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('password_algorithm', 'sha256')");
+$result = dbquery("ALTER TABLE ".DB_USERS." ADD user_algo VARCHAR( 10 ) NOT NULL DEFAULT 'md5' AFTER user_name , ADD user_salt VARCHAR( 32 ) NOT NULL AFTER user_algo");
+$result = dbquery("ALTER TABLE ".DB_USERS." ADD user_admin_algo VARCHAR( 10 ) NOT NULL DEFAULT 'md5' AFTER user_password , ADD user_admin_salt VARCHAR( 32 ) NOT NULL AFTER user_admin_algo");
+$result = dbquery("ALTER TABLE ".DB_USERS." CHANGE user_password user_password VARCHAR( 64 ) NOT NULL");
+$result = dbquery("ALTER TABLE ".DB_USERS." CHANGE user_admin_password user_password VARCHAR( 64 ) NOT NULL");
+?>
+

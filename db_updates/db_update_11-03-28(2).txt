@@ -1,0 +1,4 @@
+<?php
+$result = dbquery("DELETE FROM ".DB_SETTINGS." WHERE settings_name='login_method'");
+$result = dbquery("DROP TABLE ".DB_PREFIX."sessions"); // this also works if multisite_include.php is already updated
+?>

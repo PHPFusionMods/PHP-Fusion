@@ -1,0 +1,3 @@
+<?php
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('rendertime_enabled', '0')");
+?>

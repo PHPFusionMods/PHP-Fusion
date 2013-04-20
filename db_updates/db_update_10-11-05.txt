@@ -1,0 +1,8 @@
+<?php
+$url = parse_url($settings['siteurl']);
+
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('site_protocol', '".$url['scheme']."')");
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('site_host', '".$url['host']."')");
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('site_port', '".$url['port']."')");
+$result = dbquery("INSERT INTO ".DB_SETTINGS." VALUES ('site_path', '".$url['path']."')");
+?>

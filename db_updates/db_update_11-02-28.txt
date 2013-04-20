@@ -1,0 +1,3 @@
+<?php
+$result = dbquery("INSERT INTO ".$db_prefix."site_links (link_name, link_url, link_visibility, link_position, link_window) VALUES ('Submit Download', 'submit.php?stype=d', '101', '1', '0')");
+?>

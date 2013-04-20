@@ -1,0 +1,6 @@
+<?php
+$result = dbquery("ALTER TABLE ".DB_NEW_USERS." CHANGE user_code user_code VARCHAR( 40 ) NOT NULL");
+
+$result = dbquery("ALTER TABLE ".DB_USERS." CHANGE user_salt user_salt VARCHAR( 40 ) NOT NULL ,
+CHANGE user_admin_salt user_admin_salt VARCHAR( 40 ) NOT NULL");
+?>
