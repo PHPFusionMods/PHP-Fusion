@@ -1,7 +1,7 @@
 PHP-Fusion
 ==========
 
-PHP-Fusion is a light-weight open-source content management system (CMS) written and developed by Nick Jones (also known as Digitanium, †04-01-2011) in PHP. It uses a MySQL database to store a web site's content and comes with a simple but comprehensive administration system. PHP-Fusion includes features common in many other CMS packages.
+PHP-Fusion is a light-weight open-source content management system (CMS) written and developed by Nick Jones (also known as Digitanium) in PHP. It uses a MySQL database to store a web site's content and comes with a simple but comprehensive administration system. PHP-Fusion includes features common in many other CMS packages.
 
 Features
 =========
