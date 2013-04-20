@@ -1,0 +1,34 @@
+<?php
+$locale['400'] = "Geçerli Resimler";
+$locale['401'] = "Resim Düzenle";
+$locale['402'] = "Resim Ekle";
+$locale['403'] = "NO";
+$locale['404'] = "Baþlýk";
+$locale['405'] = "Resim";
+$locale['406'] = "Küçük Res.";
+$locale['407'] = "Ekleyen";
+$locale['408'] = "Tarih";
+$locale['409'] = "Yorumlar";
+$locale['410'] = "Sýra";
+$locale['411'] = "Seçenekler";
+$locale['412'] = "Sil";
+$locale['413'] = "Görünüm";
+$locale['414'] = "Resimi Ekle";
+$locale['415'] = "Vazgeç";
+$locale['416'] = "þimdiki sýra:";
+$locale['417'] = "son sýrayý vermek için boþ býrakýnýz";
+$locale['418'] = "Resim Yükleniyor...";
+$locale['419'] = "Küçük resim %uw x %uh piksel boyutunda oluþacak";
+$locale['420'] = "Resim Hatasý";
+$locale['421'] = "Hata";
+$locale['422'] = "Bu Resim Baþlýðý Kullanýlýyor.";
+$locale['423'] = "Resim boyutu max. %u byte olabilir.";
+$locale['424'] = "Geçersiz resim dosyasý.";
+$locale['425'] = "Resim Formatý JPEG Olmalýdýr.";
+$locale['426'] = "Resminizin max. geniþliði %u ve yüksekliði %u piksel boyutunu aþamaz.";
+$locale['427'] = "Resimler Yönetimine Geri Dön";
+$locale['428'] = "Site Yönetimine Geri Dön";
+$locale['429'] = "Resim Eklenmemiþ.";
+$locale['430'] = "Hiçbiri";
+$locale['431'] = "Albümü Kapat";
+?>

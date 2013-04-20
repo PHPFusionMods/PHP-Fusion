@@ -1,0 +1,33 @@
+<?php
+$locale['400'] = "Fotoðraf Albümü";
+$locale['401'] = "Albüm Boþ";
+$locale['402'] = "En Son: ";
+$locale['403'] = " Resim";
+$locale['404'] = " Resimler";
+$locale['405'] = "Resim Yükleniyor...";
+$locale['406'] = "[Yenilendi]";
+$locale['407'] = "Fotoðraf Albümü Oluþturulmamýþ";
+$locale['408'] = "Albüm Adý: ";
+$locale['409'] = "Resim Adedi: ";
+$locale['410'] = "Son Resim Eklenme Tarihi ";
+$locale['411'] = " - ";
+$locale['412'] = "Yok";
+$locale['413'] = "Albüm Ýçeriði";
+$locale['414'] = "Görüntülenme: ";
+$locale['415'] = "Yorum Yapýlmamýþ";
+$locale['416'] = "Yorum";
+$locale['417'] = "Yorumlar";
+$locale['418'] = "Bu albüme henüz hiç resim eklenmemiþ.";
+$locale['419'] = "Resim: ";
+$locale['420'] = "Boyut: ";
+$locale['421'] = " pixel ";
+$locale['422'] = "Resmi Ekleyen ";
+$locale['423'] = " - ";
+$locale['424'] = "Toplam ";
+$locale['425'] = " defa görüntülendi.";
+$locale['426'] = "Albüm Listesine Geri Dön";
+$locale['427'] = "Albüm Galerisine Geri Dön";
+$locale['428'] = "Veritabaný Hatasý";
+$locale['429'] = "< Önceki";
+$locale['430'] = "Sonraki >";
+?>

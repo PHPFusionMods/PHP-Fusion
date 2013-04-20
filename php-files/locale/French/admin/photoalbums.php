@@ -1,0 +1,36 @@
+<?php
+$locale['400'] = "Albums Photos disponibles";
+$locale['401'] = "Suppression d'un Album";
+$locale['402'] = "Edition d'un Album";
+$locale['403'] = "Ajouter";
+$locale['404'] = "ID";
+$locale['405'] = "Titre";
+$locale['406'] = "Miniature";
+$locale['407'] = "Images";
+$locale['408'] = "Ordre";
+$locale['409'] = "Options";
+$locale['410'] = "Info";
+$locale['411'] = "Image";
+$locale['412'] = "Supprimer";
+$locale['413'] = "Entrer";
+$locale['414'] = "Sauvegarder";
+$locale['415'] = "Annuler";
+$locale['416'] = "Ordre actuel:";
+$locale['417'] = "laisser à blanc pour positionner l'image à la suite des autres";
+$locale['418'] = "Chargement de l'image...";
+$locale['419'] = "l'Image doit être de %u pixels de large x %u pixels de haut";
+$locale['420'] = "Erreur Album Photos";
+$locale['421'] = "Erreur";
+$locale['422'] = "Suppression de l'album impossible";
+$locale['423'] = "Il y a des photos dans cet album.";
+$locale['424'] = "Titre d'album déjà utilisé.";
+$locale['425'] = "la taille de l'image doit être inférieure à %u bytes.";
+$locale['426'] = "Fichier image invalide.";
+$locale['427'] = "L'Image doit être de format JPEG.";
+$locale['428'] = "Les dimensions de l'image doivent être de %u pixels de large x %u pixels de haut.";
+$locale['429'] = "Retour à l'administration des Albums photos";
+$locale['430'] = "Retour à l'administration du site";
+$locale['431'] = "Pas d'album photos.";
+$locale['432'] = "Vide";
+$locale['433'] = "Rafraîchis l'ordre de l'Album et des Photos";
+?>

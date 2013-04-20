@@ -1,0 +1,34 @@
+<?php
+$locale['400'] = "Current Photos";
+$locale['401'] = "Edit Photo";
+$locale['402'] = "Add Photo";
+$locale['403'] = "ID";
+$locale['404'] = "Title";
+$locale['405'] = "Image";
+$locale['406'] = "Thumb";
+$locale['407'] = "Added By";
+$locale['408'] = "Date";
+$locale['409'] = "Comments";
+$locale['410'] = "Order";
+$locale['411'] = "Options";
+$locale['412'] = "Delete";
+$locale['413'] = "Views";
+$locale['414'] = "Save Photo";
+$locale['415'] = "Cancel";
+$locale['416'] = "current order:";
+$locale['417'] = "leave blank to set last in order";
+$locale['418'] = "Loading Image...";
+$locale['419'] = "Thumbnail will be scaled to %uw x %uh pixels";
+$locale['420'] = "Photo Error";
+$locale['421'] = "Error";
+$locale['422'] = "Photo Title already in use.";
+$locale['423'] = "Image must be less than %u bytes.";
+$locale['424'] = "Invalid Image File.";
+$locale['425'] = "Image must be a JPEG Image File.";
+$locale['426'] = "Image must be less than %uw x %uh pixels.";
+$locale['427'] = "Return to Photo Admin";
+$locale['428'] = "Return to Admin Index";
+$locale['429'] = "No Photos defined.";
+$locale['430'] = "None";
+$locale['431'] = "Close Album";
+?>

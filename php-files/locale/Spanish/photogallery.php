@@ -1,0 +1,33 @@
+<?php
+$locale['400'] = "Galería de Imágenes";
+$locale['401'] = "Album Vacío";
+$locale['402'] = "Ultimo: ";
+$locale['403'] = " Imagen";
+$locale['404'] = " Imágenes";
+$locale['405'] = "Cargando Imagen...";
+$locale['406'] = "[Actualizado]";
+$locale['407'] = "No Hay Galerías Definidas";
+$locale['408'] = "Album: ";
+$locale['409'] = "Número de Imágenes: ";
+$locale['410'] = "Ultima imagen agregada ";
+$locale['411'] = " por ";
+$locale['412'] = "No";
+$locale['413'] = "Contenido del Album";
+$locale['414'] = "Vistas: ";
+$locale['415'] = "No Hay Comentarios";
+$locale['416'] = "Comentario";
+$locale['417'] = "Comentarios";
+$locale['418'] = "Ninguna imagen ha sido agregada a este álbum.";
+$locale['419'] = "Imagen: ";
+$locale['420'] = "Tamaño: ";
+$locale['421'] = " pixels ";
+$locale['422'] = "Imagen agregada por ";
+$locale['423'] = " en ";
+$locale['424'] = "Esta imagen a sido vista ";
+$locale['425'] = " veces";
+$locale['426'] = "Volver a la lista de albums";
+$locale['427'] = "Volver a la Galería del Album";
+$locale['428'] = "Error en la Base de Datos";
+$locale['429'] = "< Anterior";
+$locale['430'] = "Próxima >";
+?>

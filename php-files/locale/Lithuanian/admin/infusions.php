@@ -1,0 +1,20 @@
+<?php
+// Infusion Management
+$locale['400'] = "Ádiegimo procedûra";
+$locale['401'] = "Ádiegti";
+$locale['402'] = "Ðis ádiegimas ádiegtas";
+$locale['403'] = "Ðis ádiegimas negali bûti ádëtas";
+$locale['404'] = "Ádiegti Ádiegimai";
+$locale['405'] = "Antraðtë";
+$locale['406'] = "Versija";
+$locale['407'] = "Ádiegimo autorius";
+$locale['408'] = "Kontaktas";
+$locale['409'] = "Paðto adresas";
+$locale['410'] = "Saitas";
+$locale['411'] = "Iðimti";
+$locale['412'] = "Iðimti ðá ádiegimà?";
+$locale['413'] = "Raktas:";
+$locale['414'] = "Ne áteigti";
+$locale['415'] = "Áteigti";
+$locale['416'] = "Atnaujinimas galimas";
+?>

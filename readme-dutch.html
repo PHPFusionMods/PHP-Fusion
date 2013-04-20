@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2006 Nick Jones<br>
+      <b>Versie:</b> 6.00.307 - <b>Vrijgegeven:</b> May 2006</td>
+</tr>
+
+<tr>
+    <td class='tbl2'><b>1. Overzicht</b></td>
+</tr>
+<tr>
+    <td class='tbl1'>PHP-Fusion is een alles-in-een content management 
+      system (CMS), geschreven in PHP.<br>
+      Het gebruikt een MySQL-database om de inhoud ('content') 
+      van uw website op te slaan, bijvoorbeeld Nieuws, Artikelen, 
+      Forumberichten, Shoutboxberichten en nog veel meer. 
+      <p>PHP-Fusion is vrijgegeven onder de voorwaarden van versie 
+        2 van de GNU General Public License. Voor verdere informatie 
+        hierover kunt u naar http://www.gnu.org gaan of het bestand 
+        gpl.txt in het pakket raadplegen. U mag de code op elke 
+        willekeurige manier aanpassen en verder verspreiden zo 
+        als het is of met uw eigen aanpassingen.
+      <p>U mag de copyright-vermelding &quot;Powered by PHP-Fusion&quot; 
+        niet verwijderen en dit geldt ook voor de copyright-informatie 
+        enig script welke in het pakket is opgenomen. We vinden 
+        dit eerlijk, gezien de honderden uren werk die in dit 
+        in de ontwikkeling van product zijn gestoken.
+    </td>
+</tr>
+<tr>
+    <td class='tbl2'><b>2. Installatie</b></td>
+</tr>
+<tr>
+    <td class='tbl1'> 
+      <ol>
+        <li>Upload de inhoud van de map php-files naar uw server.</li>
+        <li>CHMOD de volgende bestanden en mappen naar 777: 
+          <ul style='list-style-type:disc'>
+            <li>administration/db_backups/</li>
+            <li>images/</li>
+            <li>images/imagelist.js</li>
+            <li>images/articles/</li>
+            <li>images/avatars/</li>
+            <li>images/news/</li>
+            <li>images/news_cats/</li>
+            <li>images/photoalbum/</li>
+            <li>forum/attachments/</li>
+            <li>config.php</li>
+          </ul>
+        </li>
+        <li>Ga naar uw website en voer setup.php uit, bijvoorbeeld 
+          door het intoetsen van http://www.uwdomain.com/setup.php.</li>
+        <li>Completeer de setup-procedure door alle instructies 
+          op het beeldscherm op te volgen.</li>
+        <li>CHMOD config.php terug naar 644 EN verwijder setup.php 
+          van uw server.</li>
+      </ol>
+    </td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Upgrade vanaf v6.00.1xx</b></td>
+</tr>
+<tr>
+    <td class='tbl1'>We adviseren u ten sterkste een volledige 
+      backup van uw site en de database te maken, voordat u de 
+      upgrade uitvoert. 
+      <ol>
+        <li><b>Verwijder a.u.b. config.php en setup.php uit de 
+          map php-files voordat u doorgaat.</b></li>
+        <li>Upload upgrade.php van de map upgrade v6.00.1xx naar 
+          de map administration op uw server.</li>
+        <li>Log op uw site in als Superbeheerder/Super Admin en 
+          klik in het Beheerder Paneel/Admin Paneel op Upgrade.</li>
+        <li>Volg alle instructies op het beeldscherm op tot u 
+          &quot;Database upgrade complete&quot; ziet.</li>
+        <li>Upload de inhoud uit de map php-files naar uw server.</li>
+        <li>Verzeker u ervan dat de volgende mappen zijn ge-CHMOD 
+          naar 777: 
+          <ul style='list-style-type:disc'>
+            <li>images/news_cats/</li>
+            <li>images/imagelist.js</li>
+          </ul>
+        </li>
+      </ol>
+    </td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>4. Upgrade vanaf v4.01, v5.00 of v5.01</b></td>
+</tr>
+<tr>
+    <td class='tbl1'>We adviseren u ten sterkste een volledige 
+      backup van uw site en de database te maken, voordat u de 
+      upgrade uitvoert. 
+      <ol>
+        <li>De-installeer alle Infusions via Infusions Beheer 
+          (alleen voor v5.00 of v5.01).</li>
+        <li>Schakel elk paneel van een derde partij uit via het 
+          Beheerder Paneel, met uitzondering van: 
+          <ul style='list-style-type:disc'>
+            <li>Navigation</li>
+            <li>Online Users</li>
+            <li>Forum Threads</li>
+            <li>Latest Articles</li>
+            <li>Welcome Message</li>
+            <li>Forum Threads List 
+            <li>User Info</li>
+            <li>Members Poll</li>
+            <li>Shoutbox</li>
+          </ul>
+        </li>
+        <li>Upload config.php uit de map php-files naar uw server. 
+          <ul style='list-style-type:disc'>
+            <li><b>Waarschuwing: U dient config.php uit de map 
+              php-files te verwijderen.</b></li>
+          </ul>
+        </li>
+        <li>Upload upgrade.php uit de map upgrade v4.01 naar de 
+          map admin op uw server.</li>
+        <li>CHMOD config.php naar 777.</li>
+        <li>Log op uw site in als Superbeheerder/Super Admin en 
+          klik in het Beheerder Paneel/Admin Paneel op Upgrade.</li>
+        <li>Volg alle instructies op het beeldscherm op tot u 
+          &quot;Database upgrade complete&quot; ziet.</li>
+        <li>Verwijder de volgende mappen van uw server: 
+          <ul style='list-style-type:disc'>
+            <li>fusion_admin</li>
+            <li>fusion_core</li>
+            <li>fusion_forum</li>
+            <li>fusion_languages</li>
+            <li>fusion_panels</li>
+            <li>fusion_themes</li>
+          </ul>
+        </li>
+        <li>Hernoem de volgende mappen: 
+          <ul style='list-style-type:disc'>
+            <li>fusion_images naar images</li>
+            <li>fusion_public naar forum</li>
+          </ul>
+        </li>
+        <li>Verplaats de map met avatars van de map forum naar 
+          de map images.</li>
+        <li>Upload de inhoud van de map php-files naar uw server.</li>
+        <li>CHMOD config.php terug naar 644.</li>
+        <li>Verzeker u ervan dat de volgende mappen zijn ge-CHMOD 
+          naar 777: 
+          <ul style='list-style-type:disc'>
+            <li>administration/db_backups/</li>
+            <li>images/</li>
+            <li>images/articles/</li>
+            <li>images/avatars/</li>
+            <li>images/news/</li>
+            <li>images/photoalbum/</li>
+            <li>forum/attachments/</li>
+          </ul>
+        </li>
+      </ol>
+    </td>
+</tr>
+
+<tr>
+    <td class='tbl2'><b>5. Aanvullende opmerkingen</b></td>
+</tr>
+<tr>
+    <td class='tbl1'>Houdt er rekening mee dat het meeste van 
+      de PHP-Fusion-infrastructuur volledig is herzien sinds v4x 
+      en v5x. Terwijl de meeste definities hernoemd zijn, is een 
+      aantal compleet vervallen omdat ze overbodig zijn geworden. 
+      De onderstaande tabel geeft een ovezicht van gebruikte definities 
+      in v4x, v5x en v6x.<br>
+      <br>
+<table align='center' cellpadding='0' cellspacing='1' class='tbl-border'>
+<tr><td width='33%' class='tbl2'>v4x</td><td width='33%' class='tbl2'>v5x</td><td width='33%' class='tbl2'>v6x</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_root</td><td width='33%' class='tbl1'>FUSION_ROOT</td><td width='33%' class='tbl1'>-</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_base</td><td width='33%' class='tbl1'>FUSION_BASE</td><td width='33%' class='tbl1'>BASEDIR</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_ADMIN</td><td width='33%' class='tbl1'>ADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES</td><td width='33%' class='tbl1'>IMAGES</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES_A</td><td width='33%' class='tbl1'>IMAGES_A</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES_N</td><td width='33%' class='tbl1'>IMAGES_N</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_INCLUDES</td><td width='33%' class='tbl1'>INCLUDES</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_langdir</td><td width='33%' class='tbl1'>FUSION_LANGUAGES</td><td width='33%' class='tbl1'>LOCALE</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_LAN</td><td width='33%' class='tbl1'>LOCALESET</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_FORUM</td><td width='33%' class='tbl1'>FORUM</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_INFUSIONS</td><td width='33%' class='tbl1'>INFUSIONS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PHOTOS</td><td width='33%' class='tbl1'>PHOTOS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PUBLIC</td><td width='33%' class='tbl1'>PUBLIC</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_themedir</td><td width='33%' class='tbl1'>FUSION_THEMES</td><td width='33%' class='tbl1'>THEMES
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_THEME</td><td width='33%' class='tbl1'>THEME</td></tr>
+<tr><td width='33%' class='tbl1'>$user_ip</td><td width='33%' class='tbl1'>FUSION_IP</td><td width='33%' class='tbl1'>USER_IP</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_QUERY</td><td width='33%' class='tbl1'>FUSION_QUERY</td></tr>
+<tr><td width='33%' class='tbl1'>$PHP_SELF</td><td width='33%' class='tbl1'>$PHP_SELF/FUSION_SELF</td><td width='33%' class='tbl1'>FUSION_SELF</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PREFIX</td><td width='33%' class='tbl1'>DB_PREFIX</td></tr>
+<tr><td width='33%' class='tbl1'>$fusion_prefix</td><td width='33%' class='tbl1'>$fusion_prefix</td><td width='33%' class='tbl1'>$db_prefix</td></tr>
+<tr>
+          <td colspan='3' class='tbl2'>Gebruiker definities</td>
+        </tr>
+<tr><td width='33%' class='tbl1'>Guest()</td><td width='33%' class='tbl1'>iGUEST</td><td width='33%' class='tbl1'>iGUEST</td></tr>
+<tr><td width='33%' class='tbl1'>Member()</td><td width='33%' class='tbl1'>iMEMBER</td><td width='33%' class='tbl1'>iMEMBER</td></tr>
+<tr><td width='33%' class='tbl1'>Moderator()</td><td width='33%' class='tbl1'>iMOD</td><td width='33%' class='tbl1'>-</td></tr>
+<tr><td width='33%' class='tbl1'>Admin()</td><td width='33%' class='tbl1'>iADMIN</td><td width='33%' class='tbl1'>iADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>SuperAdmin()</td><td width='33%' class='tbl1'>iSUPERADMIN</td><td width='33%' class='tbl1'>iSUPERADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>UserLevel()</td><td width='33%' class='tbl1'>iUSER</td><td width='33%' class='tbl1'>iUSER</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>USER_RIGHTS</td><td width='33%' class='tbl1'>USER_RIGHTS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>USER_GROUP</td><td width='33%' class='tbl1'>USER_GROUP</td></tr>
+</table><br>
+      Verzeker u ervan, dat enige aangepaste code de definities 
+      voor v6 gebruikt en wees er op bedacht dat Infusions specifiek 
+      ontworpen voor v5.x niet compatibel zijn met v6 door veranderingen 
+      in het Infusion-systeem.</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>6. Support sites</b></td>
+</tr>
+<tr>
+    <td class='tbl1'>Indien vragen of problemen heeft betreffende 
+      PHP-Fusion, bezoek dan a.u.b. de hoofd-ontwikkelsite op 
+      <a href='http://www.php-fusion.co.uk' target='_blank'>www.php-fusion.co.uk</a> 
+      en plaats een bericht in onze forums. Als alternatief kun 
+      u ons IRC-chat support-kanaal op<a href='irc://irc.cad-net.org/phpfusion'>irc.cad-net.org/phpfusion</a> 
+      bezoeken <br>
+      <br>
+      PHP-Fusion kan worden uitgebreid door Infusions toe te voegen. 
+      Dit zijn plugins die zeer eenvoudig te installeren zijn. 
+      U kunt een scala aan bruikbare Infusions op onze mod-site 
+      vinden op <a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a>.<br>
+      <br>
+      Indien u niet tevreden bent met de meegeleverde PHP-Fusion's 
+      thema's, dan zou u onze offici&euml;le thema-site op <a href='http://www.phpfusion-themes.com' target='blank'>www.phpfusion-themes.com</a> 
+      kunnen bezoeken, waar u een scala aan thema's van hoge kwaliteit 
+      vindt.<br>
+      <br>
+      PHP-Fusion heeft ook een aantal offici&euml;le support sites 
+      voor andere talen:<a href='http://www.phpfusion.be' target='blank'> 
+      Belgi&euml;</a>, <a href='http://www.phpfusion.dk' target='blank'>Denemarken</a>, 
+      <a href='http://www.php-fusion.de' target='blank'>Duitsland</a>, 
+      <a href='http://www.phpfusion.fr.com' target='blank'>Frankrijk</a>, 
+      <a href='http://www.fusion.alaviweb.com' target='blank'>Iran</a>, 
+      <a href='http://www.php-fusion.lt' target='blank'>Litauwen</a>, 
+      <a href='http://www.phpfusion.nl' target='blank'>Nederland</a>, 
+      <a href='http://www.php-fusion.pl' target='blank'>Polen</a>, 
+      <a href='http://www.php-fusion.sw' target='blank'>Zweden</a>, 
+      <a href='http://www.phpfusion-tw.com' target='blank'>Taiwan</a> 
+      en<a href='http://www.phpfusion-tr.com' target='blank'> 
+      Turkije.</a></td>
+</tr>
+
+<tr>
+    <td class='tbl2'><b>7. Dankwoord</b></td>
+</tr>
+<tr>
+    <td class='tbl1'>De volgende personen worden bedankt voor hun 
+      aanvullende werk:<br>
+      <br>
+      CrappoMan - Aanvullende code en MySQL-routines<br>
+      Shedrock - Aanvullende thema's en Beheer-ikonen<br>
+      Janmol - Marktonderzoek &amp; aanvullende ontwerpconcepten<br>
+      KEFF - Voor idiote idee&euml;n die eigenlijk helemaal niet 
+      zo idioot waren!<br>
+      Rayxen - Aanvullende code & mods<br>
+      Sheldon - Technische ondersteuning &amp; aaanvullende hosting<br>
+<br>
+      <b>Scripts van derden:</b><br>
+      <a href='http://tinymce.moxiecode.com/'>TinyMCE</a> - Een 
+      HTML WYSIWYG editor door Moxiecode.<br>
+      <a href='http://phpmailer.sourceforge.net/'>PHPMailer</a> 
+      - Een sendmail klasse met SMTP-ondersteuning door Brent 
+      R. Matzelle.<br>
+      <a href='http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload'>HTTPDownload</a> 
+      - Een download handler klasse door Nguyen Quoc Bao.</td>
+</tr>
+</table>
+
+</body>
+</html>

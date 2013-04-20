@@ -1,0 +1,34 @@
+<?php
+$locale['400'] = "Aanwezige foto's";
+$locale['401'] = "Foto wijzigen";
+$locale['402'] = "Foto toevoegen";
+$locale['403'] = "ID";
+$locale['404'] = "Titel";
+$locale['405'] = "Afbeelding";
+$locale['406'] = "Thumb";
+$locale['407'] = "Toegevoegd door";
+$locale['408'] = "Datum";
+$locale['409'] = "Reacties";
+$locale['410'] = "Volgorde";
+$locale['411'] = "Opties";
+$locale['412'] = "Verwijderen";
+$locale['413'] = "Keer bekeken";
+$locale['414'] = "Foto opslaan";
+$locale['415'] = "Afbreken";
+$locale['416'] = "Huidige volgorde:";
+$locale['417'] = "Openlaten om als laatste toe te voegen";
+$locale['418'] = "Afbeelding aan het laden...";
+$locale['419'] = "Thumbnail wordt geschaald naar %uw x %uh pixels";
+$locale['420'] = "Foto fout";
+$locale['421'] = "Fout";
+$locale['422'] = "Deze titel voor de Foto is reeds in gebruik.";
+$locale['423'] = "Een afbeelding moet kleiner zijn dan %u bytes.";
+$locale['424'] = "Ongeldig afbeeldingsformaat.";
+$locale['425'] = "Afbeelding moet een JPEG-bestand zijn.";
+$locale['426'] = "Een afbeelding moet kleiner zijn dan %uw x %uh pixels.";
+$locale['427'] = "Terug naar Foto Beheer";
+$locale['428'] = "Terug naar Beheerder Index";
+$locale['429'] = "Er zijn nog geen Foto's geplaatst.";
+$locale['430'] = "Geen";
+$locale['431'] = "Album sluiten";
+?>

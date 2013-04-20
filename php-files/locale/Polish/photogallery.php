@@ -1,0 +1,33 @@
+<?php
+$locale['400'] = "Albumy Zdjêæ";
+$locale['401'] = "Pusty Album";
+$locale['402'] = "Ostatnie: ";
+$locale['403'] = " Zdjêcie";
+$locale['404'] = " Zdjêcia";
+$locale['405'] = "Trwa ³adowanie zdjêcia...";
+$locale['406'] = "[Zaktualizowany]";
+$locale['407'] = "Brak Albumów Zdjêæ";
+$locale['408'] = "Album: ";
+$locale['409'] = "Ilo¶æ zdjêæ: ";
+$locale['410'] = "Ostatnie zdjêcie dodane dnia ";
+$locale['411'] = " przez ";
+$locale['412'] = "Brak";
+$locale['413'] = "Zawarto¶æ Albumu";
+$locale['414'] = "Ilo¶æ ods³on: ";
+$locale['415'] = "Brak Komentarzy";
+$locale['416'] = "Komentarz";
+$locale['417'] = "Komentarze";
+$locale['418'] = "Brak zdjêæ w Albumie.";
+$locale['419'] = "Zdjêcie: ";
+$locale['420'] = "Rozmiar: ";
+$locale['421'] = " pikseli ";
+$locale['422'] = "Zdjêcie dodane przez ";
+$locale['423'] = " dnia ";
+$locale['424'] = "Zdjêcie ogl±dano ";
+$locale['425'] = " razy";
+$locale['426'] = "Powrót do listy Albumów";
+$locale['427'] = "Powrót do Galerii ";
+$locale['428'] = "B³±d w bazie danych";
+$locale['429'] = "< Poprzednie";
+$locale['430'] = "Nastêpne >";
+?>

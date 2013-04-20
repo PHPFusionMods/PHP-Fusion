@@ -1,0 +1,28 @@
+	
+						Installation of PHP-Fusion Themes
+						-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+	To install this theme you must unzip the archived file into a TEMP folder - ex.: c:\temp
+
+	Once unzipped, upload the folder name ex.: Fusion6 via your FTP to your /themes/ folder. 
+	Once this has been done, simply launch your website and either do one of the following:
+
+
+	1. As a user. Login and then click on Edit Profile. You will see a few lines below the option 
+	   to change your theme from the dropdown list. Look in the list for the newly installed theme.
+	   Select it, and then click on the Update Profile button to view use the new theme.
+
+
+	2. This option allows you to change the Main Site Theme for ALL users As Administrator you will 
+	   need to login to your site and select Admin Panel from the User Info Panel. Once you click 
+	   on this option, click on System Administration, then Main Settings. Select the newly installed
+	   Theme from the dropdown box, then click on Save Settings.
+
+
+	That's all!
+
+
+
+					   PHP-Fusion is Copyright © 2003-2005 Nick Jones
+

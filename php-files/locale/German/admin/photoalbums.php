@@ -1,0 +1,36 @@
+<?php
+$locale['400'] = "Verfügbare Fotoalben";
+$locale['401'] = "Album löschen";
+$locale['402'] = "Fotoalbum bearbeiten";
+$locale['403'] = "Fotoalbum hinzufügen";
+$locale['404'] = "ID";
+$locale['405'] = "Titel";
+$locale['406'] = "Thumbnail";
+$locale['407'] = "Bilder";
+$locale['408'] = "Reihenfolge";
+$locale['409'] = "Optionen";
+$locale['410'] = "Info";
+$locale['411'] = "Bild";
+$locale['412'] = "Löschen";
+$locale['413'] = "Eingang";
+$locale['414'] = "Album speichern";
+$locale['415'] = "Abbrechen";
+$locale['416'] = "momentane Reihenfolge:";
+$locale['417'] = "leer lassen, um es an die letzte Stelle der Reihenfolge zu setzen";
+$locale['418'] = "Bild wird geladen...";
+$locale['419'] = "Bild wird skaliert auf %uw x %uh Pixel";
+$locale['420'] = "Fotoalbum Fehler";
+$locale['421'] = "Fehler";
+$locale['422'] = "Album kann nicht gelöscht werden";
+$locale['423'] = "Es sind noch Fotos in diesem Album.";
+$locale['424'] = "Album Titel wird schon benutzt.";
+$locale['425'] = "Bild muss kleiner sein als %u Bytes.";
+$locale['426'] = "Falsche Bilddatei.";
+$locale['427'] = "Bild muss eine jpg-Datei sein.";
+$locale['428'] = "Bild muss kleiner sein als %uw x %uh Pixel.";
+$locale['429'] = "Zurück zum Fotoalbum Admin";
+$locale['430'] = "Zurück zum Admin Index";
+$locale['431'] = "Kein Fotoalbum definiert.";
+$locale['432'] = "Kein";
+$locale['433'] = "Erneuere Album und Foto Reihenfolge";
+?>

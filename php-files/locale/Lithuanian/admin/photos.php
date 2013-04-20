@@ -1,0 +1,34 @@
+<?php
+$locale['400'] = "Esamos foto";
+$locale['401'] = "Redaguoti foto";
+$locale['402'] = "Pridëti foto";
+$locale['403'] = "ID";
+$locale['404'] = "Antraðtë";
+$locale['405'] = "Paveiksliukas";
+$locale['406'] = "Atvaizdas";
+$locale['407'] = "Pridëtas";
+$locale['408'] = "Data";
+$locale['409'] = "Komentarai";
+$locale['410'] = "Eilë";
+$locale['411'] = "Savybës";
+$locale['412'] = "Trinti";
+$locale['413'] = "Þiûrëta";
+$locale['414'] = "Iðsaugoti foto";
+$locale['415'] = "Nutraukti";
+$locale['416'] = "esama eilë:";
+$locale['417'] = "palik tuðèià, jei nori palikti paskutiniu eilëje";
+$locale['418'] = "Kraunasi Paveiksliukas...";
+$locale['419'] = "Atvaizdo mastelis bus %uw x %uh pikseliø";
+$locale['420'] = "Blogas Foto";
+$locale['421'] = "Klaida";
+$locale['422'] = "Tokia antraðtë jau naudojama.";
+$locale['423'] = "Paveiksliukas turi bûti maþesnis nei %u baitø.";
+$locale['424'] = "Blogas paveiksliuko failas.";
+$locale['425'] = "Paveiksliukas turi bûti JPEG formato.";
+$locale['426'] = "Paveiksliukas turi bûti maþesnis nei %uw x %uh pikseliø.";
+$locale['427'] = "Gráþti á foto administravimo";
+$locale['428'] = "Gráþti á administravimo panëliø";
+$locale['429'] = "Nëra apibûdintø foto.";
+$locale['430'] = "Nëra";
+$locale['431'] = "Uþdaryti albumà";
+?>

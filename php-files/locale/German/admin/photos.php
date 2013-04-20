@@ -1,0 +1,34 @@
+<?php
+$locale['400'] = "Verfügbare Fotos";
+$locale['401'] = "Foto bearbeiten";
+$locale['402'] = "Foto hinzufügen";
+$locale['403'] = "ID";
+$locale['404'] = "Titel";
+$locale['405'] = "Bild";
+$locale['406'] = "Thumbnail";
+$locale['407'] = "Hinzugefügt von";
+$locale['408'] = "Datum";
+$locale['409'] = "Kommentare";
+$locale['410'] = "Reihenfolge";
+$locale['411'] = "Optionen";
+$locale['412'] = "Löschen";
+$locale['413'] = "Angesehen";
+$locale['414'] = "Foto speichern";
+$locale['415'] = "Abbrechen";
+$locale['416'] = "momentane Reihenfolge:";
+$locale['417'] = "leer lassen, um es an die letzte Stelle zu setzen";
+$locale['418'] = "Bild wird geladen...";
+$locale['419'] = "Thumbnail wird skaliert auf %uw x %uh Pixel";
+$locale['420'] = "Foto Fehler";
+$locale['421'] = "Fehler";
+$locale['422'] = "Foto Titel wird schon benutzt.";
+$locale['423'] = "Bild muss kleiner sein als %u bytes.";
+$locale['424'] = "Falsche Bilddatei.";
+$locale['425'] = "Bild muss eine jpg-Datei sein.";
+$locale['426'] = "Bild muss kleiner sein als %uw x %uh Pixel.";
+$locale['427'] = "Zurück zum Foto Admin";
+$locale['428'] = "Zurück zum Admin Index";
+$locale['429'] = "Keine Fotos definiert.";
+$locale['430'] = "Keine";
+$locale['431'] = "Schließe Album";
+?>

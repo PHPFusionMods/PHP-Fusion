@@ -1,0 +1,34 @@
+<?php
+$locale['400'] = "Immagini Correnti";
+$locale['401'] = "Modifica Immagine";
+$locale['402'] = "Aggiungi Immagine";
+$locale['403'] = "ID";
+$locale['404'] = "Titolo";
+$locale['405'] = "Immagine";
+$locale['406'] = "Immagine";
+$locale['407'] = "Aggiunta da";
+$locale['408'] = "Data";
+$locale['409'] = "Commenti";
+$locale['410'] = "Ordine";
+$locale['411'] = "Opzioni";
+$locale['412'] = "Cancella";
+$locale['413'] = "Vista";
+$locale['414'] = "Salva Immagine";
+$locale['415'] = "Cancella";
+$locale['416'] = "ordine corrente:";
+$locale['417'] = "lascia vuoto per impostarlo come ultimo nell'ordine";
+$locale['418'] = "Caricamento Immagine...";
+$locale['419'] = "L'immagine verrà ridotta a %uw x %uh pixels";
+$locale['420'] = "Errore Immagine";
+$locale['421'] = "Errore";
+$locale['422'] = "Titolo Immagine già in uso.";
+$locale['423'] = "L'immagine deve essere al massimo di %u bytes.";
+$locale['424'] = "File Immagine non valido.";
+$locale['425'] = "L'immagine deve essere in formato JPEG.";
+$locale['426'] = "L'immagine deve essere al massimo di %uw x %uh pixel.";
+$locale['427'] = "Ritorna ad Amministrazione Album Fotografico";
+$locale['428'] = "Ritorna ad Home Page Amministratore";
+$locale['429'] = "Nessuna Immagine definita.";
+$locale['430'] = "Nessuno";
+$locale['431'] = "Chiudi Album";
+?>

@@ -1,0 +1,36 @@
+<?php
+$locale['400'] = "Obecne Albumy";
+$locale['401'] = "Usuñ Album";
+$locale['402'] = "Edytuj Album";
+$locale['403'] = "Dodaj Album";
+$locale['404'] = "Lp.";
+$locale['405'] = "Nazwa";
+$locale['406'] = "Miniaturka";
+$locale['407'] = "Obrazy";
+$locale['408'] = "Kolejno¶æ";
+$locale['409'] = "Opcje";
+$locale['410'] = "Info";
+$locale['411'] = "Obraz";
+$locale['412'] = "Usuñ";
+$locale['413'] = "Wejd¼";
+$locale['414'] = "Zapisz";
+$locale['415'] = "Anuluj";
+$locale['416'] = "Aktualna kolejno¶æ: ";
+$locale['417'] = "Zostaw puste, aby umie¶ciæ na ostatnim miejscu";
+$locale['418'] = "Wczytywanie Obrazu...";
+$locale['419'] = "Obraz zostanie przeskalowany do %uw x %uh pikseli";
+$locale['420'] = "B³±d w Albumie";
+$locale['421'] = "B³±d";
+$locale['422'] = "Album nie mo¿e zostaæ Usuniêty";
+$locale['423'] = "Album Zawiera Zdjêcia.";
+$locale['424'] = "Tytu³ jest ju¿ u¿ywany.";
+$locale['425'] = "Obraz musi byæ mniejszy ni¿ %u bajtów.";
+$locale['426'] = "B³êdny format pliku.";
+$locale['427'] = "Obraz musi byæ w formacie JPG.";
+$locale['428'] = "Obraz musi byæ mniejszy ni¿ %uw x %uh pikseli.";
+$locale['429'] = "Powrót do Zarz±dzania Albumami";
+$locale['430'] = "Powrót do Panelu Admina";
+$locale['431'] = "Brak zdefiniowanych Albumów.";
+$locale['432'] = "Brak";
+$locale['433'] = "Od¶wie¿ kolejno¶æ Obrazów w Albumie";
+?>

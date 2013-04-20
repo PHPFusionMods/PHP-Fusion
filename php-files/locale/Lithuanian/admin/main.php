@@ -1,0 +1,54 @@
+<?php
+// Admin Links
+$locale['200'] = $settings['sitename']." <b>Administracijos panelë</b>";
+$locale['ac01'] = $settings['sitename']." <b>Administracijos turinys</b>";
+$locale['ac02'] = $settings['sitename']." <b>Administracijos vartotojas</b>";
+$locale['ac03'] = $settings['sitename']." <b>Administracijos sistema</b>";
+$locale['ac04'] = $settings['sitename']." <b>Ádiegimo turinys</b>";
+$locale['201'] = "Administratoriø tvarkymas";
+$locale['202'] = "Straipsniø kategorijos";
+$locale['203'] = "Pridëti straipsná <br>(tvarkymas)";
+$locale['204'] = "Juodasis sàraðas";
+$locale['205'] = "Komentarai";
+$locale['206'] = "Áprasti puslapiai";
+$locale['207'] = "Duomenø bazës atsarginës kopijos";
+$locale['208'] = "Siuntimø kategorijø tvarkymas";
+$locale['209'] = "Pridëtá siuntimà";
+$locale['210'] = "DUK <br> (<i>daþnausiai uþduodami klausimai</i>)";
+$locale['211'] = "Forumo tvarkymas <br>(<i>nustatymas</i>)";
+$locale['212'] = "Paveiksliukø atsiøstimas";
+$locale['213'] = "Ádiegimo procedûra";
+$locale['214'] = "Ádiegimo procedûros panelës";
+$locale['215'] = "Nariai/vartotojai";
+$locale['216'] = "Naujienos saito";
+$locale['217'] = "Paneliø sudarymas";
+$locale['218'] = "Foto albumai";
+$locale['219'] = "PHP info";
+$locale['220'] = "Apklausos tvarkymas <br>(<i>pridëjimas</i>)";
+$locale['221'] = "Mini-Èato tvarkymas";
+$locale['222'] = "Saito navigacijos <br>(<i>panelë</i>)";
+$locale['223'] = "Pateikimø tvarkymas";
+$locale['224'] = "Saito atnaujinimas";
+$locale['225'] = "Vartotojø grupës";
+$locale['226'] = "Saito nuorodø kategorijos";
+$locale['227'] = "Saito nuorodos";
+$locale['228'] = "PAGRINDINIAI TINKLAPIO NUSTATYMAI";
+$locale['229'] = "Datos ir laiko nustatymai";
+$locale['230'] = "Forumo nustatymai";
+$locale['231'] = "Registracijos nustatymai";
+$locale['232'] = "Foto galerijos nustatymai";
+$locale['233'] = "Ávairûs nustatymai";
+$locale['234'] = "Privaèiø þinuèiø savybës";
+$locale['235'] = "Nauja kategorija";
+// Site Information
+$locale['250'] = $settings['sitename']." Informacija";
+$locale['251'] = "<b>Registruoti nariai:</b>";
+$locale['252'] = "<b>Neaktyvûs nariai:</b>";
+$locale['253'] = "<b>Uþbaninti nariai:</b>";
+$locale['254'] = "<b>Naujienø pateikimai:</b>";
+$locale['255'] = "<b>Straipsniø pateikimai:</b>";
+$locale['256'] = "<b>Nuorodø pateikimai:</b>";
+$locale['257'] = "<b>Komentarai:</b>";
+$locale['258'] = "<b>Mini-èato praneðimai:</b>";
+$locale['259'] = "<b>Forumo praneðimai:</b>";
+?>

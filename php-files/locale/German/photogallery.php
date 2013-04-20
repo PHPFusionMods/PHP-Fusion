@@ -1,0 +1,33 @@
+<?php
+$locale['400'] = "Fotoalbum";
+$locale['401'] = "Leeres Album";
+$locale['402'] = "Letztes: ";
+$locale['403'] = " Bild";
+$locale['404'] = " Bilder";
+$locale['405'] = "Lade Bild...";
+$locale['406'] = "[Aktualisiert]";
+$locale['407'] = "Kein Fotoalbum definiert";
+$locale['408'] = "Album: ";
+$locale['409'] = "Anzahl der Bilder: ";
+$locale['410'] = "Letztes Bild hinzugefügt am ";
+$locale['411'] = " von ";
+$locale['412'] = "Kein";
+$locale['413'] = "Albuminhalt";
+$locale['414'] = "angesehen: ";
+$locale['415'] = "Keine Kommentare";
+$locale['416'] = "Kommentar";
+$locale['417'] = "Kommentare";
+$locale['418'] = "Keine Bilder dem Album hinzugefügt.";
+$locale['419'] = "Foto: ";
+$locale['420'] = "Größe: ";
+$locale['421'] = " Pixel ";
+$locale['422'] = "Bild hinzugefügt von ";
+$locale['423'] = " am ";
+$locale['424'] = "Bild wurde angesehen ";
+$locale['425'] = " mehr";
+$locale['426'] = "Zurück zur Albenliste";
+$locale['427'] = "Zurück zur Albengalerie";
+$locale['428'] = "Datenbankfehler";
+$locale['429'] = "< Zurück";
+$locale['430'] = "Nächstes >";
+?>

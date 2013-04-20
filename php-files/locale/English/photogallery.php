@@ -1,0 +1,33 @@
+<?php
+$locale['400'] = "Photo Albums";
+$locale['401'] = "Empty Album";
+$locale['402'] = "Latest: ";
+$locale['403'] = " Picture";
+$locale['404'] = " Pictures";
+$locale['405'] = "Loading Image...";
+$locale['406'] = "[Updated]";
+$locale['407'] = "No Photo Albums defined";
+$locale['408'] = "Album: ";
+$locale['409'] = "No of images: ";
+$locale['410'] = "Latest image added on ";
+$locale['411'] = " by ";
+$locale['412'] = "None";
+$locale['413'] = "Album Contents";
+$locale['414'] = "Views: ";
+$locale['415'] = "No Comments";
+$locale['416'] = "Comment";
+$locale['417'] = "Comments";
+$locale['418'] = "No images have been added to this album.";
+$locale['419'] = "Photo: ";
+$locale['420'] = "Size: ";
+$locale['421'] = " pixels ";
+$locale['422'] = "Image added by ";
+$locale['423'] = " on ";
+$locale['424'] = "Image has been viewed ";
+$locale['425'] = " times";
+$locale['426'] = "Return to Album List";
+$locale['427'] = "Return to Album Gallery";
+$locale['428'] = "Database Error";
+$locale['429'] = "< Prev";
+$locale['430'] = "Next >";
+?>

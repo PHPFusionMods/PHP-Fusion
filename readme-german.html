@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2006 Nick Jones<br>
+<b>Version:</b> 6.00.307 - <b>Release Datum:</b> May 2006</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>1. Übersicht/Einleitung</b></td>
+</tr>
+<tr>
+<td class='tbl1'>PHP-Fusion ist ein  in PHP geschriebenes all-in-one Content Management System (CMS).
+Um den Inhalt wie z.B. News, Artikel, Forum Postings, Shoutboxinhalte und Anderes zu speichern wird eine mySQl Datenbank benötigt.
+
+<p>PHP-Fusion unterliegt den Bedingungen in der Version 2 der GNU General Public License. Für weitere Informationen besuchen Sie bitte <a href='http://www.gnu.org' target='_blank'>www.gnu.org</a> oder verweisen Sie auf die gpl.txt Datei, welche dem Paket beigefügt ist. 
+Sie können den Code in beliebiger Form verändern und ihn weiter in Umlauf bringen. Entweder in der Originalfassung oder mit Ihren eigenen Modifikationen.
+
+<p>Sie dürfen die "Powered by PHP-Fusion" Urheberrechtsvermerke weder löschen,
+noch die Urheberrechtsinformation aus keinem der integrierten Scripts entfernen.
+Wir finden, dass sie wissen sollten, das wir für Sie hunderte von Stunden harte Arbeit in die Entwicklung dieses Produktes investiert haben.</td>
+</tr>
+<tr>
+<td class='tbl2'><b>2. Installation</b></td>
+</tr>
+<tr>
+<td class='tbl1'><ol>
+<li>Laden Sie den Inhalt des Ordners PHP-Files auf ihren Webserver.</li>
+<li>Ändern Sie die Zugriffsrechte (CHMOD) der folgenden Dateien und Ordner auf 777:
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul></li>
+<li>Öffnen Sie ihre Website rufen sie setup.php auf z.B.: http://www.ihredomain.com/setup.php.</li>
+<li>Vervollständigen Sie die Eingabefelder während der Installationsroutine.</li>
+<li>Ändern Sie die Zugriffsrechte (CHMOD) der Datei config.php zurück auf 644 und löschen sie die Datei setup.php von Ihrem Server.</li>
+</ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Update von v6.00.1xx</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Bevor sie ein Update auf die neue Version tätigen, empfehlen wir ihnen ein vollständiges Backup ihrer Seite anzulegen (Dateien und Datenbank)
+<ol>
+<li><b>Bitte löschen sie die config.php und setup.php aus dem php-files Ordner bevor sie das Update starten.</b></li>
+<li>Laden sie die Datei upgrade.php vom upgrade v6.00.1xx Ordner in den administration Ordner auf ihren Webspace</li>
+<li>Loggen sie sich mit dem Technischen Administrator auf ihre Seite ein und betätigen sie den Upgrade Link im Admin Bereich</li>
+<li>Folgen sie den Bildschirmhinweisen bis sie die Meldung "Database upgrade complete" sehen.</li>
+<li>Laden sie nun den kompletten Inhalt des php-files Ordner auf ihren Webspace (alte Dateien überschreiben).</li>
+<li>Vergewissern sie sich, daß folgende Ordner und Dateien die Zugriffsrechte (CHMOD) 777 haben:
+<ul style='list-style-type:disc'><li>images/news_cats/</li>
+<li>images/imagelist.js</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>4. Update von v4.01, v5.00 oder v5.01</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Bevor sie ein Update auf die neue Version tätigen, empfehlen wir ihnen ein vollständiges Backup ihrer Seite anzulegen (Dateien und Datenbank)
+<ol>
+<li>Deinstallieren sie alle Infusion im Admin Bereich (nur v5.00 oder v5.01).</li>
+<li>Deaktivieren sie alle Boxen (Panels) bis auf die folgenden im Admin Bereich:
+<ul style='list-style-type:disc'><li>Navigation</li>
+<li>Online Users</li>
+<li>Forum Threads</li>
+<li>Latest Articles</li>
+<li>Welcome Message</li>
+<li>Forum Threads List
+<li>User Info</li>
+<li>Members Poll</li>
+<li>Shoutbox</li>
+</ul></li>
+<li>Laden sie die config.php aus dem php-files Ordner auf ihren Webspace.
+<ul style='list-style-type:disc'><li><b>Löschen sie dann die config.php aus dem php-files Ordner bevor sie mit dem nächsten Schritt weitermachen.</b></li>
+</ul></li>
+<li>Laden sie die upgrade.php aus dem upgrade v4.01 Ordner (5.00 oder 5.01) in den admin Ordner auf ihren Webspace.</li>
+<li>Ändern sie die Zugriffsrechte der Datei config.php (CHMOD) auf 777.</li>
+<li>Loggen sie sich mit dem Technischen Administrator auf ihre Seite ein und betätigen sie den Upgrade Link im Admin Bereich</li>
+<li>Folgen sie den Bildschirmhinweisen bis sie die Meldung "Database upgrade complete" sehen.</li>
+<li>Löschen sie danach folgende Ordner von ihrem Webspace:
+<ul style='list-style-type:disc'><li>fusion_admin</li>
+<li>fusion_core</li>
+<li>fusion_forum</li>
+<li>fusion_languages</li>
+<li>fusion_panels</li>
+<li>fusion_themes</li>
+</ul></li>
+<li>Benennen sie folgende Ordner um:
+<ul style='list-style-type:disc'><li>fusion_images to images</li>
+<li>fusion_public to forum</li>
+</ul></li>
+<li>Verschieben sie den avatars Ordner vom forum Ordner in den images Ordner</li>
+<li>Laden sie nun den kompletten Inhalt des php-files Ordner auf ihren Webspace.</li>
+<li>Ändern Sie die Zugriffsrechte (CHMOD) der Datei config.php zurück auf 644.</li>
+<li>Vergewissern sie sich, daß folgende Ordner die Zugriffsrechte (CHMOD) 777 haben:
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/photoalbum/</li>
+<li>forum/attachments/</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>5. Weitere Hinweise</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Bitte bedenken Sie, dass der größte Teil der Struktur verändert worden ist.
+Während grosse Teile umbenannt worden sind, ist ein Teil komplett weggefallen, da er nicht mehr benötigt worden ist.
+Die folgenden Tabellendefinitionen werden in den Versionen v4.01, v5.00/v5.01 & v6 verwendet:<br><br>
+<table align='center' cellpadding='0' cellspacing='1' class='tbl-border'>
+<tr><td width='33%' class='tbl2'>v4x</td><td width='33%' class='tbl2'>v5x</td><td width='33%' class='tbl2'>v6x</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_root</td><td width='33%' class='tbl1'>FUSION_ROOT</td><td width='33%' class='tbl1'>-</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_base</td><td width='33%' class='tbl1'>FUSION_BASE</td><td width='33%' class='tbl1'>BASEDIR</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_ADMIN</td><td width='33%' class='tbl1'>ADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES</td><td width='33%' class='tbl1'>IMAGES</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES_A</td><td width='33%' class='tbl1'>IMAGES_A</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES_N</td><td width='33%' class='tbl1'>IMAGES_N</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_INCLUDES</td><td width='33%' class='tbl1'>INCLUDES</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_langdir</td><td width='33%' class='tbl1'>FUSION_LANGUAGES</td><td width='33%' class='tbl1'>LOCALE</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_LAN</td><td width='33%' class='tbl1'>LOCALESET</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_FORUM</td><td width='33%' class='tbl1'>FORUM</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_INFUSIONS</td><td width='33%' class='tbl1'>INFUSIONS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PHOTOS</td><td width='33%' class='tbl1'>PHOTOS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PUBLIC</td><td width='33%' class='tbl1'>PUBLIC</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_themedir</td><td width='33%' class='tbl1'>FUSION_THEMES</td><td width='33%' class='tbl1'>THEMES
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_THEME</td><td width='33%' class='tbl1'>THEME</td></tr>
+<tr><td width='33%' class='tbl1'>$user_ip</td><td width='33%' class='tbl1'>FUSION_IP</td><td width='33%' class='tbl1'>USER_IP</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_QUERY</td><td width='33%' class='tbl1'>FUSION_QUERY</td></tr>
+<tr><td width='33%' class='tbl1'>$PHP_SELF</td><td width='33%' class='tbl1'>$PHP_SELF/FUSION_SELF</td><td width='33%' class='tbl1'>FUSION_SELF</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PREFIX</td><td width='33%' class='tbl1'>DB_PREFIX</td></tr>
+<tr><td width='33%' class='tbl1'>$fusion_prefix</td><td width='33%' class='tbl1'>$fusion_prefix</td><td width='33%' class='tbl1'>$db_prefix</td></tr>
+<tr><td colspan='3' class='tbl2'>User Definitionen</td></tr>
+<tr><td width='33%' class='tbl1'>Guest()</td><td width='33%' class='tbl1'>iGUEST</td><td width='33%' class='tbl1'>iGUEST</td></tr>
+<tr><td width='33%' class='tbl1'>Member()</td><td width='33%' class='tbl1'>iMEMBER</td><td width='33%' class='tbl1'>iMEMBER</td></tr>
+<tr><td width='33%' class='tbl1'>Moderator()</td><td width='33%' class='tbl1'>iMOD</td><td width='33%' class='tbl1'>-</td></tr>
+<tr><td width='33%' class='tbl1'>Admin()</td><td width='33%' class='tbl1'>iADMIN</td><td width='33%' class='tbl1'>iADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>SuperAdmin()</td><td width='33%' class='tbl1'>iSUPERADMIN</td><td width='33%' class='tbl1'>iSUPERADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>UserLevel()</td><td width='33%' class='tbl1'>iUSER</td><td width='33%' class='tbl1'>iUSER</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>USER_RIGHTS</td><td width='33%' class='tbl1'>USER_RIGHTS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>USER_GROUP</td><td width='33%' class='tbl1'>USER_GROUP</td></tr>
+</table><br>
+Sie müssen sicherstellen, dass jeglicher modifizierte Code den Konventionen der Version 6 entspricht.
+Auf Grund des geänderten Infusion Systems in der Version 6 sind Infusions, die für die Version 5.x entwickelt wurden, nicht kompatibel.</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>6. Support Seiten</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Sollten sie irgendwelche Fragen bezüglich PHP-Fusion haben, besuchen sie bitte
+die Mutterseite auf <a href='http://www.php-fusion.co.uk' target='_blank'>www.php-fusion.co.uk</a>
+und verfassen sie einen Beitrag im Forum. Alternativ können sie auch den IRC chat support channel auf
+<a href='irc://irc.cad-net.org/phpfusion'>irc.cad-net.org/phpfusion</a> besuchen.<br><br>
+PHP-Fusion kann durch sogenannte Infusions erweitert werden und sind recht leicht zu installieren.
+Sie finden eine Menge Erweiterungen (Infusions) auf
+<a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a>.<br><br>
+Wenn sie mit einem Standard Theme Design nicht zufrieden sind besuchen sie die
+offizielle PHP-Fusion Theme Seite auf <a href='http://www.phpfusion-themes.com' target='blank'>www.phpfusion-themes.com</a>,
+wo sie allerhand professionelle Theme Designs finden.<br><br>
+PHP-Fusion hat eine große Anzahl von offiziellen Support Seiten in unterschiedlichen Sprachen
+<a href='http://www.phpfusion.be' target='blank'>Belgium</a>,
+<a href='http://www.phpfusion.dk' target='blank'>Denmark</a>,
+<a href='http://www.phpfusion.fr.com' target='blank'>France</a>, 
+<a href='http://www.php-fusion.de' target='blank'>Germany</a>,
+<a href='http://www.fusion.alaviweb.com' target='blank'>Iran</a>,
+<a href='http://www.php-fusion.lt' target='blank'>Lithuania</a>,
+<a href='http://www.phpfusion.nl' target='blank'>Netherlands</a>,
+<a href='http://www.php-fusion.pl' target='blank'>Poland</a>,
+<a href='http://www.php-fusion.sw' target='blank'>Sweden</a>,
+<a href='http://www.phpfusion-tw.com' target='blank'>Taiwan</a>
+und <a href='http://www.phpfusion-tr.com' target='blank'>Turkey.</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>7. Anerkennungen</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Besonderer Dank an folgende Personen für ihre harte Arbeit:<br><br>
+CrappoMan - Code und MySQL Routinen<br>
+Shedrock - Themes und Admin Bilder<br>
+Janmol - Marktanalyse & Design Fragen<br>
+KEFF - Für verückte Ideen, die im Nachhinein nicht verrückt waren<br>
+Rayxen - Code & Erweiterungen<br>
+Sheldon - Technischer Support & Erweitertes Hosting<br>
+<br>
+WSYIWYG Editor - TinyMCE erstellt von Moxiecode bereitgestellt unter der GNU/GPL Lizenz.</td>
+</tr>
+</table>
+
+</body>
+</html>

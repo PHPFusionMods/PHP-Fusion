@@ -1,0 +1,34 @@
+<?php
+$locale['400'] = "Obecne Zdjêcia";
+$locale['401'] = "Edytuj Zdjêcie";
+$locale['402'] = "Dodaj Zdjêcie";
+$locale['403'] = "Lp.";
+$locale['404'] = "Nazwa";
+$locale['405'] = "Obraz";
+$locale['406'] = "Miniaturka";
+$locale['407'] = "Dodane przez";
+$locale['408'] = "Data";
+$locale['409'] = "Komentarze";
+$locale['410'] = "Kolejno¶æ";
+$locale['411'] = "Opcje";
+$locale['412'] = "Usuñ";
+$locale['413'] = "Ods³on";
+$locale['414'] = "Zapisz";
+$locale['415'] = "Anuluj";
+$locale['416'] = "Aktualny numer: ";
+$locale['417'] = "zostaw puste, aby ustawiæ jako ostatnie w kolejno¶ci";
+$locale['418'] = "Wczytywanie Obrazu...";
+$locale['419'] = "Miniaturka zostanie przeskalowana do %uw x %uh pikseli";
+$locale['420'] = "B³±d Zdjêcia";
+$locale['421'] = "B³±d";
+$locale['422'] = "Wybrana nazwa jest ju¿ u¿ywana";
+$locale['423'] = "Rozmiar Obrazu nie mo¿e przekraczaæ %u bajtów.";
+$locale['424'] = "B³êdny format pliku.";
+$locale['425'] = "Obraz musi byæ plikiem JPG.";
+$locale['426'] = "Obraz musi byæ mniejszy ni¿ %uw x %uh pikseli.";
+$locale['427'] = "Powrót do Zarz±dzania Albumami";
+$locale['428'] = "Powrót do Panelu Admina";
+$locale['429'] = "Brak zdjêæ w Albumie.";
+$locale['430'] = "Brak";
+$locale['431'] = "Zamknij Album";
+?>

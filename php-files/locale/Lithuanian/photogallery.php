@@ -1,0 +1,33 @@
+<?php
+$locale['400'] = "Foto albumai";
+$locale['401'] = "Tuðèias albumas";
+$locale['402'] = "Paskutiniai: ";
+$locale['403'] = " Nuotrauka";
+$locale['404'] = " Nuotraukos";
+$locale['405'] = "Kraunamas paveiksliukas...";
+$locale['406'] = "[Atnaujinta]";
+$locale['407'] = "Nëra apibûdintø foto albumø";
+$locale['408'] = "Albumas: ";
+$locale['409'] = "Nëra ðiø paveiksliukø: ";
+$locale['410'] = "Paskutinis paveiksliukas ádëtas ";
+$locale['411'] = "  ";
+$locale['412'] = "Nëra";
+$locale['413'] = "Albumo turinys";
+$locale['414'] = "Þiûrëta: ";
+$locale['415'] = "Nëra komentarø";
+$locale['416'] = "Komentaras";
+$locale['417'] = "Komentarai";
+$locale['418'] = "Nëra paveiksliukø ádëtø á ðá albumà.";
+$locale['419'] = "Foto: ";
+$locale['420'] = "Dydis: ";
+$locale['421'] = " pikseliø ";
+$locale['422'] = "Paveiksliukà ádëjo ";
+$locale['423'] = "  ";
+$locale['424'] = "Paveiksliukas perþiûrëtas ";
+$locale['425'] = " kartø";
+$locale['426'] = "Gráþti prie albumø sàraðo";
+$locale['427'] = "Gráþti prie albumø sàraðo";
+$locale['428'] = "Duombazës klaida";
+$locale['429'] = "< Ankst";
+$locale['430'] = "Sek >";
+?>

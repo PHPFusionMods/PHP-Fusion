@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2006 Nick Jones<br>
+<b>Version:</b> 6.00.307 - <b>Released:</b> May 2006</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>1. Èíñòðóêöèÿ</b></td>
+</tr>
+<tr>
+<td class='tbl1'>PHP-Fusion - ôóíêöèîíàëüíî çàêîí÷åííàÿ ñèñòåìà óïðàâëåíèÿ êîíòåíòîì(CMS) íàïèñàííàÿ íà PHP.
+Îíà èñïîëüçóåò áàçó äàííûõ mySQL äëÿ õðàíåíèÿ ñîäåðæèìîãî âàøåãî ñàéòà, êàê íàïðèìåð, Íîâîñòè, Ñòàòüè, Ñîîáùåíèÿ íà ôîðóìå, Ñîîáùåíèÿ â Ìèíè-×àòå è òàê äàëåå.
+
+
+<p>PHP-Fusion âûïóùåí â ðàìêàõ è íà óñëîâèÿõ GNU General Public License.
+Äëÿ äàëüíåéøåé èíôîðìàöèè, ïîæàëóéñòà ïîñåòèòå www.gnu.org èëè ïðîñìîòðèòå ôàéë gpl.txt, âêëþ÷åííûé â äèñòðèáóòèâ.
+Âû ìîæåòå èçìåíÿòü è ìîäèôèöèðîâàòü êîä, à òàê æå äåëàòü ñâîè ñîáñòâåííûå ìîäèôèêàöèè.
+
+<p>Âû íå äîëæíû óäàëÿòü êîïèðàéòû "Powered by PHP-Fusion" è óäàëÿòü àâòîðñêóþ èíôîðìàöèþ èç âêëþ÷åííûõ ñöåíàðèåâ.
+Â ðàçðàáîòêó ýòîãî ïðîäóêòà âëîæåíû ñîòíè ÷àñîâ èçíóðèòåëüíîé ðàáîòû, óâàæàéòå àâòîðñêèå ïðàâà ðàçðàáîò÷èêîâ.
+
+</td>
+</tr>
+<tr>
+<td class='tbl2'><b>2. Óñòàíîâêà</b></td>
+</tr>
+<tr>
+<td class='tbl1'><ol>
+<li>Çàãðóçèòå ñîäåðæèìîå êàòàëîãà php-files íà âàø ñåðâåð.</li>
+<li>Óñòàíîâèòå CHMOD ñëåäóþùèõ ôàéëîâ è êàòàëîãîâ â 777:
+<ul style='list-style-type:disc'>
+<li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul></li>
+<li>Èäèòå íà âàø ñàéò è çàïóñòèòå setup.php, íàïðèìåð, http://www.yourdomain.com/setup.php.</li>
+<li>Çàâåðøèòå óñòàíîâêó, ñëåäóþ èíñòðóêöèÿì óñòàíîâùèêà.</li>
+<li>Âåðíèòå CHMOD config.php îáðàòíî â 644 è óäàëèòå setup.php ñ âàøåãî ñåðâåðà â öåëÿõ áåçîïàñíîñòè.</li>
+</ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Àïãðåéä ñ âåðñèè v6.00.1xx</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Ïåðåä àïãðåéäîì, ìû íàñòîÿòåëüíî ðåêîìåíäóåì ñäåëàòü àðõèâíóþ êîïèþ âàøåãî ñàéòà è áýêàï áàçû äàííûõ.
+<ol>
+<li><b>Ïîæàëóéñòà óäàëèòå config.php è setup.php èç êàòàëîãà php-files ïåðåä ïðîäîëæåíèåì óñòàíîâêè.</b></li>
+<li>Çàãðóçèòå upgrade.php èç êàòàëîãà v6.00.1xx (ïàêåòà óñòàíîâêè) â êàòàëîã administration íà âàøåì ñåðâåðå.</li>
+<li>Âîéäèòå íà ñàéò, êàê Super Administrator è íàæìèòå êíîïêó Àïãðåéä â ïàíåëè àäìèíà.</li>
+<li>Ñëåäóéòå çà ýêðàííûìè ïîäñêàçêàìè, ïîêà íå óâèäèòå ñîîáùåíèå: "Database upgrade complete".</li>
+<li>Çàãðóçèòå ñîäåðæèìîå êàòàëîãà php-files íà âàø ñåðâåð.</li>
+<li>Íàçíà÷üòå ïðàâà CHMOD 777 ñëåäóþùèì êàòàëîãàì:
+<ul style='list-style-type:disc'><li>images/news_cats/</li>
+<li>images/imagelist.js</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>4. Àïãðåéä ñ âåðñèè v4.01, v5.00 èëè v5.01</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Ïåðåä àïãðåéäîì íàñòîÿòåëüíî ðåêîìåíäóåì Âàì ñäåëàòü áýêàï áàçû äàííûõ.
+<ol>
+<li>Äåèíñòàëëèðóéòå âñå ïëàãèíû (òîëüêî v5.00 èëè v5.01).</li>
+<li>Çàïðåòèòå ñëåäóùèå ñëóæåáíûå ïàíåëè:
+<ul style='list-style-type:disc'><li>Navigation</li>
+<li>Online Users</li>
+<li>Forum Threads</li>
+<li>Latest Articles</li>
+<li>Welcome Message</li>
+<li>Forum Threads List
+<li>User Info</li>
+<li>Members Poll</li>
+<li>Shoutbox</li>
+</ul></li>
+<li>Çàãðóçèòå ôàéë config.php èç ïàêåòà óñòàíîâêè php-files íà âàø ñåðâåð.
+<ul style='list-style-type:disc'><li><b>Âû äîëæíû óäàëèòü ôàéë config.php èç êàòàëîãà php-files ïåðåä ïðîäîëæåíèåì óñòàíîâêè.</b></li>
+</ul></li>
+<li>Çàãðóçèòå ôàéë upgrade.php èç êàòàëîãà upgrade v4.01 â êàòàëîã admin íà âàøåì ñåðâåðå.</li>
+<li>Óñòàíîâèòå ïðàâà äîñòóïà CHMOD äëÿ config.php â 777.</li>
+<li>Âîéäèòå íà ñàéò êàê Super Administrator è íàæìèòå Upgrade â ðàçäåëå àäìèíèñòðèðîâàíèÿ.</li>
+<li>Ñëåäóéòå èíñòðóêöèÿì óñòàíîâùèêà, ïîêà íå óâèäèòå "Database upgrade complete".</li>
+<li>Óäàëèòå ñëåäóþùèå ïàïêè ñ âàøåãî ñåðâåðà:</li>
+<ul style='list-style-type:disc'><li>fusion_admin</li>
+<li>fusion_core</li>
+<li>fusion_forum</li>
+<li>fusion_languages</li>
+<li>fusion_panels</li>
+<li>fusion_themes</li>
+</ul></li>
+<li>Ïåðåèìåíóéòå ñëåäóþùèå ïàïêè:
+<ul style='list-style-type:disc'><li>fusion_images to images</li>
+<li>fusion_public to forum</li>
+</ul></li>
+<li>Ïåðåìåñòèòå êàòàëîã àâàòàðîâ èç ôîðóìà â êàòàëîã images</li>
+<li>Çàãðóçèòå ñîäåðæèìîå êàòàëîãà php-files íà âàø ñåðâåð.</li>
+<li>Óñòàíîâèòå CHMOD config.php îáðàòíî â 644.</li>
+<li>Ïðîâåðüòå, ÷òî ñëåäóþùèå êàòàëîãè óñòàíîâëåíû â CHMOD 777:
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/photoalbum/</li>
+<li>forum/attachments/</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>5. Äîïîëíèòåëüíûå Ïðèìå÷àíèÿ</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Ïîæàëóéñòà èìåéòå â âèäó, ÷òî èíôðàñòðóêòóðà PHP-Fusion's èçìåíèëàñü îòíîñèòåëüíî v4x è v5x.
+ Áîëüøèíñòâî îïðåäåëåíèé áûëè ïåðåèìåíîâàíû, íåêîòîðûå èñêëþ÷åíû ñîâñåì.
+Ñëåäóþùàÿ òàáëèöà âêëþ÷àåò èñïîëüçîâàííèå ïåðåìåííûõ â v4.01, v5.00/v5.01 è v6 âåðñèÿõ.
+ <br><br>
+<table align='center' cellpadding='0' cellspacing='1' class='tbl-border'>
+<tr><td width='33%' class='tbl2'>v4x</td><td width='33%' class='tbl2'>v5x</td><td width='33%' class='tbl2'>v6x</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_root</td><td width='33%' class='tbl1'>FUSION_ROOT</td><td width='33%' class='tbl1'>-</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_base</td><td width='33%' class='tbl1'>FUSION_BASE</td><td width='33%' class='tbl1'>BASEDIR</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_ADMIN</td><td width='33%' class='tbl1'>ADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES</td><td width='33%' class='tbl1'>IMAGES</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES_A</td><td width='33%' class='tbl1'>IMAGES_A</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES_N</td><td width='33%' class='tbl1'>IMAGES_N</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_INCLUDES</td><td width='33%' class='tbl1'>INCLUDES</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_langdir</td><td width='33%' class='tbl1'>FUSION_LANGUAGES</td><td width='33%' class='tbl1'>LOCALE</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_LAN</td><td width='33%' class='tbl1'>LOCALESET</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_FORUM</td><td width='33%' class='tbl1'>FORUM</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_INFUSIONS</td><td width='33%' class='tbl1'>INFUSIONS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PHOTOS</td><td width='33%' class='tbl1'>PHOTOS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PUBLIC</td><td width='33%' class='tbl1'>PUBLIC</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_themedir</td><td width='33%' class='tbl1'>FUSION_THEMES</td><td width='33%' class='tbl1'>THEMES
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_THEME</td><td width='33%' class='tbl1'>THEME</td></tr>
+<tr><td width='33%' class='tbl1'>$user_ip</td><td width='33%' class='tbl1'>FUSION_IP</td><td width='33%' class='tbl1'>USER_IP</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_QUERY</td><td width='33%' class='tbl1'>FUSION_QUERY</td></tr>
+<tr><td width='33%' class='tbl1'>$PHP_SELF</td><td width='33%' class='tbl1'>$PHP_SELF/FUSION_SELF</td><td width='33%' class='tbl1'>FUSION_SELF</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PREFIX</td><td width='33%' class='tbl1'>DB_PREFIX</td></tr>
+<tr><td width='33%' class='tbl1'>$fusion_prefix</td><td width='33%' class='tbl1'>$fusion_prefix</td><td width='33%' class='tbl1'>$db_prefix</td></tr>
+<tr><td colspan='3' class='tbl2'>User Definitions</td></tr>
+<tr><td width='33%' class='tbl1'>Guest()</td><td width='33%' class='tbl1'>iGUEST</td><td width='33%' class='tbl1'>iGUEST</td></tr>
+<tr><td width='33%' class='tbl1'>Member()</td><td width='33%' class='tbl1'>iMEMBER</td><td width='33%' class='tbl1'>iMEMBER</td></tr>
+<tr><td width='33%' class='tbl1'>Moderator()</td><td width='33%' class='tbl1'>iMOD</td><td width='33%' class='tbl1'>-</td></tr>
+<tr><td width='33%' class='tbl1'>Admin()</td><td width='33%' class='tbl1'>iADMIN</td><td width='33%' class='tbl1'>iADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>SuperAdmin()</td><td width='33%' class='tbl1'>iSUPERADMIN</td><td width='33%' class='tbl1'>iSUPERADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>UserLevel()</td><td width='33%' class='tbl1'>iUSER</td><td width='33%' class='tbl1'>iUSER</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>USER_RIGHTS</td><td width='33%' class='tbl1'>USER_RIGHTS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>USER_GROUP</td><td width='33%' class='tbl1'>USER_GROUP</td></tr>
+</table><br>
+Ïðè ïðîãðàììèðîâàíèè óòèëèò, ó÷èòûâàéòå ðàçëè÷èÿ â ïåðåìåííûõ äëÿ ðàçíûõ âåðñèé ñêðèïòà.
+</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>6. Ñàéòû ïîääåðæêè</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Åñëè ó âàñ åñòü ëþáûå âîïðîñû èëè ïðîáëåìû îòíîñèòåëüíî PHP-Fusion, ïîæàëóéñòà ïîñåòèòå îñíîâíîé ñàéò
+ ðàçðàáîò÷èêà <a href='http://www.php-fusion.co.uk' target='_blank'>www.php-fusion.co.uk</a>
+è ïèøèòå ñîîáùåíèå â íàøèõ ôîðóìàõ. Êðîìå òîãî Âû ìîæåòå ïîñåòèòü íàø ÷àò  ñ ïîääåðæêîé IRC êàíàëà
+<a href='irc://irc.cad-net.org/phpfusion'>irc.cad-net.org/phpfusion</a>.<br><br>
+PHP-Fusion ìîæåò ðàñøèðÿòüñÿ çà ñ÷åò Ïëàãèíîâ, êîòîðûå ÷ðåçâû÷àéíî ëåãêè â óñòàíîâêå.
+Âû ìîæåòå íàéòè öåëûé ðÿä ïîëåçíûõ ïëàãèíîâ íà ñàéòå <a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a>.<br><br>
+Åñëè Âàñ íå óäîâëåòâîðÿåò áàçîâàÿ ïîñòàâêà ñõåì äëÿ PHP-Fusion, Âû ìîæåòå ïîñåòèòü îôèöèàëüíîãî ïàðòíåðà
+ <a href='http://www.phpfusion-themes.com' target='blank'>www.phpfusion-themes.com</a> ãäå Âû íàéäåòå öåëûé ðÿä âûñîêîêà÷åñòâåííûõ òåì.<br><br>
+PHP-Fusion òàêæå èìååò ìíîæåñòâî îôèöèàëüíûõ ìåñò ïîääåðæêè íàöèîíàëüíîãî ÿçûêà íà ñëåäóþùèõ ñàéòàõ:
+<a href='http://www.netck.ru' target='blank'>Russian</a>,
+<a href='http://www.phpfusion.be' target='blank'>Belgium</a>,
+<a href='http://www.phpfusion.dk' target='blank'>Denmark</a>,
+<a href='http://www.phpfusion.fr.com' target='blank'>France</a>, 
+<a href='http://www.php-fusion.de' target='blank'>Germany</a>,
+<a href='http://www.fusion.alaviweb.com' target='blank'>Iran</a>,
+<a href='http://www.php-fusion.lt' target='blank'>Lithuania</a>,
+<a href='http://www.phpfusion.nl' target='blank'>Netherlands</a>,
+<a href='http://www.php-fusion.pl' target='blank'>Poland</a>,
+<a href='http://www.php-fusion.sw' target='blank'>Sweden</a>,
+<a href='http://www.phpfusion-tw.com' target='blank'>Taiwan</a>
+and <a href='http://www.phpfusion-tr.com' target='blank'>Turkey.</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>7. Áëàãîäàðíîñòè</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Áëàãîäàðèì çà ïîìîùü â ðàáîòå:<br><br>
+CrappoMan - Äîïîëíèòåëüíûé êîä è mySQL ïðîãðàììèðîâàíèå<br>
+Shedrock - Äîïîëíèòåëüíûå Ñõåìû, àäìèíèñòðàòèâíûå èêîíêè<br>
+Janmol - Ðûíî÷íûå íàó÷íî-èññëåäîâàòåëüñêèå è äîïîëíèòåëüíûå äèçàéíåðñêèå ðåøåíèÿ<br>
+KEFF - Çà "ãëóïûå" èäåè, êîòîðûå îêàçàëèñü ñîâñåì íå ãëóïûìè!<br>
+Rayxen - Äîïîëíèòåëüíûé êîä & Ìîäû<br>
+Sheldon - Òåõíè÷åñêàÿ ïîääåðæêà è ïðåäîñòàâëåííûé õîñòèíã<br>
+<br>
+<b>Äîïîëíèòåëüíûå ñêðèïòû:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE</a> - HTML WYSIWYG ðåäàêòîð îò Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer</a> - Sendmail êëàññ ñ SMTP ïîääåðæêîé îò Brent R. Matzelle.<br>
+<a href='http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload'>HTTPDownload</a> - Óïðàâëåíèå çàãðóçêîé îò Nguyen Quoc Bao.</td>
+</tr>
+</table>
+
+</body>
+</html>

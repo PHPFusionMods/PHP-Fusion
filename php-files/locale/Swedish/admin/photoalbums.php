@@ -1,0 +1,36 @@
+<?php
+$locale['400'] = "Aktuella fotoalbum";
+$locale['401'] = "Radera fotoalbum";
+$locale['402'] = "Redigera fotoalbum";
+$locale['403'] = "Lägg till fotoalbum";
+$locale['404'] = "ID";
+$locale['405'] = "Titel";
+$locale['406'] = "Miniatyrbild";
+$locale['407'] = "Bilder";
+$locale['408'] = "Ordningsföljd";
+$locale['409'] = "Inställningar";
+$locale['410'] = "Info";
+$locale['411'] = "Bild";
+$locale['412'] = "Radera";
+$locale['413'] = "Lägg till bild";
+$locale['414'] = "Spara fotoalbum";
+$locale['415'] = "Avbryt";
+$locale['416'] = "aktuell ordningsföljd:";
+$locale['417'] = "lämnas blankt för att sättas in sist i ordningen";
+$locale['418'] = "Laddar bild...";
+$locale['419'] = "Bilden kommer att sparas i %uw (Bredd) x %uh (Höjd) pixlar";
+$locale['420'] = "Fel på fotoalbum";
+$locale['421'] = "Fel";
+$locale['422'] = "Fotoalbumet kan inte raderas";
+$locale['423'] = "Det finns bilder kvar i detta fotoalbum.";
+$locale['424'] = "Albumtiteln används redan.";
+$locale['425'] = "Bilden måste vara mindre än %u bytes.";
+$locale['426'] = "Ogiltlig bildfil.";
+$locale['427'] = "Bilden måste vara i JPEG-format.";
+$locale['428'] = "Bilen måste vara mindre än %uw (Bredd) x %uh (Höjd) pixlar.";
+$locale['429'] = "Tillbaka till albumadministrationen";
+$locale['430'] = "Tillbaka till administrationspanelen";
+$locale['431'] = "Det finns inga fotoalbum definierade.";
+$locale['432'] = "Inga";
+$locale['433'] = "Uppdatera foto och albumordningen";
+?>

@@ -1,0 +1,36 @@
+<?php
+$locale['400'] = "Aktuelle fotoalbums";
+$locale['401'] = "Slet album";
+$locale['402'] = "Rediger album";
+$locale['403'] = "Tilføj fotoalbum";
+$locale['404'] = "ID";
+$locale['405'] = "Overskrift";
+$locale['406'] = "Miniature";
+$locale['407'] = "Billeder";
+$locale['408'] = "Rækkefølge";
+$locale['409'] = "Valgmuligheder";
+$locale['410'] = "Information";
+$locale['411'] = "Billede";
+$locale['412'] = "Slet";
+$locale['413'] = "Indsæt";
+$locale['414'] = "Gem album";
+$locale['415'] = "Fortryd";
+$locale['416'] = "Aktuel rækkefølge:";
+$locale['417'] = "Lad feltet stå blankt for at sætte albummet nederst";
+$locale['418'] = "Indlæser billede...";
+$locale['419'] = "Billedet vil blive skaleret til størrelsen %u(bredde) x %u(højde) pixels";
+$locale['420'] = "Fejl i fotoalbum";
+$locale['421'] = "Fejl";
+$locale['422'] = "Dette album kan ikke slettes";
+$locale['423'] = "Der er lagt billeder ind i albummet.";
+$locale['424'] = "Dette albumnavn bruges allerede.";
+$locale['425'] = "Billedet skal være mindre end %u bytes.";
+$locale['426'] = "Fejlbehæftet billedfil.";
+$locale['427'] = "Du kan kun bruge filer i formatet JPEG.";
+$locale['428'] = "Billedet skal være mindre end %u(bredde) x %u(højde) pixels.";
+$locale['429'] = "Tilbage til albumadministration";
+$locale['430'] = "Tilbage til administrationsside";
+$locale['431'] = "Der er endnu ikke oprettet albums.";
+$locale['432'] = "Ingen";
+$locale['433'] = "Opdater album og rækkefølge af billeder";
+?>

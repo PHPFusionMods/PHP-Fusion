@@ -1,0 +1,56 @@
+<?php
+$locale['400'] = "Foreslå link";
+// Submit Link Success
+$locale['410'] = "Tak fordi du foreslog et link";
+$locale['411'] = "Vil du foreslå endnu et link?";
+$locale['412'] = "Vend tilbage til ".$settings['sitename'];
+// Submit Link Form
+$locale['420'] = "Du skal bruge denne formular til at foreslå et link. Dit forslag vil blive gennemset
+af en administrator. Hvis dit linkforslag ikke betragtes som brugbart, vil det ikke blive accepteret.";
+$locale['421'] = "Linkkategori:";
+$locale['422'] = "Linkets overskrift:";
+$locale['423'] = "Linkets adresse:";
+$locale['424'] = "Beskrivelse af linket:";
+$locale['425'] = "Foreslå linket";
+// Submit News
+$locale['450'] = "Foreslå nyhed";
+// Submit News Success
+$locale['460'] = "Tak fordi du foreslog en nyhed";
+$locale['461'] = "Vil du foreslå endnu en nyhed?";
+
+// Submit News Form
+$locale['470'] = "Du skal bruge denne formular til at foreslå en nyhed. Dit forslag vil blive gennemset
+af en administrator. ".$settings['sitename']." reserverer sig retten til at afvise eller redigere alle forslag. Nyheder
+skal være relevante i forhold til indholdet på denne side. Forslag, som ikke er det, vil blive slettet.";
+$locale['471'] = "Overskrift:";
+$locale['472'] = "Nyhedstekst:";
+$locale['473'] = " Slå automatiske linjeskift til";
+$locale['474'] = "Se nyheden";
+$locale['475'] = "Gem nyheden";
+$locale['476'] = "Kategori:";
+$locale['477'] = "- Ingen -";
+
+// Submit Article
+$locale['500'] = "Foreslå en artikel";
+
+// Submit Article Success
+$locale['510'] = "Tak for dit artikelforslag";
+$locale['511'] = "Ønsker du at foreslå endnu en artikel?";
+
+// Submit Article Form
+$locale['520'] = "Du skal bruge denne formular til at foreslå en artikel. Dit forslag vil blive gennemset
+administrator. ".$settings['sitename']." reserverer sig retten til at afvise eller redigere alle forslag. Artikler
+skal være relevante i forhold til indholdet på denne side. Forslag, som ikke er det, vil blive slettet.";
+$locale['521'] = "Kategori:";
+$locale['522'] = "Overskrift:";
+$locale['523'] = "Introduktion:";
+$locale['524'] = "Artiklens tekst:";
+$locale['525'] = " Slå automatisk linjeskift til";
+$locale['526'] = "Se artikel";
+$locale['527'] = "Gem artikel";
+
+// Submit Error
+$locale['550'] = "Du skal udfylde alle felterne i formularen.";
+$locale['551'] = "Der er endnu ikke defineret nogen kategorier.";
+
+?>

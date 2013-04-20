@@ -1,0 +1,36 @@
+<?php
+$locale['400'] = "Esami foto albumai";
+$locale['401'] = "Trinti albumà";
+$locale['402'] = "Redaguoti foto albumà";
+$locale['403'] = "Pridëti foto albumà";
+$locale['404'] = "ID";
+$locale['405'] = "Antraðtë";
+$locale['406'] = "Atvaizdas";
+$locale['407'] = "Paveiksliukai";
+$locale['408'] = "Eilë";
+$locale['409'] = "Savybës";
+$locale['410'] = "Info";
+$locale['411'] = "Paveiksliukas";
+$locale['412'] = "Trinti";
+$locale['413'] = "Áeiti";
+$locale['414'] = "Iðsaugoti albumà";
+$locale['415'] = "Nutraukti";
+$locale['416'] = "dabartinë eilë:";
+$locale['417'] = "palik tuðèià, norëdamas pridëti paskutiná eilëje";
+$locale['418'] = "Kraunasi Paveiksliukas...";
+$locale['419'] = "Paveiksliuko mastelis bus %uw x %uh pikseliø";
+$locale['420'] = "Klaida foto albume";
+$locale['421'] = "Klaida";
+$locale['422'] = "Albumas negali bûti iðtrintas";
+$locale['423'] = "Ðiame albume yra nuotraukø.";
+$locale['424'] = "Tokia antraðtë jau yra.";
+$locale['425'] = "Paveisliukas turi bûti maþesnis, nei %u baitø.";
+$locale['426'] = "Blogas paveiksliuko failas.";
+$locale['427'] = "Paveiksliukas turi bûti JPEG formato.";
+$locale['428'] = "Paveiksliukas turi bûti maþesnis, nei %uw x %uh pikseliø.";
+$locale['429'] = "Gráþti á foto albumo administravimo";
+$locale['430'] = "Gráþti á administravimo panëliø";
+$locale['431'] = "Nëra apibûdintø foto albumø.";
+$locale['432'] = "Nëra";
+$locale['433'] = "Atðvieþinti albuma ir foto sutvarkymas pagal pirmenybiðkumà";
+?>

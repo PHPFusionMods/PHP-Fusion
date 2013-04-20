@@ -1,0 +1,36 @@
+<?php
+$locale['400'] = "Current Photo Albums";
+$locale['401'] = "Delete Album";
+$locale['402'] = "Edit Photo Album";
+$locale['403'] = "Add Photo Album";
+$locale['404'] = "ID";
+$locale['405'] = "Title";
+$locale['406'] = "Thumb";
+$locale['407'] = "Images";
+$locale['408'] = "Order";
+$locale['409'] = "Options";
+$locale['410'] = "Info";
+$locale['411'] = "Image";
+$locale['412'] = "Delete";
+$locale['413'] = "Enter";
+$locale['414'] = "Save Album";
+$locale['415'] = "Cancel";
+$locale['416'] = "current order:";
+$locale['417'] = "leave blank to set last in order";
+$locale['418'] = "Loading Image...";
+$locale['419'] = "Image will be scaled to %uw x %uh pixels";
+$locale['420'] = "Photo Album Error";
+$locale['421'] = "Error";
+$locale['422'] = "Album Cannot be Deleted";
+$locale['423'] = "There are Photos in this Album.";
+$locale['424'] = "Album Title already in use.";
+$locale['425'] = "Image must be less than %u bytes.";
+$locale['426'] = "Invalid Image File.";
+$locale['427'] = "Image must be a JPEG Image File.";
+$locale['428'] = "Image must be less than %uw x %uh pixels.";
+$locale['429'] = "Return to Photo Album Admin";
+$locale['430'] = "Return to Admin Index";
+$locale['431'] = "No Photo Albums defined.";
+$locale['432'] = "None";
+$locale['433'] = "Refresh Album and Photo Ordering";
+?>

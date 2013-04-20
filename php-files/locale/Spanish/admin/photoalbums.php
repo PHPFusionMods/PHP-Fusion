@@ -1,0 +1,36 @@
+<?php
+$locale['400'] = "Albumes de Fotos Actuales";
+$locale['401'] = "Borrar Album";
+$locale['402'] = "Editar Album de Fotos";
+$locale['403'] = "Agregar Album de Fotos";
+$locale['404'] = "ID";
+$locale['405'] = "Título";
+$locale['406'] = "Thumb";
+$locale['407'] = "Imágenes";
+$locale['408'] = "Orden";
+$locale['409'] = "Opciones";
+$locale['410'] = "Info";
+$locale['411'] = "Imagen";
+$locale['412'] = "Borrar";
+$locale['413'] = "Ingresar";
+$locale['414'] = "Guardar Album";
+$locale['415'] = "Cancelar";
+$locale['416'] = "orden actual:";
+$locale['417'] = "Dejar en blanco para poner último en el orden";
+$locale['418'] = "Cargando la Imagen...";
+$locale['419'] = "La Imagen será escalada a %uw x %uh pixels";
+$locale['420'] = "Error en el Album de Fotos";
+$locale['421'] = "Error";
+$locale['422'] = "El Album no se puede borrar";
+$locale['423'] = "Hay Fotos en este Albbum.";
+$locale['424'] = "Título del Album ya existe.";
+$locale['425'] = "La Imagen debe ser menor de %u bytes.";
+$locale['426'] = "Archivo de Imagen no soportado.";
+$locale['427'] = "La Imagen debe ser un Archivo de Imagen JPEG.";
+$locale['428'] = "La Imagen no debe superar los %uw x %uh pixels.";
+$locale['429'] = "Volver al Administrador de Albumes de Fotos";
+$locale['430'] = "Volver al Indice del Panel del Administrador";
+$locale['431'] = "No se han definido Albumes de Fotos.";
+$locale['432'] = "Ninguna";
+$locale['433'] = "Actualizar el Orden del Album de Fotos";
+?>

@@ -1,0 +1,33 @@
+<?php
+$locale['400'] = "Fotoalbums";
+$locale['401'] = "Leeg album";
+$locale['402'] = "Laatste: ";
+$locale['403'] = " Afbeelding";
+$locale['404'] = " Afbeeldingen";
+$locale['405'] = "Afbeelding aan het laden...";
+$locale['406'] = "[Bijgewerkt]";
+$locale['407'] = "Geen Fotoalbums gedefinieerd";
+$locale['408'] = "Album: ";
+$locale['409'] = "Aantal afbeeldingen: ";
+$locale['410'] = "Laatste afbeelding toegevoegd op ";
+$locale['411'] = " door ";
+$locale['412'] = "Geen";
+$locale['413'] = "Albuminhoud";
+$locale['414'] = "Keer bekeken: ";
+$locale['415'] = "Geen reacties";
+$locale['416'] = "Reactie";
+$locale['417'] = "Reacties";
+$locale['418'] = "Er zijn nog geen afbeeldingen in dit album geplaatst.";
+$locale['419'] = "Foto: ";
+$locale['420'] = "Grootte: ";
+$locale['421'] = " pixels ";
+$locale['422'] = "Afbeelding toegevoegd door ";
+$locale['423'] = " op ";
+$locale['424'] = "Afbeelding werd ";
+$locale['425'] = " keer bekeken";
+$locale['426'] = "Terug naar albumlijst";
+$locale['427'] = "Terug naar albumgallerij";
+$locale['428'] = "Database fout";
+$locale['429'] = "< Vorige";
+$locale['430'] = "Volgende >";
+?>

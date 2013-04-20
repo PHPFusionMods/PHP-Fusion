@@ -1,0 +1,34 @@
+<?php
+$locale['400'] = "Aktuella fotografier";
+$locale['401'] = "Redigera foto";
+$locale['402'] = "Lägg till foto";
+$locale['403'] = "ID";
+$locale['404'] = "Titel";
+$locale['405'] = "Bild";
+$locale['406'] = "Miniatyrbild";
+$locale['407'] = "Tillfogad av";
+$locale['408'] = "Datum";
+$locale['409'] = "Kommentarer";
+$locale['410'] = "Ordningsföljd";
+$locale['411'] = "Inställningar";
+$locale['412'] = "Radera";
+$locale['413'] = "Antal visningar";
+$locale['414'] = "Spara foto";
+$locale['415'] = "Avbryt";
+$locale['416'] = "aktuell ordningsföljd:";
+$locale['417'] = "lämnas blankt för att sättas in sist i ordningen";
+$locale['418'] = "Laddar bild...";
+$locale['419'] = "Miniatyrbilden kommer att skalas ner till en storlek på %uw (Bredd) x %uh (Höjd) pixlar";
+$locale['420'] = "Fel vid bildbehandling";
+$locale['421'] = "Fel";
+$locale['422'] = "Bildnamnet är upptaget.";
+$locale['423'] = "Bilden måste vara mindre än %u bytes.";
+$locale['424'] = "Ogiltlig bildfil.";
+$locale['425'] = "Bilden måste vara i JPEG-format.";
+$locale['426'] = "Bilden skall vara mindre än %uw (Bredd) x %uh (Höjd) pixlar.";
+$locale['427'] = "Tillbaka till bildadministrationen";
+$locale['428'] = "Tillbaka till administrationspanelen";
+$locale['429'] = "Det finns inga bilder definierade.";
+$locale['430'] = "Inga";
+$locale['431'] = "Stäng fotoalbum";
+?>

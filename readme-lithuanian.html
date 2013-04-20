@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=windows-1257'>
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2006 Nick Jones<br>
+<b>Versija:</b> 6.00.307 - <b>I:</b> May 2006</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>1. Įžanga</b></td>
+</tr>
+<tr>
+<td class='tbl1'>PHP-Fusion yra "viskas-viename" Turinio Valdymo Sistema (TVS) parašyta PHP kodu.
+Ji naudoja mySQL duomenų bazę viso jūsų tinklapio turinio laikymui, tokio, kaip Naujienos,
+Straipsniai, Forumo pranešimai, ir t.t.
+
+<p>PHP-Fusion išleista pagal Antrosios versijos sąlygas ir pagal GNU General Public licenziją.
+	 Daugiau informacijos rasite www.gnu.org
+arba perskaitykite gpl.txt failą kurį rasite distribucijos pakete. Jūs galite keisti kodą
+jei norite pakeisti modifikaciją, arba tiesiog patobulinti distribuciją.
+
+<p>Jūs neturite teisės nuimti "Powered by PHP-Fusion" teisių įspėjimo, taip pat negalite 
+	nuimti tokio įspėjimo visur, kur tik jie yra skriptuose. Atsiminkite, kad mes įdėjome daugelį valandų
+	sunkaus darbo, kurdami šį produktą.</td>
+</tr>
+<tr>
+<td class='tbl2'><b>2. Instaliacija</b></td>
+</tr>
+<tr>
+<td class='tbl1'><ol>
+<li>Įkelkite visą php-files direktorijaus turinį į serverį.</li>
+<li>Suteikite CHMOD žymas 777 šiems failams ir direktorijams:
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul></li>
+<li>Eikite į savo tinklapį ir paleiskite setup.php pvz.: http://www.yourdomain.com/setup.php.</li>
+<li>Sekdami nuorodas ekrane, užbaikite instaliavimą.</li>
+<li>Suteikite CHMOD žymas 644 config.php failui ir ištrinkite setup.php failą iš serverio.</li>
+</ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Atnaujinimas iš v6.00.1xx</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Prieš atnaujinimą, būtinai pasidarykite visų failų, esančių serveryje ir duomenų bazės kopijas.
+<ol>
+<li><b>Ištrinkite config.php ir setup.php iš php-files prieš pradėdami atnaujinimą.</b></li>
+<li>Įkelkite upgrade.php iš upgrade v6.00.1xx direktorijaus į administration direktorijų savo serveryje.</li>
+<li>Prisijunkite prie savo tinklapio kaip Super Administratorius ir paspauskite Upgrade Administracijos panelėje.</li>
+<li>Sekite visus nurodymus, kol ekrane nepamatysite "Database upgrade complete".</li>
+<li>Įkelkite visą php-files direktorijaus turinį į serverį.</li>
+<li>Įsitikinkite, kad visiems failams ir direktorijams suteiktos CHMOD 777 žymos:
+<ul style='list-style-type:disc'><li>images/news_cats/</li>
+<li>images/imagelist.js</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>4. Atnaujinimas iš v4.01, v5.00 arba iš v5.01</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Prieš atnaujinimą, būtinai pasidarykite visų failų, esančių serveryje ir duomenų bazės kopijas.
+<ol>
+<li>Išinstaliuokite visus Infusions per Administracijos Panelę (tik v5.00 or v5.01).</li>
+<li>Išjunkite visas 3-iųjų šalių paneles per Panelių Administraciją, tame tarpe ir:
+<ul style='list-style-type:disc'><li>Navigacija</li>
+<li>Vartotojai(Nariai) Online</li>
+<li>Forumo pranešimai</li>
+<li>Paskutiniai straipsniai</li>
+<li>Pasisveikinimas</li>
+<li>Forumo pranešimų sąrašas
+<li>Vartotojo(Nario) Info</li>
+<li>Narių apklausa</li>
+<li>"Shoutbox"</li>
+</ul></li>
+<li>Įkelkite config.php iš php-files direktorijaus į savo serverį.
+<ul style='list-style-type:disc'><li><b>Turite ištrinti config.php iš php-files prieš pradėdami atnaujinimą.</b></li>
+</ul></li>
+<li>Įkelkite upgrade.php iš upgrade v4.01 direktorijaus į admin direktorijų savo serveryje.</li>
+<li>Suteikite CHMOD žymas 777 config.php failui.</li>
+<li>Prisijunkite prie tinklapio kaip Super Administratorius ir paspauskite Upgrade Administracijos Panelėje.</li>
+<li>Sekite visus nurodymus, kol ekrane nepamatysite "Database upgrade complete".</li>
+<li>Ištrinkite sekančius direktorijusa iš serverio:
+<ul style='list-style-type:disc'><li>fusion_admin</li>
+<li>fusion_core</li>
+<li>fusion_forum</li>
+<li>fusion_languages</li>
+<li>fusion_panels</li>
+<li>fusion_themes</li>
+</ul></li>
+<li>Pervardinkite sekančius direktorijus savo serveryje:
+<ul style='list-style-type:disc'><li>fusion_images į images</li>
+<li>fusion_public į forum</li>
+</ul></li>
+<li>Perkelkite avatars direktorijų iš forum direktorijaus į images direktorijų</li>
+<li>Įkelkite visą php-files direktorijaus turinį į serverį.</li>
+<li>Suteikite CHMOD žymas 644 config.php failui.</li>
+<li>Įsitikinkite, kad šiems dsirektorijams suteiktos CHMOD 777 žymos:
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/photoalbum/</li>
+<li>forum/attachments/</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>5. Papildomos pastabos</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Atminkite, kad pagrindinė PHP-Fusion infrastruktūra yra pilnai rekonstruota iš
+	 v4x ir v5x. Kai kurios reikšmės yra pervardintos, o numeriai panaikinti, kadangi jie
+	 daugiau nebereikalingi. Šioje lentelėje yra naudojamų reikšmių sąrašas
+ v4x, v5x ir v6x.<br><br>
+<table align='center' cellpadding='0' cellspacing='1' class='tbl-border'>
+<tr><td width='33%' class='tbl2'>v4x</td><td width='33%' class='tbl2'>v5x</td><td width='33%' class='tbl2'>v6x</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_root</td><td width='33%' class='tbl1'>FUSION_ROOT</td><td width='33%' class='tbl1'>-</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_base</td><td width='33%' class='tbl1'>FUSION_BASE</td><td width='33%' class='tbl1'>BASEDIR</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_ADMIN</td><td width='33%' class='tbl1'>ADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES</td><td width='33%' class='tbl1'>IMAGES</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES_A</td><td width='33%' class='tbl1'>IMAGES_A</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES_N</td><td width='33%' class='tbl1'>IMAGES_N</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_INCLUDES</td><td width='33%' class='tbl1'>INCLUDES</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_langdir</td><td width='33%' class='tbl1'>FUSION_LANGUAGES</td><td width='33%' class='tbl1'>LOCALE</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_LAN</td><td width='33%' class='tbl1'>LOCALESET</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_FORUM</td><td width='33%' class='tbl1'>FORUM</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_INFUSIONS</td><td width='33%' class='tbl1'>INFUSIONS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PHOTOS</td><td width='33%' class='tbl1'>PHOTOS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PUBLIC</td><td width='33%' class='tbl1'>PUBLIC</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_themedir</td><td width='33%' class='tbl1'>FUSION_THEMES</td><td width='33%' class='tbl1'>THEMES
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_THEME</td><td width='33%' class='tbl1'>THEME</td></tr>
+<tr><td width='33%' class='tbl1'>$user_ip</td><td width='33%' class='tbl1'>FUSION_IP</td><td width='33%' class='tbl1'>USER_IP</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_QUERY</td><td width='33%' class='tbl1'>FUSION_QUERY</td></tr>
+<tr><td width='33%' class='tbl1'>$PHP_SELF</td><td width='33%' class='tbl1'>$PHP_SELF/FUSION_SELF</td><td width='33%' class='tbl1'>FUSION_SELF</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PREFIX</td><td width='33%' class='tbl1'>DB_PREFIX</td></tr>
+<tr><td width='33%' class='tbl1'>$fusion_prefix</td><td width='33%' class='tbl1'>$fusion_prefix</td><td width='33%' class='tbl1'>$db_prefix</td></tr>
+<tr><td colspan='3' class='tbl2'>User Definitions</td></tr>
+<tr><td width='33%' class='tbl1'>Guest()</td><td width='33%' class='tbl1'>iGUEST</td><td width='33%' class='tbl1'>iGUEST</td></tr>
+<tr><td width='33%' class='tbl1'>Member()</td><td width='33%' class='tbl1'>iMEMBER</td><td width='33%' class='tbl1'>iMEMBER</td></tr>
+<tr><td width='33%' class='tbl1'>Moderator()</td><td width='33%' class='tbl1'>iMOD</td><td width='33%' class='tbl1'>-</td></tr>
+<tr><td width='33%' class='tbl1'>Admin()</td><td width='33%' class='tbl1'>iADMIN</td><td width='33%' class='tbl1'>iADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>SuperAdmin()</td><td width='33%' class='tbl1'>iSUPERADMIN</td><td width='33%' class='tbl1'>iSUPERADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>UserLevel()</td><td width='33%' class='tbl1'>iUSER</td><td width='33%' class='tbl1'>iUSER</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>USER_RIGHTS</td><td width='33%' class='tbl1'>USER_RIGHTS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>USER_GROUP</td><td width='33%' class='tbl1'>USER_GROUP</td></tr>
+</table><br>
+Turite įsitikinti, kad any kiekviename modifikuotame kode naudojamos v6 reikšmės,
+ir atminkite, kad modifikacijos, darytos v5x netinka v6 dėl 
+reikšmių pakeitimo sistemoje.</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>6. Palaikymo tinklapiai</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Jei kyla kokių klausimų ar problemų, vartojant PHP-Fusion, aplankykite
+pagrindinį kūrėjų tinklapį <a href='http://www.php-fusion.co.uk' target='_blank'>www.php-fusion.co.uk</a>
+ir parašykite forume. Taip pat galite pasinaudoti IRC chat palaikymo kanalu
+<a href='irc://irc.cad-net.org/phpfusion'>irc.cad-net.org/phpfusion</a>.<br><br>
+PHP-Fusion gali būti išplėsta naudojant Infusions, tai yra - pluginus, kuriuos labai
+lengva instaliuoti. Infusion'ų galite rasti mūsų modifikacijų tinklapyje
+<a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a>.<br><br>
+Jei norite pritaikyti savo PHP-Fusion temą - prašome apsilankyti oficialiame temų tinklapyje
+ <a href='http://www.phpfusion-themes.com' target='blank'>www.phpfusion-themes.com</a> 
+ kur rasite daugybę įvairių temų pagal savo skonį.<br><br>
+PHP-Fusion taip pat turi platų palaikymo tinklą visame pasaulyje
+<a href='http://www.phpfusion.be' target='blank'>Belgija</a>,
+<a href='http://www.phpfusion.dk' target='blank'>Danija</a>,
+<a href='http://www.phpfusion.fr.com' target='blank'>Prancūzija</a>, 
+<a href='http://www.php-fusion.de' target='blank'>Vokietija</a>,
+<a href='http://www.fusion.alaviweb.com' target='blank'>Iranas</a>,
+<a href='http://www.php-fusion.lt' target='blank'>Lietuva</a>,
+<a href='http://www.phpfusion.nl' target='blank'>Olandija</a>,
+<a href='http://www.php-fusion.pl' target='blank'>Lenkija</a>,
+<a href='http://www.php-fusion.sw' target='blank'>Švedija</a>,
+<a href='http://www.phpfusion-tw.com' target='blank'>Taivanis</a>
+ir <a href='http://www.phpfusion-tr.com' target='blank'>Turkija.</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>7. Padėkos</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Ačiū šiems asmenims už ilgą ir sunkų darbą:<br><br>
+CrappoMan - Kodavimą ir mySQL kūrimą<br>
+Shedrock - Už temas ir Administracijos ikonas<br>
+Janmol - Marketingą ir dizaino koncepcijas<br>
+KEFF - Už kvailas idėjas, kurios nepasirodė kvailomis!<br>
+Rayxen - Kodavimą ir modifikacijas<br>
+Sheldon - Techninis palaikymas bei hostingas<br>
+<br>
+<b>3-iųjų šalių skriptai:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE</a> - HTML WYSIWYG editorius pagal Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer</a> - e-mail siuntimo klasė su SMTP palaikymu pagal Brent R. Matzelle.<br>
+<a href='http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload'>HTTPDownload</a> - Siuntimosi klasė pagal Nguyen Quoc Bao.</td>
+</tr>
+</table>
+
+</body>
+</html>

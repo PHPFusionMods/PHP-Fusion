@@ -1,0 +1,33 @@
+<?php
+$locale['400'] = "Album Fotografico";
+$locale['401'] = "Album Vuoto";
+$locale['402'] = "Ultimo: ";
+$locale['403'] = " Immagine";
+$locale['404'] = " Immagini";
+$locale['405'] = "Caricamento Immagine...";
+$locale['406'] = "[Aggiornata]";
+$locale['407'] = "Nessun Album Fotografico definito";
+$locale['408'] = "Album: ";
+$locale['409'] = "Numero Immagini: ";
+$locale['410'] = "Ultima immagine aggiunta il ";
+$locale['411'] = " da ";
+$locale['412'] = "Nessuno";
+$locale['413'] = "Contenuto Album";
+$locale['414'] = "Vista: ";
+$locale['415'] = "Nessun Commento";
+$locale['416'] = "Commenta";
+$locale['417'] = "Commenti";
+$locale['418'] = "Nessuna immagine è stata aggiunta a questo Album.";
+$locale['419'] = "Foto: ";
+$locale['420'] = "Dimensione: ";
+$locale['421'] = " pixels ";
+$locale['422'] = "Immagine aggiunta da ";
+$locale['423'] = " il ";
+$locale['424'] = "L'immagine è stata vista ";
+$locale['425'] = " volte";
+$locale['426'] = "Ritorna alla Lista Album";
+$locale['427'] = "Ritorna ad Album Fotografico";
+$locale['428'] = "Errore Database";
+$locale['429'] = "< Prec";
+$locale['430'] = "Succ >";
+?>

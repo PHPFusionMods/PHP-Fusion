@@ -1,0 +1,36 @@
+<?php
+$locale['400'] = "Geçerli Fotoðraf Albümleri";
+$locale['401'] = "Albüm Sil";
+$locale['402'] = "Resim Albümü Düzenle";
+$locale['403'] = "Resim Albümü Ekle";
+$locale['404'] = "NO";
+$locale['405'] = "Baþlýk";
+$locale['406'] = "Küçük Res.";
+$locale['407'] = "Resimler";
+$locale['408'] = "Sýra";
+$locale['409'] = "Seçenekler";
+$locale['410'] = "Bilgi";
+$locale['411'] = "Resim";
+$locale['412'] = "Sil";
+$locale['413'] = "Giriþ";
+$locale['414'] = "Albümü Kaydet";
+$locale['415'] = "Vazgeç";
+$locale['416'] = "þimdiki sýra:";
+$locale['417'] = "son sýrayý vermek için boþ býrakýnýz";
+$locale['418'] = "Resim Yükleniyor...";
+$locale['419'] = "Resminiz %u geniþlik ve %u yükseklik piksel boyutuna göre ayalanacak.";
+$locale['420'] = "Resim Albümünde Hata";
+$locale['421'] = "Hata";
+$locale['422'] = "Albüm Silinemiyor";
+$locale['423'] = "Bu Albüme ait Resimler var.";
+$locale['424'] = "Bu Albüm Baþlýðý Kullanýlýyor.";
+$locale['425'] = "Resim boyutu max. %u byte olabilir.";
+$locale['426'] = "Geçersiz resim dosyasý.";
+$locale['427'] = "Resim Formatý JPEG Olmalýdýr.";
+$locale['428'] = "Resminizin max. geniþliði %u ve yüksekliði %u piksel boyutunu aþamaz.";
+$locale['429'] = "Resim Albümü Yönetimine Geri Dön";
+$locale['430'] = "Site Yönetimine Geri Dön";
+$locale['431'] = "Henüz Resim Albümü Oluþturulmamýþ.";
+$locale['432'] = "Hiçbiri";
+$locale['433'] = "Albüm ve Resim siralamasini Yenile";
+?>

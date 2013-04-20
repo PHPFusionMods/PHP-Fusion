@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PHP-Fusion Readme</title>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+<style type='text/css'>
+<!--
+a { color:#003D71; text-decoration:none; }
+a:hover { color:#027AC6; text-decoration:underline; }
+.button {
+	font-family:Tahoma,Arial,Verdana,Sans-Serif;
+	font-size:11px;
+	color:#000000; 	
+	background-color:#E5E5E8;
+	border:#7F98A7 1px solid;
+	margin-top:2px;
+}
+.textbox {
+	font-family:Verdana,Tahoma,Arial,Sans-Serif;
+	font-size:11px;
+	color:#000; 
+	background-color:#FFFFFF;
+	border:1px #7F98A7 solid;
+}
+td { font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:11px; }
+.tbl-border { background-color:#D1D8DD; }
+.tbl1 { font-size:11px; color:#000; background-color:#f1f1f1; padding:4px; }
+.tbl2 {	font-size:11px; color:#000; background-color:#e1e1e1; padding:4px; }
+-->
+</style>
+</head>
+<body bgcolor='#ffffff'>
+
+<table align='center' cellpadding='0' cellspacing='1' width='600' class='tbl-border'>
+<tr>
+<td align='center' class='tbl1'><br>
+<img src='banner.gif' alt='PHP-Fusion' title='PHP-Fusion'><br><br>
+Copyright &copy; 2002 - 2006 Nick Jones<br>
+<b>Version:</b> 6.00.307 - <b>Frigivet:</b> May 2006</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>1. Introduktion</b></td>
+</tr>
+<tr>
+<td class='tbl1'>PHP-Fusion er et komplet content management system (CMS) 
+skrevet i PHP. PHP-Fusion bruger en mySQL-database til at gemme alt 
+sideindholdet så som nyheder. tekster, debatindlæg, replikker og så videre. <br>
+<br>
+PHP-Fusion distribueres ifølge de regler og på de betingelser, som er angivet i 
+version 2 af den såkaldte
+GNU General Public License. For yderligere information om disse regler, besøg www.gnu.org 
+eller læs den gpl.txt fil, som er vedlagt installationspakken. Du har lov til at 
+ændre koden på alle de måder, du har lyst til og lægge den ændrede kode ud til 
+videredistribution enten som den er eller sammen med dine egne ændringer. <br>
+<br>
+Du har ikke ret til at fjerne teksten og linket "Powered by PHP-Fusion" i bunden 
+af siderne eller til at fjerne copyright information fra nogen af de inkluderede 
+scripts. Efter vores opfattelse er det et rimeligt krav at stille, når man tager 
+i betragtning, hvor meget arbejde, som er medgået til at udvikle denne løsning.
+
+</td>
+</tr>
+<tr>
+<td class='tbl2'><b>2. Installation</b></td>
+</tr>
+<tr>
+<td class='tbl1'><ol>
+<li>Upload indholdet af folderen php-files til din server.</li>
+<li>CHMOD følgende filer og foldere til 777:
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/imagelist.js</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/news_cats/</li>
+<li>images/photoalbum/</li>
+<li>forum/attachments/</li>
+<li>config.php</li>
+</ul></li>
+<li>Luk din side op i en browser og kør scriptet setup.php - det ser sådan her 
+ud: http://www.yourdomain.com/setup.php.</li>
+<li>Gør opsætningen færdig ved at følge instruktionerne på skærmen.</li>
+<li>CHMOD filen config.php tilbage til 644 OG slet filen setup.php fra din 
+server.</li>
+</ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>3. Opgradering fra version 6.00.1xx</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Før du opgraderer anbefaler vi på det kraftigste, at du tager 
+en sikkerhedskopi af din database og af alle filerne på din installation.
+<ol>
+<li><b>Husk at slette filerne config.php og setup.php fra folderen php-files før 
+du går videre.</b></li>
+<li>Upload filen upgrade.php fra folderen upgrade v6.00.1xx til folderen administration 
+på din server.</li>
+<li>Log ind på din side som Super Administrator og vælg Opgradering på 
+administrationssiden.</li>
+<li>Fælg instruktionerne på skærmen indtil du ser meddelelsen "Database upgrade complete".</li>
+<li>Upload derefter indholdet af folderen php-files folder til din server.</li>
+<li>Kontroller at følgende foldere og filer er CHMOD'ed&nbsp; til 777:
+<ul style='list-style-type:disc'><li>images/news_cats/</li>
+<li>images/imagelist.js</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>4. Opgradering fra version 4.01, version 5.00 eller version 5.01</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Før du opgraderer anbefaler vi på det kraftigste, at du tager 
+en sikkerhedskopi af din database og af alle filerne på din installation.
+<ol>
+<li>Afinstaller alle infusioner fra administrationssiden (dette gælder kun for 
+version 5.00 eller version 5.01).</li>
+<li>Slå alle tredjeparts elementer fra på administrationssiden med undtagelse af 
+følgende: <br>
+&nbsp;<ul style='list-style-type:disc'><li>Navigation</li>
+<li>Online Users</li>
+<li>Forum Threads</li>
+<li>Latest Articles</li>
+<li>Welcome Message</li>
+<li>Forum Threads List
+<li>User Info</li>
+<li>Members Poll</li>
+<li>Shoutbox<br>
+&nbsp;</li>
+</ul></li>
+<li>Upload filen config.php fra folderen php-files til din server.
+<ul style='list-style-type:disc'><li><b>Husk at slette filen i folderen php-files 
+	efter at den er uploadet men før du går videre.</b></li>
+</ul></li>
+<li>Upload filen upgrade.php fra folderen upgrade v4.01 (eller fra den folder, 
+som svarere til den version, du aktuelt anvender) til serveren.</li>
+<li>CHMOD filen config.php til 777.</li>
+<li>Log ind på din side som Super Administrator og vælg opgradering fra 
+administrationssiden.</li>
+<li>Følg instruktionerne på skærmen, indtil du ser teksten "Database upgrade complete".</li>
+<li>Slet følgende foldere fra din server:
+<ul style='list-style-type:disc'><li>fusion_admin</li>
+<li>fusion_core</li>
+<li>fusion_forum</li>
+<li>fusion_languages</li>
+<li>fusion_panels</li>
+<li>fusion_themes</li>
+</ul></li>
+<li>Omdøb følgende foldere:
+<ul style='list-style-type:disc'><li>fusion_images til images</li>
+<li>fusion_public til forum</li>
+</ul></li>
+<li>Flyt folderen avatars fra folderen forum til folderen images</li>
+<li>Upload indholdet af folderen php-files til din server.</li>
+<li>CHMOD filen config.php tilbage til 644.</li>
+<li>Kontroller at følgende foldere er CHMODed til 777:
+<ul style='list-style-type:disc'><li>administration/db_backups/</li>
+<li>images/</li>
+<li>images/articles/</li>
+<li>images/avatars/</li>
+<li>images/news/</li>
+<li>images/photoalbum/</li>
+<li>forum/attachments/</li>
+</ul></li></ol></td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>5. Supplerende bemærkninger</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Bemærk er størstedelen af infrastrukturen i PHP-Fusion er 
+blevet ændret helt siden version 5 og version 5. De fleste af definitionerne er 
+blevet ændret, men en række er også helt opgivet, fordi der ikke længere er brug 
+for dem. I nedenstående liste kan du se de defintioner, som er anvendt i de 
+forskellige versioner. <br><br>
+<table align='center' cellpadding='0' cellspacing='1' class='tbl-border'>
+<tr><td width='33%' class='tbl2'>version 4.x</td><td width='33%' class='tbl2'>version 5x</td><td width='33%' class='tbl2'>version 6x</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_root</td><td width='33%' class='tbl1'>FUSION_ROOT</td><td width='33%' class='tbl1'>-</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_base</td><td width='33%' class='tbl1'>FUSION_BASE</td><td width='33%' class='tbl1'>BASEDIR</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_ADMIN</td><td width='33%' class='tbl1'>ADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES</td><td width='33%' class='tbl1'>IMAGES</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES_A</td><td width='33%' class='tbl1'>IMAGES_A</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_IMAGES_N</td><td width='33%' class='tbl1'>IMAGES_N</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_INCLUDES</td><td width='33%' class='tbl1'>INCLUDES</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_langdir</td><td width='33%' class='tbl1'>FUSION_LANGUAGES</td><td width='33%' class='tbl1'>LOCALE</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_LAN</td><td width='33%' class='tbl1'>LOCALESET</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_FORUM</td><td width='33%' class='tbl1'>FORUM</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_INFUSIONS</td><td width='33%' class='tbl1'>INFUSIONS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PHOTOS</td><td width='33%' class='tbl1'>PHOTOS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PUBLIC</td><td width='33%' class='tbl1'>PUBLIC</td></tr>
+<tr><td width='33%' class='tbl1'>fusion_themedir</td><td width='33%' class='tbl1'>FUSION_THEMES</td><td width='33%' class='tbl1'>THEMES
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_THEME</td><td width='33%' class='tbl1'>THEME</td></tr>
+<tr><td width='33%' class='tbl1'>$user_ip</td><td width='33%' class='tbl1'>FUSION_IP</td><td width='33%' class='tbl1'>USER_IP</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_QUERY</td><td width='33%' class='tbl1'>FUSION_QUERY</td></tr>
+<tr><td width='33%' class='tbl1'>$PHP_SELF</td><td width='33%' class='tbl1'>$PHP_SELF/FUSION_SELF</td><td width='33%' class='tbl1'>FUSION_SELF</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>FUSION_PREFIX</td><td width='33%' class='tbl1'>DB_PREFIX</td></tr>
+<tr><td width='33%' class='tbl1'>$fusion_prefix</td><td width='33%' class='tbl1'>$fusion_prefix</td><td width='33%' class='tbl1'>$db_prefix</td></tr>
+<tr><td colspan='3' class='tbl2'>Brugerdefinitioner</td></tr>
+<tr><td width='33%' class='tbl1'>Guest()</td><td width='33%' class='tbl1'>iGUEST</td><td width='33%' class='tbl1'>iGUEST</td></tr>
+<tr><td width='33%' class='tbl1'>Member()</td><td width='33%' class='tbl1'>iMEMBER</td><td width='33%' class='tbl1'>iMEMBER</td></tr>
+<tr><td width='33%' class='tbl1'>Moderator()</td><td width='33%' class='tbl1'>iMOD</td><td width='33%' class='tbl1'>-</td></tr>
+<tr><td width='33%' class='tbl1'>Admin()</td><td width='33%' class='tbl1'>iADMIN</td><td width='33%' class='tbl1'>iADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>SuperAdmin()</td><td width='33%' class='tbl1'>iSUPERADMIN</td><td width='33%' class='tbl1'>iSUPERADMIN</td></tr>
+<tr><td width='33%' class='tbl1'>UserLevel()</td><td width='33%' class='tbl1'>iUSER</td><td width='33%' class='tbl1'>iUSER</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>USER_RIGHTS</td><td width='33%' class='tbl1'>USER_RIGHTS</td></tr>
+<tr><td width='33%' class='tbl1'>-</td><td width='33%' class='tbl1'>USER_GROUP</td><td width='33%' class='tbl1'>USER_GROUP</td></tr>
+</table><br>
+Sørg for at kontrollere, at eventuelle kodeændringer bruger de mest aktuelle 
+definitioner, og bemærk i den sammenhæng også, at infusioner udviklet til 
+version 5 ikke er kompatible med version 6 på grund af ændringer i in 
+fusions-systemet. </td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>6. Supportadresser</b></td>
+</tr>
+<tr>
+<td class='tbl1'>Hvis du har spørgsmål eller problemer i relation til PHP-Fusion, 
+så kan&nbsp; du besøge løsningens moderside på <a href='http://www.php-fusion.co.uk' target='_blank'>www.php-fusion.co.uk</a>
+og skrive en besked i vores debat. Alternativt kan du besøge vores IRC chat support 
+kanal på adressen
+<a href='irc://irc.cad-net.org/phpfusion'>irc.cad-net.org/phpfusion</a>.<br><br>
+PHP-Fusion kan få tilføjet nye funktioner gennem installation af infusioner, som 
+er plugins, som det er ekstremt let at installere. Du kan finde et udvalg af 
+brugbare infusioner på adressen
+<a href='http://www.phpfusion-mods.com' target='blank'>www.phpfusion-mods.com</a> 
+eller på den tilsvarende danske adresse
+<a href="http://phpfusion-mods.dk/news.php">phpfusion-mods.dk</a> .<br><br>
+Hvis du ikke kan nøjes med de temaer, som leveres med standardpakken, kan du 
+besøge vores officielle tema-side på adressen
+<a href='http://www.phpfusion-themes.com' target='blank'>www.phpfusion-themes.com</a> hvor du 
+kan finde et stort udvalg af temaer i høj kvalitet.<br><br>
+PHP-Fusion har også en række nationale support sider, som dækker
+<a href='http://www.phpfusion.be' target='blank'>Belgien</a>,
+<a href='http://www.phpfusion.dk' target='blank'>Danmark</a>,
+<a href='http://www.phpfusion.fr.com' target='blank'>Frankrig</a>, 
+<a href='http://www.php-fusion.de' target='blank'>Tyskland</a>,
+<a href='http://www.fusion.alaviweb.com' target='blank'>Iran</a>,
+<a href='http://www.php-fusion.lt' target='blank'>Letland</a>,
+<a href='http://www.phpfusion.nl' target='blank'>Holland</a>,
+<a href='http://www.php-fusion.pl' target='blank'>Polen</a>,
+<a href='http://www.php-fusion.sw' target='blank'>Sverige</a>,
+<a href='http://www.phpfusion-tw.com' target='blank'>Taiwan</a>
+og <a href='http://www.phpfusion-tr.com' target='blank'>Tyrkiet.</td>
+</tr>
+
+<tr>
+<td class='tbl2'><b>7. En tak til ...</b></td>
+</tr>
+<tr>
+<td class='tbl1'>En tak til følgende for deres bidrag til projektet:<br><br>
+CrappoMan - Supplerende kode og mySQL rutiner<br>
+Shedrock - Supplerende temaer og administrations ikoner<br>
+Janmol - Markedsundersøgelser og design ideer<br>
+KEFF - Fjollede ideer, der viser sig ikke at være så fjollede endda!<br>
+Rayxen - Supplerende kode og modifikationer<br>
+Sheldon - Teknisk support & supplerende hosting<br>
+<br>
+<b>Tredjeparts scripts:</b><br>
+<a href='http://tinymce.moxiecode.com/'>TinyMCE</a> - En HTML WYSIWYG editor 
+produceret af Moxiecode.<br>
+<a href='http://phpmailer.sourceforge.net/'>PHPMailer</a> - En sendmail klasse 
+med SMTP support kodet af Brent R. Matzelle.<br>
+<a href='http://en.vietapi.com/wiki/index.php/PHP:_HttpDownload'>HTTPDownload</a> - 
+En download handler klasse kodet af Nguyen Quoc Bao.</td>
+</tr>
+</table>
+
+</body>
+</html>

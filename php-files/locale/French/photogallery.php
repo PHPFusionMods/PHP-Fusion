@@ -1,0 +1,33 @@
+<?php
+$locale['400'] = "Album Photos";
+$locale['401'] = "Album vide";
+$locale['402'] = "Dernier: ";
+$locale['403'] = " Photo";
+$locale['404'] = " Photos";
+$locale['405'] = "chargement Image...";
+$locale['406'] = "[Mis a jour]";
+$locale['407'] = "Aucun Album photo défini";
+$locale['408'] = "Album: ";
+$locale['409'] = "Nombre d'images: ";
+$locale['410'] = "Dernière image ajoutée le ";
+$locale['411'] = " par ";
+$locale['412'] = "Aucune";
+$locale['413'] = "Contenu d'Album ";
+$locale['414'] = "Voir: ";
+$locale['415'] = "Aucun Commentaire";
+$locale['416'] = "Commentaire";
+$locale['417'] = "Commentaires";
+$locale['418'] = "Aucune image n'a été ajoutée à cet album.";
+$locale['419'] = "Photo: ";
+$locale['420'] = "Taille: ";
+$locale['421'] = " pixels ";
+$locale['422'] = "Image ajoutée par ";
+$locale['423'] = " le ";
+$locale['424'] = "L'image a été vue ";
+$locale['425'] = " fois";
+$locale['426'] = "Retour à la liste de l'album";
+$locale['427'] = "Retour à la galerie d'album";
+$locale['428'] = "Erreur de base de données";
+$locale['429'] = "< Préc";
+$locale['430'] = "suiv >";
+?>

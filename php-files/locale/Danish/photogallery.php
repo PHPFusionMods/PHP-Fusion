@@ -1,0 +1,33 @@
+<?php
+$locale['400'] = "Fotoalbums";
+$locale['401'] = "Dette album er tomt";
+$locale['402'] = "Seneste: ";
+$locale['403'] = " Billede";
+$locale['404'] = " Billeder";
+$locale['405'] = "Henter billedet...";
+$locale['406'] = "[Opdateret]";
+$locale['407'] = "Der er ikke oprettet albums endnu";
+$locale['408'] = "Album: ";
+$locale['409'] = "Antal billeder: ";
+$locale['410'] = "Nyeste billede tilføjet d. ";
+$locale['411'] = " af ";
+$locale['412'] = "Ingen";
+$locale['413'] = "Albumindhold";
+$locale['414'] = "Visninger: ";
+$locale['415'] = "Ingen kommentarer";
+$locale['416'] = "Kommentar";
+$locale['417'] = "Kommentarer";
+$locale['418'] = "Der er endnu ikke tilføjet billeder til dette album.";
+$locale['419'] = "Billede: ";
+$locale['420'] = "Størrelse: ";
+$locale['421'] = " pixels ";
+$locale['422'] = "Billedet tilføjet af ";
+$locale['423'] = " d. ";
+$locale['424'] = "Billedet er blevet vist ";
+$locale['425'] = " gange";
+$locale['426'] = "Vend tilbage til albumliste";
+$locale['427'] = "Vend tilbage til galleri";
+$locale['428'] = "Databasefejl";
+$locale['429'] = "< Foreg.";
+$locale['430'] = "Næste >";
+?>

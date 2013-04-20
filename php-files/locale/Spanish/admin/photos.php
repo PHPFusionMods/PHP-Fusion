@@ -1,0 +1,34 @@
+<?php
+$locale['400'] = "Fotos Actuales";
+$locale['401'] = "Editar Foto";
+$locale['402'] = "Agregado Foto";
+$locale['403'] = "ID";
+$locale['404'] = "Título";
+$locale['405'] = "Imagen";
+$locale['406'] = "Thumb";
+$locale['407'] = "Agregado Por";
+$locale['408'] = "Fecha";
+$locale['409'] = "Comentarios";
+$locale['410'] = "Ordenar";
+$locale['411'] = "Opciones";
+$locale['412'] = "Borrar";
+$locale['413'] = "Vistas";
+$locale['414'] = "Guardar Foto";
+$locale['415'] = "Cancelar";
+$locale['416'] = "orden actual:";
+$locale['417'] = "dejar en blanco para poner el último en el orden";
+$locale['418'] = "Cargando Imagen...";
+$locale['419'] = "El Thumbnail será escalado a %uw x %uh pixels";
+$locale['420'] = "Error en la Foto";
+$locale['421'] = "Error";
+$locale['422'] = "Título de la Foto ya existe.";
+$locale['423'] = "La imagen debe ser menor de %u bytes.";
+$locale['424'] = "Archivo de Imagen no soportado.";
+$locale['425'] = "La imagen debe ser un Archivo de Imagen JPEG.";
+$locale['426'] = "La imagen debee ser menor de %uw x %uh pixels.";
+$locale['427'] = "Volver al Administrador de Fotos";
+$locale['428'] = "Volver al Indice de Administración";
+$locale['429'] = "No se han definido Fotos.";
+$locale['430'] = "Ninguna";
+$locale['431'] = "Cerrar Album";
+?>
