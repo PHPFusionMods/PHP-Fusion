@@ -32,6 +32,7 @@ if (stripget($_GET)) {
 	die("Prevented a XSS attack through a GET variable!");
 }
 
+
 // Locate config.php and set the basedir path
 $folder_level = ""; $i = 0;
 while (!file_exists($folder_level."config.php")) {
@@ -46,6 +47,27 @@ require_once BASEDIR."config.php";
 if (!isset($db_name)) { redirect("setup.php"); }
 
 require_once BASEDIR."includes/multisite_include.php";
+
+// Checking file types of the uploaded file with known mime types list to prevent uploading unwanted files
+if(isset($_FILES) && count($_FILES)) {
+	require_once BASEDIR.'includes/mimetypes_include.php';
+	$mime_types = mimeTypes();
+	foreach($_FILES as $each) {
+		if(isset($_FILES[$each]['name']) && strlen($_FILES[$each]['tmp_name'])) {
+			$file_info = pathinfo($_FILES[$each]['name']);
+			$extension = $file_info['extension'];
+			if(array_key_exists($extension, $mime_types)) {
+				if($mime_types[$extension]!=$_FILES[$each]['type']) {
+					die('Prevented an unwanted file upload attempt!');
+				}
+			} else {
+				//almost impossible with provided array, but we throw an error anyways
+				die('Unknown file type');
+			}
+		}
+	}
+	@unset($mime_types,$file_info,$extension);
+}
 
 // Establish mySQL database connection
 $link = dbconnect($db_host, $db_user, $db_pass, $db_name);
